@@ -54,8 +54,10 @@ import loginForEmployee from '../components/login/loginForEmployee.vue'
  * 快捷功能
  */
 import phone from '../components/function/phone.vue'
-import airport from '../components/function/airport.vue'
-import airportInfo from '../components/function/airportInfo.vue'
+// import airport from '../components/function/airport.vue'
+// import airportInfo from '../components/function/airportInfo.vue'
+import airinfo from '../components/function/airinfo.vue'
+import research from '../components/function/research.vue'
 import translate from '../components/function/translate.vue'
 /**
  *社区生活
@@ -145,8 +147,8 @@ export default new Router({
         {path: '/loginforguest',name: 'loginForGuest',component: loginForGuest},//用户登录
         {path: '/loginForEmployee',name: 'loginForEmployee',component: loginForEmployee},//员工登陆
         {path: '/phone',name: 'phone',component: phone},//常用电话
-        {path: '/airport',name: 'airport',component: airport},//航班信息
-        {path: '/airportInfo',name: 'airportInfo',component: airportInfo},//航班信息查询列表
+        {path: '/airinfo',name: 'airinfo',component: airinfo},//航班信息
+        {path: '/research',name: 'research',component: research},//客户调查表 
         {path: '/translate',name: 'translate',component: translate},//翻译
         {path: '/communityLife',name: 'communityLife',component: communityLife,meta:{allowBack: false}},//社区生活
 	    {path: '/propertyDetail',name: 'propertyDetail',component: propertyDetail},//社区生活
@@ -177,5 +179,9 @@ export default new Router({
         {path: '/judge',name: 'judge',component: judge},//评论列表
         {path: '/judgeInput',name: 'judgeInput',component: judgeInput},//评论
         {path: '/map',name: 'map',component: map},//评论
+
+
+        // {path: '/airport',name: 'airport',component: airport},//航班信息
+        // {path: '/airportInfo',name: 'airportInfo',component: airportInfo},//航班信息查询列表
     ]
 })

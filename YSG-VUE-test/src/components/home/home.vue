@@ -247,6 +247,10 @@
 				{key: "invoice", title: '', imgSrc: require('../../assets/images/icon-bill.png'), linkTo: '/invoices'},
 				{key: "lifeservice", title: '', imgSrc: require('../../assets/images/icon-lifestyle.png'), linkTo: ''},
 				{key: "shop", title: '', imgSrc: require('../../assets/images/Shopping@2x.png'), linkTo: ''},
+				//客户调查表
+				{key: "research", title: '', imgSrc: require('../../assets/images/icon-kexin.png'), linkTo:'/research'},
+				//航班查询
+				{key: "airinfo", title: '', imgSrc: require('../../assets/images/icon-airport.png'), linkTo: '/airinfo'},
 				
 			];
 			this.myItems=[
