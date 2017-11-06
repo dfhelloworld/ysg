@@ -259,15 +259,15 @@
 				{
 					label: '中文',
 					method: () => {
-						this.hideAction('zh')
+						this.hideAction('cn')
 					}
 				},
-//                {
-//                    label: '日本語の',
-//                    method: () => {
-//                        this.hideAction('jp')
-//                    }
-//                },
+               {
+                   label: '日本語の',
+                   method: () => {
+                       this.hideAction('jp')
+                   }
+               },
                 {
                     label: 'Cancel',
                     method: () => {
@@ -517,11 +517,11 @@
 				//更新本地语言标识
 				localStorage.LANGUAGE = key;
 				var lanKey;
-				if(key == 'jp'){
-				    lanKey = 'en'
-				} else {
-				    lanKey =key
-				}
+				if(key){
+                    lanKey = key;
+                }else{
+                    lanKey = 'en';
+                }
 				this.$store.dispatch('updateLanguage', lanKey);
 				this.$store.dispatch('changeLanguage');
 				//更新首页数据

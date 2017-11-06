@@ -113,7 +113,7 @@
                         groupid: localStorage.groupid,
                         hotelid: this.hotelId,
                         identity: localStorage.identity,
-                        lang: 'zh',
+                        lang: 'cn',
                         platform: localStorage.platform,
                         room_no: this.roomNo
                     }
