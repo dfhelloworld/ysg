@@ -25,16 +25,9 @@
 			};
 		},
 		created:function () {
-		},
-        mounted:function () {
-            //一级页面falg
-            isHomePage(0)
-        },
-        methods: {
-            showHeader(){
                 let _this = this
                 // 获取token
-                var dataStr = JSON.stringify({"source":"ascott","otId":"1947364"});
+                var dataStr = JSON.stringify({"source":"YSG","otId":"1947364"});
                 dataStr = 'dataMap=' + dataStr;
                 $.ajax({
                     type:'post',
@@ -44,27 +37,29 @@
                     dataType:'jsonp',
                     success:function(json){
                         console.log('data—>',json.token);
-                        _this.tokenSrc = 'http://www.e-fp.cn/wx_invoiceTitle_confirm.html?u='+json.token
-                        //获取发票抬头
-                        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-                            openFile(_this.tokenSrc)
-                        }else{
-                            openPdf(_this.tokenSrc)
-                        }
+                        _this.tokenSrc = json.token;
+                        // //获取发票抬头
+                        // if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+                        //     openFile(_this.tokenSrc)
+                        // }else{
+                        //     openPdf(_this.tokenSrc)
+                        // }
 
                     },
                     error:function () {
                     }
                 });
-
-
+		},
+        mounted:function () {
+            //一级页面falg
+            isHomePage(0)
+        },
+        methods: {
+            showHeader(){
+                this.$router.push({path:'/invoicesHeader',query:{token:this.tokenSrc}})
             },
             showManager(){
-                if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-                    openFile(url)
-                }else{
-                    openPdf(url)
-                }
+                this.$router.push({path:'/invoicesManage',query:{token:this.tokenSrc}})
             },
 
         }

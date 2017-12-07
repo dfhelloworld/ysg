@@ -72,53 +72,53 @@
 			let _this = this
 			var ssrBase = 'https://bird.ioliu.cn/v1/?url='
             this.ssrData = {
-				zh:{
+				cn:{
 					'news':[
 						{
 							name: '腾讯国内新闻',
 							url: 'http://lixin.xapi.wangtiansoft.com/newsgn/rss_newsgn.xml',
-							lang:'zh'
+							lang:'cn'
 						},
 						{
 							name: '人民网国际新闻',
 							url: ssrBase+'http://www.people.com.cn/rss/world.xml',
-							lang:'zh'
+							lang:'cn'
 						}
                     ],
                     'finance':[
 	                    {
 		                    name: '腾讯财经',
 		                    url: 'http://lixin.xapi.wangtiansoft.com/scroll/rss_scroll.xml',
-		                    lang:'zh'
+		                    lang:'cn'
 	                    },
 	                    {
 		                    name: '人民网经济新闻',
 		                    url: ssrBase+'http://www.people.com.cn/rss/finance.xml',
-		                    lang:'zh'
+		                    lang:'cn'
 	                    },
                     ],
                     'disport':[
 	                    {
 		                    name: '腾讯娱乐电影',
 		                    url: ssrBase+'http://ent.qq.com/movie/rss_movie.xml',
-		                    lang:'zh'
+		                    lang:'cn'
 	                    },
 	                    {
 		                    name: '新华网',
 		                    url: ssrBase+'http://www.xinhuanet.com/ent/news_ent.xml',
-		                    lang:'zh'
+		                    lang:'cn'
 	                    },
                     ],
                     'sports':[
 	                    {
 		                    name: '腾讯体育',
 		                    url: ssrBase+'http://sports.qq.com/rss_newssports.xml',
-		                    lang:'zh'
+		                    lang:'cn'
 	                    },
 	                    {
 		                    name: '新华网体育频道',
 		                    url: ssrBase+'http://www.xinhuanet.com/sports/news_sports.xml',
-		                    lang:'zh'
+		                    lang:'cn'
 	                    }
                     ]
                 },
@@ -186,7 +186,7 @@
             if(localStorage.LANGUAGE == 'en'){
 	            this.ssrShowData = this.ssrData.en
             } else {
-	            this.ssrShowData = this.ssrData.zh
+	            this.ssrShowData = this.ssrData.cn
             }
             this.ssrDataList = this.ssrShowData.news
             if(localStorage.LANGUAGE == 'en'){

@@ -67,7 +67,7 @@
                 isEndItemShow : false,
                 translateFlag:false,
                 from:'en',
-                to:'zh',
+                to:'cn',
                 keyword:'',
                 stateFlag:''
 			};
@@ -76,7 +76,7 @@
             this.stateFlag = localStorage.stateFlag
             //获取翻译语言的列表
             let params = {
-                lang:'zh'
+                lang:'cn'
             };
             this.$store.dispatch('translateLanguageList', params);
         },

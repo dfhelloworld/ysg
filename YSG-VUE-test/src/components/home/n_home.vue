@@ -119,16 +119,17 @@
 		            {
 			            label: '中文',
 			            method: () => {
-				            this.hideAction('zh')
-                            this.langFlag = 'zh'
+				            this.hideAction('cn')
+                            this.langFlag = 'cn'
 			            }
 		            },
-//                    {
-//                        label: '日本語の',
-//                        method: () => {
-//                            this.hideAction('jp')
-//                        }
-//                    },
+                   {
+                       label: '日本語の',
+                       method: () => {
+                           this.hideAction('jp')
+                           this.langFlag= 'jp'
+                       }
+                   },
                     {
                         label: 'Cancel',
                         method: () => {
@@ -150,8 +151,10 @@
             //判断当前语言
             if(localStorage.LANGUAGE == 'en') {
         	    this.langFlag = 'en'
-            } else {
+            } else if(localStorage.LANGUAGE =='cn') {
                 this.langFlag = 'cn'
+            }else{
+                this.langFlag = 'jp'
             }
 	        document.cookie ="test"
 	        //设置首页标识
@@ -264,14 +267,14 @@
                     this.markFlag = false;
                 }
             },
-            hideAction:function (key) {
-                //更新本地语言标识
-                localStorage.LANGUAGE = key;
-                var lanKey;
-                if(key == 'jp'){
-                    lanKey = 'en'
-                } else {
-                    lanKey =key
+            hideAction:function (key) { 
+                //更新本地语言标识,默认为英文
+              localStorage.LANGUAGE = key;
+                var lanKey; 
+                if(key){
+                    lanKey = key;
+                }else{
+                    lanKey = 'en';
                 }
                 this.$store.dispatch('updateLanguage', lanKey);
             },

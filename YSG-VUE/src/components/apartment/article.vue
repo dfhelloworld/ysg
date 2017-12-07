@@ -1,7 +1,7 @@
 <template>
     <div class="common_nav_style">
         <div class="nav_mark"></div>
-        <yd-navbar title="ROOMITEM" fixed>
+        <yd-navbar :title="title" fixed>
             <router-link :to="{path:'/appartmentStyle',query:{index:tabIndex}}" slot="left">
                 <span class="back"></span>
             </router-link>
@@ -27,10 +27,11 @@
                 pdf:'',
                 video:'',
                 content:'',
-                showContent:false
+                showContent:false,
+                title:this.$route.query.title,
 			};
 		},
-		created:function () {
+		created:function () { 
 	        this.tabIndex = this.$route.query.index;
 	        this.detail = this.$route.query.detail;
 	        this.pdf = this.$route.query.pdf;

@@ -53,7 +53,8 @@ const Home = {
 	orderUrl:'/shoppingorder/getShoppingOrderList',
 	changeOrderUrl:'/shoppingorder/changeOrderStatus',
 	appUpdateUrl:'/AppVersion/getLatestAppVersionByPlatform',
-	appStartUrl:'/appStartmsg/getEffectiveAppStartmsg'
+	appStartUrl:'/appStartmsg/getEffectiveAppStartmsg',
+	infoUrl:'/hotellist/getHotelListList',
 }
 
 //登录接口
@@ -237,5 +238,6 @@ export default {
     commitJudge:(query) => apiPost(query.url,query.data),
     appUpdate:(query) => apiPost(Home.appUpdateUrl,query),
     appStart:(query) => apiPost(Home.appStartUrl,query),
-    getJudge:(query) => apiPost(query.url,query.data)
+	getJudge:(query) => apiPost(query.url,query.data),
+	getUrl:(query) => apiPost(Home.infoUrl,query),
 }

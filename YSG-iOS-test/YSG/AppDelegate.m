@@ -44,6 +44,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
     self.storyB = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     [self showGuide];
     [self setPushOptions:launchOptions];

@@ -89,7 +89,8 @@
 				menuFlag:false,
 				menus:{
 					en:'English',
-					zh:'中文'
+					cn:'中文',
+					jp:'日本語の'
 				},
 				markFlag:false,
 				menuShow:false

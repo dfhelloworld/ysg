@@ -39,8 +39,15 @@
 
 //#define KSecretKey             @"CtUyV$8MGoK8u5L*P0Q50T/b8S9iclS*LQqo"
 #define KSecretKey             @"crnzarsddhnnfb4cy0fymt8d14xroma5"
-//#define kApiHomeURL           @"http://webview.easyiservice.com:8880/"
+
+//本地测试服务器
+//#define kApiHomeURL              @"http://192.168.178.32:8080/"
+//测试服务器
 #define kApiHomeURL             @"http://47.52.220.96:80/"
+//线上服务器
+//#define kApiHomeURL           @"http://118.190.164.26:8080/"
+
+
 //#define kApiHomeURL           @"http://192.168.0.59:8080/"
 #define kApiDomainURL         @"https://service.easyiservice.com/"
 

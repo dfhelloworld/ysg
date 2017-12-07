@@ -247,6 +247,10 @@
 				{key: "invoice", title: '', imgSrc: require('../../assets/images/icon-bill.png'), linkTo: '/invoices'},
 				{key: "lifeservice", title: '', imgSrc: require('../../assets/images/icon-lifestyle.png'), linkTo: ''},
 				{key: "shop", title: '', imgSrc: require('../../assets/images/Shopping@2x.png'), linkTo: ''},
+				//客户调查表
+				{key: "research", title: '', imgSrc: require('../../assets/images/icon-kexin.png'), linkTo:'/research'},
+				//航班查询
+				{key: "airinfo", title: '', imgSrc: require('../../assets/images/icon-airport.png'), linkTo: '/airinfo'},
 				
 			];
 			this.myItems=[
@@ -259,15 +263,15 @@
 				{
 					label: '中文',
 					method: () => {
-						this.hideAction('zh')
+						this.hideAction('cn')
 					}
 				},
-//                {
-//                    label: '日本語の',
-//                    method: () => {
-//                        this.hideAction('jp')
-//                    }
-//                },
+               {
+                   label: '日本語の',
+                   method: () => {
+                       this.hideAction('jp')
+                   }
+               },
                 {
                     label: 'Cancel',
                     method: () => {
@@ -517,11 +521,11 @@
 				//更新本地语言标识
 				localStorage.LANGUAGE = key;
 				var lanKey;
-				if(key == 'jp'){
-				    lanKey = 'en'
-				} else {
-				    lanKey =key
-				}
+				if(key){
+                    lanKey = key;
+                }else{
+                    lanKey = 'en';
+                }
 				this.$store.dispatch('updateLanguage', lanKey);
 				this.$store.dispatch('changeLanguage');
 				//更新首页数据

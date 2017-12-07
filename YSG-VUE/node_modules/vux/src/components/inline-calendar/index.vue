@@ -246,7 +246,7 @@ export default {
         if (typeof value === 'undefined') {
           return disabled
         } else {
-          return disabled || value
+          return value
         }
       }
     },
@@ -364,12 +364,16 @@ export default {
       if (!this.isBetween(data.formatedDate)) {
         return
       }
+
       if (this.isDisabled(data)) {
         // not in range
         if (!this.isBetween(data.formatedDate)) {
           return
         } else { // in range but disabled by disableDateFunction
           if (this.disableDateFunction && this.disableDateFunction(data)) {
+            return
+          }
+          if (data.isWeekend && this.disableWeekend) {
             return
           }
         }
