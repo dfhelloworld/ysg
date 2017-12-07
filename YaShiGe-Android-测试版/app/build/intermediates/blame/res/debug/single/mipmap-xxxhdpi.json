@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/appicon.png",
+        "source": "/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/src/main/res/mipmap-xxxhdpi/appicon.png"
+    },
+    {
+        "merged": "/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher.png",
+        "source": "/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_loading.png",
+        "source": "/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/src/main/res/mipmap-xxxhdpi/ic_loading.png"
+    },
+    {
+        "merged": "/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/loading.png",
+        "source": "/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/src/main/res/mipmap-xxxhdpi/loading.png"
+    }
+]
