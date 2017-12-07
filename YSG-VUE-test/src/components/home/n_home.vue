@@ -269,7 +269,7 @@
             },
             hideAction:function (key) { 
                 //更新本地语言标识,默认为英文
-                localStorage.LANGUAGE = key;
+              localStorage.LANGUAGE = key;
                 var lanKey; 
                 if(key){
                     lanKey = key;

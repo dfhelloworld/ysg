@@ -2,7 +2,7 @@
 <div class="property">
 	<div class="nav_mark"></div>
 	<yd-navbar :title="data.name" fixed>
-		<router-link to="/raiders" slot="left">
+		<router-link :to="{path:'/raiders'}" slot="left"> 
 			<span class="back"></span>
 		</router-link>
 		<!--<router-link :to="{path:'/judge',query:{judgeFlag:'raides'}}" slot="right">-->
@@ -35,11 +35,11 @@
 	            pdfFlag:false,
 	            videoFlag:false,
 	            btnFlag:false,
-				content:''
+				content:'', 
             }
         },
         created:function () {
-			this.data = this.$route.query.data
+			this.data = this.$route.query.data 
 			console.log('hhhhh',this.data)
             this.$store.dispatch('showLoading')
 	        if(this.data.pdf && this.data.video){
@@ -66,8 +66,7 @@
                 })
 			} else {
                 this.$store.dispatch('hideLoading')
-			}
-
+			} 
         },
         methods: {
 	        toPDF:function () {

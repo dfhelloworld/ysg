@@ -816,8 +816,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YSG/YSG.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = RPQZKE2UNE;
 				INFOPLIST_FILE = YSG/Info.plist;
@@ -829,8 +829,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.itearoa.ysgTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3edb5c25-de9e-48ff-bde9-a209b82bb3a7";
-				PROVISIONING_PROFILE_SPECIFIER = "ysg-TEST";
+				PROVISIONING_PROFILE = "beaac55d-95a0-4f6e-b7b3-0595a687337c";
+				PROVISIONING_PROFILE_SPECIFIER = "Distribution-Ad-Hoc-ysgtest";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -842,8 +842,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YSG/YSG.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = RPQZKE2UNE;
 				INFOPLIST_FILE = YSG/Info.plist;
@@ -855,8 +855,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.itearoa.ysgTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3edb5c25-de9e-48ff-bde9-a209b82bb3a7";
-				PROVISIONING_PROFILE_SPECIFIER = "ysg-TEST";
+				PROVISIONING_PROFILE = "961f8f88-99be-4da0-b525-80427b83deea";
+				PROVISIONING_PROFILE_SPECIFIER = "Distribution-Ad-Hoc-ysgtest";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -7,7 +7,6 @@ import store from '../store/index'
 import router from '../router'
 // 配置图片的基本路径
 localStorage.identity  = 'test'
-// axios.defaults.baseURL = 'http://118.190.164.26:80/'
 axios.defaults.baseURL = 'http://118.190.164.26:80/'
 // axios.defaults.headers.common['authToken'] = localStorage.TOKEN
 
@@ -54,9 +53,7 @@ const Home = {
 	orderUrl:'/shoppingorder/getShoppingOrderList',
 	changeOrderUrl:'/shoppingorder/changeOrderStatus',
 	appUpdateUrl:'/AppVersion/getLatestAppVersionByPlatform',
-	appStartUrl:'/appStartmsg/getEffectiveAppStartmsg',
-	airInfoUrl:'/home/getAirInfoUrl',
-	researchUrl:'/home/getResearchUrl'
+	appStartUrl:'/appStartmsg/getEffectiveAppStartmsg'
 }
 
 //登录接口
@@ -240,7 +237,5 @@ export default {
     commitJudge:(query) => apiPost(query.url,query.data),
     appUpdate:(query) => apiPost(Home.appUpdateUrl,query),
     appStart:(query) => apiPost(Home.appStartUrl,query),
-	getJudge:(query) => apiPost(query.url,query.data),
-	getAirInfoUrl:(query) => apiPost(Home.airInfoUrl,query),
-	getResearchUrl:(query) => apiPost(Home.researchUrl,query)
+    getJudge:(query) => apiPost(query.url,query.data)
 }

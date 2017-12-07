@@ -25,7 +25,7 @@
 			};
 		},
 		created:function () {
-		    let _this = this
+		    let _this = this;
             // 获取token
             // var dataStr = JSON.stringify({"source":"ascott","otId":"1947364"});
             // dataStr = 'dataMap=' + dataStr;

@@ -89,6 +89,10 @@
     [self.view addSubview:_webView];
     NSURL *baseURL = [NSURL URLWithString:kApiHomeURL];
     self.webView.UIDelegate = self;
+    
+    if (@available(iOS 11, *)) {
+        self.webView.scrollView.contentInsetAdjustmentBehavior =     UIScrollViewContentInsetAdjustmentNever;
+    }
     self.webView.scrollView.bounces = NO;
     self.webView.navigationDelegate = self;
     self.webView.allowsBackForwardNavigationGestures = NO;

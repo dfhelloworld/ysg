@@ -29,9 +29,13 @@ extra:
     </p>
 
 tags:
-  - calendar
-  - 日历
-  - 日期
+  en:
+    - calendar
+    - time
+    - date
+  zh-CN:
+    - 日历
+    - 日期
 extends:
   - inline-calendar
   - popup
@@ -70,6 +74,10 @@ props:
     params: '`(value, type)`'
     en: format value before displaying in cell
     zh-CN: 格式化显示值
+  readonly:
+    version: v2.7.2
+    en: whether disable selecting
+    zh-CN: 是否禁用弹窗选择
 events:
   on-change:
     params: (value)
@@ -82,6 +90,13 @@ events:
     en: emits when popup hides
     zh-CN: 弹窗关闭时触发
 changes:
+  v2.7.2:
+    en:
+      - '[feature] add prop:readonly #2178'
+      - '[fix] fix event:on-change fires multiple times'
+    zh-CN:
+      - '[feature] 支持禁用选择属性 prop:readonly #2178'
+      - '[fix] 修复 on-change 事件重复触发的问题'
   v2.7.0:
     en:
       - '[fix] fix top border #2104'

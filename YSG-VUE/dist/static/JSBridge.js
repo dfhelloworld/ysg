@@ -18,7 +18,7 @@ if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
 
 	//02----->方法 *  打开地图
 	openMap =function(lng,lat) {
-		alert(lng +'=='+lat)
+		// alert(lng +'=='+lat)
 		window.webkit.messageHandlers.openMap.postMessage({lng:lng,lat:lat});
 	}
 
@@ -28,8 +28,8 @@ if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
 	}
 	function setLocationLat(lat,lng){
 		//设置当前经纬度
-		localStorage.lat = lng
-		localStorage.lng = lat
+		localStorage.lat = lat
+		localStorage.lng = lng
 	}
 	//04----->方法 *  设置消息推送别名
 
@@ -60,7 +60,7 @@ if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
 	getLocation=function() {
 		JSInterface.getLocation()
 	}
-	setLocationLat=function(lng,lat){
+	setLocationLat=function(lat,lng){
 		localStorage.lat = lat
 		localStorage.lng = lng
 	}

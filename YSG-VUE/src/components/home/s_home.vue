@@ -18,7 +18,8 @@
 						<li class="date">
 							<div class="left"></div>
 							<div class="right">
-								<p>{{startTime}}</p> 
+								<p>{{startTime}}</p>
+								<!--<p>The remaining 14 days</p>-->
 							</div>
 						</li>
 						<li class="weather">
@@ -32,7 +33,7 @@
 						</li>
 					</ul>
 					<div class="smart_home">
-						<button type="button"  @click="goNext(shortcutList[0].key)" ><img style="width: .4rem;vertical-align: middle;display: inline-block;" src="../../assets/images/service-btn.png" alt=""> {{shortcutList[0]?shortcutList[0].title:''}}</button>
+						<button type="button"  @click="goNext(shortcutList[0].key)" ><img style="width: .4rem;vertical-align: middle;display: inline-block;" src="../../assets/images/service-btn.png" alt=""> {{shortcutList[0].title}}</button>
 					</div>
 				</section>
 				<!--快捷功能-->
@@ -140,8 +141,8 @@
 									<img slot="icon" src="../../assets/images/icon-bike.png" v-if="item.introduct == 'Bicycle' || item.introduct == '自行车'">
 									<img slot="icon" src="../../assets/images/icon-car.png" v-else-if="item.introduct == 'Self-Driving' || item.introduct == '租车自驾服务'">
 									<img slot="icon" src="../../assets/images/icon-taxi.png" v-else-if="item.introduct == 'Taxi' || item.introduct == '出租车'">
-									<img slot="icon" src="../../assets/images/icon-bus.png" v-else-if="item.introduct == 'Public bus' || item.introduct == '北京公交'">
-									<img slot="icon" src="../../assets/images/icon-tbus.png" v-else-if="item.introduct == 'Subway' || item.introduct == '北京地铁'">
+									<img slot="icon" src="../../assets/images/icon-bus.png" v-else-if="item.introduct == 'Public bus' || item.introduct == '公交'">
+									<img slot="icon" src="../../assets/images/icon-tbus.png" v-else-if="item.introduct == 'Subway' || item.introduct == '地铁'">
 
 									<span slot="left">{{item.introduct}}</span>
 								</yd-cell-item>
@@ -251,16 +252,10 @@ export default {
         linkTo: "/home/service"
       },
       {
-        key: "airinfo",
+        key: "flight",
         title: "",
         imgSrc: require("../../assets/images/icon-airport.png"),
-        linkTo: "/airinfo"
-      },
-      {
-        key: "research",
-        title: "",
-        imgSrc: require("../../assets/images/icon-kexin.png"),
-        linkTo: "/research"
+        linkTo: "#"
       },
       {
         key: "phone",
@@ -361,6 +356,29 @@ export default {
       {
         icon: "Sauna Room",
         imgSrc: require("../../assets/images/icon-sauan.png")
+      },
+
+      { icon: "Yoga studio", imgSrc: require("../../assets/images/yoga.png") },
+      {
+        icon: "Video Room",
+        imgSrc: require("../../assets/images/yingyuan.png")
+      },
+      { icon: "Massage / SPA", imgSrc: require("../../assets/images/spa.png") },
+      {
+        icon: "Business Center",
+        imgSrc: require("../../assets/images/businesscenter.png")
+      },
+      {
+        icon: "Golf simulator",
+        imgSrc: require("../../assets/images/golf.png")
+      },
+      {
+        icon: "Meeting Room",
+        imgSrc: require("../../assets/images/meetingroom.png")
+      },
+      {
+        icon: "Outdoor Terrace",
+        imgSrc: require("../../assets/images/garden.png")
       }
     ];
 
@@ -408,29 +426,29 @@ export default {
         this.lng = this.home.data.lng;
 
         //整理按钮结果集
- 
-          for (var item in this.home.data.shortcutList) {
-            for (var i in this.localshortcutList) {
-              if (
-                this.home.data.shortcutList[item].key ==
-                this.localshortcutList[i].key
-              ) {
-                this.localshortcutList[i].title = this.home.data.shortcutList[
-                  item
-                ].title;
-                this.shortcutList.unshift(this.localshortcutList[i]);
-              }
+        for (var item in this.home.data.shortcutList) {
+          for (var i in this.localshortcutList) {
+            if (
+              this.home.data.shortcutList[item].key ==
+              this.localshortcutList[i].key
+            ) {
+              this.localshortcutList[i].title = this.home.data.shortcutList[
+                item
+              ].title;
+              this.shortcutList.unshift(this.localshortcutList[i]);
             }
           }
-        
+        }
 
         $(document).ready(function() {
-          new Swiper(".index_content .swiper-container", {
-            pagination: ".swiper-pagination",
-            slidesPerView: 4,
-            paginationClickable: true,
-            spaceBetween: 0
-          });
+          setTimeout(function() {
+            new Swiper(".index_content .swiper-container", {
+              pagination: ".swiper-pagination",
+              slidesPerView: 4,
+              paginationClickable: true,
+              spaceBetween: 0
+            });
+          }, 300);
         });
       } else {
         this.$dialog.toast({ mes: res.msg, timeout: 1000 });
@@ -476,30 +494,32 @@ export default {
       }
       //初始化swiper
       $(document).ready(function() {
-        var swiper = new Swiper(".equipment .swiper-container", {
-          pagination: ".swiper-pagination",
-          slidesPerView: 6,
-          paginationClickable: true,
-          spaceBetween: 0
-        });
-        var swiper3 = new Swiper(".apartment .swiper-container", {
-          pagination: ".swiper-pagination",
-          slidesPerView: 1.1,
-          paginationClickable: true,
-          spaceBetween: 15
-        });
-        var swiper4 = new Swiper(".fire .swiper-container", {
-          pagination: ".swiper-pagination",
-          slidesPerView: 1.2,
-          paginationClickable: true,
-          spaceBetween: 15
-        });
-        var swiper2 = new Swiper(".virtual .swiper-container", {
-          pagination: ".swiper-pagination",
-          slidesPerView: 3,
-          paginationClickable: true,
-          spaceBetween: 0
-        });
+        setTimeout(function() {
+          var swiper = new Swiper(".equipment .swiper-container", {
+            pagination: ".swiper-pagination",
+            slidesPerView: 6,
+            paginationClickable: true,
+            spaceBetween: 0
+          });
+          var swiper3 = new Swiper(".apartment .swiper-container", {
+            pagination: ".swiper-pagination",
+            slidesPerView: 1.1,
+            paginationClickable: true,
+            spaceBetween: 15
+          });
+          var swiper4 = new Swiper(".fire .swiper-container", {
+            pagination: ".swiper-pagination",
+            slidesPerView: 1.2,
+            paginationClickable: true,
+            spaceBetween: 15
+          });
+          var swiper2 = new Swiper(".virtual .swiper-container", {
+            pagination: ".swiper-pagination",
+            slidesPerView: 3,
+            paginationClickable: true,
+            spaceBetween: 0
+          });
+        }, 300);
       });
     });
   },
@@ -645,7 +665,7 @@ export default {
     },
     //地图导航
     goLocation: function() {
-      if (localStorage.HOTELID == 1) {
+      if (localStorage.HOTELID == 1 || localStorage.HOTELID == 7) {
         if (localStorage.TOKEN) {
           this.$router.push("/shopping");
         } else {
@@ -670,18 +690,22 @@ export default {
           break;
         case "service":
           if (localStorage.TOKEN) {
-            if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-              openFile(localStorage.serviceUrl);
-            } else {
-              openUrl(localStorage.serviceUrl, " ");
+            if (_this.idType == 1) {
+              if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+                openFile(localStorage.serviceUrl);
+              } else {
+                openUrl(localStorage.serviceUrl, " ");
+              }
+            }else {
+                alert('没有权限进入该模块');
             }
             //							_this.$router.replace('/home/service')
           } else {
             _this.$router.replace("/loginforguest");
           }
           break;
-        case "airinfo":
-          _this.$router.push("/airinfo");
+        case "flight":
+          _this.$router.push("#");
           break;
         case "phone":
           _this.$router.push("/phone");

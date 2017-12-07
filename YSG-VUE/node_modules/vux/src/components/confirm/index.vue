@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="vux-confirm">
     <x-dialog
     v-model="showValue"
     :dialogClass="theme === 'android' ? 'weui-dialog weui-skin_android' : 'weui-dialog'"
@@ -14,7 +14,7 @@
       <div class="weui-dialog__bd" v-if="!showInput">
         <slot><div v-html="content"></div></slot>
       </div>
-      <div v-else class="vux-prompt">
+      <div v-else class="vux-prompt" @touchstart.prevent="setInputFocus">
         <input class="vux-prompt-msgbox" v-bind="inputAttrs" v-model="msg" :placeholder="placeholder" ref="input"/>
       </div>
       <div class="weui-dialog__ft">
@@ -98,7 +98,7 @@ export default {
           this.msg = ''
           setTimeout(() => {
             if (this.$refs.input) {
-              this.$refs.input.focus()
+              this.setInputFocus()
             }
           }, 300)
         }
@@ -115,6 +115,9 @@ export default {
   methods: {
     setInputValue (val) {
       this.msg = val
+    },
+    setInputFocus () {
+      this.$refs.input.focus()
     },
     _onConfirm () {
       if (!this.showValue) {
@@ -140,6 +143,10 @@ export default {
 @import '../../styles/transition.less';
 @import '../../styles/weui/widget/weui_tips/weui_mask';
 @import '../../styles/weui/widget/weui_tips/weui_dialog';
+
+.vux-confirm .weui-dialog{
+  position: absolute;
+}
 
 .vux-prompt {
   padding-bottom: 1.6em;

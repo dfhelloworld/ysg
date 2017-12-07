@@ -53,7 +53,7 @@
             <section class="roomTypeList">
                 <ul>
                     <li v-for="item in wpList">
-                        <router-link :to="{path:'/home/article',query:{detail:item.detail,pdf:item.pdf,video:item.video,index:tabIndex}}">
+                        <router-link :to="{path:'/home/article',query:{detail:item.detail,pdf:item.pdf,video:item.video,index:tabIndex,title:item.name}}">
                         <div class="s-pic">
                             <img :src=item.pic>
                         </div>

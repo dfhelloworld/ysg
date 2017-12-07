@@ -8,8 +8,13 @@
               <img :src="link" alt="" @click="goDetail">
               <div class="app-close" @click="closeApp"></div>
           </div>
-      </div>
-      <router-view></router-view>
+      </div> 
+<!-- 
+        <keep-alive>
+            <router-view v-if="$route.meta.keepAlive"></router-view>
+        </keep-alive>
+            <router-view v-if="!$route.meta.keepAlive"></router-view> -->
+      <router-view></router-view> 
   </div>
 </template>
 <script>
@@ -50,6 +55,7 @@
             script.src = "https://s19.cnzz.com/z_stat.php?id=1264559087&web_id=1264559087"
             script.language = 'JavaScript'
             document.body.appendChild(script)
+            window.addEventListener('scroll', this.onScroll)
         },
         watch: {
             '$route' () {
@@ -118,7 +124,11 @@
                         checkVersion( JSON.stringify(params))
                     }
                 })
-            }
+            },
+        onScroll () {
+        this.top = window.pageYOffset || document.documentElement.scrollTop
+        || document.body.scrollTop
+    }
         },
 	    computed:{
 		    ...mapGetters([

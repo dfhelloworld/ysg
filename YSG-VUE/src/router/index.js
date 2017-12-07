@@ -6,6 +6,7 @@ import Router from 'vue-router'
  */
 import guestCenter from '../components/common/menu/guestCenter.vue' //next
 import error from '../components/404.vue' //next
+import pc from '../components/pc.vue'
 
 /**
  * 首页
@@ -54,10 +55,8 @@ import loginForEmployee from '../components/login/loginForEmployee.vue'
  * 快捷功能
  */
 import phone from '../components/function/phone.vue'
-// import airport from '../components/function/airport.vue'
-// import airportInfo from '../components/function/airportInfo.vue'
-import airinfo from '../components/function/airinfo.vue'
-import research from '../components/function/research.vue'
+import airport from '../components/function/airport.vue'
+import airportInfo from '../components/function/airportInfo.vue'
 import translate from '../components/function/translate.vue'
 /**
  *社区生活
@@ -102,11 +101,68 @@ import map from '../components/map/map.vue'
 
 Vue.use(Router)
 
+
+// scrollBehavior:
+// - only available in html5 history mode
+// - defaults to no scroll behavior
+// - return false to prevent scroll
+const scrollBehavior = (to, from, savedPosition) => {
+    if (savedPosition) {
+      // savedPosition is only available for popstate navigations.
+      return savedPosition
+    } else {
+      const position = {}
+      // new navigation.
+      // scroll to anchor by returning the selector
+      if (to.hash) {
+        position.selector = to.hash
+      }
+      // check if any matched route config has meta that requires scrolling to top
+      if (to.matched.some(m => m.meta.scrollToTop)) {
+        // cords will be used if no selector is provided,
+        // or if the selector didn't match any element.
+        position.x = 0
+        position.y = 0
+      }
+      // if the returned position is falsy or an empty object,
+      // will retain current scroll position.
+      return position
+    }
+  }
+  
 export default new Router({
+    mode: 'history',
+    base:'/',
+    scrollBehavior,
     routes: [
 	    {path: '/2',name: 'translate',component: translate}, //测试使用
         {path: '/',
             redirect:to => {
+              var browser = {
+                versions: function () {
+                    var u = navigator.userAgent, app = navigator.appVersion;
+                    return {//移动终端浏览器版本信息   
+                        trident: u.indexOf('Trident') > -1, //IE内核  
+                        presto: u.indexOf('Presto') > -1, //opera内核  
+                        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核  
+                        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核  
+                        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端  
+                        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端  
+                        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器  
+                        iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器  
+                        iPad: u.indexOf('iPad') > -1, //是否iPad    
+                        webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部  
+                        weixin: u.indexOf('MicroMessenger') > -1, //是否微信   
+                        qq: u.match(/\sQQ/i) == " qq" //是否QQ  
+                    };
+                }(),
+                language: (navigator.browserLanguage || navigator.language).toLowerCase()
+            }
+
+            if (!(browser.versions.mobile || browser.versions.ios || browser.versions.android ||
+                browser.versions.iPhone || browser.versions.iPad)) {
+                return { path: '/pc' };
+            }
 	            if(localStorage.TOKEN){
 		            //如果已登录跳转至已登录首页
 		            return { path: '/home'}
@@ -118,6 +174,7 @@ export default new Router({
         },//引导页
         {path: '/guide',name: 'guide',component: guide},//首次引导页
         {path: '/error',name: 'error',component: error},//首次引导页
+        { path: '/pc', name: 'pc', component: pc },//首次引导页 
         {path: '/home',name: 'home',component: home,meta:{allowBack: false}},//首页
         {path: '/gsm',name: 'gsm',component: gsm},//gsm
         {path: '/home/trafficDetail',name: 'trafficDetail',component: trafficDetail},//交通信息
@@ -147,8 +204,8 @@ export default new Router({
         {path: '/loginforguest',name: 'loginForGuest',component: loginForGuest},//用户登录
         {path: '/loginForEmployee',name: 'loginForEmployee',component: loginForEmployee},//员工登陆
         {path: '/phone',name: 'phone',component: phone},//常用电话
-        {path: '/airinfo',name: 'airinfo',component: airinfo},//航班信息
-        {path: '/research',name: 'research',component: research},//客户调查表 
+        {path: '/airport',name: 'airport',component: airport},//航班信息
+        {path: '/airportInfo',name: 'airportInfo',component: airportInfo},//航班信息查询列表
         {path: '/translate',name: 'translate',component: translate},//翻译
         {path: '/communityLife',name: 'communityLife',component: communityLife,meta:{allowBack: false}},//社区生活
 	    {path: '/propertyDetail',name: 'propertyDetail',component: propertyDetail},//社区生活
@@ -179,9 +236,5 @@ export default new Router({
         {path: '/judge',name: 'judge',component: judge},//评论列表
         {path: '/judgeInput',name: 'judgeInput',component: judgeInput},//评论
         {path: '/map',name: 'map',component: map},//评论
-
-
-        // {path: '/airport',name: 'airport',component: airport},//航班信息
-        // {path: '/airportInfo',name: 'airportInfo',component: airportInfo},//航班信息查询列表
     ]
 })
