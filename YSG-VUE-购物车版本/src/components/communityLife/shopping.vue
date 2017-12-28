@@ -150,6 +150,7 @@
                 this.$router.push({path:'/buy',query:{info:data,quantity:this.selectedNum}});
             },
             addToCart:function(data){ 
+                alert(1);
                 let _this = this; 
                 this.selectedNum ++;
                 this.totalPrice += parseInt(data.price);

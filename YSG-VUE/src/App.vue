@@ -46,7 +46,7 @@
                 })
             }
 
-            this.updataApp()
+            this.updateApp()
 
         },
         mounted:function () {
@@ -89,9 +89,9 @@
                 localStorage.indentity = res
                 console.log('kkkkkkk',res)
             },
-            updataApp:function () {
+            updateApp:function () {
                 let _this = this
-                // 获取当期那版本号
+                // 获取当前版本号
                 let params = {
                     platform: localStorage.platform,
                     groupid: localStorage.groupid
@@ -108,9 +108,14 @@
                             newDesc:'已是最新版本', //如果是最新版本提示文字
                             link:'itms-apps://itunes.apple.com/cn/app/jie-zou-da-shi/id这是id?mt=8',
                             desc:_this.versionData.description, //升级描述
-                            version:_this.versionData.version //版本号
+                            version:_this.versionData.version, //版本号
+                            versionLocal:localStorage.version //本地版本号
                         }
-                        updataApp(params)
+             
+                     setTimeout(() => {
+                           updataApp(params)
+                     }, 3000);
+                      
                     } else {
                         let params = {
                             isMust:_this.versionData.forced, //是否强制更新
@@ -121,6 +126,7 @@
                             desc:_this.versionData.description, //升级描述
                             version:_this.versionData.version //版本号
                         }
+ 
                         checkVersion( JSON.stringify(params))
                     }
                 })

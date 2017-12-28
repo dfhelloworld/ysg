@@ -13,21 +13,21 @@
                     <li>
                         <div>
                             <img @click="goDetail('https://h5.ele.me/msite/',1)" src="../../assets/images/icon-life-1.png" alt="">
-                            <img  @click="goDetail('http://waimai.baidu.com/',2)"  style="border: 1px solid #eee;border-radius: 10px;" src="../../assets/images/baidu.jpg" alt="">
+                            <img  @click="goDetail('https://waimai.baidu.com/',2)"  style="border: 1px solid #eee;border-radius: 10px;" src="../../assets/images/baidu.jpg" alt="">
                         </div>
                     </li>
                     <h4><img src="../../assets/images/icon-lifestyle-2.png" alt=""> {{language.lifeStyle.movie}}</h4>
                     <li>
                         <div>
-                            <img @click="goDetail('http://m.iqiyi.com/',3)" src="../../assets/images/icon-life-3.png" alt="">
-                            <img @click="goDetail('http://m.v.qq.com/',4)" src="../../assets/images/icon-life-4.png" alt="">
+                            <img @click="goDetail('https://m.iqiyi.com/',3)" src="../../assets/images/icon-life-3.png" alt="">
+                            <img @click="goDetail('https://m.v.qq.com/',4)" src="../../assets/images/icon-life-4.png" alt="">
                         </div>
                     </li>
                     <h4><img src="../../assets/images/icon-lifestyle-4.png" alt="">  {{language.lifeStyle.phone}}</h4>
                     <li>
                         <div>
-                            <img @click="goDetail('http://h5.m.taobao.com/app/cz/cost.html#/cost',5)" src="../../assets/images/icon-life-5.png" alt="">
-                            <img @click="goDetail('http://h5.m.taobao.com/app/cz/cost.html#/flow',6)"src="../../assets/images/icon-life-5.png" alt="">
+                            <img @click="goDetail('https://h5.m.taobao.com/app/cz/cost.html#/cost',5)" src="../../assets/images/icon-life-5.png" alt="">
+                            <img @click="goDetail('https://h5.m.taobao.com/app/cz/cost.html#/flow',6)"src="../../assets/images/icon-life-5.png" alt="">
                         </div>
                     </li>
                     <h4><img src="../../assets/images/icon-lifestyle-5.png" alt="">  {{language.lifeStyle.express}}</h4>
@@ -40,7 +40,7 @@
                     <li>
                         <div>
                             <img @click="goDetail('https://common.ofo.so/newdist/',8)" src="../../assets/images/icon-life-ofo.png" alt="">
-                            <img @click="goDetail('http://common.diditaxi.com.cn/general/webEntry#/',9)" src="../../assets/images/icon-life-dd.png" alt="">
+                            <img @click="goDetail('https://common.diditaxi.com.cn/general/webEntry#/',9)" src="../../assets/images/icon-life-dd.png" alt="">
                         </div>
                     </li>
                 </ul>

@@ -611,6 +611,13 @@ export default {
       } else {
         lanKey = "en";
       }
+      let params1 = {
+					token: localStorage.TOKEN,
+					platform: localStorage.platform,
+					identity:localStorage.identity,
+					lang:key
+			}
+      this.$store.dispatch("tabLanguage", params1);
       this.$store.dispatch("updateLanguage", lanKey);
       this.$store.dispatch("changeLanguage");
       //更新首页数据

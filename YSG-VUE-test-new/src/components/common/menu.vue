@@ -41,11 +41,16 @@
         },
 		methods: {
 			tabLanguage:function (key) {
-			    if (localStorage.stateFlag == '2') {
+
+		        if (localStorage.stateFlag == '2') {
                     this.$store.dispatch('changeLanguage2');
                 } else {
                     this.$store.dispatch('changeLanguage');
                 }
+                    
+        
+                
+	
 
 		    },
             help:function () {

@@ -25,11 +25,11 @@
 			};
 		},
 		created:function () {
-		    let _this = this
+		    // let _this = this
             // 获取token
             // var dataStr = JSON.stringify({"source":"ascott","otId":"1947364"});
             // dataStr = 'dataMap=' + dataStr; 
-            _this.tokenSrc = 'http://www.e-fp.cn/wx_invoiceCollector.html?u='+this.$route.query.token+'&m=YSG&b='+localStorage.HOTELID;
+            // _this.tokenSrc = 'http://www.e-fp.cn/wx_invoiceCollector.html?u='+this.$route.query.token+'&m=YSG&b='+localStorage.HOTELID;
             // alert(_this.tokenSrc);       
             // $.ajax({
             //     type:'post',

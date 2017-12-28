@@ -231,7 +231,8 @@ export default {
       };
     }
 
-    this.$store.dispatch("getGroupListById", this.paramsById).then(res => {
+    this.$store.dispatch("getGroupListById", this.paramsById).then(res => { 
+
       //获取物业列表，重组数据，添加物理距离
       this.hotelList = res.data.list;
 

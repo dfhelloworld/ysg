@@ -61,6 +61,8 @@
 }
 
 - (void)setupView{
+    
+
     [YXLocationManager sharedManager];
     WKUserContentController *userContentController = [[WKUserContentController alloc] init];
     [userContentController addScriptMessageHandler:self name:@"getFirstLaunch"];
@@ -76,7 +78,7 @@
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     configuration.userContentController = userContentController;
     WKUserScript *usrScript = [[WKUserScript alloc] initWithSource:[JSInterface shareInstance].handlerJS injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
-    
+ 
     // 通过JS与webview内容交互
     configuration.userContentController = userContentController;
     
@@ -88,6 +90,11 @@
     _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) configuration:configuration];
     [self.view addSubview:_webView];
     NSURL *baseURL = [NSURL URLWithString:kApiHomeURL];
+    
+    self.webView.UIDelegate = self;
+    if (@available(iOS 11, *)) {
+        self.webView.scrollView.contentInsetAdjustmentBehavior =     UIScrollViewContentInsetAdjustmentNever;
+    }
     self.webView.UIDelegate = self;
     self.webView.scrollView.bounces = NO;
     self.webView.navigationDelegate = self;

@@ -128,8 +128,8 @@
                 language: state => state.language.language
             })
         },
-	};
+    };
+    // http://lixin.xapi.wangtiansoft.com/feedbackResult/addFeedbackResult?hotelid=1&listid=1&answer={"2":"test","4":"rt"}&token=6dc778f57cf225a39e1730bdf0e54510&time=1504060754&sign=c25d13c61f6f71eb60bfb6a7d58c470e
+
 </script>
 
-
-http://lixin.xapi.wangtiansoft.com/feedbackResult/addFeedbackResult?hotelid=1&listid=1&answer={"2":"test","4":"rt"}&token=6dc778f57cf225a39e1730bdf0e54510&time=1504060754&sign=c25d13c61f6f71eb60bfb6a7d58c470e

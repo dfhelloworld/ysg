@@ -2,22 +2,13 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/PushSDK/build/intermediates/bundles/default/libs/alicloud-android-sdk-httpdns-1.0.7.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/libs/AMap_Location_V3.4.0_20170427.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.3"
-        sha1="1d61bb0f23861e5b86d4308a9ed2a4751e95fe03">
-        <dex dex="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/transforms/dex/debug/folders/1000/8/alicloud-android-sdk-httpdns-1.0.7_6629614a4a53b6a114c0890840d043d9cec034e1/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/libs/umeng-analytics-v5.5.3.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="5d503ec571e2e98d972209afa203f94d11882c15">
-        <dex dex="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/transforms/dex/debug/folders/1000/2/umeng-analytics-v5.5.3_0df9402139eadf2936f8f53ee1b5f7c234e1d1ff/classes.dex" />
+        sha1="fa2675ac2111742d045390a97dd39ea48d957b87">
+        <dex dex="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/pre-dexed/release/AMap_Location_V3.4.0_20170427_0fc67a92617cb79575d09a741c9bbe4afceb121a.jar" />
     </item>
     <item
         is-multidex="true"
@@ -27,15 +18,6 @@
         revision="25.0.3"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
         <dex dex="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_03d59d34d6af27df5b6fd1ca78dbf12faf23d18c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/PushSDK/build/intermediates/bundles/default/libs/com.umeng.message_3.1.1a.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="0bc9d5d99b2dadfae1ed54211b2e2b97df343305">
-        <dex dex="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/transforms/dex/debug/folders/1000/8/com.umeng.message_3.1.1a_5ccf3c9428e7c65b13d5be6c051a8d5d64d4733a/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -54,6 +36,78 @@
         revision="25.0.3"
         sha1="0d5b57d584d5ed1d28a0b13df86cbd10c98b9648">
         <dex dex="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_bc4619887515720b959879614127743aaa33a175/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/PushSDK/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="a908a9ecf77c0bb9ef606b0aa7a0c0dc0612eb02">
+        <dex dex="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/pre-dexed/release/classes_ea81202b61cb7917f09e1f7d83430b9dc0e8e20b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/libs/umeng-analytics-v5.5.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="5d503ec571e2e98d972209afa203f94d11882c15">
+        <dex dex="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/pre-dexed/release/umeng-analytics-v5.5.3_0df9402139eadf2936f8f53ee1b5f7c234e1d1ff.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/PushSDK/build/intermediates/bundles/default/libs/alicloud-android-sdk-httpdns-1.0.7.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="1d61bb0f23861e5b86d4308a9ed2a4751e95fe03">
+        <dex dex="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/transforms/dex/debug/folders/1000/8/alicloud-android-sdk-httpdns-1.0.7_6629614a4a53b6a114c0890840d043d9cec034e1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/libs/umeng-analytics-v5.5.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="5d503ec571e2e98d972209afa203f94d11882c15">
+        <dex dex="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/transforms/dex/debug/folders/1000/2/umeng-analytics-v5.5.3_0df9402139eadf2936f8f53ee1b5f7c234e1d1ff/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/PushSDK/build/intermediates/bundles/default/libs/utdid4all-1.1.5.3_proguard.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="1a4a47c44b68ea5c20e370d37f1779c57211aa68">
+        <dex dex="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/pre-dexed/release/utdid4all-1.1.5.3_proguard_6c19504f7d7fd0f55cc56e3ab20f65ffdeb22b45.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/PushSDK/build/intermediates/bundles/default/libs/com.umeng.message_3.1.1a.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="0bc9d5d99b2dadfae1ed54211b2e2b97df343305">
+        <dex dex="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/pre-dexed/release/com.umeng.message_3.1.1a_5ccf3c9428e7c65b13d5be6c051a8d5d64d4733a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/PushSDK/build/intermediates/bundles/default/libs/alicloud-android-sdk-httpdns-1.0.7.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="1d61bb0f23861e5b86d4308a9ed2a4751e95fe03">
+        <dex dex="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/pre-dexed/release/alicloud-android-sdk-httpdns-1.0.7_6629614a4a53b6a114c0890840d043d9cec034e1.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/PushSDK/build/intermediates/bundles/default/libs/com.umeng.message_3.1.1a.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="0bc9d5d99b2dadfae1ed54211b2e2b97df343305">
+        <dex dex="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/transforms/dex/debug/folders/1000/8/com.umeng.message_3.1.1a_5ccf3c9428e7c65b13d5be6c051a8d5d64d4733a/classes.dex" />
     </item>
     <item
         is-multidex="true"

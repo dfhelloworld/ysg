@@ -689,8 +689,8 @@ export default {
           _this.$router.push("/translate");
           break;
         case "service":
-          if (localStorage.TOKEN) {
-            if (_this.idType == 1) {
+          if (localStorage.TOKEN) { 
+            if (localStorage.idType == 1) {
               if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
                 openFile(localStorage.serviceUrl);
               } else {

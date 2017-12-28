@@ -138,7 +138,8 @@
             changeTab:function (url,name) {
                 console.log(url.indexOf(".com"))
 			    this.$store.dispatch('showLoading')
-                var ssrBase = 'http://47.93.201.72'
+                // var ssrBase = 'http://47.93.201.72'
+                var ssrBase = 'https://service.easyiservice.com'
                 var path;
 				let _this = this;
                 if(url.indexOf('.com')>0){
