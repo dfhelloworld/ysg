@@ -32,7 +32,6 @@
         },
         methods: {
             showHeader(){
-    
                 let _this = this
                 // 获取token
                 var dataStr = JSON.stringify({"source":"YSG","otId":"1947364"});
@@ -88,6 +87,9 @@
                     }
                 });
             }, 
+            goBack(){
+                this.$router.go(-1);
+            }
 
         }
 	};

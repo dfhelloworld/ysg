@@ -140,7 +140,7 @@ function updataApp(params) {
   if (params.version == params.versionLocal) {
      return;
   } else {	
-	if (confirm("检查到新的版本，若不更新，可能无法接受推送消息。是否前往商店下载更新？") == true) {  
+	if (confirm("检查到新的版本，若不更新，可能无法接受推送消息。是否前往商店下载更新? / New version detected, you may not receive push notification if not updating. Are you going to update now?") == true) {  
 		let appUrl = "itms-apps://itunes.apple.com/cn/app/ascott-iservice/id1268497466?l=en&mt=8";
 		window.webkit.messageHandlers.openSafariUrl.postMessage(appUrl); 
 	} else {

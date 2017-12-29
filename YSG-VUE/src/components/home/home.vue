@@ -281,11 +281,17 @@ export default {
         imgSrc: require("../../assets/images/icon-news-add.png"),
         linkTo: "/ssr"
       },
+      // {
+      //   key: "invoice",
+      //   title: "",
+      //   imgSrc: require("../../assets/images/icon-bill.png"),
+      //   linkTo: "/mybill"
+      // },
       {
         key: "invoice",
         title: "",
         imgSrc: require("../../assets/images/icon-bill.png"),
-        linkTo: "/mybill"
+        linkTo: "/invoices"
       },
       {
         key: "lifeservice",
@@ -689,7 +695,7 @@ export default {
           _this.$router.push("/translate");
           break;
         case "service":
-          if (localStorage.TOKEN) { 
+          if (localStorage.TOKEN) {
             if (localStorage.idType == 1) {
               if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
                 openFile(localStorage.serviceUrl);
@@ -709,8 +715,11 @@ export default {
         case "phone":
           _this.$router.push("/phone");
           break;
+        // case "invoice":
+        //   _this.$router.push("/mybill");
+        //   break;
         case "invoice":
-          _this.$router.push("/mybill");
+          _this.$router.push("/invoices");
           break;
         case "news":
           _this.$router.push("/ssr");

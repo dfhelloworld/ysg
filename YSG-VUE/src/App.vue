@@ -33,7 +33,7 @@
             if(!(localStorage.indentity)) {
                 this.indentity()
             }
-
+            
             if(localStorage.HOTELID){
                 let params = {
                     groupid:localStorage.groupid,

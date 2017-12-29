@@ -827,10 +827,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/YSG/UMessage_Sdk_1.5.0a",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.itearoa.ysgTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wangtiansoft.YSG;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "beaac55d-95a0-4f6e-b7b3-0595a687337c";
-				PROVISIONING_PROFILE_SPECIFIER = "Distribution-Ad-Hoc-ysgtest";
+				PROVISIONING_PROFILE = "0ddbf9a2-ff1c-4807-bfb5-adc5a370ef65";
+				PROVISIONING_PROFILE_SPECIFIER = "PUSH-YSG-WANGTIAN";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -853,10 +853,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/YSG/UMessage_Sdk_1.5.0a",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.itearoa.ysgTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wangtiansoft.YSG;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "961f8f88-99be-4da0-b525-80427b83deea";
-				PROVISIONING_PROFILE_SPECIFIER = "Distribution-Ad-Hoc-ysgtest";
+				PROVISIONING_PROFILE = "0ddbf9a2-ff1c-4807-bfb5-adc5a370ef65";
+				PROVISIONING_PROFILE_SPECIFIER = "PUSH-YSG-WANGTIAN";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
