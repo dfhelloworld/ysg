@@ -70,7 +70,9 @@
 			oaId:'OA ID',
 			gsm:'Staff system',
 			bill:'Billing',
-            invoices:'Invoices',
+			invoices:'Invoices',
+			invoices_header:'Issue Invoice',
+			invoices_manage:'Invoices Management',
             order:'Order'
 		},
 		common:{
@@ -373,7 +375,9 @@
 			oaId:'员工ID',
 			gsm:'员工系统',
 			bill:'账单',
-            invoices:'发票管理',
+			invoices:'发票',
+			invoices_header:'开具发票',
+			invoices_manage:'发票管理',
 			order:'订单'
 		},
         common:{

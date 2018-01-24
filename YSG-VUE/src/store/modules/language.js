@@ -69,7 +69,9 @@ const state = {
 			oaId:'OA ID',
 			gsm:'Staff system',
 			bill:'Billing',
-            invoices:'Invoices',
+			invoices:'Invoices',
+			invoices_header:'Issue Invoice',
+			invoices_manage:'Invoices Management',
             order:'Order'
 		},
 		common:{
@@ -158,7 +160,159 @@ const state = {
 			title:'Location'
 		}
 	},
-	cn:{
+	jp:{
+		menu:{
+			find:'プロパティを検索',
+			language:'言語',
+			help:'ヘルプ',
+			aboutus:'私たちについて',
+			emSign:'スタッフのログイン',
+			title:'セット',
+            update:'バージョンチェック'
+		},
+		promotion:{
+			title:'プロモーション',
+            more:'もっと',
+			porpertyProper:'プロモーション',
+			porpertyNews:'プロパティニュース',
+			grounpNews:'グループプロモーション',
+			grounpAc:'グループニュース'
+		},
+		raiders:{
+			title:'ローカルレイダース',
+            more:'もっと'
+		},
+        community:{
+            title:'コミュニティ生活',
+            propertyActivity:'活動',
+            opinionSurvey:'通知',
+            shopping:'ショッピング',
+            ascottLife:'生活',
+            feedback:'フィードバック',
+	        ssr:'ニュース',
+            more:'もっと',
+			buy:'購入',
+            submit:'提出する',
+            signUp:'サインアップ',
+	        life:'サービス',
+            apply:'開始時間',
+            start:'終了時刻',
+			sign:'サインアップ',
+			chanel:'チャネル',
+			save:'保存する'
+        },
+		func:{
+			translate:'翻訳',
+            tel:'電話番号'
+		},
+		home:{
+			findResidence:'プロパティの問い合わせ',
+			search:'検索',
+			profile:'はじめに',
+			virtual:'パノラマ',
+			apartment:'ルームタイプ',
+			fire:'火事',
+            how:'交通情報'
+		},
+		myCenter:{
+			room_info:'部屋番号',
+			message:'ニュース',
+			notice:'コレクション',
+			log_out:'出口',
+			oaId:'従業員ID',
+			gsm:'従業員制度',
+			bill:'法案',
+            invoices:'請求書管理',
+			order:'注文'
+		},
+        common:{
+            screen:'スクリーニング',
+			more:'もっと',
+	        loginTxt:'終了して終了します?',
+	        cancel:'キャンセル',
+	        sure:'OK',
+            noMoreData:'データはこれ以上ありません~'
+
+        },
+		msg:{
+			empty_username:'ユーザー名を入力してください',
+			empty_pwd:'パスワードを入力してください',
+			empty_one:'入力が不完全です',
+			info_err:'アカウントまたはパスワードが間違っています',
+            empty_name:'あなたの名前を入力してください!',
+            empty_phone:'電話番号を入力してください!',
+            empty_num_par:'参加者数を入力してください!',
+            empty_num_buy:'品買いにかうステまステK補う!',
+            login_err:'ログイン情報が間違っています',
+            buy_info:'あなたが提出した注文は成功し、できるだけ早くご連絡いたします',
+			lifeMsg:'以下のサービスは第三者によって提供され、中国語のサポートのみを提供します。関連するサービスおよび責任は、第三者によって負担されます。ご不明な点がございましたら、カスタマーサービスにお問い合わせください'
+		},
+		login:{
+			sign:'ログイン',
+			residence:'プロパティを選択',
+			room:'部屋番号',
+			name:'姓（英語）',
+			login:'顧客のログイン',
+			empAccount:'従業員アカウント',
+			password:'パスワード',
+			isAd:'それは広告アカウントですか?',
+			aLogin:'スタッフのログイン'
+		},
+		foot:{
+			hotel:'アパートメント紹介',
+			promotion:'プロモーションオファー',
+			surrounding:'ローカルレイダース',
+			community:'コミュニティ生活'
+		},
+		submitForm:{
+			name:'名前',
+			tel:'電話番号',
+			number:'人数',
+			bz:'備考',
+			subBtn:'提出する',
+			alertTxt:'登録成功!',
+			alertTxt2:'ご予約の成功！'
+		},
+		apartment:{
+			book:'予約',
+			maxPerson:'最大収容人数',
+			person:'人々',
+			fcount:'部屋数',
+			size:'部屋の大きさ',
+			photo:'パノラマ',
+            title:'ルーム紹介'
+		},
+        order:{
+            title:'私の注文',
+            user:'顧客',
+            roomid:'部屋番号',
+            time:'時間',
+            orderid:'注文番号'
+        },
+		lifeStyle:{
+			food:'ケータリング',
+			movie:'ビデオ',
+			phone:'ビル＆フロー',
+			express:'エクスプレス',
+			trip:'旅行',
+			title:'ライフサービス'
+		},
+        news:{
+            title:'ニュース'
+        },
+        judge:{
+            title:'コメント',
+            txt:'コメントを書く',
+			close:'キャンセル',
+			save:'保存する',
+            success:'提出済み',
+            error:'送信に失敗しました'
+        },
+		map:{
+			title:'場所'
+		}
+	},
+	zh:{
 		menu:{
 			find:'查找物业',
 			language:'语言',
@@ -220,7 +374,9 @@ const state = {
 			oaId:'员工ID',
 			gsm:'员工系统',
 			bill:'账单',
-            invoices:'发票管理',
+			invoices:'发票',
+			invoices_header:'开具发票',
+			invoices_manage:'发票管理',
 			order:'订单'
 		},
         common:{
@@ -329,21 +485,26 @@ const mutations = {
 	//切换语言，切换本地缓存
 	[types.LANGUAGE] (state,key) {
 		if(key == 'en'){
-			state.language = state.en;
-		}else{
-			state.language = state.cn;
+			state.language = state.en; 
+		}else{ 
+			if(key =='zh'){
+				state.language = state.zh; 
+			}else{
+				state.language = state.jp; 
+			}	
 		}
-
 	},
 	[types.FIRSTLANGUAGE] (state) {
 		if(localStorage.LANGUAGE == undefined){
 			state.language = state.en;
 			localStorage.LANGUAGE = 'en';
-		}else{
+		}else{  
 			if(localStorage.LANGUAGE == 'en'){
 				state.language = state.en;
+			}else if(localStorage.LANGUAGE == "jp"){
+				state.language = state.jp;
 			}else{
-				state.language = state.cn;
+				state.language = state.zh;
 			}
 		}
 

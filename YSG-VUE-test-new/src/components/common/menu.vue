@@ -41,7 +41,6 @@
         },
 		methods: {
 			tabLanguage:function (key) {
-
 		        if (localStorage.stateFlag == '2') {
                     this.$store.dispatch('changeLanguage2');
                 } else {

@@ -156,12 +156,13 @@ export default {
             this.langFlag = "zh";
           }
         },
-        //                    {
-        //                        label: '日本語の',
-        //                        method: () => {
-        //                            this.hideAction('jp')
-        //                        }
-        //                    },
+        {
+          label: "日本語の",
+          method: () => {
+            this.hideAction("jp");
+            this.langFlag = "jp";
+          }
+        },
         {
           label: "Cancel",
           method: () => {
@@ -182,8 +183,10 @@ export default {
     //判断当前语言
     if (localStorage.LANGUAGE == "en") {
       this.langFlag = "en";
+    } else if (localStorage.LANGUAGE == "zh") {
+      this.langFlag = "zh";
     } else {
-      this.langFlag = "cn";
+      this.langFlag = "jp";
     }
     document.cookie = "test";
     //设置首页标识
@@ -231,8 +234,7 @@ export default {
       };
     }
 
-    this.$store.dispatch("getGroupListById", this.paramsById).then(res => { 
-
+    this.$store.dispatch("getGroupListById", this.paramsById).then(res => {
       //获取物业列表，重组数据，添加物理距离
       this.hotelList = res.data.list;
 
@@ -327,14 +329,16 @@ export default {
     },
     hideAction: function(key) {
       //更新本地语言标识
-      localStorage.LANGUAGE = key;
-      var lanKey;
-      if (key == "jp") {
-        lanKey = "en";
-      } else {
-        lanKey = key;
-      }
-      this.$store.dispatch("updateLanguage", lanKey);
+      localStorage.LANGUAGE = key; 
+      let params1 = {
+        token: localStorage.TOKEN,
+        platform: localStorage.platform,
+        identity: localStorage.identity,
+        lang: key
+      }; 
+      this.$store.dispatch("tabLanguage", params1);
+      this.$store.dispatch("updateLanguage", key);
+      this.$store.dispatch("changeLanguage");
     },
     goHome: function(data) {
       localStorage.HOTELID = data.hotelId;

@@ -138,11 +138,11 @@
 						<div class="how_phone">
 							<yd-cell-group>
 								<yd-cell-item arrow v-for="item in hotelDetail.trafficList" @click.native="goTraffic(item)">
-									<img slot="icon" src="../../assets/images/icon-bike.png" v-if="item.introduct == 'Bicycle' || item.introduct == '自行车'">
-									<img slot="icon" src="../../assets/images/icon-car.png" v-else-if="item.introduct == 'Self-Driving' || item.introduct == '租车自驾服务'">
-									<img slot="icon" src="../../assets/images/icon-taxi.png" v-else-if="item.introduct == 'Taxi' || item.introduct == '出租车'">
-									<img slot="icon" src="../../assets/images/icon-bus.png" v-else-if="item.introduct == 'Public bus' || item.introduct == '公交'">
-									<img slot="icon" src="../../assets/images/icon-tbus.png" v-else-if="item.introduct == 'Subway' || item.introduct == '地铁'">
+																	<img slot="icon" src="../../assets/images/icon-bike.png" v-if="item.introduct == 'Bicycle' || item.introduct == '自行车'|| item.introduct=='自転車'">
+									<img slot="icon" src="../../assets/images/icon-car.png" v-else-if="item.introduct == 'Self-Driving' || item.introduct == '租车自驾服务' || item.introduct=='赁车自'">
+									<img slot="icon" src="../../assets/images/icon-taxi.png" v-else-if="item.introduct == 'Taxi' || item.introduct == '出租车'|| item.introduct=='タクシー'">
+									<img slot="icon" src="../../assets/images/icon-bus.png" v-else-if="item.introduct == 'Public bus' || item.introduct == '公交'|| item.introduct=='バス'">
+									<img slot="icon" src="../../assets/images/icon-tbus.png" v-else-if="item.introduct == 'Subway' || item.introduct == '地铁'|| item.introduct=='地下鉄'">
 
 									<span slot="left">{{item.introduct}}</span>
 								</yd-cell-item>
@@ -319,12 +319,12 @@ export default {
           this.hideAction("zh");
         }
       },
-      //				{
-      //					label: '日本語の',
-      //					method: () => {
-      //						this.hideAction('jp')
-      //					}
-      //				},
+      {
+        label: "日本語の",
+        method: () => {
+          this.hideAction("jp");
+        }
+      },
       {
         label: "Cancel",
         method: () => {
@@ -622,14 +622,15 @@ export default {
     hideAction: function(key) {
       let _this = this;
       //更新本地语言标识
-      localStorage.LANGUAGE = key;
-      var lanKey;
-      if (key == "jp") {
-        lanKey = "en";
-      } else {
-        lanKey = key;
-      }
-      this.$store.dispatch("updateLanguage", lanKey);
+      localStorage.LANGUAGE = key;  
+      let params1 = {
+        token: localStorage.TOKEN,
+        platform: localStorage.platform,
+        identity: localStorage.identity,
+        lang: key
+      }; 
+      this.$store.dispatch("tabLanguage", params1);
+      this.$store.dispatch("updateLanguage", key);
       this.$store.dispatch("changeLanguage");
       //更新首页数据
       let params = {

@@ -19,49 +19,45 @@
 	import { mapGetters } from 'vuex'
 	import { mapState } from 'vuex'
 	export default {
-		// data() {
-		// 	return {
-		// 	tokenSrc:'http://www.xfplink.cn/wx_invoiceTitle_confirm.html?u=YoO45SINRHj%2FWlJ4UefJwzn6UoX9aAnl2s5FI%2BByKyiqQx%2BAazzuwKOLNX3iXchU3boYNRPsXR0%3D&m=YSG&b=X80',
-		// 	};
-		// },
-		// 	created:function () {
-		//     // let _this = this
-        //     // // 获取token
-        //     // var dataStr = JSON.stringify({"source":"YSG","otId":"1947364"});
-        //     // dataStr = 'dataMap=' + dataStr;
-        //     // $.ajax({
-        //     //     type:'post',
-        //     //     url:'https://bird.ioliu.cn/v1/?url=http://www.xfplink.cn/issp/ApiService?method=xforceplus.sys.qToken',
-        //     //     async:false,
-        //     //     data:dataStr,
-        //     //     dataType:'jsonp',
-        //     //     success:function(json){
-        //     //         console.log('data—>',json.token);
-        //     //         _this.tokenSrc ='http://www.xfplink.cn/wx_invoiceTitle_confirm.html?u='+json.token+'&m=YSG&b=X80';
-        //     //         console.log(_this.tokenSrc);
-        //     //        //获取发票抬头
-
-        //     //     },
-        //     //     error:function () {
-        //     //     }
-        //     // });
-
-		// },
-        // mounted:function () {
-        //     //一级页面falg
-        //     isHomePage(0)
-        // },
-        // methods:{
-   
-        // }
-
-
-
-        	data() {
+		data() {
 			return {
-				tokenSrc:'',
+			// tokenSrc:'',
 			};
 		},
+			created:function () {
+		    let _this = this
+            // 获取token
+            var dataStr = JSON.stringify({"source":"YSG","otId":"1947364"});
+            dataStr = 'dataMap=' + dataStr;
+            $.ajax({
+                type:'post',
+                url:'https://bird.ioliu.cn/v1/?url=http://www.xfplink.cn/issp/ApiService?method=xforceplus.sys.qToken',
+                async:false,
+                data:dataStr,
+                dataType:'jsonp',
+                success:function(json){
+                    console.log('data—>',json.token);
+                    _this.tokenSrc ='http://www.xfplink.cn/wx_invoiceTitle_confirm.html?u='+json.token+'&m=YSG&b=X80';
+                    console.log(_this.tokenSrc);
+                   //获取发票抬头
+
+                },
+                error:function () {
+                }
+            });
+
+		},
+        mounted:function () {
+            //一级页面falg
+            isHomePage(0)
+        },
+        methods:{
+   
+        },
+
+
+
+       
 		created:function () {
 		    // let _this = this
             // // 获取token

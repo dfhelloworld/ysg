@@ -6,27 +6,34 @@
     density="420dpi"
     format="10"
     plugin-version="2.3.3"
-    timestamp="1510796031452"
+    timestamp="1516247813357"
     token="-5601173367938755715"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="2331" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="276" />
     <task
         name="verifier"
-        duration="0" />
+        duration="34" />
+
+    <artifact
+        location="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
+        type="SPLIT" />
 
     <build
         build-mode="FULL"
-        timestamp="1510795395655"
+        timestamp="1516246113277"
         verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/outputs/apk/app-debug.apk"
+            type="SPLIT_MAIN" />
         <artifact
             location="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
             type="SPLIT" />
@@ -60,13 +67,14 @@
         <artifact
             location="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
             type="SPLIT" />
-        <artifact
-            location="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/outputs/apk/app-debug.apk"
-            type="SPLIT_MAIN" />
     </build>
     <build
         build-mode="COLD"
-        timestamp="1510796031452"
-        verifier="COLD_SWAP_REQUESTED" />
+        timestamp="1516247813357"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
+            type="SPLIT" />
+    </build>
 
 </instant-run>

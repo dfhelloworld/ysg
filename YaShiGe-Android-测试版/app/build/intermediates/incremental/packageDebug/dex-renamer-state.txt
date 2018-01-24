@@ -1,4 +1,4 @@
-#Wed Nov 15 21:36:35 NZDT 2017
+#Thu Jan 18 16:29:00 NZDT 2018
 base.0=/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_bc4619887515720b959879614127743aaa33a175
 renamed.1=classes2.dex
 renamed.0=classes.dex

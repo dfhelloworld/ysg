@@ -1,17 +1,20 @@
 <template>
     <div class="invoice">
         <div class="nav_mark"></div> 
-         <yd-navbar title="INVOICES" fixed>
+         <yd-navbar :title="language.myCenter.invoices" fixed>
            <span slot="left" class="back" @click="goBack"></span>
         </yd-navbar> 
+     
         <div class="invoice-content">
-            <div @click="showHeader"><button type="button">发票抬头</button></div>
-            <!-- <div><router-link to="/invoicesManage"><button type="button">发票管理</button></router-link></div>  -->
-            <div @click="showManager"><button type="button">发票管理</button></div>
+                     <div class="invoice-bg"> 
+              </div>
+            <div @click="showHeader"><button type="button" plain>{{language.myCenter.invoices_header}}</button></div> 
+            <div @click="showManager"><button type="button">{{language.myCenter.invoices_manage}}</button></div>
         </div>
     </div>
 </template>
 <style>
+.invoice-bg{width:100%;height:4rem;margin-top: -10px;background: url("../../assets/images/invoice.jpg") center no-repeat;background-size:cover;position: relative; opacity: 0.7;}
 </style>
 
 <script>
@@ -30,6 +33,11 @@
             //一级页面falg
             isHomePage(0)
         },
+        computed: {
+			...mapState({
+				language: state => state.language.language
+			})
+		},
         methods: {
             showHeader(){
                 let _this = this

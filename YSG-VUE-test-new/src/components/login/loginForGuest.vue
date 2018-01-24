@@ -77,7 +77,7 @@
 		},
 		created:function () {
 			this.come_hotelid = this.$route.query.hotelid
-
+        
 			//获取跳转的上一个页面标识
             this.pageType = this.$route.query.pageType
             //根据id获取集团物业列表
@@ -118,7 +118,7 @@
                         room_no: this.roomNo
                     }
 
-                    this.$store.dispatch('doLogin', params).then((res) => {
+                    this.$store.dispatch('doLogin', params).then((res) => { 
                         if (res.code == 0) {
                             //存储用户token及物业id
                             localStorage.TOKEN = res.data.token;
