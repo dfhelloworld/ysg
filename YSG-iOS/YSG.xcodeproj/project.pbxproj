@@ -826,7 +826,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/YSG/UMessage_Sdk_1.5.0a",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wangtiansoft.YSG;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wangtian.YSG;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -850,7 +850,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/YSG/UMessage_Sdk_1.5.0a",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wangtiansoft.YSG;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wangtian.YSG;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

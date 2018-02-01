@@ -484,30 +484,32 @@ export default {
       }
       //初始化swiper
       $(document).ready(function() {
-        var swiper = new Swiper(".equipment .swiper-container", {
-          pagination: ".swiper-pagination",
-          slidesPerView: 6,
-          paginationClickable: true,
-          spaceBetween: 0
-        });
-        var swiper3 = new Swiper(".apartment .swiper-container", {
-          pagination: ".swiper-pagination",
-          slidesPerView: 1.1,
-          paginationClickable: true,
-          spaceBetween: 15
-        });
-        var swiper4 = new Swiper(".fire .swiper-container", {
-          pagination: ".swiper-pagination",
-          slidesPerView: 1.2,
-          paginationClickable: true,
-          spaceBetween: 15
-        });
-        var swiper2 = new Swiper(".virtual .swiper-container", {
-          pagination: ".swiper-pagination",
-          slidesPerView: 3,
-          paginationClickable: true,
-          spaceBetween: 0
-        });
+        setTimeout(function() {
+          var swiper = new Swiper(".equipment .swiper-container", {
+            pagination: ".swiper-pagination",
+            slidesPerView: 6,
+            paginationClickable: true,
+            spaceBetween: 0
+          });
+          var swiper3 = new Swiper(".apartment .swiper-container", {
+            pagination: ".swiper-pagination",
+            slidesPerView: 1.1,
+            paginationClickable: true,
+            spaceBetween: 15
+          });
+          var swiper4 = new Swiper(".fire .swiper-container", {
+            pagination: ".swiper-pagination",
+            slidesPerView: 1.2,
+            paginationClickable: true,
+            spaceBetween: 15
+          });
+          var swiper2 = new Swiper(".virtual .swiper-container", {
+            pagination: ".swiper-pagination",
+            slidesPerView: 3,
+            paginationClickable: true,
+            spaceBetween: 0
+          });
+        }, 300);
       });
     });
   },
@@ -570,6 +572,7 @@ export default {
     },
     //点击页面，收起抽屉效果
     hideSlide: function() {
+      let _this = this;
       //如果是菜单展开，收起菜单
       if (this.menuSlide) {
         $(".index").css({
@@ -584,6 +587,9 @@ export default {
         this.menuSlide = false;
         this.markFlag = false;
         //					this.menuFlag = false;
+        setTimeout(function() {
+          _this.menuFlag = false;
+        }, 200);
       }
       //如果是个人中心展开，收起个人中心
       if (this.centerSlide) {
@@ -598,6 +604,9 @@ export default {
         });
         this.centerSlide = false;
         this.markFlag = false;
+        setTimeout(function() {
+          _this.centerFlag = false;
+        }, 300);
         //					this.centerFlag = false;
       }
     },
@@ -612,11 +621,11 @@ export default {
         lanKey = "en";
       }
       let params1 = {
-					token: localStorage.TOKEN,
-					platform: localStorage.platform,
-					identity:localStorage.identity,
-					lang:key
-			}
+        token: localStorage.TOKEN,
+        platform: localStorage.platform,
+        identity: localStorage.identity,
+        lang: key
+      };
       this.$store.dispatch("tabLanguage", params1);
       this.$store.dispatch("updateLanguage", lanKey);
       this.$store.dispatch("changeLanguage");
