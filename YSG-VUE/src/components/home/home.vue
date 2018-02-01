@@ -45,6 +45,8 @@
 								<p>{{item.title}}</p>
 							</div>
 						</div>
+             <div v-show="shortcutList.length>4" class="swiper-button-next"></div>
+    <div v-show="shortcutList.length>4" class="swiper-button-prev"></div>
 					</div>
 				</section>
 				<!--酒店详情-->
@@ -73,6 +75,8 @@
 									</router-link>
 								</div>
 							</div>
+                             <div v-show="shortcutList.length>5" class="swiper-button-next"></div>
+    <div v-show="shortcutList.length>5" class="swiper-button-prev"></div>
 						</div>
 					</section>
 					<section class="virtual">
@@ -467,7 +471,7 @@ export default {
       hotelid: this.hotelid,
       lang: localStorage.LANGUAGE
     };
-    this.$store.dispatch("getHotelDetail", params2).then(res => {
+    this.$store.dispatch("getHotelDetail", params2).then(res => { 
       this.details = this.hotelDetail;
       this.lat = this.hotelDetail.lat;
       this.lng = this.hotelDetail.lng;
@@ -495,7 +499,7 @@ export default {
         setTimeout(function() {
           var swiper = new Swiper(".equipment .swiper-container", {
             pagination: ".swiper-pagination",
-            slidesPerView: 6,
+            slidesPerView: 5,
             paginationClickable: true,
             spaceBetween: 0
           });
@@ -643,7 +647,7 @@ export default {
         hotelid: this.hotelid,
         lang: localStorage.LANGUAGE
       };
-      this.$store.dispatch("getHome", params).then(function(res) {
+      this.$store.dispatch("getHome", params).then(function(res) { 
         _this.shortcutList = [];
         //整理按钮结果集
         for (var item in _this.home.data.shortcutList) {

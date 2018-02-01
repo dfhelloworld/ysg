@@ -45,6 +45,9 @@
 								<p>{{item.title}}</p>
 							</div>
 						</div>
+             <!-- Add Arrows -->
+    <div v-show="shortcutList.length>4" class="swiper-button-next"></div>
+    <div v-show="shortcutList.length>4" class="swiper-button-prev"></div>
 					</div>
 				</section>
 				<!--酒店详情-->
@@ -73,7 +76,10 @@
 									</router-link>
 								</div>
 							</div>
+               <div v-show="shortcutList.length>5" class="swiper-button-next"></div>
+    <div v-show="shortcutList.length>5" class="swiper-button-prev"></div>
 						</div>
+              <!-- <div class="swiper-pagination"></div> -->
 					</section>
 					<section class="virtual">
 						<h4><i></i> {{language.home.virtual}}</h4>
@@ -417,6 +423,20 @@ export default {
       hotelid: this.hotelid,
       lang: localStorage.LANGUAGE
     };
+    let params1 = {
+      id: this.hotelid
+    };
+
+    this.$store.dispatch("getHotelListById", params1).then(res => {
+      if (res.code == 0) {
+        let data = res.data.list[0];
+        if (data.invoice_id) {
+          localStorage.INVOICEID = data.invoice_id;
+        } else {
+          localStorage.INVOICEID = "";
+        }
+      }
+    });
     this.$store.dispatch("getHome", params).then(res => {
       if (res.code == 0) {
         //全部数据
@@ -438,9 +458,7 @@ export default {
               this.home.data.shortcutList[item].key ==
               this.localshortcutList[i].key
             ) {
-              this.localshortcutList[i].title = this.home.data.shortcutList[
-                item
-              ].title;
+              this.localshortcutList[i].title = this.home.data.shortcutList[item].title;
               this.shortcutList.unshift(this.localshortcutList[i]);
             }
           }
@@ -452,7 +470,11 @@ export default {
               pagination: ".swiper-pagination",
               slidesPerView: 4,
               paginationClickable: true,
-              spaceBetween: 0
+              spaceBetween: 0,
+              // navigation: {
+              //   nextEl: ".swiper-button-next",
+              //   prevEl: ".swiper-button-prev"
+              // }
             });
           }, 300);
         });
@@ -502,8 +524,11 @@ export default {
       $(document).ready(function() {
         setTimeout(function() {
           var swiper = new Swiper(".equipment .swiper-container", {
-            pagination: ".swiper-pagination",
-            slidesPerView: 6,
+            pagination: {
+              el: ".swiper-pagination",
+              type: "fraction"
+            },
+            slidesPerView: 5,
             paginationClickable: true,
             spaceBetween: 0
           });
@@ -622,13 +647,13 @@ export default {
     hideAction: function(key) {
       let _this = this;
       //更新本地语言标识
-      localStorage.LANGUAGE = key;  
+      localStorage.LANGUAGE = key;
       let params1 = {
         token: localStorage.TOKEN,
         platform: localStorage.platform,
         identity: localStorage.identity,
         lang: key
-      }; 
+      };
       this.$store.dispatch("tabLanguage", params1);
       this.$store.dispatch("updateLanguage", key);
       this.$store.dispatch("changeLanguage");

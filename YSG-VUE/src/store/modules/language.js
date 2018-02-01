@@ -71,7 +71,7 @@ const state = {
 			bill:'Billing',
 			invoices:'Invoices',
 			invoices_header:'Issue Invoice',
-			invoices_manage:'Invoices Management',
+			invoices_manage:'Manage Invoice',
             order:'Order'
 		},
 		common:{
@@ -93,7 +93,9 @@ const state = {
 			empty_num_buy:'Please enter quantity purchased!',
 			login_err:'Login information is incorrect',
 			buy_info:'Your order has been successfully submitted, will contact you soon',
-            lifeMsg:'The following services are provided by third parties and only support Chinese language. The relevant services and responsibilities will be borne by the third parties. If you have any questions, please contact the customer service of the company.'
+			lifeMsg:'The following services are provided by third parties and only support Chinese language. The relevant services and responsibilities will be borne by the third parties. If you have any questions, please contact the customer service of the company.',
+			createInvoice:'Invoice: This feature applies to "VAT invoice", please ask our front desk for more information',
+			manageInvoice:'Invoice Management: This feature is to view all invoicing records',
         },
 		login:{
 			sign:'SIGN IN',
@@ -376,7 +378,7 @@ const state = {
 			bill:'账单',
 			invoices:'发票',
 			invoices_header:'开具发票',
-			invoices_manage:'发票管理',
+			invoices_manage:'票据管理',
 			order:'订单'
 		},
         common:{
@@ -399,7 +401,9 @@ const state = {
             empty_num_buy:'请输入购买数量!',
             login_err:'登录信息错误',
             buy_info:'您提交的订单已成功，我们会尽快联系您',
-			lifeMsg:'以下服务由第三方提供并只提供中文支持。相关服务和责任将由该第三方承担。如有问题请咨询该公司客服'
+			lifeMsg:'以下服务由第三方提供并只提供中文支持。相关服务和责任将由该第三方承担。如有问题请咨询该公司客服',
+			createInvoice:'开具发票：此功能适用于【增值税专用发票】，具体金额及发票拆分请与前台联系',
+			manageInvoice:'票据管理：此功能适用于查看所有开具发票记录'
 		},
 		login:{
 			sign:'登录',

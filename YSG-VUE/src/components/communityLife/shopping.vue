@@ -3,9 +3,9 @@
     <div class="nav_mark"></div>
     <yd-navbar :title="language.community.shopping" fixed>
 
-    <router-link to="/home" slot="left" v-if="pageFlag == 'home'">
-        <span class="close"></span>
-    </router-link>
+    <!-- <router-link to="/home" slot="left" v-if="pageFlag == 'home'"> -->
+        <span class="close" slot="left" @click="goBack()"></span>
+    <!-- </router-link>
 
     <router-link to="/s_home" slot="left" v-else-if="pageFlag == 's_home'">
         <span class="close"></span>
@@ -13,7 +13,7 @@
 
     <router-link to="/communityLife" slot="left" v-else>
         <span class="close"></span>
-    </router-link>
+    </router-link> -->
 
 
     </yd-navbar>
@@ -91,6 +91,9 @@
                     }
                 }
                 this.$router.push({path:'/buy',query:{info:data}});
+            },
+            goBack:function(){
+                this.$router.go(-1);
             }
         },
         mounted:function () {

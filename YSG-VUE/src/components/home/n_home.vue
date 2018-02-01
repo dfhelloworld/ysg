@@ -236,8 +236,7 @@ export default {
 
     this.$store.dispatch("getGroupListById", this.paramsById).then(res => {
       //获取物业列表，重组数据，添加物理距离
-      this.hotelList = res.data.list;
-
+      this.hotelList = res.data.list; 
       for (var item in this.hotelList) {
         // this.hotelList[item].distance=parseFloat(getDistance(localStorage.lng,localStorage.lat,res.data.list[item].lat,res.data.list[item].lng)).toFixed(1);
         this.hotelList[item].distance = (parseFloat(
@@ -341,7 +340,7 @@ export default {
       this.$store.dispatch("changeLanguage");
     },
     goHome: function(data) {
-      localStorage.HOTELID = data.hotelId;
+      localStorage.HOTELID = data.hotelId; 
       this.$router.push({
         path: "/home",
         query: { hotelid: data.hotelId, pageType: "unlogin", page: "unlogin" }

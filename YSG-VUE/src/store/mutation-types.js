@@ -20,7 +20,7 @@ export const GROUPLISTBYID = 'GROUPLISTBYID'
 export const HOME = 'HOME'
 export const HOTELDETAIL = 'HOTELDETAIL'
 export const TABLANGUAGE = 'TABLANGUAGE'
-export const TABLANGUAGE2 = 'TABLANGUAGE2'
+export const TABLANGUAGE2 = 'TABLANGUAGE2' 
 //Login
 export const LOGIN = 'LOGIN'
 export const APPSTART = 'APPSTART'

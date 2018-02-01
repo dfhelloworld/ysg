@@ -97,6 +97,6 @@
 /*社区 end*/
 
 .invoice-content{padding-top: 1.5rem;}
-.invoice-content{text-align: center;}
-.invoice-content button{width: 7rem;height: 1.8rem;background-color:rgba(0,153,255,0.9);border-radius: 0.2rem;border: none;font-size: .38rem;color: #fff;}
-.invoice-content>div{padding: .5rem 0;}
+.invoice-content{text-align: inherit;}
+.invoice-content button{ width:35%;height: 1rem;background-color:rgba(0,153,255,0.9);border-radius: 0.2rem;border: none;font-size: .30rem;color: #fff; display: inline;margin: 20px}
+.invoice-content>div{padding: 0 0;}
