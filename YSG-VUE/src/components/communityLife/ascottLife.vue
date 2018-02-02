@@ -55,9 +55,10 @@
                     limit:30,
                     page:_this.nextPage
                 }
-                this.$store.dispatch('getLifeList', params).then(function (res) {
+                this.$store.dispatch('getLifeList', params).then(function (res) { 
                     var arrList = res.data.data.list.reverse();
                     _this.dataList = _this.dataList.concat(arrList)
+ 
                     _this.nextPage = res.data.data.nextPage
                 })
             },

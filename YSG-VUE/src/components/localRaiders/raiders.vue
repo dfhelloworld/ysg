@@ -140,19 +140,19 @@ export default {
         });
       }, 300);
     },
-    // infinite:function (done) {
-    //     let _this = this
-    //     done(true);
-    //     //添加数据
-    //     if(this.nextPage != '-1'){
-    //         var flag = 'inifinte'
-    //         var id =this.typeId
-    //         this.getList(id, flag)
-    //     }else{
-    //         done(false);
-    //         this.noData = true;
-    //     }
-    // },
+    infinite:function (done) {
+        let _this = this
+        done(true);
+        //添加数据
+        if(this.nextPage != '-1'){
+            var flag = 'inifinte'
+            var id =this.typeId
+            this.getList(id, flag)
+        }else{
+            done(false);
+            this.noData = true;
+        }
+    },
     changeTab: function(id) {
       var flag = "click";
       this.getList(id, flag);

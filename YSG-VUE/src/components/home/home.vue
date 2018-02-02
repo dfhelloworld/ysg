@@ -471,7 +471,7 @@ export default {
       hotelid: this.hotelid,
       lang: localStorage.LANGUAGE
     };
-    this.$store.dispatch("getHotelDetail", params2).then(res => { 
+    this.$store.dispatch("getHotelDetail", params2).then(res => {
       this.details = this.hotelDetail;
       this.lat = this.hotelDetail.lat;
       this.lng = this.hotelDetail.lng;
@@ -633,13 +633,13 @@ export default {
     hideAction: function(key) {
       let _this = this;
       //更新本地语言标识
-      localStorage.LANGUAGE = key; 
+      localStorage.LANGUAGE = key;
       let params1 = {
         token: localStorage.TOKEN,
         platform: localStorage.platform,
         identity: localStorage.identity,
         lang: key
-      }; 
+      };
       this.$store.dispatch("tabLanguage", params1);
       this.$store.dispatch("updateLanguage", key);
       this.$store.dispatch("changeLanguage");
@@ -648,7 +648,7 @@ export default {
         hotelid: this.hotelid,
         lang: localStorage.LANGUAGE
       };
-      this.$store.dispatch("getHome", params).then(function(res) { 
+      this.$store.dispatch("getHome", params).then(function(res) {
         _this.shortcutList = [];
         //整理按钮结果集
         for (var item in _this.home.data.shortcutList) {
