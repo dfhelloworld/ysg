@@ -49,11 +49,11 @@
                 let params = {
                     hotelid: localStorage.HOTELID,
                     lang: localStorage.LANGUAGE,
-                    limit:5,
+                    limit:30,
                     page:_this.nextPage
                 }
                 this.$store.dispatch('getNoticList', params).then(function (res) {
-                    var arrList = res.data.data.list
+                    var arrList = res.data.data.list.reverse();
                     _this.dataList = _this.dataList.concat(arrList)
                     _this.nextPage = res.data.data.nextPage
                 })

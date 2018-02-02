@@ -501,6 +501,7 @@ export default {
       this.details = this.hotelDetail;
       this.lat = this.hotelDetail.lat;
       this.lng = this.hotelDetail.lng;
+      this.hotelDetail.trafficList.reverse();
 
       localStorage.bookUrl = this.hotelDetail.bookurl;
 
@@ -516,7 +517,7 @@ export default {
               item
             ].detail;
             this.facList[i].name = this.hotelDetail.facilitiesList[item].name;
-            this.facListShow.push(this.facList[i]);
+            this.facListShow.unshift(this.facList[i]);
           }
         }
       }

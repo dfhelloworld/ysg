@@ -124,7 +124,7 @@
 
 	        }
 	        this.$store.dispatch('getRoomResList',params).then(function (res) {
-		        _this.wpList = res.data.list
+		        _this.wpList = res.data.list.reverse();
 	        })
         },
 		methods: {
@@ -143,7 +143,7 @@
 
 	            }
 	            this.$store.dispatch('getRoomResList',params).then(function (res) {
-		            _this.wpList = res.data.list
+		            _this.wpList = res.data.list.reverse();
 	            })
 
             },

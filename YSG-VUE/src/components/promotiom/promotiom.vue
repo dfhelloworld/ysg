@@ -122,10 +122,10 @@
                         lang: localStorage.LANGUAGE,
                         tagid:'',
                         page:_this.nextPage,
-                        limit:5
+                        limit:30
                     }
                     _this.$store.dispatch('getPromotionList', params).then((res) => {
-                        _this.dataList = _this.dataList.concat(res.data.data.list)
+                        _this.dataList = _this.dataList.concat(res.data.data.list.reverse())
                         _this.nextPage = res.data.data.nextPage
                         _this.getFlag(_this.dataList)
                     })
@@ -143,10 +143,10 @@
                         lang: localStorage.LANGUAGE,
                         tagid:'',
                         page:_this.nextPage,
-                        limit:5
+                        limit:30
                     };
                     _this.$store.dispatch('getNewsList', params).then((res) => {
-                        _this.dataList = _this.dataList.concat(res.data.data.list)
+                        _this.dataList = _this.dataList.concat(res.data.data.list.reverse())
                         _this.nextPage = res.data.data.nextPage
                         _this.getFlag(_this.dataList)
                     })
@@ -164,10 +164,10 @@
                         groupid: localStorage.groupid,
                         tagid:'',
                         page:_this.nextPage,
-                        limit:5
+                        limit:30
                     };
                     _this.$store.dispatch('getGroupNewsList', params).then((res) => {
-                        _this.dataList = _this.dataList.concat(res.data.data.list)
+                        _this.dataList = _this.dataList.concat(res.data.data.list.reverse())
                         _this.nextPage = res.data.data.nextPage
                         _this.getFlag(_this.dataList)
                     })
@@ -184,10 +184,10 @@
                         groupid: localStorage.groupid,
                         tagid:'',
                         page:_this.nextPage,
-                        limit:5
+                        limit:30
                     };
                     _this.$store.dispatch('getGroupNoticeList', params).then((res) => {
-                        _this.dataList = _this.dataList.concat(res.data.data.list)
+                        _this.dataList = _this.dataList.concat(res.data.data.list.reverse())
                         _this.nextPage = res.data.data.nextPage
                         _this.getFlag(_this.dataList)
                     })
