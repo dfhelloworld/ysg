@@ -115,11 +115,11 @@ export default {
           hotelid: localStorage.HOTELID,
           typeid: id,
           lang: localStorage.LANGUAGE,
-          limit: 5,
+          limit: 30,
           page: _this.nextPage
         };
         _this.$store.dispatch("getPoiList", params).then(res => {
-          let list = res.data.data.list;
+          let list = res.data.data.list.reverse();
           _this.nextPage = res.data.data.nextPage;
           //获取距离,重组数据
           var dataArr = [];
@@ -140,19 +140,19 @@ export default {
         });
       }, 300);
     },
-    // infinite:function (done) {
-    //     let _this = this
-    //     done(true);
-    //     //添加数据
-    //     if(this.nextPage != '-1'){
-    //         var flag = 'inifinte'
-    //         var id =this.typeId
-    //         this.getList(id, flag)
-    //     }else{
-    //         done(false);
-    //         this.noData = true;
-    //     }
-    // },
+    infinite:function (done) {
+        let _this = this
+        done(true);
+        //添加数据
+        if(this.nextPage != '-1'){
+            var flag = 'inifinte'
+            var id =this.typeId
+            this.getList(id, flag)
+        }else{
+            done(false);
+            this.noData = true;
+        }
+    },
     changeTab: function(id) {
       var flag = "click";
       this.getList(id, flag);

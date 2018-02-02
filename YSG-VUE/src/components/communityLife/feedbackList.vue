@@ -40,7 +40,7 @@
 		    //获取所有列表
             let params = {'hotelid':localStorage.HOTELID};
             this.$store.dispatch('getFeedbackList', params).then((res) => {
-                this.dataList = res.data.data.list;
+                this.dataList = res.data.data.list.reverse();
             }).catch((res) => {
             });
 

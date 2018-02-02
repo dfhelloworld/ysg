@@ -144,7 +144,7 @@
 						<div class="how_phone">
 							<yd-cell-group>
 								<yd-cell-item arrow v-for="item in hotelDetail.trafficList" @click.native="goTraffic(item)">
-																	<img slot="icon" src="../../assets/images/icon-bike.png" v-if="item.introduct == 'Bicycle' || item.introduct == '自行车'|| item.introduct=='自転車'">
+									<img slot="icon" src="../../assets/images/icon-bike.png" v-if="item.introduct == 'Bicycle' || item.introduct == '自行车'|| item.introduct=='自転車'">
 									<img slot="icon" src="../../assets/images/icon-car.png" v-else-if="item.introduct == 'Self-Driving' || item.introduct == '租车自驾服务' || item.introduct=='赁车自'">
 									<img slot="icon" src="../../assets/images/icon-taxi.png" v-else-if="item.introduct == 'Taxi' || item.introduct == '出租车'|| item.introduct=='タクシー'">
 									<img slot="icon" src="../../assets/images/icon-bus.png" v-else-if="item.introduct == 'Public bus' || item.introduct == '公交'|| item.introduct=='バス'">
@@ -501,6 +501,7 @@ export default {
       this.details = this.hotelDetail;
       this.lat = this.hotelDetail.lat;
       this.lng = this.hotelDetail.lng;
+      this.hotelDetail.trafficList.reverse();
 
       localStorage.bookUrl = this.hotelDetail.bookurl;
 
@@ -516,7 +517,7 @@ export default {
               item
             ].detail;
             this.facList[i].name = this.hotelDetail.facilitiesList[item].name;
-            this.facListShow.push(this.facList[i]);
+            this.facListShow.unshift(this.facList[i]);
           }
         }
       }
