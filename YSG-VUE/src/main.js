@@ -10,6 +10,8 @@ import 'vue-ydui/dist/ydui.base.css';
 import VueScroller from 'vue-scroller'
 import vueScrollBehavior from 'vue-scroll-behavior'
 import AMap from 'vue-amap';
+import Viewer from 'v-viewer' ;
+Vue.use(Viewer)
 Vue.use(AMap); 
 
 // Using vueScrollBehavior

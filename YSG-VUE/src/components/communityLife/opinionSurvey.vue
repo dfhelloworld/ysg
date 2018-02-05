@@ -54,7 +54,7 @@
                 }
                 this.$store.dispatch('getNoticList', params).then(function (res) {
  
-                    var arrList = res.data.data.list.reverse();
+                    var arrList = res.data.data.list;
                     _this.dataList = _this.dataList.concat(arrList)
  
                     _this.nextPage = res.data.data.nextPage

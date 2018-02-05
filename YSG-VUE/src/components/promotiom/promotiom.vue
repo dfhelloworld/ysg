@@ -125,7 +125,7 @@
                         limit:30
                     }
                     _this.$store.dispatch('getPromotionList', params).then((res) => {
-                        _this.dataList = _this.dataList.concat(res.data.data.list.reverse())
+                        _this.dataList = _this.dataList.concat(res.data.data.list)
                         _this.nextPage = res.data.data.nextPage
                         _this.getFlag(_this.dataList)
                     })
@@ -146,7 +146,7 @@
                         limit:30
                     };
                     _this.$store.dispatch('getNewsList', params).then((res) => {
-                        _this.dataList = _this.dataList.concat(res.data.data.list.reverse())
+                        _this.dataList = _this.dataList.concat(res.data.data.list)
                         _this.nextPage = res.data.data.nextPage
                         _this.getFlag(_this.dataList)
                     })
@@ -167,7 +167,7 @@
                         limit:30
                     };
                     _this.$store.dispatch('getGroupNewsList', params).then((res) => {
-                        _this.dataList = _this.dataList.concat(res.data.data.list.reverse())
+                        _this.dataList = _this.dataList.concat(res.data.data.list)
                         _this.nextPage = res.data.data.nextPage
                         _this.getFlag(_this.dataList)
                     })
@@ -187,7 +187,7 @@
                         limit:30
                     };
                     _this.$store.dispatch('getGroupNoticeList', params).then((res) => {
-                        _this.dataList = _this.dataList.concat(res.data.data.list.reverse())
+                        _this.dataList = _this.dataList.concat(res.data.data.list)
                         _this.nextPage = res.data.data.nextPage
                         _this.getFlag(_this.dataList)
                     })

@@ -57,9 +57,9 @@
                     page:_this.nextPage
 				}
                 this.$store.dispatch('getActivityList', params).then(function (res) {
-                    var arrList = res.data.data.list.reverse();
+                    var arrList = res.data.data.list;
                     _this.dataList = _this.dataList.concat(arrList)
-                    _this.dataList.reverse();
+                    _this.dataList;
                     _this.nextPage = res.data.data.nextPage
 				})
 			},

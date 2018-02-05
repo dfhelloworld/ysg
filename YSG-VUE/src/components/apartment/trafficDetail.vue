@@ -9,7 +9,7 @@
                 <span class="back"></span>
             </router-link>
         </yd-navbar>
-        <section class="resolve-box" v-show="showContent" v-html="content"></section>
+        <section class="resolve-box" v-show="showContent" v-viewer="{movable: false}" v-html="content"></section>
         <ul class="pdf-video" :class="{ 'one': isOne, 'two': isTwo}" v-show="btnFlag">
             <li @click="toPDF" v-show="pdfFlag"></li>
             <li @click="toVideo" v-show="videoFlag"></li>
@@ -19,6 +19,7 @@
 <style>
 </style>
 <script type="text/babel">
+
 	export default {
 		data() {
 			return {

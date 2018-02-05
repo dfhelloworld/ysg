@@ -119,7 +119,7 @@ export default {
           page: _this.nextPage
         };
         _this.$store.dispatch("getPoiList", params).then(res => {
-          let list = res.data.data.list.reverse();
+          let list = res.data.data.list;
           _this.nextPage = res.data.data.nextPage;
           //获取距离,重组数据
           var dataArr = [];

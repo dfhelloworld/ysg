@@ -445,7 +445,7 @@ export default {
               this.localshortcutList[i].title = this.home.data.shortcutList[
                 item
               ].title;
-              this.shortcutList.unshift(this.localshortcutList[i]);
+              this.shortcutList.push(this.localshortcutList[i]);
             }
           }
         }
@@ -475,7 +475,7 @@ export default {
       this.details = this.hotelDetail;
       this.lat = this.hotelDetail.lat;
       this.lng = this.hotelDetail.lng;
-      this.hotelDetail.trafficList.reverse();
+      // this.hotelDetail.trafficList.reverse();
 
       localStorage.bookUrl = this.hotelDetail.bookurl;
 
@@ -491,7 +491,7 @@ export default {
               item
             ].detail;
             this.facList[i].name = this.hotelDetail.facilitiesList[item].name;
-            this.facListShow.unshift(this.facList[i]);
+            this.facListShow.push(this.facList[i]);
           }
         }
       }
@@ -659,7 +659,7 @@ export default {
             ) {
               _this.localshortcutList[i].title =
                 _this.home.data.shortcutList[item].title;
-              _this.shortcutList.unshift(_this.localshortcutList[i]);
+              _this.shortcutList.push(_this.localshortcutList[i]);
             }
           }
         }
