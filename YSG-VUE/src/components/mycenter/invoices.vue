@@ -31,6 +31,8 @@
   width: 100%;
   margin: auto;
   text-align: center;
+  position: fixed;
+  bottom: 0;
 }
 .memo {
   margin: 10% 10%;
@@ -48,7 +50,8 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      tokenSrc: ""
+      tokenSrc: "",
+      oid: localStorage.oid
     };
   },
   created: function() {},
@@ -65,7 +68,7 @@ export default {
     showHeader() {
       let _this = this;
       // 获取token
-      var dataStr = JSON.stringify({ source: "YSG", otId: "1947364" });
+      var dataStr = JSON.stringify({ source: "YSG", otId: this.oid });
       dataStr = "dataMap=" + dataStr;
       $.ajax({
         type: "post",
@@ -95,7 +98,7 @@ export default {
     showManager() {
       let _this = this;
       // 获取token
-      var dataStr = JSON.stringify({ source: "YSG", otId: "1947364" });
+      var dataStr = JSON.stringify({ source: "YSG", otId: this.oid });
       dataStr = "dataMap=" + dataStr;
       $.ajax({
         type: "post",

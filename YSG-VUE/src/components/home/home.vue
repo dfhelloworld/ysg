@@ -192,7 +192,7 @@ export default {
       lng: "",
       idType: "",
       myItems: [],
-      myItems2:[],//包含日文语言选项
+      myItems2: [], //包含日文语言选项
       details: {},
       pageType: "",
       distance: "",
@@ -313,7 +313,7 @@ export default {
         linkTo: ""
       }
     ];
-        this.myItems2 = [
+    this.myItems2 = [
       {
         label: "English",
         method: () => {
@@ -351,7 +351,7 @@ export default {
         method: () => {
           this.hideAction("zh");
         }
-      }, 
+      },
       {
         label: "Cancel",
         method: () => {
@@ -700,7 +700,7 @@ export default {
       if (localStorage.HOTELID == 1 || localStorage.HOTELID == 7) {
         if (localStorage.TOKEN) {
           // this.$router.push("/shopping");
-          this.$router.push({path:'/shopping',query:{info:"home"}});
+          this.$router.push({ path: "/shopping", query: { info: "home" } });
         } else {
           this.$router.replace("/loginforguest");
         }
@@ -749,7 +749,11 @@ export default {
         //   _this.$router.push("/mybill");
         //   break;
         case "invoice":
-          _this.$router.push("/invoices");
+          if (localStorage.TOKEN) {
+            _this.$router.push("/invoices");
+          } else {
+            _this.$router.replace("/loginforguest");
+          }
           break;
         case "news":
           _this.$router.push("/ssr");

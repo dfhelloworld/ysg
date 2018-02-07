@@ -195,7 +195,7 @@ export default {
       lng: "",
       idType: "",
       myItems: [],
-      myItems2:[],
+      myItems2: [],
       details: {},
       pageType: "",
       distance: "",
@@ -314,7 +314,7 @@ export default {
         linkTo: ""
       }
     ];
-        this.myItems = [
+    this.myItems = [
       {
         label: "English",
         method: () => {
@@ -326,7 +326,7 @@ export default {
         method: () => {
           this.hideAction("zh");
         }
-      }, 
+      },
       {
         label: "Cancel",
         method: () => {
@@ -480,7 +480,9 @@ export default {
               this.home.data.shortcutList[item].key ==
               this.localshortcutList[i].key
             ) {
-              this.localshortcutList[i].title = this.home.data.shortcutList[item].title;
+              this.localshortcutList[i].title = this.home.data.shortcutList[
+                item
+              ].title;
               this.shortcutList.push(this.localshortcutList[i]);
             }
           }
@@ -492,7 +494,7 @@ export default {
               pagination: ".swiper-pagination",
               slidesPerView: 4,
               paginationClickable: true,
-              spaceBetween: 0,
+              spaceBetween: 0
               // navigation: {
               //   nextEl: ".swiper-button-next",
               //   prevEl: ".swiper-button-prev"
@@ -723,7 +725,7 @@ export default {
       if (localStorage.HOTELID == 1 || localStorage.HOTELID == 7) {
         if (localStorage.TOKEN) {
           // this.$router.push("/shopping");
-          this.$router.push({path:'/buy',query:{info:"home"}});
+          this.$router.push({ path: "/buy", query: { info: "home" } });
         } else {
           this.$router.replace("/loginforguest");
         }
@@ -770,7 +772,11 @@ export default {
         //   _this.$router.push("/mybill");
         //   break;
         case "invoice":
-          _this.$router.push("/invoices");
+          if (localStorage.TOKEN) {
+            _this.$router.push("/invoices");
+          } else {
+            _this.$router.replace("/loginforguest");
+          }
           break;
         case "news":
           _this.$router.push("/ssr");
