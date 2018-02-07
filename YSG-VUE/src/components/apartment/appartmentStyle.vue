@@ -171,7 +171,7 @@
                     $(this).addClass('active').siblings().removeClass('active');
 				})
 			})
-            //一级页面falg
+            //一级页面flag
             isHomePage(0)
 		},
         activated:function () {

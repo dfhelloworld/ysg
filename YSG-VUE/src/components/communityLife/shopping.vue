@@ -51,7 +51,8 @@
                 dataList: [],
                 nextPage: 1,
                 noData: false,
-                pageFlag:''
+                pageFlag:'',
+                preRoute:this.$route.query.info,
             }
         },
         created:function () {
@@ -94,7 +95,12 @@
                 this.$router.push({path:'/buy',query:{info:data}});
             },
             goBack:function(){
-                this.$router.go(-1);
+                if(this.preRoute){ 
+                    this.$router.push('/'+this.preRoute);
+                }else{
+                    this.$router.push('/home');
+                } 
+                
             }
         },
         mounted:function () {

@@ -155,14 +155,7 @@ export default {
             this.hideAction("zh");
             this.langFlag = "zh";
           }
-        },
-        {
-          label: "日本語の",
-          method: () => {
-            this.hideAction("jp");
-            this.langFlag = "jp";
-          }
-        },
+        }, 
         {
           label: "Cancel",
           method: () => {

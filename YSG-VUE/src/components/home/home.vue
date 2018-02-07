@@ -156,7 +156,9 @@
 				</section>
 			</scroller>
 		</section>
-		<yd-actionsheet :items="myItems" v-model="tabLanShow"></yd-actionsheet>
+	
+    <yd-actionsheet :items="myItems2" v-model="tabLanShow" v-if="hotelid ==10"></yd-actionsheet>
+    <yd-actionsheet :items="myItems" v-model="tabLanShow" v-else></yd-actionsheet>
 		<!--底部菜单、个人中心、 设置项-->
 		<v-foot></v-foot>
 		<v-menu v-show="menuFlag"></v-menu>
@@ -190,6 +192,7 @@ export default {
       lng: "",
       idType: "",
       myItems: [],
+      myItems2:[],//包含日文语言选项
       details: {},
       pageType: "",
       distance: "",
@@ -310,7 +313,7 @@ export default {
         linkTo: ""
       }
     ];
-    this.myItems = [
+        this.myItems2 = [
       {
         label: "English",
         method: () => {
@@ -329,6 +332,26 @@ export default {
           this.hideAction("jp");
         }
       },
+      {
+        label: "Cancel",
+        method: () => {
+          _this.$store.dispatch("changeLanguage");
+        }
+      }
+    ];
+    this.myItems = [
+      {
+        label: "English",
+        method: () => {
+          this.hideAction("en");
+        }
+      },
+      {
+        label: "中文",
+        method: () => {
+          this.hideAction("zh");
+        }
+      }, 
       {
         label: "Cancel",
         method: () => {
@@ -676,7 +699,8 @@ export default {
     goLocation: function() {
       if (localStorage.HOTELID == 1 || localStorage.HOTELID == 7) {
         if (localStorage.TOKEN) {
-          this.$router.push("/shopping");
+          // this.$router.push("/shopping");
+          this.$router.push({path:'/shopping',query:{info:"home"}});
         } else {
           this.$router.replace("/loginforguest");
         }

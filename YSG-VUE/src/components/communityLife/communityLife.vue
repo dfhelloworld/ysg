@@ -20,7 +20,8 @@
                           </router-link>
                       </li>
                       <li>
-                          <router-link to="/shopping">
+                          <!-- <router-link to="/shopping"> -->
+                           <router-link :to="{path:'/shopping', query:{info:'communityLife'}}">
                               <img src="../../assets/images/shopping.png" alt="">
                               <p>{{language.community.shopping}}</p>
                           </router-link>
