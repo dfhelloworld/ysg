@@ -8,8 +8,24 @@
         "source": "/Users/jeff/.android/build-cache/5be03cfcf28b95aa2ef08095b216be5ed089a2f6/output/res/drawable-v21/notification_action_background.xml"
     },
     {
+        "merged": "/Users/Jeff_Deng/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/res/merged/debug/drawable-v21/abc_edit_text_material.xml",
+        "source": "/Users/Jeff_Deng/.android/build-cache/39472ccf6e3e4e56b96296ba8bca05f44591080e/output/res/drawable-v21/abc_edit_text_material.xml"
+    },
+    {
+        "merged": "/Users/Jeff_Deng/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/res/merged/debug/drawable-v21/notification_action_background.xml",
+        "source": "/Users/Jeff_Deng/.android/build-cache/39472ccf6e3e4e56b96296ba8bca05f44591080e/output/res/drawable-v21/notification_action_background.xml"
+    },
+    {
         "merged": "/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/res/merged/debug/drawable-v21/abc_edit_text_material.xml",
         "source": "/Users/jeff/.android/build-cache/5be03cfcf28b95aa2ef08095b216be5ed089a2f6/output/res/drawable-v21/abc_edit_text_material.xml"
+    },
+    {
+        "merged": "/Users/Jeff_Deng/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/res/merged/debug/drawable-v21/abc_action_bar_item_background_material.xml",
+        "source": "/Users/Jeff_Deng/.android/build-cache/39472ccf6e3e4e56b96296ba8bca05f44591080e/output/res/drawable-v21/abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "/Users/Jeff_Deng/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/res/merged/debug/drawable-v21/abc_btn_colored_material.xml",
+        "source": "/Users/Jeff_Deng/.android/build-cache/39472ccf6e3e4e56b96296ba8bca05f44591080e/output/res/drawable-v21/abc_btn_colored_material.xml"
     },
     {
         "merged": "/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/res/merged/debug/drawable-v21/abc_btn_colored_material.xml",

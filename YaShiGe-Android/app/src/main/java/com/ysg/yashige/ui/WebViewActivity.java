@@ -68,7 +68,7 @@ public class WebViewActivity extends BaseActivity {
         settings.setDomStorageEnabled(true);
         settings.setSaveFormData(true);
         settings.setSupportMultipleWindows(true);
-        settings.setAppCacheEnabled(true);
+        // settings.setAppCacheEnabled(true);
         settings.setCacheMode(WebSettings.LOAD_DEFAULT); //优先使用缓存
 
         webView.setHorizontalScrollbarOverlay(true);

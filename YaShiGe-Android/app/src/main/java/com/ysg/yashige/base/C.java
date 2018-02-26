@@ -30,7 +30,8 @@ public class C {
     public static final class network {
 //        public static final String home_url = "http://wiki.wangtiansoft.com/html/ysg-test/";
 //        public static final String home_url = "http://192.168.199.136:8080";
-        public static final String home_url = "http://webview.easyiservice.com:8080/";
+         public static final String home_url = "http://webview.easyiservice.com:8080/";
+//        public static final String home_url = "http://192.168.31.162:8080";
         // public static final String home_url ="47.52.220.96:80";
         //public static final String home_url = "file:///android_asset/dist/index.html";
         public static final String do_main = "https://service.easyiservice.com/";

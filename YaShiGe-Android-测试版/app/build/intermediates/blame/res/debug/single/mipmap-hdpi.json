@@ -4,6 +4,14 @@
         "source": "/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/src/main/res/mipmap-hdpi/ic_launcher.png"
     },
     {
+        "merged": "/Users/Jeff_Deng/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher.png",
+        "source": "/Users/Jeff_Deng/work/itearoa/ysg/YaShiGe-Android-测试版/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/Jeff_Deng/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/res/merged/debug/mipmap-hdpi/appicon.png",
+        "source": "/Users/Jeff_Deng/work/itearoa/ysg/YaShiGe-Android-测试版/app/src/main/res/mipmap-hdpi/appicon.png"
+    },
+    {
         "merged": "/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/build/intermediates/res/merged/debug/mipmap-hdpi/appicon.png",
         "source": "/Users/jeff/work/itearoa/ysg/YaShiGe-Android-测试版/app/src/main/res/mipmap-hdpi/appicon.png"
     }

@@ -44,13 +44,13 @@ const state = {
             how:'Transportation',
 			apply:'Apply Time',
 			start:'Start Time',
-            sign:'SIGN UP',
+            sign:'Sign Up',
             chanel:'Channel',
             save:'Save'
 		},
 		func:{
-			translate:'TRANSLATE',
-			tel:'PHONE'
+			translate:'Translate',
+			tel:'Phone'
 		},
 		home:{
 			findResidence:'Searching for Property',
@@ -75,7 +75,7 @@ const state = {
             order:'Order'
 		},
 		common:{
-            screen:'SCREEN',
+            screen:'Screen',
             more:'more',
 			loginTxt:'Are you sure you want to quit the system?',
 			cancel:'Cancel',
@@ -96,9 +96,10 @@ const state = {
 			lifeMsg:'The following services are provided by third parties and only support Chinese language. The relevant services and responsibilities will be borne by the third parties. If you have any questions, please contact the customer service of the company.',
 			createInvoice:'Invoice: This feature applies to "VAT invoice", please ask our front desk for more information',
 			manageInvoice:'Invoice Management: This feature is to view all invoicing records',
+			buy_confirm:"Are you sure you want to buy this item?"
         },
 		login:{
-			sign:'SIGN IN',
+			sign:'Sign In',
 			residence:'Find Your Residence',
 			room:'Room No.',
 			name:'Last Name',
@@ -133,10 +134,10 @@ const state = {
 			title:'Room Type'
         },
 		order:{
-			title:'MY ORDER',
-			user:'GUEST',
-			roomid:'ROOM ID',
-			time:'TIME',
+			title:'My Order',
+			user:'Guest',
+			roomid:'Room ID',
+			time:'Time',
             orderid:'ID'
 		},
         lifeStyle:{
@@ -145,7 +146,7 @@ const state = {
             phone:'Phone & Sim Card',
             express:'Expressage',
             trip:'Trip',
-			title:'LIFE STYLE'
+			title:'Life Style'
         },
 		news:{
 			title:'NEWS'
@@ -403,7 +404,8 @@ const state = {
             buy_info:'您提交的订单已成功，我们会尽快联系您',
 			lifeMsg:'以下服务由第三方提供并只提供中文支持。相关服务和责任将由该第三方承担。如有问题请咨询该公司客服',
 			createInvoice:'开具发票：此功能适用于【增值税专用发票】，具体金额及发票拆分请与前台联系',
-			manageInvoice:'票据管理：此功能适用于查看所有开具发票记录'
+			manageInvoice:'票据管理：此功能适用于查看所有开具发票记录',
+			buy_confirm:'确定购买吗？'
 		},
 		login:{
 			sign:'登录',

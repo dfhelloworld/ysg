@@ -289,16 +289,16 @@ export default {
         imgSrc: require("../../assets/images/icon-news-add.png"),
         linkTo: "/ssr"
       },
-      // {
-      //   key: "invoice",
-      //   title: "",
-      //   imgSrc: require("../../assets/images/icon-bill.png"),
-      //   linkTo: "/mybill"
-      // },
+      {
+        key: "bills",
+        title: "",
+        imgSrc: require("../../assets/images/icon-bill.png"),
+        linkTo: "/mybill"
+      },
       {
         key: "invoice",
         title: "",
-        imgSrc: require("../../assets/images/icon-bill.png"),
+        imgSrc: require("../../assets/images/icon-receipt.png"),
         linkTo: "/invoices"
       },
       {
@@ -768,9 +768,9 @@ export default {
         case "phone":
           _this.$router.push("/phone");
           break;
-        // case "invoice":
-        //   _this.$router.push("/mybill");
-        //   break;
+        case "bills":
+          _this.$router.push("/mybill");
+          break;
         case "invoice":
           if (localStorage.TOKEN) {
             _this.$router.push("/invoices");

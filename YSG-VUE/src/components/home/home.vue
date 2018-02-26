@@ -288,16 +288,16 @@ export default {
         imgSrc: require("../../assets/images/icon-news-add.png"),
         linkTo: "/ssr"
       },
-      // {
-      //   key: "invoice",
-      //   title: "",
-      //   imgSrc: require("../../assets/images/icon-bill.png"),
-      //   linkTo: "/mybill"
-      // },
+      {
+        key: "bills",
+        title: "",
+        imgSrc: require("../../assets/images/icon-bill.png"),
+        linkTo: "/mybill"
+      },
       {
         key: "invoice",
         title: "",
-        imgSrc: require("../../assets/images/icon-bill.png"),
+        imgSrc: require("../../assets/images/icon-receipt.png"),
         linkTo: "/invoices"
       },
       {
@@ -444,6 +444,20 @@ export default {
       hotelid: this.hotelid,
       lang: localStorage.LANGUAGE
     };
+        let params1 = {
+      id: this.hotelid
+    };
+
+    this.$store.dispatch("getHotelListById", params1).then(res => {
+      if (res.code == 0) {
+        let data = res.data.list[0];
+        if (data.invoice_id) {
+          localStorage.INVOICEID = data.invoice_id;
+        } else {
+          localStorage.INVOICEID = "";
+        }
+      }
+    });
     this.$store.dispatch("getHome", params).then(res => {
       if (res.code == 0) {
         //全部数据
@@ -745,9 +759,9 @@ export default {
         case "phone":
           _this.$router.push("/phone");
           break;
-        // case "invoice":
-        //   _this.$router.push("/mybill");
-        //   break;
+        case "bills":
+          _this.$router.push("/mybill");
+          break;
         case "invoice":
           if (localStorage.TOKEN) {
             _this.$router.push("/invoices");

@@ -100,10 +100,12 @@
                             title: ' ',
                             mes: _this.language.msg.lifeMsg,
                             opts: () => {
+                                console.log(url);
                                 if(/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)){
                                     console.log(url)
                                     openFile(url)
                                 } else {
+                                    // console.log(url);
                                     openUrl(url,' ')
                                 }
                             }

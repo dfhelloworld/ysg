@@ -65,12 +65,12 @@ public class NotificationWebViewActivity extends BaseActivity {
         settings.setDomStorageEnabled(true);
         settings.setSaveFormData(true);
         settings.setSupportMultipleWindows(true);
-        settings.setCacheMode(WebSettings.LOAD_DEFAULT); //优先使用缓存;
-        settings.setAppCacheMaxSize(1024 * 1024 * 8);
+        // settings.setCacheMode(WebSettings.LOAD_DEFAULT); //优先使用缓存;
+        // settings.setAppCacheMaxSize(1024 * 1024 * 8);
         String appCachePath = getApplicationContext().getCacheDir().getAbsolutePath();
-        settings.setAppCachePath(appCachePath);
+        // settings.setAppCachePath(appCachePath);
         settings.setAllowFileAccess(true);
-        settings.setAppCacheEnabled(true);
+        // settings.setAppCacheEnabled(true);
         notifiWV.setHorizontalScrollbarOverlay(true);
         notifiWV.setHorizontalScrollBarEnabled(false);
         notifiWV.setOverScrollMode(View.OVER_SCROLL_NEVER); // 取消WebView中滚动或拖动到顶部、底部时的阴影

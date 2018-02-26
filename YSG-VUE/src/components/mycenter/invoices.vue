@@ -12,8 +12,8 @@
             <p class="memo">{{language.msg.createInvoice}}</p>
             <p class="memo">{{language.msg.manageInvoice}}</p>
            </div>
-                      <div class="buttonInvoice"   @click="showHeader"><button type="button">{{language.myCenter.invoices_header}}</button>
-    <button type="button">{{language.myCenter.invoices_manage}}</button></div>
+                      <div class="buttonInvoice"   ><button type="button" @click="showHeader">{{language.myCenter.invoices_header}}</button>
+    <button type="button" @click="showManager">{{language.myCenter.invoices_manage}}</button></div>
         </div>
     </div>
 </template>
@@ -83,12 +83,16 @@ export default {
             "http://www.xfplink.cn/wx_invoiceTitle_confirm.html?u=" +
             json.token +
             "&m=YSG&b=" +
-            localStorage.INVOICEID;
+            localStorage.INVOICEID; 
           //获取发票抬头
+           console.log(_this.tokenSrc);
           if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
             openFile(_this.tokenSrc);
           } else {
-            openUrl(_this.tokenSrc, this.language.myCenter.invoices);
+            // alert("抱歉，安卓版本模块发票功能维护中。")
+            // openUrl(_this.tokenSrc, this.language.myCenter.invoices);
+           
+            openUrl(_this.tokenSrc,'Invoices');
           }
         },
         error: function() {}
@@ -118,7 +122,7 @@ export default {
           if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
             openFile(_this.tokenSrc);
           } else {
-            openUrl(_this.tokenSrc, this.language.myCenter.invoices);
+            openUrl(_this.tokenSrc, "Invoices");
           }
         },
         error: function() {}

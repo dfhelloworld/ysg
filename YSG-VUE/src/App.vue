@@ -122,7 +122,7 @@
                             doneTitle:'去升级', //确定按钮
                             cancelTitle:'取消', // 取消按钮
                             newDesc:'已是最新版本', //如果是最新版本提示文字
-                            link:'itms-apps://itunes.apple.com/cn/app/jie-zou-da-shi/id这是id?mt=8',
+                            link:'http://a.app.qq.com/o/simple.jsp?pkgname=com.ysg.yashige',
                             desc:_this.versionData.description, //升级描述
                             version:_this.versionData.version //版本号
                         }
