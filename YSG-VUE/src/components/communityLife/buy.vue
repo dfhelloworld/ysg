@@ -102,6 +102,8 @@ export default {
   activated: function() {},
   methods: {
     apply: function() {
+       $(".buy_foot button").attr("disabled",true);
+       $(".buy_foot button").css({background: "grey"});
       let _this = this;
       let params = {
         hotelid: localStorage.HOTELID,
@@ -115,6 +117,8 @@ export default {
         } else {
           this.$dialog.toast({ mes: res.data.msg, timeout: 1000 });
         }
+	$(".buy_foot button").attr("disabled",false);
+	$(".buy_foot button").css({background: "#f0c366"});
       });
     },
     toPDF: function() {
