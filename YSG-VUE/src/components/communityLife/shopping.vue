@@ -56,7 +56,11 @@
             }
         },
         created:function () {
-            this.pageFlag = this.$route.query.pageFlag
+            this.pageFlag = this.$route.query.pageFlag;
+            //改变滚动条位置
+            setTimeout(function(){
+                $("div[id^='inner']").css({"transform":"translate3d(0,"+translateScrollY.shopping+",0)"});
+            },1500);
         },
         methods: {
             getData:function () {
@@ -85,6 +89,8 @@
                 }
             },
             goDetail:function (id) {
+                //获取滚动条高度
+                translateScrollY.shopping = culTranslateScrollY($("div[id^='inner']").get(0));
                 let data = {};
                 for(var key in this.dataList){
                     if (this.dataList[key].id == id){
