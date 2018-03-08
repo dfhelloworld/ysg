@@ -46,6 +46,8 @@ import { mapGetters } from "vuex";
 import foot from "../foot.vue";
 import { PopupPicker, XButton } from "vux";
 import { getDistance } from "../../config/mUtils";
+
+
 export default {
   data() {
     return {
@@ -55,7 +57,8 @@ export default {
       nextPage: 0,
       distanceFlag: false,
       typeId: 1,
-      noData: false
+      noData: false,
+      tabNum:1
     };
   },
   created: function() {
@@ -138,6 +141,14 @@ export default {
           _this.dataList = _this.dataList.concat(dataArr);
           console.log(_this.dataList);
         });
+        //设置tab标签默认选项
+        let a=Number(translateScrollY.raidersTab);
+        let b=Number(_this.tabNum);
+        if(a!=b){
+          setTimeout(function(){
+              $(".swiper-wrapper .swiper-slide:eq("+(a-1)+")").click();
+          },700);
+        }
       }, 300);
     },
     infinite:function (done) {
@@ -154,6 +165,8 @@ export default {
         }
     },
     changeTab: function(id) {
+      this.tabNum = id;
+      translateScrollY.raidersTab = id;
       var flag = "click";
       this.getList(id, flag);
     },
