@@ -56,26 +56,6 @@
         </scroller>
       </section>
     </div>
-    <!--<section class="promotiom_list top_nav" style="height: 100%">
-      <scroller :on-infinite="infinite">
-        <ul class="type-buy" style="padding-top: 0.5rem">
-          <li v-for="data in dataList" @click="goDetail(data.id)">
-              <div class="col-4">
-                  <img  :src="data.pic" alt="">
-              </div>
-              <div class="col-6">
-                  <h4>{{data.title}}</h4>
-                  <p>{{data.introduct}}</p>
-                  <ul class="s-price">
-                    <li class="col-5">RMB {{data.price}}</li>
-                    <li class="col-5"><button type="button">{{language.community.buy}}</button></li>
-                  </ul>
-              </div>
-          </li>
-        </ul>
-        <p class="no_data" v-show="noData">{{language.common.noMoreData}}</p>
-      </scroller>
-    </section>-->
   </div>
 </template>
 
