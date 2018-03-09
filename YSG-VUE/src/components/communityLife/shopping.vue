@@ -75,7 +75,7 @@
         </ul>
         <p class="no_data" v-show="noData">{{language.common.noMoreData}}</p>
       </scroller>
-    </section>
+    </section>-->
   </div>
 </template>
 

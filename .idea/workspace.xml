@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f0a18b6-ba56-43ab-a401-231d46754eb2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/index.html" afterPath="$PROJECT_DIR$/YSG-VUE/dist/index.html" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/css/app.f2e74e85701f3d890b50aafb1d42daec.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/css/app.f2e74e85701f3d890b50aafb1d42daec.css.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/app.ba3cffc75db860081aaa.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/app.ba3cffc75db860081aaa.js.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/manifest.b76b880141bea5ca8719.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/manifest.b76b880141bea5ca8719.js.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/vendor.a2c3d70d8907e11c1994.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/vendor.a2c3d70d8907e11c1994.js.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/index.html" afterPath="$PROJECT_DIR$/YSG-VUE/index.html" />
       <change beforePath="$PROJECT_DIR$/YSG-VUE/src/components/communityLife/shopping.vue" afterPath="$PROJECT_DIR$/YSG-VUE/src/components/communityLife/shopping.vue" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raiders.vue" afterPath="$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raiders.vue" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -250,15 +238,15 @@
       <option name="presentableId" value="Default" />
       <updated>1520467000600</updated>
       <workItem from="1520467003596" duration="6770000" />
-      <workItem from="1520538529934" duration="17798000" />
+      <workItem from="1520538529934" duration="17868000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24568000" />
+    <option name="totallyTimeSpent" value="24638000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25340393" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
