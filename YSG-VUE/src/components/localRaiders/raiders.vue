@@ -75,11 +75,12 @@ export default {
       _this.typeList = res.data.data.list;
       _this.typeId = _this.typeList[0].id;
       $(document).ready(function() {
-        new Swiper(".raiders .swiper-container", {
-          pagination: ".swiper-pagination",
-          slidesPerView: 3,
-          paginationClickable: true,
-          spaceBetween: 0
+        var mySwiper =new Swiper(".raiders .swiper-container", {
+              pagination: ".swiper-pagination",
+              slidesPerView: 3,
+              paginationClickable: true,
+              spaceBetween: 0,
+              initialSlide :(Number(translateScrollY.raidersTab)-1)
         });
 
         $(".ra").on("click", ".swiper-slide", function() {
