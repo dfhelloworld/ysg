@@ -69,10 +69,10 @@
             return {
                 tagList:[],
                 dataList: [],
-                nextPage: 1,
                 noData: false,
                 pageFlag:'',
-                preRoute:this.$route.query.info
+                preRoute:this.$route.query.info,
+                mySwiper:{}
             }
         },
         created:function () {
@@ -92,10 +92,14 @@
                     tagid:id,
                     status:1
                 }
-                //localStorage.LANGUAGE=="en"
+
                 this.$store.dispatch('getShoppingList', params).then(function (res) {
                     _this.dataList=res.data.data.list;
-                    console.log(_this.dataList);
+                    if(_this.dataList.length==0){
+                        _this.noData = true;
+                    }else{
+                        _this.noData = false;
+                    }
                 });
 
 
@@ -133,13 +137,16 @@
                 //初始化tab标签
                 $(function() {
                     //初始化tab选择项
-                    let slideIndex=translateScrollY.raidersTab;
-                    var mySwiper = new Swiper(".raiders .swiper-container", {
+                    let slideIndex=translateScrollY.shoppingTab;
+                    _this.mySwiper = new Swiper(".raiders .swiper-container", {
                         pagination: ".swiper-pagination",
                         slidesPerView: 3,
                         paginationClickable: true,
                         spaceBetween: 0,
-                        initialSlide: slideIndex
+                        initialSlide: slideIndex,
+                        onTap: function(swiper){
+                            translateScrollY.shoppingTab = swiper.clickedIndex;
+                        }
                     });
                     //添加标签点击样式
                     $(".ra").on("click", ".swiper-slide", function () {
