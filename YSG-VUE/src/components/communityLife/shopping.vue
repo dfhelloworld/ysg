@@ -101,8 +101,6 @@
                         _this.noData = false;
                     }
                 });
-
-
             },
             goDetail:function (id) {
                 //获取滚动条高度
@@ -122,7 +120,6 @@
                 }else{
                     this.$router.push('/home');
                 }
-
             }
         },
         mounted:function () {
@@ -157,12 +154,8 @@
                     });
                     //tab的click事件触发选择的初始化内容
                     $(".swiper-slide:eq("+slideIndex+")").click();
-
                 });
-
-
             });
-
 
             //一级页面falg
             isHomePage(0)
@@ -172,9 +165,8 @@
         computed: {
             ...mapState({
                 language: state => state.language.language
-    })
-    },
-
+            })
+        },
     };
 </script>
 
