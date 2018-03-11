@@ -31,29 +31,33 @@
         </div>
       </section>
       <section class="promotiom_list s-list2">
-        <scroller  >
-          <ul class="type-buy" style="padding-top: 0.5rem">
-            <li v-for="data in dataList" @click="goDetail(data.id)">
-              <div class="col-4">
-                <img  :src="data.pic" alt="">
-              </div>
-              <div class="col-6">
-                <h4>{{data.title}}</h4>
-                <p>{{data.introduct}}</p>
-                <ul class="s-price">
-                  <li class="col-5" style="border:0px">RMB {{data.price}}</li>
-                  <li class="col-5" style="border:0px"><button type="button">{{language.community.buy}}</button></li>
-                </ul>
-              </div>
-            </li>
-            <li style="border:0px">
-              <div style="height:130px;">
-                &nbsp;
-              </div>
-            </li>
-          </ul>
-          <p class="no_data" v-show="noData">{{language.common.noMoreData}}</p>
-        </scroller>
+        <section class="g-scrollview">
+          <div class="tab-panel">
+            <div class="tab-panel-item tab-active">
+              <ul class="type-buy" style="padding-top: 0.5rem">
+                <li v-for="data in dataList" @click="goDetail(data.id)">
+                  <div class="col-4">
+                    <img  :src="data.pic" alt="">
+                  </div>
+                  <div class="col-6">
+                    <h4>{{data.title}}</h4>
+                    <p>{{data.introduct}}</p>
+                    <ul class="s-price">
+                      <li class="col-5" style="border:0px">RMB {{data.price}}</li>
+                      <li class="col-5" style="border:0px"><button type="button">{{language.community.buy}}</button></li>
+                    </ul>
+                  </div>
+                </li>
+                <li style="border:0px">
+                  <div style="height:30px;">
+                    &nbsp;
+                  </div>
+                </li>
+              </ul>
+              <p class="no_data" v-show="noData">{{language.common.noMoreData}}</p>
+            </div>
+          </div>
+        </section>
       </section>
     </div>
   </div>
@@ -72,15 +76,12 @@
                 noData: false,
                 pageFlag:'',
                 preRoute:this.$route.query.info,
-                mySwiper:{}
+                mySwiper:{},
+                isInitial:false
             }
         },
         created:function () {
             this.pageFlag = this.$route.query.pageFlag;
-            //改变滚动条位置
-            //setTimeout(function(){
-            //$("div[id^='inner']").css({"transform":"translate3d(0,"+translateScrollY.shopping+",0)"});
-            //},1500);
         },
         methods: {
             changeTab:function (id) {
@@ -100,11 +101,18 @@
                     }else{
                         _this.noData = false;
                     }
+                    if(_this.isInitial){
+                        //初始化滚动条位置
+                        translateScrollY.shopping = 0;
+                        setTimeout(function(){
+                            $(".g-scrollview").scrollTop(0);
+                        },500);
+                    }
                 });
             },
             goDetail:function (id) {
                 //获取滚动条高度
-                //translateScrollY.shopping = culTranslateScrollY($("div[id^='inner']").get(0));
+                translateScrollY.shopping = $(".g-scrollview").scrollTop();
                 let data = {};
                 for(var key in this.dataList){
                     if (this.dataList[key].id == id){
@@ -152,8 +160,17 @@
                             .siblings()
                             .removeClass("active");
                     });
+
                     //tab的click事件触发选择的初始化内容
                     $(".swiper-slide:eq("+slideIndex+")").click();
+
+                    //改变滚动条位置
+                    let rollY=translateScrollY.shopping;
+                    setTimeout(function(){
+                        _this.isInitial = true;
+                        $(".g-scrollview").scrollTop(rollY);
+                    },1000);
+
                 });
             });
 
