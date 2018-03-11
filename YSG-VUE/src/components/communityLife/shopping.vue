@@ -17,49 +17,43 @@
 
 
     </yd-navbar>
-    <div class="promotiom">
+
+    <section class="g-flexview">
       <section class="promotiom-box">
         <h1>{{language.raiders.title}}</h1>
       </section>
-      <section class="promotiom_index raiders">
-        <div class="swiper-container">
-          <div class="swiper-wrapper ra">
-            <div class="swiper-slide" v-for="(item, index) in tagList" @click="changeTab(item.id)">
-              <a><span>{{item.title}}</span></a>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="promotiom_list s-list2">
-        <section class="g-scrollview">
-          <div class="tab-panel">
-            <div class="tab-panel-item tab-active">
-              <ul class="type-buy" style="padding-top: 0.5rem">
-                <li v-for="data in dataList" @click="goDetail(data.id)">
-                  <div class="col-4">
-                    <img  :src="data.pic" alt="">
-                  </div>
-                  <div class="col-6">
-                    <h4>{{data.title}}</h4>
-                    <p>{{data.introduct}}</p>
-                    <ul class="s-price">
-                      <li class="col-5" style="border:0px">RMB {{data.price}}</li>
-                      <li class="col-5" style="border:0px"><button type="button">{{language.community.buy}}</button></li>
-                    </ul>
-                  </div>
-                </li>
-                <li style="border:0px">
-                  <div style="height:30px;">
-                    &nbsp;
-                  </div>
-                </li>
-              </ul>
-              <p class="no_data" v-show="noData">{{language.common.noMoreData}}</p>
+      <header class="m-navbar">
+        <section class="promotiom_index raiders">
+          <div class="swiper-container">
+            <div class="swiper-wrapper ra">
+              <div class="swiper-slide" v-for="(item, index) in tagList" @click="changeTab(item.id)" style="width: 100px">
+                <a><span>{{item.title}}</span></a>
+              </div>
             </div>
           </div>
         </section>
+      </header>
+      <section class="g-scrollview">
+        <div id="J_ListContent" class="m-list list-theme4">
+          <ul class="type-buy" style="padding-top: 0.5rem">
+            <li v-for="data in dataList" @click="goDetail(data.id)">
+              <div class="col-4">
+                <img  :src="data.pic" alt="">
+              </div>
+              <div class="col-6">
+                <h4>{{data.title}}</h4>
+                <p>{{data.introduct}}</p>
+                <ul class="s-price">
+                  <li class="col-5" style="border:0px">RMB {{data.price}}</li>
+                  <li class="col-5" style="border:0px"><button type="button">{{language.community.buy}}</button></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <p class="no_data" v-show="noData">{{language.common.noMoreData}}</p>
+        </div>
       </section>
-    </div>
+    </section>
   </div>
 </template>
 
