@@ -17,23 +17,7 @@
       <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display:none' id='cnzz_stat_icon_1264443895'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1264443895' type='text/javascript'%3E%3C/script%3E"));</script>
       <script>
           //滚动条值对象
-          let translateScrollY = {shopping:"0px",raidersTab:0,shoppingTab:0};
-          //计算当前滚动条y位置返回number px
-          function culTranslateScrollY(node){
-              var regRule = /translate(Y|\dd)?\(\s*(\w+\s*,)?\s*([^,]+)(\s*,[^)]+)?\s*\)/;
-              var regRule2 = /matrix\(.*,\s*(\w+)\s*\)/;
-              var transform = node.style.transform;
-              var reg;
-              if(!transform){
-                  return null;
-              }
-              reg = regRule.exec(transform);
-              if(null === reg){
-                  reg = regRule2.exec(transform);
-                  return reg ? reg[1] : null;
-              }
-              return reg[3];
-          }
+          let translateScrollY = {raidersTab:0};
       </script>
   </head>
   <body>

@@ -1,63 +1,109 @@
 <template>
-  <div class="search" style="height: 100%">
-    <div class="nav_mark"></div>
-    <yd-navbar :title="language.community.shopping" fixed>
-
-      <!-- <router-link to="/home" slot="left" v-if="pageFlag == 'home'"> -->
-      <span class="close" slot="left" @click="goBack()"></span>
-      <!-- </router-link>
-
-      <router-link to="/s_home" slot="left" v-else-if="pageFlag == 's_home'">
-          <span class="close"></span>
-      </router-link>
-
-      <router-link to="/communityLife" slot="left" v-else>
-          <span class="close"></span>
-      </router-link> -->
-
-
-    </yd-navbar>
-
-    <section class="g-flexview">
-      <section class="promotiom-box">
-        <h1>{{language.raiders.title}}</h1>
-      </section>
-      <header class="m-navbar">
-        <section class="promotiom_index raiders">
-          <div class="swiper-container">
-            <div class="swiper-wrapper ra">
-              <div class="swiper-slide" v-for="(item, index) in tagList" @click="changeTab(item.id)" style="width: 100px">
-                <a><span>{{item.title}}</span></a>
+  <div>
+    <div class="search" style="height: 100%" id="section1">
+      <div class="nav_mark"></div>
+      <yd-navbar :title="language.community.shopping" fixed>
+        <span class="close" slot="left" @click="goBack()"></span>
+      </yd-navbar>
+      <section class="g-flexview">
+        <section class="promotiom-box">
+          <h1>{{language.raiders.title}}</h1>
+        </section>
+        <header class="m-navbar">
+          <section class="promotiom_index raiders">
+            <div class="swiper-container">
+              <div class="swiper-wrapper ra">
+                <div class="swiper-slide" v-for="(item, index) in tagList" @click="changeTab(item.id)" style="width: 100px">
+                  <a><span>{{item.title}}</span></a>
+                </div>
               </div>
             </div>
+          </section>
+        </header>
+        <section class="g-scrollview">
+          <div id="J_ListContent" class="m-list list-theme4">
+            <ul class="type-buy" style="padding-top: 0.5rem">
+              <li v-for="data in dataList" @click="goDetail(data.id)">
+                <div class="col-4">
+                  <img  :src="data.pic" alt="">
+                </div>
+                <div class="col-6">
+                  <h4>{{data.title}}</h4>
+                  <p>{{data.introduct}}</p>
+                  <ul class="s-price">
+                    <li class="col-5" style="border:0px">RMB {{data.price}}</li>
+                    <li class="col-5" style="border:0px"><button type="button">{{language.community.buy}}</button></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+            <p class="no_data" v-show="noData">{{language.common.noMoreData}}</p>
           </div>
         </section>
-      </header>
-      <section class="g-scrollview">
-        <div id="J_ListContent" class="m-list list-theme4">
-          <ul class="type-buy" style="padding-top: 0.5rem">
-            <li v-for="data in dataList" @click="goDetail(data.id)">
-              <div class="col-4">
-                <img  :src="data.pic" alt="">
-              </div>
-              <div class="col-6">
-                <h4>{{data.title}}</h4>
-                <p>{{data.introduct}}</p>
-                <ul class="s-price">
-                  <li class="col-5" style="border:0px">RMB {{data.price}}</li>
-                  <li class="col-5" style="border:0px"><button type="button">{{language.community.buy}}</button></li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-          <p class="no_data" v-show="noData">{{language.common.noMoreData}}</p>
+      </section>
+    </div>
+    <!--购物页面-->
+    <div class="property" id="section2" style="display: none;">
+      <div class="nav_mark"></div>
+      <yd-navbar :title="info.title" fixed>
+        <span class="back" slot="left" @click="buyClose()"></span>
+      </yd-navbar>
+      <section class="resolve-box" v-html="content"></section>
+      <ul class="pdf-video" :class="{ 'one': isOne, 'two': isTwo}" v-show="btnFlag">
+        <li @click="toPDF" v-show="pdfFlag"></li>
+        <li @click="toVideo" v-show="videoFlag"></li>
+      </ul>
+      <section class="buy_foot" style="margin-top: 1rem;">
+        <div class="col-5">
+          <div><yd-spinner max="75" unit="1" v-model="spinner1"></yd-spinner></div>
+        </div>
+        <div class="col-5">
+          <button type="button" @click="apply">{{language.community.buy}}</button>
         </div>
       </section>
-    </section>
+    </div>
+
   </div>
 </template>
 
 <style>
+  .buy_foot {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: none;
+    height: 1rem;
+    line-height: 1rem;
+    text-align: center;
+    background: #fff;
+  }
+  .buy_foot button {
+    width: 100%;
+    height: 1rem;
+    color: #fff;
+    background: #f0c366;
+    border: none;
+    font-size: 0.3rem;
+  }
+  .buy_detail img {
+    width: 100%;
+    height: 5rem;
+  }
+  .buy_txt {
+    padding: 0.3rem;
+  }
+  .buy_txt h4 {
+    font-size: 0.28rem;
+    color: #333;
+  }
+  .buy_txt p {
+    font-size: 0.24rem;
+    color: #666;
+  }
+  .m-spinner {
+    margin-top: 0.2rem;
+  }
 </style>
 <script>
     import { mapGetters } from 'vuex'
@@ -71,13 +117,42 @@
                 pageFlag:'',
                 preRoute:this.$route.query.info,
                 mySwiper:{},
-                isInitial:false
+                info: {},
+                num: "",
+                spinner1: 0,
+                pdfShow: false,
+                videoShow: false,
+                isOne: false,
+                isTwo: false,
+                pdfFlag: false,
+                videoFlag: false,
+                btnFlag: false,
+                content: ""
             }
         },
         created:function () {
             this.pageFlag = this.$route.query.pageFlag;
         },
         methods: {
+            buyClose:function(){
+                $("#section1").show();
+                $("#section2").hide();
+            },
+            buyCreate: function() {
+                $("#section1").hide();
+                $("#section2").show();
+                this.$store.dispatch("showLoading");
+                var ssrBase = "https://bird.ioliu.cn/v1/?url=";
+                let _this = this;
+                if (this.info.detail) {
+                    $.get(ssrBase + this.info.detail, function(res) {
+                        _this.content = res;
+                        _this.$store.dispatch("hideLoading");
+                    });
+                } else {
+                    this.$store.dispatch("hideLoading");
+                }
+            },
             changeTab:function (id) {
                 let _this = this
                 let params = {
@@ -89,24 +164,16 @@
                 }
 
                 this.$store.dispatch('getShoppingList', params).then(function (res) {
+                    $(".g-scrollview").scrollTop(0);
                     _this.dataList=res.data.data.list;
                     if(_this.dataList.length==0){
                         _this.noData = true;
                     }else{
                         _this.noData = false;
                     }
-                    if(_this.isInitial){
-                        //初始化滚动条位置
-                        translateScrollY.shopping = 0;
-                        setTimeout(function(){
-                            $(".g-scrollview").scrollTop(0);
-                        },500);
-                    }
                 });
             },
             goDetail:function (id) {
-                //获取滚动条高度
-                translateScrollY.shopping = $(".g-scrollview").scrollTop();
                 let data = {};
                 for(var key in this.dataList){
                     if (this.dataList[key].id == id){
@@ -114,13 +181,49 @@
                         break;
                     }
                 }
-                this.$router.push({path:'/buy',query:{info:data}});
+                this.info = data;
+                this.buyCreate();
+
             },
             goBack:function(){
                 if(this.preRoute){
                     this.$router.push('/'+this.preRoute);
                 }else{
                     this.$router.push('/home');
+                }
+            },
+            apply: function() {
+                $(".buy_foot button").attr("disabled",true);
+                $(".buy_foot button").css({background: "grey"});
+                let _this = this;
+                let params = {
+                    hotelid: localStorage.HOTELID,
+                    shoppingid: this.info.id,
+                    token: localStorage.TOKEN,
+                    count: this.spinner1
+                };
+                this.$store.dispatch("getShoppingOrder", params).then(res => {
+                    if (res.data.code == 0) {
+                        alert(this.language.msg.buy_info);
+                    } else {
+                        this.$dialog.toast({ mes: res.data.msg, timeout: 1000 });
+                    }
+                    $(".buy_foot button").attr("disabled",false);
+                    $(".buy_foot button").css({background: "#f0c366"});
+                });
+            },
+            toPDF: function() {
+                if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+                    openFile(this.detail.pdf);
+                } else {
+                    openPdf(this.detail.pdf);
+                }
+            },
+            toVideo: function() {
+                if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+                    openFile(this.detail.video);
+                } else {
+                    openVideo(this.detail.video);
                 }
             }
         },
@@ -136,16 +239,12 @@
                 //初始化tab标签
                 $(function() {
                     //初始化tab选择项
-                    let slideIndex=translateScrollY.shoppingTab;
                     _this.mySwiper = new Swiper(".raiders .swiper-container", {
                         pagination: ".swiper-pagination",
                         slidesPerView: 3,
                         paginationClickable: true,
                         spaceBetween: 0,
-                        initialSlide: slideIndex,
-                        onTap: function(swiper){
-                            translateScrollY.shoppingTab = swiper.clickedIndex;
-                        }
+                        initialSlide: 0
                     });
                     //添加标签点击样式
                     $(".ra").on("click", ".swiper-slide", function () {
@@ -154,17 +253,8 @@
                             .siblings()
                             .removeClass("active");
                     });
-
                     //tab的click事件触发选择的初始化内容
-                    $(".swiper-slide:eq("+slideIndex+")").click();
-
-                    //改变滚动条位置
-                    let rollY=translateScrollY.shopping;
-                    setTimeout(function(){
-                        _this.isInitial = true;
-                        $(".g-scrollview").scrollTop(rollY);
-                    },1000);
-
+                    $(".swiper-slide:eq(0)").click();
                 });
             });
 
