@@ -193,6 +193,32 @@
                 }
             },
             apply: function() {
+                let obj = getAlertMsg(localStorage.LANGUAGE);
+                let title = obj.title;
+                let msg = obj.shopping.msg;
+                let sureBnt = obj.sureBnt;
+                let cancelBnt = obj.cancelBnt;
+
+                let _this = this;
+                let dialog = window.YDUI.dialog;
+                dialog.confirm(title,msg, [
+                    {
+                        txt: sureBnt,
+                        color: false,
+                        callback: function () {
+                            _this.toBuy();
+                        }
+                    },
+                    {
+                        txt: cancelBnt,
+                        color: false,
+                        callback: function () {
+
+                        }
+                    }
+                ]);
+            },
+            toBuy: function(){
                 $(".buy_foot button").attr("disabled",true);
                 $(".buy_foot button").css({background: "grey"});
                 let _this = this;
