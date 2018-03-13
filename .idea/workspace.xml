@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3f0a18b6-ba56-43ab-a401-231d46754eb2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/src/components/communityLife/shopping.vue" afterPath="$PROJECT_DIR$/YSG-VUE/src/components/communityLife/shopping.vue" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/static/language.js" afterPath="$PROJECT_DIR$/YSG-VUE/static/language.js" />
+      <change beforePath="$PROJECT_DIR$/YSG-VUE/index.html" afterPath="$PROJECT_DIR$/YSG-VUE/index.html" />
+      <change beforePath="$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raiders.vue" afterPath="$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raiders.vue" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,28 +14,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="shopping.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/communityLife/shopping.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="195" column="48" lean-forward="false" selection-start-line="195" selection-start-column="48" selection-end-line="195" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getShoppingTagList</find>
-      <find>getShoppingList</find>
-      <find>raiders</find>
-      <find>swiper</find>
-      <find>dataList</find>
-      <find>Swiper</find>
-      <find>infinite</find>
       <find>typeList</find>
       <find>changeTab</find>
       <find>getList</find>
@@ -55,10 +37,17 @@
       <find>goDetail</find>
       <find>goBack</find>
       <find>isInitial</find>
-      <find>translateScrollY</find>
       <find>culTranslateScrollY</find>
       <find>apply</find>
       <find>toBuy</find>
+      <find>console</find>
+      <find>translateScrollY</find>
+      <find>name</find>
+      <find>toDetail</find>
+      <find>J_ListContent</find>
+      <find>detailInit</find>
+      <find>detailClose</find>
+      <find>mainDiv</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -68,14 +57,14 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/YSG-VUE/src/router/index.js" />
-        <option value="$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raiders.vue" />
         <option value="$PROJECT_DIR$/YSG-VUE/src/store/modules/community.js" />
         <option value="$PROJECT_DIR$/YSG-VUE/src/config/Resource.js" />
         <option value="$PROJECT_DIR$/YSG-VUE/static/ydui.js" />
-        <option value="$PROJECT_DIR$/YSG-VUE/index.html" />
         <option value="$PROJECT_DIR$/YSG-VUE/static/language.js" />
         <option value="$PROJECT_DIR$/YSG-VUE/src/components/home/s_home.vue" />
         <option value="$PROJECT_DIR$/YSG-VUE/src/components/communityLife/shopping.vue" />
+        <option value="$PROJECT_DIR$/YSG-VUE/index.html" />
+        <option value="$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raiders.vue" />
       </list>
     </option>
   </component>
@@ -120,6 +109,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -157,13 +147,20 @@
               <item name="ysg" type="b2602c69:ProjectViewProjectNode" />
               <item name="ysg" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="YSG-VUE" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="localRaiders" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="ysg" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ysg" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="YSG-VUE" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="static" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -218,18 +215,20 @@
       <workItem from="1520902548111" duration="3777000" />
       <workItem from="1520906958728" duration="178000" />
       <workItem from="1520907173300" duration="1890000" />
-      <workItem from="1520909229248" duration="45000" />
+      <workItem from="1520909229248" duration="114000" />
+      <workItem from="1520909512379" duration="5886000" />
+      <workItem from="1520924603372" duration="3834000" />
+      <workItem from="1520970795925" duration="462000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53069000" />
+    <option name="totallyTimeSpent" value="63320000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26701966" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27912253" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -261,6 +260,38 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raiders.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raiders.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/communityLife/shopping.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="6" lean-forward="true" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raidersDetail.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1207">
+          <caret line="71" column="31" lean-forward="false" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/home/s_home.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -524,13 +555,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raiders.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="147" column="17" lean-forward="true" selection-start-line="147" selection-start-column="17" selection-end-line="147" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/YSG-VUE/static/JSBridge.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -542,13 +566,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="26" lean-forward="false" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/YSG-VUE/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="35" column="7" lean-forward="true" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -566,10 +583,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/YSG-VUE/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="17" column="14" lean-forward="false" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raidersDetail.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1207">
+          <caret line="71" column="31" lean-forward="false" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/communityLife/shopping.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="195" column="48" lean-forward="false" selection-start-line="195" selection-start-column="48" selection-end-line="195" selection-end-column="48" />
+        <state relative-caret-position="272">
+          <caret line="22" column="38" lean-forward="true" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raiders.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4488">
+          <caret line="264" column="0" lean-forward="false" selection-start-line="264" selection-start-column="0" selection-end-line="264" selection-end-column="0" />
           <folding />
         </state>
       </provider>
