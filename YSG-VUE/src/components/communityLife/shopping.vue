@@ -193,7 +193,8 @@
                 }
             },
             apply: function() {
-                let obj = getAlertMsg(localStorage.LANGUAGE);
+                let alobj = new alertLanguage();
+                let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
                 let title = obj.title;
                 let msg = obj.shopping.msg;
                 let sureBnt = obj.sureBnt;
