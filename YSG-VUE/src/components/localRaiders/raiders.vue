@@ -30,6 +30,7 @@
                                 </div>
                             </div>
                         </li>
+                        <li style="height: 130px;">&nbsp;</li>
                     </ul>
                     <p class="no_data" v-show="noData">{{language.common.noMoreData}}</p>
                 </section>
@@ -126,6 +127,10 @@
                         done(false);
                         _this.noData = true;
                     }
+
+                    //控制body的滚动条问题
+                    $("body").scrollTop(0);
+                    $('body').css('overflow-y', 'hidden');
                 });
             });
 
@@ -136,6 +141,9 @@
             detailClose:function(){
                 $("#section1").show();
                 $("#section2").hide();
+                //控制body的滚动条问题
+                $("body").scrollTop(0);
+                $('body').css('overflow-y', 'hidden');
             },
             toPDF:function () {
                 if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
@@ -247,6 +255,9 @@
                 }
                 $("#section1").hide();
                 $("#section2").show();
+                //控制body的滚动条问题
+                $("body").scrollTop(0);
+                $('body').css('overflow-y', 'auto');
                 this.data = data;
                 this.detailInit();
             }
@@ -259,6 +270,10 @@
             ...mapState({
                 language: state => state.language.language
             })
+        },
+        destroyed: function () {
+            $("body").scrollTop(0);
+            $("body").css('overflow-y', 'auto');
         }
     };
 </script>

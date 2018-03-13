@@ -3,7 +3,7 @@
  */
 
 //初始化集团id
-localStorage.groupid = 1;
+localStorage.groupid = 3;
 
 //定义版本号，通过后台的版本管理可以进行强制更新提示
 localStorage.version = "1.0";
