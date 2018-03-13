@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f0a18b6-ba56-43ab-a401-231d46754eb2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/index.html" afterPath="$PROJECT_DIR$/YSG-VUE/dist/index.html" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/JSBridge.js" afterPath="$PROJECT_DIR$/YSG-VUE/dist/static/JSBridge.js" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/css/app.58e79caf72f980c7e78ae48feaf77bf6.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/css/app.58e79caf72f980c7e78ae48feaf77bf6.css.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/app.44f31f8143304a722107.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/app.44f31f8143304a722107.js.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/manifest.7ce527d8f79d7954143a.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/manifest.7ce527d8f79d7954143a.js.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raiders.vue" afterPath="$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raiders.vue" />
-    </list>
+    <list default="true" id="3f0a18b6-ba56-43ab-a401-231d46754eb2" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,21 +10,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="raiders.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raiders.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="273" column="32" lean-forward="false" selection-start-line="273" selection-start-column="32" selection-end-line="273" selection-end-column="32" />
-              <folding>
-                <element signature="n#style#0;n#li#1;n#ul#0;n#section#0;n#section#2;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#1576#1582#1" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -109,7 +84,7 @@
     <dismissed value="$PROJECT_DIR$/YSG-VUE/package.json" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-3" />
     <option name="y" value="232" />
     <option name="width" value="1382" />
@@ -151,37 +126,6 @@
               <item name="ysg" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="YSG-VUE" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ysg" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ysg" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="YSG-VUE" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ysg" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ysg" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="YSG-VUE" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="communityLife" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ysg" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ysg" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="YSG-VUE" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="home" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ysg" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ysg" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="YSG-VUE" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="localRaiders" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -246,18 +190,17 @@
       <workItem from="1520909512379" duration="5886000" />
       <workItem from="1520924603372" duration="3834000" />
       <workItem from="1520970795925" duration="462000" />
-      <workItem from="1520971526623" duration="6324000" />
+      <workItem from="1520971526623" duration="6569000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69644000" />
+    <option name="totallyTimeSpent" value="69889000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22163388" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22163388" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -644,14 +587,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/home/s_home.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="787" column="35" lean-forward="false" selection-start-line="787" selection-start-column="35" selection-end-line="787" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/communityLife/shopping.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -670,12 +605,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raiders.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="273" column="32" lean-forward="false" selection-start-line="273" selection-start-column="32" selection-end-line="273" selection-end-column="32" />
+        <state relative-caret-position="4250">
+          <caret line="263" column="10" lean-forward="true" selection-start-line="263" selection-start-column="10" selection-end-line="263" selection-end-column="10" />
           <folding>
             <element signature="n#style#0;n#li#1;n#ul#0;n#section#0;n#section#2;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="e#1576#1582#1" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/home/s_home.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="794" column="11" lean-forward="true" selection-start-line="794" selection-start-column="11" selection-end-line="794" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
