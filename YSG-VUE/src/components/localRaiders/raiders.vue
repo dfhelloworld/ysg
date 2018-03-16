@@ -204,7 +204,8 @@
                         typeid: id,
                         lang: localStorage.LANGUAGE,
                         limit: 30,
-                        page: _this.nextPage
+                        page: _this.nextPage,
+                        status:1
                     };
                     _this.$store.dispatch("getPoiList", params).then(res => {
                         let list = res.data.data.list;
