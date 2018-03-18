@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="3f0a18b6-ba56-43ab-a401-231d46754eb2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raiders.vue" afterPath="$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raiders.vue" />
+      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/index.html" afterPath="$PROJECT_DIR$/YSG-VUE/dist/index.html" />
+      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/JSBridge.js" afterPath="$PROJECT_DIR$/YSG-VUE/dist/static/JSBridge.js" />
+      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/app.14e9af28bae60abe4cf7.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/app.14e9af28bae60abe4cf7.js.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/manifest.6fa111a5ef06a1d7dc2d.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/manifest.6fa111a5ef06a1d7dc2d.js.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/YSG-VUE/src/components/communityLife/shopping.vue" afterPath="$PROJECT_DIR$/YSG-VUE/src/components/communityLife/shopping.vue" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,27 +19,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="raiders.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raiders.vue">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="shopping.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/communityLife/shopping.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="208" column="22" lean-forward="true" selection-start-line="208" selection-start-column="22" selection-end-line="208" selection-end-column="22" />
-              <folding>
-                <element signature="n#style#0;n#li#1;n#ul#0;n#section#0;n#section#2;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#1576#1582#1" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#2845#2877#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JSBridge.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/YSG-VUE/static/JSBridge.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1904">
-              <caret line="112" column="36" lean-forward="true" selection-start-line="112" selection-start-column="36" selection-end-line="112" selection-end-column="36" />
+            <state relative-caret-position="4148">
+              <caret line="245" column="46" lean-forward="true" selection-start-line="245" selection-start-column="46" selection-end-line="245" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -70,9 +61,9 @@
       <find>/buy</find>
       <find>toDetail</find>
       <find>detailInit</find>
-      <find>apply</find>
       <find>dataList</find>
       <find>getPoiList</find>
+      <find>apply</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Administrator\Desktop\work\ysg</dir>
@@ -91,11 +82,11 @@
         <option value="$PROJECT_DIR$/YSG-VUE/static/language.js" />
         <option value="$PROJECT_DIR$/YSG-VUE/src/components/home/home.vue" />
         <option value="$PROJECT_DIR$/YSG-VUE/index.html" />
-        <option value="$PROJECT_DIR$/YSG-VUE/src/components/home/s_home.vue" />
         <option value="$PROJECT_DIR$/YSG-VUE/src/components/communityLife/buy.vue" />
-        <option value="$PROJECT_DIR$/YSG-VUE/src/components/communityLife/shopping.vue" />
         <option value="$PROJECT_DIR$/YSG-VUE/static/JSBridge.js" />
         <option value="$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raiders.vue" />
+        <option value="$PROJECT_DIR$/YSG-VUE/src/components/communityLife/shopping.vue" />
+        <option value="$PROJECT_DIR$/YSG-VUE/src/components/home/s_home.vue" />
       </list>
     </option>
   </component>
@@ -139,6 +130,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -171,6 +163,22 @@
               <item name="YSG-VUE" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="communityLife" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="ysg" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ysg" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="YSG-VUE" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="home" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="ysg" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ysg" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="YSG-VUE" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="localRaiders" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -183,7 +191,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -247,17 +254,20 @@
       <workItem from="1521055639975" duration="1223000" />
       <workItem from="1521064513846" duration="8031000" />
       <workItem from="1521144762120" duration="731000" />
-      <workItem from="1521173473309" duration="638000" />
+      <workItem from="1521173473309" duration="718000" />
+      <workItem from="1521174921965" duration="72000" />
+      <workItem from="1521403223309" duration="2047000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81556000" />
+    <option name="totallyTimeSpent" value="83755000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21331316" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2193646" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -485,13 +495,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/YSG-VUE/static/language.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="21" lean-forward="true" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/YSG-VUE/src/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="47">
@@ -590,13 +593,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/home/s_home.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="792" column="6" lean-forward="false" selection-start-line="792" selection-start-column="6" selection-end-line="792" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/communityLife/shoppingDetail.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -627,41 +623,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/communityLife/shopping.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="230" column="18" lean-forward="false" selection-start-line="230" selection-start-column="18" selection-end-line="230" selection-end-column="18" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#section#0;n#header#0;n#section#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#ul#0;n#div#0;n#section#1;n#section#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#li#0;n#ul#0;n#div#1;n#li#0;n#ul#0;n#div#0;n#section#1;n#section#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#li#1;n#ul#0;n#div#1;n#li#0;n#ul#0;n#div#0;n#section#1;n#section#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#section#1;n#div#1;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="e#3288#3321#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/YSG-VUE/static/JSBridge.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1904">
-          <caret line="112" column="36" lean-forward="true" selection-start-line="112" selection-start-column="36" selection-end-line="112" selection-end-column="36" />
+          <caret line="112" column="36" lean-forward="false" selection-start-line="112" selection-start-column="36" selection-end-line="112" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raiders.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="208" column="22" lean-forward="true" selection-start-line="208" selection-start-column="22" selection-end-line="208" selection-end-column="22" />
+        <state relative-caret-position="189">
+          <caret line="207" column="32" lean-forward="false" selection-start-line="207" selection-start-column="32" selection-end-line="207" selection-end-column="32" />
           <folding>
-            <element signature="n#style#0;n#li#1;n#ul#0;n#section#0;n#section#2;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#1576#1582#1" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#2845#2877#0" expanded="true" />
+            <element signature="n#style#0;n#li#1;n#ul#0;n#section#0;n#section#2;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="e#2845#2877#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/YSG-VUE/static/language.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="21" lean-forward="true" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/home/s_home.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="788" column="32" lean-forward="true" selection-start-line="788" selection-start-column="32" selection-end-line="788" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/communityLife/shopping.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4148">
+          <caret line="245" column="46" lean-forward="true" selection-start-line="245" selection-start-column="46" selection-end-line="245" selection-end-column="46" />
+          <folding />
         </state>
       </provider>
     </entry>

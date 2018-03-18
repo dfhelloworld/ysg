@@ -230,13 +230,33 @@
                     count: this.spinner1
                 };
                 this.$store.dispatch("getShoppingOrder", params).then(res => {
+                    let mymsg = "";
                     if (res.data.code == 0) {
-                        alert(this.language.msg.buy_info);
+                        mymsg = this.language.msg.buy_info;
                     } else {
-                        this.$dialog.toast({ mes: res.data.msg, timeout: 1000 });
+                        mymsg = res.data.msg;
                     }
                     $(".buy_foot button").attr("disabled",false);
                     $(".buy_foot button").css({background: "#f0c366"});
+                    //弹出购物提示信息
+                    let alobj = new alertLanguage();
+                    let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
+                    let title = obj.title;
+                    let msg = obj.shopping.msg;
+                    let sureBnt = obj.sureBnt;
+
+                    let _this = this;
+                    let dialog = window.YDUI.dialog;
+                    dialog.confirm(title,mymsg, [
+                        {
+                            txt: sureBnt,
+                            color: false,
+                            callback: function () {
+
+                            }
+                        }
+                    ]);
+
                 });
             },
             toPDF: function() {
