@@ -10,10 +10,10 @@
           <h1>{{language.raiders.title}}</h1>
         </section>
         <header class="m-navbar">
-          <section class="promotiom_index raiders">
+          <section class="promotiom_index raiders" style="width: 100%">
             <div class="swiper-container">
               <div class="swiper-wrapper ra">
-                <div class="swiper-slide" v-for="(item, index) in tagList" @click="changeTab(item.id)" style="width: 100px">
+                <div class="swiper-slide" v-for="(item, index) in tagList" @click="changeTab(item.id)" :class="{active:(index == 0)}">
                   <a><span>{{item.title}}</span></a>
                 </div>
               </div>
@@ -301,7 +301,7 @@
                             .removeClass("active");
                     });
                     //tab的click事件触发选择的初始化内容
-                    $(".swiper-slide:eq(0)").click();
+                    _this.changeTab(_this.tagList[0].id);
                 });
             });
 
