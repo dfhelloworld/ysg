@@ -228,7 +228,6 @@ export default {
     getFeedbackList:(query) => apiPost(Community.FeedbackList,query),
     getFeedback:(query) => apiPost(Community.Feedback,query),
     addFeedbackResult:(query) => apiPost(Community.FeedbackResult,query),
-	getHotelDetail:(query) => apiPost(Home.hotelDetailUrl,query),
 	helloApi:(query) => apiPost(Hello.helloApi,query),
 	tabLanguage:(query) => apiPost(Home.tabLanguageUrl,query),
     help:(query) => apiPost(Home.helpUrl,query),
