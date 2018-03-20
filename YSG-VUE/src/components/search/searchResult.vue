@@ -98,7 +98,7 @@ export default {
         } else {
           for (var key in this.groupListbyId.list) {
             if (
-              this.groupListbyId.list[key].cityName == this.$route.query.city
+              this.groupListbyId.list[key].cityEnName == this.$route.query.city
             ) {
               let distance = getDistance(
                 lat,

@@ -153,17 +153,17 @@
                     this.hotelList.push({name:allName,value:'0'});
                     if(localStorage.LANGUAGE == 'en') {
                         for (var key in this.allHotel){
-                            console.log(this.allHotel[key].cityEnName +'====='+changeKey)
+                            //console.log(this.allHotel[key].cityEnName +'====='+changeKey)
                             if (this.allHotel[key].cityEnName == changeKey){
-                                console.log(this.allHotel[key].cityEnName +'====='+changeKey)
+                                //console.log(this.allHotel[key].cityEnName +'====='+changeKey)
                                 this.hotelList.push({name:this.allHotel[key].nameEn,value:this.allHotel[key].hotelId});
                             }
                         }
-                        console.log(this.hotelList)
+                        //console.log(this.hotelList)
                     } else {
                         for (var key in this.allHotel){
                             if (this.allHotel[key].cityName+'市'  == changeKey){
-                                console.log(this.allHotel[key].cityName +'市'+'====='+changeKey)
+                                //console.log(this.allHotel[key].cityName +'市'+'====='+changeKey)
                                 this.hotelList.push({name:this.allHotel[key].name,value:this.allHotel[key].hotelId});
                             }
                         }
