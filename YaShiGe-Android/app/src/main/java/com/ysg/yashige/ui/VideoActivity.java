@@ -1,9 +1,12 @@
 package com.ysg.yashige.ui;
 
 import android.os.Bundle;
+import android.widget.MediaController;
+import android.widget.VideoView;
 
 import com.ysg.yashige.R;
 import com.ysg.yashige.base.BaseActivity;
+import com.ysg.yashige.utils.Toastutils;
 
 import butterknife.ButterKnife;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
@@ -18,9 +21,17 @@ public class VideoActivity extends BaseActivity {
         //网络视频
         String videoUrl = getIntent().getStringExtra("videoUrl") ;
 
-        JCVideoPlayerStandard jcVideoPlayerStandard = (JCVideoPlayerStandard) findViewById(R.id.videoplayer);
-        jcVideoPlayerStandard.setUp(videoUrl
-                , JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "");
+//        JCVideoPlayerStandard jcVideoPlayerStandard = (JCVideoPlayerStandard) findViewById(R.id.videoplayer);
+//        jcVideoPlayerStandard.setUp(videoUrl
+//                , JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "");
+        final VideoView vd=(VideoView)findViewById(R.id.videoplayer);
+        vd.setVideoPath(videoUrl);
+
+        MediaController mc = new MediaController(this);
+        mc.setAnchorView(vd);
+        vd.setMediaController(mc);
+
+        vd.start();
     }
 
     @Override

@@ -8,7 +8,11 @@
     android:layout_gravity="center"
     android:background="@color/black"
     tools:context="com.ysg.yashige.ui.VideoActivity">
-    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+    <!--<fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard-->
+        <!--android:id="@+id/videoplayer"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"/>-->
+    <VideoView
         android:id="@+id/videoplayer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
