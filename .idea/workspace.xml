@@ -4,12 +4,15 @@
     <list default="true" id="3f0a18b6-ba56-43ab-a401-231d46754eb2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/index.html" afterPath="$PROJECT_DIR$/YSG-VUE/dist/index.html" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/app.85aec2efd53e2d7de11a.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/app.85aec2efd53e2d7de11a.js.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/manifest.e8a8261dd53c656cd7ab.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/manifest.e8a8261dd53c656cd7ab.js.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/src/components/search/search.vue" afterPath="$PROJECT_DIR$/YSG-VUE/src/components/search/search.vue" />
-      <change beforePath="$PROJECT_DIR$/YSG-VUE/src/components/search/searchResult.vue" afterPath="$PROJECT_DIR$/YSG-VUE/src/components/search/searchResult.vue" />
+      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/JSBridge.js" afterPath="$PROJECT_DIR$/YSG-VUE/dist/static/JSBridge.js" />
+      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/app.33355cce1ebd919feae5.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/app.33355cce1ebd919feae5.js.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/manifest.8bb38ee8eab89bdd5212.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/manifest.8bb38ee8eab89bdd5212.js.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/vendor.7c0d776ceca68509434e.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/YSG-VUE/dist/static/js/vendor.7c0d776ceca68509434e.js.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/YSG-VUE/src/components/home/home.vue" afterPath="$PROJECT_DIR$/YSG-VUE/src/components/home/home.vue" />
+      <change beforePath="$PROJECT_DIR$/YSG-VUE/src/components/home/s_home.vue" afterPath="$PROJECT_DIR$/YSG-VUE/src/components/home/s_home.vue" />
       <change beforePath="$PROJECT_DIR$/YSG-VUE/static/JSBridge.js" afterPath="$PROJECT_DIR$/YSG-VUE/static/JSBridge.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,42 +23,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="search.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/search/search.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="155" column="91" lean-forward="true" selection-start-line="155" selection-start-column="91" selection-end-line="155" selection-end-column="91" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="searchResult.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/search/searchResult.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="100" column="79" lean-forward="false" selection-start-line="100" selection-start-column="79" selection-end-line="100" selection-end-column="79" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>buyCreate</find>
-      <find>info</find>
-      <find>/buy</find>
-      <find>toDetail</find>
-      <find>detailInit</find>
-      <find>dataList</find>
-      <find>getPoiList</find>
-      <find>apply</find>
       <find>home</find>
       <find>app_content</find>
-      <find>goLocation</find>
       <find>shopping</find>
       <find>isHome</find>
       <find>search</find>
@@ -71,13 +44,23 @@
       <find>groupListbyIdUrl</find>
       <find>language</find>
       <find>groupListbyId</find>
-      <find>openMap</find>
       <find>JSInterface</find>
-      <find>map_content</find>
       <find>console</find>
+      <find>openMap</find>
+      <find>res</find>
+      <find>hotelDetailUrl</find>
+      <find>getHotelDetail:(query) =&gt; apiPost(Home.hotelDetailUrl,query)</find>
+      <find>hotelDetail</find>
+      <find>:8080</find>
+      <find>localpic</find>
+      <find>map_content</find>
+      <find>地图导航</find>
+      <find>goLocation</find>
+      <find>getHotelDetail</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Administrator\Desktop\work\ysg</dir>
+      <dir>C:\Users\Administrator\Desktop\work\ysg\YaShiGe-Android</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -88,7 +71,6 @@
       <list>
         <option value="$PROJECT_DIR$/YSG-VUE/src/router/index.js" />
         <option value="$PROJECT_DIR$/YSG-VUE/src/store/modules/community.js" />
-        <option value="$PROJECT_DIR$/YSG-VUE/src/config/Resource.js" />
         <option value="$PROJECT_DIR$/YSG-VUE/static/ydui.js" />
         <option value="$PROJECT_DIR$/YSG-VUE/static/language.js" />
         <option value="$PROJECT_DIR$/YSG-VUE/src/components/communityLife/buy.vue" />
@@ -97,10 +79,11 @@
         <option value="$PROJECT_DIR$/YSG-VUE/src/components/communityLife/shopping.vue" />
         <option value="$PROJECT_DIR$/YSG-VUE/src/store/modules/home.js" />
         <option value="$PROJECT_DIR$/YSG-VUE/static/JSBridge.js" />
-        <option value="$PROJECT_DIR$/YSG-VUE/src/components/home/home.vue" />
-        <option value="$PROJECT_DIR$/YSG-VUE/src/components/home/s_home.vue" />
         <option value="$PROJECT_DIR$/YSG-VUE/src/components/search/search.vue" />
         <option value="$PROJECT_DIR$/YSG-VUE/src/components/search/searchResult.vue" />
+        <option value="$PROJECT_DIR$/YSG-VUE/src/config/Resource.js" />
+        <option value="$PROJECT_DIR$/YSG-VUE/src/components/home/home.vue" />
+        <option value="$PROJECT_DIR$/YSG-VUE/src/components/home/s_home.vue" />
       </list>
     </option>
   </component>
@@ -145,6 +128,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -152,43 +136,10 @@
               <item name="ysg" type="b2602c69:ProjectViewProjectNode" />
               <item name="ysg" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
-            <path>
-              <item name="ysg" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ysg" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="YSG-VUE" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ysg" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ysg" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="YSG-VUE" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ysg" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ysg" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="YSG-VUE" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ysg" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ysg" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="YSG-VUE" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="search" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="ysg" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ysg" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="YSG-VUE" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="static" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -259,35 +210,45 @@
       <workItem from="1521428006768" duration="3786000" />
       <workItem from="1521435240003" duration="235000" />
       <workItem from="1521489003400" duration="1138000" />
-      <workItem from="1521492846797" duration="6662000" />
+      <workItem from="1521492846797" duration="8556000" />
+      <workItem from="1521509688078" duration="3895000" />
+      <workItem from="1521515198690" duration="1256000" />
+      <workItem from="1521519625259" duration="539000" />
+      <workItem from="1521575689378" duration="2515000" />
+      <workItem from="1521597730545" duration="32000" />
+      <workItem from="1521597822266" duration="309000" />
+      <workItem from="1521598157055" duration="12000" />
+      <workItem from="1521598175387" duration="2000" />
+      <workItem from="1521661369717" duration="168000" />
+      <workItem from="1521746607023" duration="1181000" />
+      <workItem from="1521750525571" duration="3154000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100735000" />
+    <option name="totallyTimeSpent" value="115692000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23600605" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27836612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -302,27 +263,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/communityLife/shopping.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="20" lean-forward="false" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/YSG-VUE/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="18" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/home/s_home.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/communityLife/shopping.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -445,13 +385,6 @@
     <entry file="file://$PROJECT_DIR$/YSG-VUE/static/lib/swiper/swiper.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/store/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
@@ -582,39 +515,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/router/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="51" column="71" lean-forward="false" selection-start-line="51" selection-start-column="71" selection-end-line="51" selection-end-column="71" />
-          <folding>
-            <element signature="e#1892#1944#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/config/Resource.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="191" column="64" lean-forward="false" selection-start-line="191" selection-start-column="59" selection-end-line="191" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/communityLife/shopping.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="159" column="47" lean-forward="false" selection-start-line="159" selection-start-column="20" selection-end-line="159" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/store/modules/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="27" column="48" lean-forward="false" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#40#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -622,7 +526,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="318">
           <caret line="64" column="4" lean-forward="true" selection-start-line="64" selection-start-column="4" selection-end-line="64" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -630,48 +533,91 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
           <caret line="59" column="89" lean-forward="false" selection-start-line="59" selection-start-column="81" selection-end-line="59" selection-end-column="89" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/home/s_home.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="57" column="26" lean-forward="true" selection-start-line="57" selection-start-column="26" selection-end-line="57" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/home/home.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="56" column="26" lean-forward="false" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="26" />
-          <folding>
-            <element signature="n#style#0;n#section#2;n#scroller#0;n#section#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raidersDetail.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-879">
-          <caret line="12" column="46" lean-forward="false" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/search/search.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="206">
-          <caret line="155" column="91" lean-forward="true" selection-start-line="155" selection-start-column="91" selection-end-line="155" selection-end-column="91" />
-          <folding />
+          <caret line="155" column="91" lean-forward="false" selection-start-line="155" selection-start-column="91" selection-end-line="155" selection-end-column="91" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/search/searchResult.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="100" column="79" lean-forward="false" selection-start-line="100" selection-start-column="79" selection-end-line="100" selection-end-column="79" />
+        <state relative-caret-position="223">
+          <caret line="101" column="15" lean-forward="true" selection-start-line="101" selection-start-column="15" selection-end-line="101" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/localRaiders/raidersDetail.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="86" column="52" lean-forward="true" selection-start-line="86" selection-start-column="52" selection-end-line="86" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/store/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/config/Resource.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="208" column="55" lean-forward="false" selection-start-line="208" selection-start-column="55" selection-end-line="208" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/store/modules/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="294" column="41" lean-forward="false" selection-start-line="294" selection-start-column="30" selection-end-line="294" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/router/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="41" column="3" lean-forward="false" selection-start-line="41" selection-start-column="3" selection-end-line="41" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/YaShiGe-Android/app/src/main/java/com/ysg/yashige/base/C.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="31" column="71" lean-forward="false" selection-start-line="31" selection-start-column="71" selection-end-line="31" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/YaShiGe-Android/app/src/main/java/com/ysg/yashige/ui/VideoActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="20" column="14" lean-forward="true" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/YaShiGe-Android/app/src/main/res/layout/activity_video.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/home/s_home.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="726" column="31" lean-forward="false" selection-start-line="726" selection-start-column="31" selection-end-line="726" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/YSG-VUE/src/components/home/home.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="715" column="31" lean-forward="false" selection-start-line="715" selection-start-column="31" selection-end-line="715" selection-end-column="31" />
           <folding />
         </state>
       </provider>

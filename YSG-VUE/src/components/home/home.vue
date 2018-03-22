@@ -52,8 +52,11 @@
 				<!--酒店详情-->
 				<section class="app_content" style="background: #fff;padding-bottom: 1rem;">
 					<h4>{{ hotelDetail.name }}</h4>
-					<div class="map_content" @click="goLocation">
-						<img :src="hotelDetail.localpic">
+					<div class="map_content">
+						<img :src="hotelDetail.localpic" @click="goLocation(1)">
+					</div>
+					<div v-if="hotelDetail.robot_pic != ''" class="map_content" @click="goLocation(2)">
+						<img :src="hotelDetail.robot_pic">
 					</div>
 					<ul class="add">
 						<li class="col-7">
@@ -710,17 +713,27 @@ export default {
       this.$store.dispatch("getHotelDetail", params2);
     },
     //地图导航
-    goLocation: function() {
-      if (localStorage.HOTELID == 1 || localStorage.HOTELID == 7) {
+    goLocation: function(val) {
+      // if (localStorage.HOTELID == 1 || localStorage.HOTELID == 7) {
+      //   if (localStorage.TOKEN) {
+      //     // this.$router.push("/shopping");
+      //     this.$router.push({ path: "/shopping", query: { info: "home" } });
+      //   } else {
+      //     this.$router.replace("/loginforguest");
+      //   }
+      // } else {
+      //   this.$router.push("/map");
+      // }
+		//判断是否登录
         if (localStorage.TOKEN) {
-          // this.$router.push("/shopping");
-          this.$router.push({ path: "/shopping", query: { info: "home" } });
-        } else {
-          this.$router.replace("/loginforguest");
-        }
-      } else {
-        this.$router.push("/map");
-      }
+			if(val===2){//机器人购物
+                this.$router.push({ path: "/shopping", query: { info: "home" } });
+			}else{
+                this.$router.push("/map");
+			}
+		}else{
+            this.$router.replace("/loginforguest");
+		}
     },
     goNext: function(key) {
       let _this = this;
