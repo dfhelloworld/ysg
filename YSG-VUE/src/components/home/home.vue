@@ -724,16 +724,17 @@ export default {
       // } else {
       //   this.$router.push("/map");
       // }
-		//判断是否登录
-        if (localStorage.TOKEN) {
-			if(val===2){//机器人购物
+        //机器人购物
+        if(val===2){
+            //判断是否登录
+            if (localStorage.TOKEN) {
                 this.$router.push({ path: "/shopping", query: { info: "home" } });
-			}else{
-                this.$router.push("/map");
-			}
-		}else{
-            this.$router.replace("/loginforguest");
-		}
+            }else{
+                this.$router.replace("/loginforguest");
+            }
+        }else{
+            this.$router.push("/map");
+        }
     },
     goNext: function(key) {
       let _this = this;
