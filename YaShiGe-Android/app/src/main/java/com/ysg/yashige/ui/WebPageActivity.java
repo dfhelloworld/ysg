@@ -20,6 +20,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ysg.yashige.R;
@@ -48,6 +49,9 @@ public abstract class WebPageActivity extends BaseActivity {
 
     @BindView(R.id.webView)
     XWalkView webView;
+    @BindView(R.id.imageView)
+    ImageView imageView;
+    ;
     /**
      * 视频全屏参数
      */
@@ -83,6 +87,8 @@ public abstract class WebPageActivity extends BaseActivity {
             @Override
             public void onLoadFinished(XWalkView view, String url) {
                 super.onLoadFinished(view, url);
+                webView.setVisibility(View.VISIBLE);
+                imageView.setVisibility(View.INVISIBLE);
             }
             @Override
             public void onLoadStarted(XWalkView view, String url) {
