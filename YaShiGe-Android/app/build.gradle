@@ -37,21 +37,6 @@ android {
             url 'https://download.01.org/crosswalk/releases/crosswalk/android/maven2'
         }
     }
-    flavorDimensions "abi"
-    productFlavors {
-        armv7 {
-            dimension "abi"
-            ndk {
-                abiFilters "armeabi-v7a"
-            }
-        }
-        x86 {
-            dimension "abi"
-            ndk {
-                abiFilters "x86"
-            }
-        }
-    }
 }
 
 configurations.all {
