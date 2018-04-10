@@ -58,6 +58,11 @@ public class MainActivity extends WebPageActivity {
     private JSInterface jsInterface;
 
     @Override
+    protected void onXWalkReady() {
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         NetWorkManager.requestTime();

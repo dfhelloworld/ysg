@@ -90,7 +90,7 @@ public abstract class WebPageActivity extends BaseActivity {
             }
         });
         //开始调试功能
-        XWalkPreferences.setValue(XWalkPreferences.REMOTE_DEBUGGING, true);
+        //XWalkPreferences.setValue(XWalkPreferences.REMOTE_DEBUGGING, true);
 
 //        WebSettings settings = webView.getSettings();
 //        settings.setJavaScriptEnabled(true); //如果访问的页面中有Javascript，则WebView必须设置支持Javascript

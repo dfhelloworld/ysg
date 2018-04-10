@@ -36,6 +36,11 @@ public class LaunchActivity extends BaseActivity {
     private Boolean isHander = true;
 
     @Override
+    protected void onXWalkReady() {
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);

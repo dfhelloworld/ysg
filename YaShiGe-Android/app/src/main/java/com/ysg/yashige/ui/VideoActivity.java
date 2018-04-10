@@ -53,4 +53,8 @@ public class VideoActivity extends BaseActivity {
         JCVideoPlayer.releaseAllVideos();
     }
 
+    @Override
+    protected void onXWalkReady() {
+
+    }
 }
