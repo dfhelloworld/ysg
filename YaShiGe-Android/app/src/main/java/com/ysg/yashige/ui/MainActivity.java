@@ -17,7 +17,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.JavascriptInterface;
+import org.xwalk.core.JavascriptInterface;
 
 import com.alibaba.fastjson.JSON;
 import com.amap.api.location.AMapLocation;
@@ -68,6 +68,7 @@ public class MainActivity extends WebPageActivity {
     protected void initJSInterface() {
         //设置本地调用对象及其接口
         jsInterface = new JSInterface();
+        getPermission();
         webView.addJavascriptInterface(jsInterface, "JSInterface");
     }
 
@@ -167,7 +168,6 @@ public class MainActivity extends WebPageActivity {
         public JSInterface() {
             mLocationClient = new AMapLocationClient(getApplicationContext());
             mLocationClient.setLocationListener(mLocationListener);
-            getPermission();
         }
 
         public AMapLocationClient mLocationClient = null;

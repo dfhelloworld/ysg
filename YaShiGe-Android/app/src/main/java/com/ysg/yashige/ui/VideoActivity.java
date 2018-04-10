@@ -21,17 +21,9 @@ public class VideoActivity extends BaseActivity {
         //网络视频
         String videoUrl = getIntent().getStringExtra("videoUrl") ;
 
-//        JCVideoPlayerStandard jcVideoPlayerStandard = (JCVideoPlayerStandard) findViewById(R.id.videoplayer);
-//        jcVideoPlayerStandard.setUp(videoUrl
-//                , JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "");
-        final VideoView vd=(VideoView)findViewById(R.id.videoplayer);
-        vd.setVideoPath(videoUrl);
-
-        MediaController mc = new MediaController(this);
-        mc.setAnchorView(vd);
-        vd.setMediaController(mc);
-
-        vd.start();
+        JCVideoPlayerStandard jcVideoPlayerStandard = (JCVideoPlayerStandard) findViewById(R.id.videoplayer);
+        jcVideoPlayerStandard.setUp(videoUrl
+                , JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "");
     }
 
     @Override

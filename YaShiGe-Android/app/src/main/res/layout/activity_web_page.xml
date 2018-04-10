@@ -5,20 +5,24 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
-    <WebView
-        android:id="@+id/webView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layerType="software"
-        android:visibility="visible" />
+    <!--<WebView-->
+        <!--android:id="@+id/webView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layerType="software"-->
+        <!--android:visibility="visible" />-->
 
-    <TextView
-        android:id="@+id/web_loading"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@null"
-        android:gravity="center"
-        android:text="正在加载..."
-        android:textColor="#00000000"
-        android:textSize="14sp" />
+    <!--<TextView-->
+        <!--android:id="@+id/web_loading"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@null"-->
+        <!--android:gravity="center"-->
+        <!--android:text="正在加载..."-->
+        <!--android:textColor="#00000000"-->
+        <!--android:textSize="14sp" />-->
+    <org.xwalk.core.XWalkView android:id="@+id/webView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    </org.xwalk.core.XWalkView>
 </RelativeLayout>
