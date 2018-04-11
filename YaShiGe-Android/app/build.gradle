@@ -11,9 +11,6 @@ android {
         versionCode 6
         versionName "1.0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        ndk {
-            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86"
-        }
     }
     buildTypes {
         release {
@@ -38,6 +35,21 @@ android {
     repositories {
         maven {
             url 'https://download.01.org/crosswalk/releases/crosswalk/android/maven2'
+        }
+    }
+    flavorDimensions "ndkx86","ndkarm7"
+    productFlavors {
+        armv7 {
+            ndk {
+                dimension 'ndkarm7'
+                abiFilters "armeabi-v7a"
+            }
+        }
+        x86 {
+            ndk {
+                dimension 'ndkx86'
+                abiFilters "x86"
+            }
         }
     }
 }
