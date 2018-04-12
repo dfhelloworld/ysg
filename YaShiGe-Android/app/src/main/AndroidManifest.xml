@@ -76,7 +76,9 @@
         android:hardwareAccelerated="true">
         <activity
             android:name=".ui.MainActivity"
-            android:launchMode="singleInstance" />
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="UMENG_APPKEY"
