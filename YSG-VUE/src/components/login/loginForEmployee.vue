@@ -85,7 +85,11 @@
 			        item.value = this.groupListbyId.list[i].hotelId;
 			        this.propertyList.push(item);
 		        }
-	        })
+            });
+            
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
 	    },
 		methods: {
             doLogin:function () {

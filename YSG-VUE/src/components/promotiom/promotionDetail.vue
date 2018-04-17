@@ -61,8 +61,11 @@
             $.get(ssrBase+this.info.article,function (res) {
 				_this.content = res;
                 _this.$store.dispatch('hideLoading')
-            })
+            });
 
+			$(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
         methods: {
             toPDF:function () {

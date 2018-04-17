@@ -126,7 +126,11 @@
 	        this.$store.dispatch('getRoomResList',params).then(function (res) {
                 // _this.wpList = res.data.list.reverse();
                 _this.wpList = res.data.list;
-	        })
+            });
+            
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
 		methods: {
             changeShow:function (index) {

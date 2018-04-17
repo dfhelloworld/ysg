@@ -56,9 +56,11 @@
 		        }else{
 			        this.$dialog.toast({mes: res.msg, timeout: 1000});
 		        }
-	        })
-
-
+            });
+            
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
 		methods: {
 

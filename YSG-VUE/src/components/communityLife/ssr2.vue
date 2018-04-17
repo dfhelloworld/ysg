@@ -258,7 +258,11 @@
 	            $('.tab-change .swiper-slide').click(function () {
                     $(this).addClass('active').siblings().removeClass('active')
                 })
-            })
+			});
+			
+			$(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
 
 
         },

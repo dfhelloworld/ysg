@@ -77,6 +77,10 @@
 				this.isOne = true;
 			}
 
+			$(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
+
 		},
 		methods: {
 			toPDF:function () {

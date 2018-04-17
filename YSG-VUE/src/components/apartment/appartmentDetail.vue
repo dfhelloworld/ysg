@@ -205,7 +205,11 @@
 		                spaceBetween: 0
 	                });
                 })
-	        })
+            });
+            
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
 		methods: {
 			goLocation:function () {

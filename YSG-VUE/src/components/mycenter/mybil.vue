@@ -44,8 +44,11 @@
 	        }
 	        this.$store.dispatch('getMyBill', params).then(function (res) {
 		        _this.billList =  res.data.list
-	        })
-
+			});
+			
+			$(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
 		computed: {
 			...mapState({

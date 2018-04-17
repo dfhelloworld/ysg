@@ -24,7 +24,11 @@
 			};
 		},
         created:function () {
-	        this.bookUrl = localStorage.bookUrl
+            this.bookUrl = localStorage.bookUrl;
+            
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
         mounted:function () {
             //一级页面falg

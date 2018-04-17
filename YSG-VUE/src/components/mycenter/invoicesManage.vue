@@ -47,6 +47,10 @@
             //     }
             // });
             // 获取发票抬头
+
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
 		},
         mounted:function () {
             //一级页面falg

@@ -54,7 +54,12 @@ export default {
       oid: localStorage.oid
     };
   },
-  created: function() {},
+  created: function() {
+
+    $(function(){
+        $(".navbar-center").css('marginLeft',0);
+    });
+  },
   mounted: function() {
     //一级页面falg
     isHomePage(0);

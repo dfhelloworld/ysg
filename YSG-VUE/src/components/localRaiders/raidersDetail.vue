@@ -66,7 +66,11 @@
                 })
 			} else {
                 this.$store.dispatch('hideLoading')
-			} 
+			}
+			
+			$(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
         methods: {
 	        toPDF:function () {

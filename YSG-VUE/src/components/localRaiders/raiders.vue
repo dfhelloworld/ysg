@@ -91,6 +91,10 @@
         },
         created: function() {
             localStorage.footFlag = 3;
+
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
         mounted: function() {
             let _this = this;

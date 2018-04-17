@@ -49,7 +49,11 @@
 	        this.$store.dispatch('getNews',params).then(function (res) {
                 console.log(_this.newsList)
                 _this.newsList = res.data.list
-            })
+            });
+
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
 		methods: {
 			goDetail(url){

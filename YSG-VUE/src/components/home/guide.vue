@@ -101,7 +101,11 @@
 	        //设置当前页面标识
 	        localStorage.menuFlag = 'guide';
 	        //初始化语言
-	        this.$store.dispatch('firstLanguage');
+			this.$store.dispatch('firstLanguage');
+			
+			$(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
 	    },
         mounted(){
 			let _this = this;

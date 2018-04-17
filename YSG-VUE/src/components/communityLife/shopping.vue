@@ -132,6 +132,9 @@
         },
         created:function () {
             this.pageFlag = this.$route.query.pageFlag;
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
         methods: {
             buyClose:function(){

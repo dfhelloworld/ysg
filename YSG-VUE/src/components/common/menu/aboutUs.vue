@@ -36,7 +36,11 @@
                     _this.content = res;
                     _this.$store.dispatch('hideLoading')
                 })
-			})
+			});
+
+			$(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
         methods: {
         	//判断用户是否登录

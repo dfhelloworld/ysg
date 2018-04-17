@@ -97,7 +97,11 @@
             }
             }).catch((res) => {
 
-            })
+            });
+
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
 
 		},
 		methods: {

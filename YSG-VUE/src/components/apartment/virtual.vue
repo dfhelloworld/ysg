@@ -35,6 +35,10 @@
             this.panoramicSrc = 'http://'+this.$route.query.src;
             this.pageType = this.$route.query.pageType;
             this.title = this.$route.query.title;
+
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
 		methods: {
 

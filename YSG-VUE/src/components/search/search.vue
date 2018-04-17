@@ -126,6 +126,9 @@
                 reject(error)
             });
 
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
 	    },
 		methods: {
             //城市选择

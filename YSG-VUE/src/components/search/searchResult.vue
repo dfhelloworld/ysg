@@ -142,6 +142,10 @@ export default {
         }
       }
     }
+
+    $(function(){
+        $(".navbar-center").css('marginLeft',0);
+    });
   },
   methods: {
     toView: function(id) {

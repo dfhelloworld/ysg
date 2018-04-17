@@ -45,6 +45,9 @@
             }
         },
         created:function () {
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
         methods: {
             getData:function () {

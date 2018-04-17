@@ -53,6 +53,10 @@
         },
         created:function () {
             this.info = this.$route.query.info;
+
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
         methods: {
             apply: function () {

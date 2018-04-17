@@ -37,7 +37,11 @@
 	        }
 	        this.$store.dispatch('getUsers', params).then(function (res) {
                 _this.gsmSrc = res.data.serviceUrl
-	        })
+            });
+            
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
 
         },
 		computed: {

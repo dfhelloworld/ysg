@@ -67,7 +67,11 @@
                         imageOffset: new AMap.Pixel(0, 0)//相对于大图的取图位置
                     })
                 }
-            ]
+            ];
+
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
         methods: {
             audioControl:function () {

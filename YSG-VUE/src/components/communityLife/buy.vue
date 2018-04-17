@@ -98,6 +98,10 @@ export default {
     } else {
       this.$store.dispatch("hideLoading");
     }
+
+    $(function(){
+        $(".navbar-center").css('marginLeft',0);
+    });
   },
   activated: function() {},
   methods: {

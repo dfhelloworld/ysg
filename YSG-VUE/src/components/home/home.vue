@@ -565,6 +565,10 @@ export default {
         }, 300);
       });
     });
+
+    $(function(){
+        $(".navbar-center").css('marginLeft',0);
+    });
   },
   mounted: function() {
     //一级页面falg
