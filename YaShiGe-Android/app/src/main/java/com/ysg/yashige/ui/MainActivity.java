@@ -73,7 +73,6 @@ public class MainActivity extends WebPageActivity {
     protected void initJSInterface() {
         //设置本地调用对象及其接口
         jsInterface = new JSInterface();
-        getPermission();
         webView.addJavascriptInterface(jsInterface, "JSInterface");
     }
 
@@ -173,6 +172,7 @@ public class MainActivity extends WebPageActivity {
         public JSInterface() {
             mLocationClient = new AMapLocationClient(getApplicationContext());
             mLocationClient.setLocationListener(mLocationListener);
+            getPermission();
         }
 
         public AMapLocationClient mLocationClient = null;
