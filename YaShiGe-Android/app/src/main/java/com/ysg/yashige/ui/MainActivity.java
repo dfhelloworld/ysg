@@ -332,6 +332,12 @@ public class MainActivity extends WebPageActivity {
         public void checkVersion(String modelJson) {
             reminderUpdate(modelJson);
         }
+
+        //检查地图加载信息
+        @JavascriptInterface
+        public String getLocationLoadMsg() {
+            return locationMes;
+        }
     }
 
     /**
