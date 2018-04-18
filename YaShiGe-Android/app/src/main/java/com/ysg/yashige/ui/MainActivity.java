@@ -56,6 +56,8 @@ public class MainActivity extends WebPageActivity {
     private String endLat = "";
     private String endlng = "";
     private JSInterface jsInterface;
+    //定位信息
+    private String locationMes ="";
 
     @Override
     protected void onXWalkReady() {
@@ -181,20 +183,22 @@ public class MainActivity extends WebPageActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onLocationChanged(AMapLocation aMapLocation) {
-
                 if (aMapLocation != null) {
                     if (aMapLocation.getErrorCode() == 0) {
-                        mLocationClient.stopLocation();
                         lat = String.format("%.4f", aMapLocation.getLatitude());
                         lng = String.format("%.4f", aMapLocation.getLongitude());
                         Message message = new Message();
                         message.what = 1;
                         handler.sendMessage(message);
+                        locationMes = "定位成功:lat "+lat+"|lng "+lng;
+                        mLocationClient.stopLocation();
                     } else {
+                        locationMes = "定位失败，错误码:"+aMapLocation.getErrorCode()+ "\n 错误信息:"+aMapLocation.getErrorInfo()+ "\n 错误描述:"+aMapLocation.getLocationDetail();
                         mLocationClient.stopLocation();
                     }
+                }else {
+                    locationMes = "定位失败，loc is null";
                 }
-
             }
         };
 
