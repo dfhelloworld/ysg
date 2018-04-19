@@ -53,11 +53,11 @@
 				<!--酒店详情-->
 				<section class="app_content" style="background: #fff;padding-bottom: 1rem;">
 					<h4>{{ hotelDetail.name }}</h4>
+          <div v-if="hotelDetail.robot_pic != ''" class="map_content" @click="goLocation(2)">
+						<img :src="hotelDetail.robot_pic">
+					</div>
 					<div class="map_content" @click="goLocation(1)">
 						<img :src="hotelDetail.localpic">
-					</div>
-					<div v-if="hotelDetail.robot_pic != ''" class="map_content" @click="goLocation(2)">
-						<img :src="hotelDetail.robot_pic">
 					</div>
 					<ul class="add">
 						<li class="col-7">
