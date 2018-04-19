@@ -38,18 +38,18 @@
                               <p>{{language.community.feedback}}</p>
                           </router-link>
                       </li>
-                      <li style="border-bottom: none">
+                      <!-- <li style="border-bottom: none">
                           <router-link :to="{path:'/ssr', query:{ssrFlag:'commonunity'}}">
                               <img src="../../assets/images/icon-rss.png" alt="">
                               <p>{{language.community.ssr}}</p>
                           </router-link>
+                      </li> -->
+                      <li style="border-bottom: none">
+                          <router-link to="/lifeStyle">
+                              <img src="../../assets/images/lifestyle.png" alt="">
+                              <p>{{language.community.life}}</p>
+                          </router-link>
                       </li>
-                      <!--<li>-->
-                          <!--<router-link to="/lifeStyle">-->
-                              <!--<img src="../../assets/images/ascott-life.png" alt="">-->
-                              <!--<p>{{language.community.life}}</p>-->
-                          <!--</router-link>-->
-                      <!--</li>-->
                   </ul>
               </div>
 
