@@ -17,12 +17,12 @@
                     <div class="right"><i class="message"></i></div>
                 </li>
             </router-link>
-            <router-link to="/order">
+            <!-- <router-link to="/order">
                 <li v-show="idType == 2">
                     <div class="left">{{language.myCenter.order}}</div>
                     <div class="right"><i class="notice"></i></div>
                 </li>
-            </router-link>
+            </router-link> -->
             <li v-show="idType == 2" @click="goGsm">
                 <div class="left">{{language.myCenter.gsm}}</div>
                 <div class="right"><i class="message"></i></div>
