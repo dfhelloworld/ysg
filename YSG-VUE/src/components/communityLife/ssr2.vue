@@ -70,7 +70,7 @@
         created:function () {
 			this.ssrFlag = this.$route.query.ssrFlag
 			let _this = this
-			var ssrBase = 'https://bird.ioliu.cn/v1/?url='
+			var ssrBase = ''
             this.ssrData = {
 				zh:{
 					'news':[

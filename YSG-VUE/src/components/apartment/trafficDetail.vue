@@ -39,7 +39,7 @@
 		created:function () {
             this.stateFlag = localStorage.stateFlag
 			this.info = this.$route.query.info;
-            var ssrBase = 'https://bird.ioliu.cn/v1/?url='
+            var ssrBase = ''
             let _this = this;
             if(this.info.detail){
                 $.get(ssrBase+this.info.detail,function (res) {

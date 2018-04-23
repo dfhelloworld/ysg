@@ -34,7 +34,7 @@
         created:function () {
             this.info = this.$route.query.info;
             this.$store.dispatch('showLoading')
-            var ssrBase = 'https://bird.ioliu.cn/v1/?url='
+            var ssrBase = ''
             let _this = this;
             if(this.info.article) {
                 $.get(ssrBase+this.info.article,function (res) {

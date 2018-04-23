@@ -145,7 +145,7 @@
                 $("#section1").hide();
                 $("#section2").show();
                 this.$store.dispatch("showLoading");
-                var ssrBase = "https://bird.ioliu.cn/v1/?url=";
+                var ssrBase = "";
                 let _this = this;
                 if (this.info.detail) {
                     $.get(ssrBase + this.info.detail, function(res) {

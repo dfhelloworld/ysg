@@ -3,7 +3,7 @@
  */
 
 //初始化集团id
-localStorage.groupid = 3;
+localStorage.groupid = 1;
 
 //定义版本号，通过后台的版本管理可以进行强制更新提示
 localStorage.version = "1.0";
@@ -111,10 +111,7 @@ function removeAllTagAlias(a, b, c) {
 }
 
 function removeMessageTag(a, b, c) {
-  try{
-      JSInterface.removeMessageTag(a, b, c);
-  }catch(e){}
-
+  JSInterface.removeMessageTag(a, b, c);
 }
 
 //12----->方法 *  安卓清除别名

@@ -56,7 +56,7 @@
 		        this.isOne = true;
 	        }
 
-            var ssrBase = 'https://bird.ioliu.cn/v1/?url='
+            var ssrBase = ''
 			let _this = this;
             $.get(ssrBase+this.info.article,function (res) {
 				_this.content = res;

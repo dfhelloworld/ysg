@@ -38,7 +38,7 @@
 	        this.video = this.$route.query.video;
             this.$store.dispatch('showLoading')
 	        this.panoramicSrc = this.detail;
-            var ssrBase = 'https://bird.ioliu.cn/v1/?url='
+            var ssrBase = ''
             let _this = this;
             if(this.panoramicSrc){
                 $.get(ssrBase+this.panoramicSrc,function (res) {

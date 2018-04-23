@@ -7,7 +7,7 @@ import store from '../store/index'
 import router from '../router'
 // 配置图片的基本路径
 localStorage.identity  = 'test'
-axios.defaults.baseURL = 'https://bird.ioliu.cn/v1/?url=https://service.easyiservice.com'
+axios.defaults.baseURL = 'https://service.easyiservice.com'
 // axios.defaults.headers.common['authToken'] = localStorage.TOKEN
 
 // 添加请求拦截器
@@ -160,7 +160,7 @@ var getObj = function(params){
     var time = "";
     $.ajax({
 		// url:'http://47.93.201.72:80/system/getTime',
-		url:'https://bird.ioliu.cn/v1/?url=https://service.easyiservice.com/system/getTime',
+		url:'https://service.easyiservice.com/system/getTime',
 		type:'GET', //GET
         async:false,    //或false,是否异步
         timeout:5000,    //超时时间
