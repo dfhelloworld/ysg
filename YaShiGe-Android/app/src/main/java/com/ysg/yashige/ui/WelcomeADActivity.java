@@ -109,9 +109,4 @@ public class WelcomeADActivity extends BaseActivity implements ViewPager.OnPageC
             finish();
         }
     }
-
-    @Override
-    protected void onXWalkReady() {
-
-    }
 }

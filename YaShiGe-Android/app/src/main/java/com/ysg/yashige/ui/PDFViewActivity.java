@@ -105,8 +105,4 @@ public class PDFViewActivity extends BaseActivity {
     }
 
 
-    @Override
-    protected void onXWalkReady() {
-
-    }
 }

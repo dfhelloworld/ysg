@@ -25,11 +25,6 @@ public class WebViewActivity extends BaseActivity {
     WebSettings settings;
 
     @Override
-    protected void onXWalkReady() {
-
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);

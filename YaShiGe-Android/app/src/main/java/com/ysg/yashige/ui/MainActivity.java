@@ -17,7 +17,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import org.xwalk.core.JavascriptInterface;
+import android.webkit.JavascriptInterface;
 
 import com.alibaba.fastjson.JSON;
 import com.amap.api.location.AMapLocation;
@@ -56,13 +56,6 @@ public class MainActivity extends WebPageActivity {
     private String endLat = "";
     private String endlng = "";
     private JSInterface jsInterface;
-    //定位信息
-    private String locationMes ="";
-
-    @Override
-    protected void onXWalkReady() {
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,22 +176,20 @@ public class MainActivity extends WebPageActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onLocationChanged(AMapLocation aMapLocation) {
+
                 if (aMapLocation != null) {
                     if (aMapLocation.getErrorCode() == 0) {
+                        mLocationClient.stopLocation();
                         lat = String.format("%.4f", aMapLocation.getLatitude());
                         lng = String.format("%.4f", aMapLocation.getLongitude());
                         Message message = new Message();
                         message.what = 1;
                         handler.sendMessage(message);
-                        locationMes = "定位成功:lat "+lat+"|lng "+lng;
-                        mLocationClient.stopLocation();
                     } else {
-                        locationMes = "定位失败，错误码:"+aMapLocation.getErrorCode()+ "\n 错误信息:"+aMapLocation.getErrorInfo()+ "\n 错误描述:"+aMapLocation.getLocationDetail();
                         mLocationClient.stopLocation();
                     }
-                }else {
-                    locationMes = "定位失败，loc is null";
                 }
+
             }
         };
 
@@ -331,12 +322,6 @@ public class MainActivity extends WebPageActivity {
         @JavascriptInterface
         public void checkVersion(String modelJson) {
             reminderUpdate(modelJson);
-        }
-
-        //检查地图加载信息
-        @JavascriptInterface
-        public String getLocationLoadMsg() {
-            return locationMes;
         }
     }
 

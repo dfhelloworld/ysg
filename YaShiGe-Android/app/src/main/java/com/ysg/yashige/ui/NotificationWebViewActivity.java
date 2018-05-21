@@ -123,9 +123,4 @@ public class NotificationWebViewActivity extends BaseActivity {
         finishThis();
         return super.onKeyDown(keyCode, event);
     }
-
-    @Override
-    protected void onXWalkReady() {
-
-    }
 }

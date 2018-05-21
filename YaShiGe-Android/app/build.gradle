@@ -1,13 +1,12 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'me.tatarka.retrolambda'
-
+apply plugin: 'me.tatarka.retrolambda'
 android {
-    compileSdkVersion 26
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 24
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "com.ysg.yashige"
-        minSdkVersion 16
-        targetSdkVersion 26
+        minSdkVersion 19
+        targetSdkVersion 22
         versionCode 6
         versionName "1.0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -16,7 +15,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            applicationIdSuffix '.dev'
+            applicationIdSuffix '.debug'
         }
     }
     compileOptions {
@@ -30,61 +29,34 @@ android {
         from fileTree(dir: "libs", include: "**/*.so")
         into "lib"
     }
-    repositories {
-        maven {
-            url 'https://download.01.org/crosswalk/releases/crosswalk/android/maven2'
-        }
-    }
-    flavorDimensions "ndkx86","ndkarm7"
-    productFlavors {
-        armv7 {
-            ndk {
-                dimension 'ndkarm7'
-                abiFilters "armeabi-v7a"
-            }
-        }
-        x86 {
-            ndk {
-                dimension 'ndkx86'
-                abiFilters "x86"
-            }
-        }
-    }
-}
-
-configurations.all {
-    resolutionStrategy {
-        force 'com.android.support:appcompat-v7:26.1.0'
-        force 'com.android.support:support-v4:26.1.0'
-    }
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation files('libs/AMap_Location_V3.4.0_20170427.jar')
-    implementation 'com.lovedise:permissiongen:0.0.6'
-    implementation project(':PushSDK')
-    implementation files('libs/umeng-analytics-v5.5.3.jar')
-    implementation 'com.android.support.constraint:constraint-layout:1.0.0-beta2'
-    implementation 'com.google.code.gson:gson:2.7'
-    implementation 'com.lovedise:permissiongen:0.0.6'
-    implementation 'com.github.bumptech.glide:glide:3.7.0'
-    implementation 'com.squareup.retrofit2:retrofit:2.0.1'
-    implementation 'com.squareup.retrofit2:adapter-rxjava:2.0.1'
-    implementation 'com.squareup.retrofit2:converter-gson:2.0.1'
-    implementation 'io.reactivex:rxjava:1.1.2'
-    implementation 'io.reactivex:rxandroid:1.1.0'
-    implementation 'com.squareup.okhttp3:okhttp:3.2.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.2.0'
-    implementation 'fm.jiecao:jiecaovideoplayer:5.6'
-    implementation 'com.github.barteksc:android-pdf-viewer:2.7.0-beta.1'
-    implementation 'com.jakewharton:butterknife:8.7.0'
-    implementation 'com.alibaba:fastjson:1.2.10'
-    testImplementation 'junit:junit:4.12'
+    compile files('libs/AMap_Location_V3.4.0_20170427.jar')
+    compile 'com.lovedise:permissiongen:0.0.6'
+    compile project(':PushSDK')
+    compile files('libs/umeng-analytics-v5.5.3.jar')
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta2'
+    compile 'com.android.support:support-v4:24.2.0'
+    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.lovedise:permissiongen:0.0.6'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.squareup.retrofit2:retrofit:2.0.1'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.1'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.1'
+    compile 'io.reactivex:rxjava:1.1.2'
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
+    compile 'fm.jiecao:jiecaovideoplayer:5.6'
+    compile 'com.github.barteksc:android-pdf-viewer:2.7.0-beta.1'
+    compile 'com.jakewharton:butterknife:8.7.0'
+    compile 'com.alibaba:fastjson:1.2.10'
+    testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
-    implementation 'org.xwalk:xwalk_core_library:23.53.589.4'
 }
-

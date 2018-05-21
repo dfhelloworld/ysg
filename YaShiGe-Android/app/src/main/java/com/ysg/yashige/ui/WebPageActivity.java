@@ -20,7 +20,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ysg.yashige.R;
@@ -35,23 +34,13 @@ import java.io.File;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import org.xwalk.core.XWalkNavigationHistory;
-import org.xwalk.core.XWalkPreferences;
-import org.xwalk.core.XWalkResourceClient;
-import org.xwalk.core.XWalkView;
-
 @SuppressLint("SetJavaScriptEnabled")
 public abstract class WebPageActivity extends BaseActivity {
-//    @BindView(R.id.webView)
-//    WebView webView;
-//    @BindView(R.id.web_loading)
-//    TextView webLoading;
-
     @BindView(R.id.webView)
-    XWalkView webView;
-    @BindView(R.id.imageView)
-    ImageView imageView;
-    ;
+    WebView webView;
+    @BindView(R.id.web_loading)
+    TextView webLoading;
+
     /**
      * 视频全屏参数
      */
@@ -80,101 +69,84 @@ public abstract class WebPageActivity extends BaseActivity {
 
     @Override
     protected void initControl() {
-        webView = (XWalkView) findViewById(R.id.webView);
+
+        WebSettings settings = webView.getSettings();
+        settings.setJavaScriptEnabled(true); //如果访问的页面中有Javascript，则WebView必须设置支持Javascript
+        settings.setJavaScriptCanOpenWindowsAutomatically(true);
+        settings.setSupportZoom(true); //支持缩放
+        settings.setBuiltInZoomControls(true); //支持手势缩放
+        settings.setDisplayZoomControls(false); //是否显示缩放按钮
+
+        // >= 19(SDK4.4)启动硬件加速，否则启动软件加速
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+            settings.setLoadsImagesAutomatically(true); //支持自动加载图片
+        } else {
+            webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+            settings.setLoadsImagesAutomatically(false);
+        }
+        settings.setDatabaseEnabled(true);
+        settings.setDomStorageEnabled(true);
+        String dir = this.getApplicationContext().getDir("database", Context.MODE_PRIVATE).getPath();
+        settings.setGeolocationDatabasePath(dir);
+        settings.setGeolocationEnabled(true);
+        settings.setUseWideViewPort(true); //将图片调整到适合WebView的大小
+        settings.setLoadWithOverviewMode(true); //自适应屏幕
+        settings.setDomStorageEnabled(true);
+        settings.setSaveFormData(true);
+        settings.setSupportMultipleWindows(true);
+        // settings.setCacheMode(WebSettings.LOAD_DEFAULT); //优先使用缓存;
+        // settings.setAppCacheMaxSize(1024 * 1024 * 8);
+        String appCachePath = getApplicationContext().getCacheDir().getAbsolutePath();
+        // settings.setAppCachePath(appCachePath);
+        settings.setAllowFileAccess(true);
+        // settings.setAppCacheEnabled(true);
+        webView.setHorizontalScrollbarOverlay(true);
+        webView.setHorizontalScrollBarEnabled(false);
+        webView.setOverScrollMode(View.OVER_SCROLL_NEVER); // 取消WebView中滚动或拖动到顶部、底部时的阴影
+        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY); // 取消滚动条白边效果
+        webView.requestFocus();
         initJSInterface();
+        loading = false;
         webView.loadUrl(C.network.home_url);
-        webView.setResourceClient(new XWalkResourceClient(webView){
+        LoadingDialog.getInstance(this).showDialog();
+        if (Build.VERSION.SDK_INT >= 21) {
+            settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
+
+        webView.setWebChromeClient(new WebChromeClient() {
             @Override
-            public void onLoadFinished(XWalkView view, String url) {
-                super.onLoadFinished(view, url);
-                webView.setVisibility(View.VISIBLE);
-                imageView.setVisibility(View.INVISIBLE);
+            public boolean onJsAlert(
+                    WebView view,
+                    String url,
+                    String message,
+                    JsResult result
+            ) {
+                return super.onJsAlert(view, url, message, result);
             }
+
             @Override
-            public void onLoadStarted(XWalkView view, String url) {
-                super.onLoadStarted(view, url);
+            public void onProgressChanged(WebView view, int newProgress) {
+                if (newProgress == 100) {
+                    LoadingDialog.getInstance(WebPageActivity.this).hideDialog();
+                    openVuePage();
+                }
+                super.onProgressChanged(view, newProgress);
             }
         });
-        //开始调试功能
-        //XWalkPreferences.setValue(XWalkPreferences.REMOTE_DEBUGGING, true);
-
-//        WebSettings settings = webView.getSettings();
-//        settings.setJavaScriptEnabled(true); //如果访问的页面中有Javascript，则WebView必须设置支持Javascript
-//        settings.setJavaScriptCanOpenWindowsAutomatically(true);
-//        settings.setSupportZoom(true); //支持缩放
-//        settings.setBuiltInZoomControls(true); //支持手势缩放
-//        settings.setDisplayZoomControls(false); //是否显示缩放按钮
-//
-//        // >= 19(SDK4.4)启动硬件加速，否则启动软件加速
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-//            settings.setLoadsImagesAutomatically(true); //支持自动加载图片
-//        } else {
-//            webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-//            settings.setLoadsImagesAutomatically(false);
-//        }
-//        settings.setDatabaseEnabled(true);
-//        settings.setDomStorageEnabled(true);
-//        String dir = this.getApplicationContext().getDir("database", Context.MODE_PRIVATE).getPath();
-//        settings.setGeolocationDatabasePath(dir);
-//        settings.setGeolocationEnabled(true);
-//        settings.setUseWideViewPort(true); //将图片调整到适合WebView的大小
-//        settings.setLoadWithOverviewMode(true); //自适应屏幕
-//        settings.setDomStorageEnabled(true);
-//        settings.setSaveFormData(true);
-//        settings.setSupportMultipleWindows(true);
-//        // settings.setCacheMode(WebSettings.LOAD_DEFAULT); //优先使用缓存;
-//        // settings.setAppCacheMaxSize(1024 * 1024 * 8);
-//        String appCachePath = getApplicationContext().getCacheDir().getAbsolutePath();
-//        // settings.setAppCachePath(appCachePath);
-//        settings.setAllowFileAccess(true);
-//        // settings.setAppCacheEnabled(true);
-//        webView.setHorizontalScrollbarOverlay(true);
-//        webView.setHorizontalScrollBarEnabled(false);
-//        webView.setOverScrollMode(View.OVER_SCROLL_NEVER); // 取消WebView中滚动或拖动到顶部、底部时的阴影
-//        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY); // 取消滚动条白边效果
-//        webView.requestFocus();
-//        initJSInterface();
-//        loading = false;
-//        webView.loadUrl(C.network.home_url);
-//        LoadingDialog.getInstance(this).showDialog();
-//        if (Build.VERSION.SDK_INT >= 21) {
-//            settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-//        }
-//
-//        webView.setWebChromeClient(new WebChromeClient() {
-//            @Override
-//            public boolean onJsAlert(
-//                    WebView view,
-//                    String url,
-//                    String message,
-//                    JsResult result
-//            ) {
-//                return super.onJsAlert(view, url, message, result);
-//            }
-//
-//            @Override
-//            public void onProgressChanged(WebView view, int newProgress) {
-//                if (newProgress == 100) {
-//                    LoadingDialog.getInstance(WebPageActivity.this).hideDialog();
-//                    openVuePage();
-//                }
-//                super.onProgressChanged(view, newProgress);
-//            }
-//        });
-//        webView.setWebViewClient(new WebViewClient() {
-//            @Override
-//            public boolean shouldOverrideUrlLoading(WebView webView, String s) {
-//                if (s.startsWith("tel:")) {
-//                    Intent intent = new Intent(Intent.ACTION_DIAL,
-//                            Uri.parse(s));
-//                    startActivity(intent);
-//                } else {
-//                    webView.loadUrl(s);
-//                }
-//                return true;
-//            }
-//        });
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView webView, String s) {
+                if (s.startsWith("tel:")) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL,
+                            Uri.parse(s));
+                    startActivity(intent);
+                } else {
+                    webView.loadUrl(s);
+                }
+                return true;
+            }
+        });
     }
 
     public void openVuePage() {
@@ -198,19 +170,11 @@ public abstract class WebPageActivity extends BaseActivity {
                 mUploadMessage.onReceiveValue(null);
             mUploadMessage = null;
         }
-
-        if (webView != null) {
-            webView.onActivityResult(requestCode, resultCode, intent);
-        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        if (webView != null) {
-            webView.onDestroy();
-        }
     }
 
     /**
@@ -289,7 +253,7 @@ public abstract class WebPageActivity extends BaseActivity {
             /** 回退键 事件处理 优先级:视频播放全屏-网页回退-关闭页面 */
             if (customView != null) {
                 hideCustomView();
-            } else if (webView.getNavigationHistory().canGoBack()) {
+            } else if (webView.canGoBack()) {
 //                if (webView.getUrl().equals(C.network.home_url + "#/raiders") ||
 //                        webView.getUrl().equals(C.network.home_url + "#/promotion") ||
 //                        webView.getUrl().equals(C.network.home_url + "#/home") ||
@@ -300,7 +264,7 @@ public abstract class WebPageActivity extends BaseActivity {
                     ExitApp();
                     return true;
                 }
-                webView.getNavigationHistory().navigate(XWalkNavigationHistory.Direction.BACKWARD, 1) ;
+                webView.goBack();
                 webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
                 return true;
             } else {
@@ -355,30 +319,4 @@ public abstract class WebPageActivity extends BaseActivity {
             file.delete();
         }
     }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (webView != null) {
-            webView.pauseTimers();
-            webView.onHide();
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (webView != null) {
-            webView.resumeTimers();
-            webView.onShow();
-        }
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        if (webView != null) {
-            webView.onNewIntent(intent);
-        }
-    }
-
 }

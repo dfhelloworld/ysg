@@ -9,9 +9,7 @@ import android.view.WindowManager;
 
 import com.umeng.analytics.MobclickAgent;
 
-import org.xwalk.core.XWalkActivity;
-
-public abstract class BaseActivity extends XWalkActivity implements Handler.Callback, View.OnClickListener {
+public abstract class BaseActivity extends AppCompatActivity implements Handler.Callback, View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
