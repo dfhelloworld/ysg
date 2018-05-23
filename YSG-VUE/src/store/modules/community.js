@@ -124,6 +124,24 @@ const actions = {
             })
         })
     },
+    RobotSend: function ({commit}, data) {
+        return new Promise((resolve, reject) => {
+            API.RobotSend(data).then((data) => {
+                resolve(data)
+            }, (error) => {
+                reject(error)
+            })
+        })
+    },
+    GetBreakFast: function ({commit}, data) {
+        return new Promise((resolve, reject) => {
+            API.GetBreakFast(data).then((data) => {
+                resolve(data)
+            }, (error) => {
+                reject(error)
+            })
+        })
+    },
 }
 const mutations = {
     // [types.TRANSLATELANGUAGELIST] (state,data) {

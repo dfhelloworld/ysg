@@ -8,20 +8,41 @@
       <section class="g-flexview">
         <section class="promotiom-box">
           <h1>{{language.raiders.title}}</h1>
+           <table>
+                <tr>
+                    <td height="20px">
+                        <div v-if="isZH"><font size="3">洗衣服务</font></div>
+                        <div v-if="!isZH"><font size="3">Layndry Service</font></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="https://storage.easyiservice.com/iservicev2/img/201805/a160af1eb0b8a46348e194ad7ebc3000.jpeg!width_750" width="100%" height="45%" @click="robotWash()">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table id="menuTab">
+                            <tr>
+                                <td v-if="isShow">
+                                    <div id="divjnp" style="border-bottom:1px solid #DCDCDC;height:30px;width:48px;">
+                                        <a href="#"><span><font size="3">纪念品</font></span></a>
+                                    </div>
+                                </td>
+                                <td width="30px" v-if="isShow">&nbsp;</td>
+                                <td>
+                                    <div id="divkfwp" style="height:30px;width:64px;">
+                                        <a href="#"><span><font size="3" color="#afafaf">客房物品</font></span></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
         </section>
-        <header class="m-navbar">
-          <section class="promotiom_index raiders" style="width: 100%">
-            <div class="swiper-container">
-              <div class="swiper-wrapper ra">
-                <div class="swiper-slide" v-for="(item, index) in tagList" @click="changeTab(item.id)" :class="{active:(index == 0)}">
-                  <a><span>{{item.title}}</span></a>
-                </div>
-              </div>
-            </div>
-          </section>
-        </header>
+        <div style="border-bottom:1px solid #ddd;">&nbsp;</div>
         <section class="g-scrollview">
-          <div id="J_ListContent" class="m-list list-theme4">
             <ul class="type-buy" style="padding-top: 0.5rem">
               <li v-for="data in dataList" @click="goDetail(data.id)">
                 <div class="col-4">
@@ -38,7 +59,6 @@
               </li>
             </ul>
             <p class="no_data" v-show="noData">{{language.common.noMoreData}}</p>
-          </div>
         </section>
       </section>
     </div>
@@ -127,11 +147,18 @@
                 pdfFlag: false,
                 videoFlag: false,
                 btnFlag: false,
-                content: ""
+                content: "",
+                isZH:true,
+                nums:21,
+                isShow:true
             }
         },
         created:function () {
             this.pageFlag = this.$route.query.pageFlag;
+            //判断显示中/英文
+            if(localStorage.LANGUAGE!='zh'){
+                this.isZH = false;
+            }
             $(function(){
                 $(".navbar-center").css('marginLeft',0);
             });
@@ -275,44 +302,91 @@
                 } else {
                     openVideo(this.detail.video);
                 }
+            },
+            robotWash: function() {
+                 let dialog = window.YDUI.dialog;
+                 let alobj = new alertLanguage();
+                 let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
+                 let title = obj.title;
+                 let sureBnt = obj.sureBnt;
+                 let cancelBnt = obj.cancelBnt;
+                 let msg = obj.washMsg;
+                 let _this = this;
+                 dialog.confirm(title,msg, [
+                        {
+                            txt: sureBnt,
+                            color: false,
+                            callback: function () {
+                                let params = {
+                                    token: localStorage.TOKEN//to: 2206
+                                };
+                                //RobotSend
+                                _this.$store.dispatch('RobotSend', params).then(function (res) {
+                                    msg = obj.successMsg;
+                                    if(res.data.code!=0){
+                                        msg = obj.sytemBusy;
+                                    }
+                                    dialog.confirm(title,msg, [
+                                        {
+                                            txt: sureBnt,
+                                            color: false,
+                                            callback: function () {
+                                                
+                                            }
+                                        }
+                                    ]);
+                                });
+                            }
+                        },
+                        {
+                            txt: cancelBnt,
+                            color: false,
+                            callback: function () {
+
+                            }
+                        }
+                 ]);
             }
         },
         mounted:function () {
             let _this = this
-            let params = {
-                hotelid: localStorage.HOTELID,
-                lang: localStorage.LANGUAGE,
-                limit:0
-            }
-            //console.log("=======HotileId:"+localStorage.HOTELID);//21,7
-            if(localStorage.HOTELID==21||localStorage.HOTELID==7){
-                _this.$router.push({
-                    path: "/shoptype",
-                    query: { pageFlag: "home" }
-                });
-            }
-            this.$store.dispatch('getShoppingTagList', params).then(function (res) {
-                _this.tagList = res.data.data.list;
-                //初始化tab标签
-                $(function() {
-                    //初始化tab选择项
-                    _this.mySwiper = new Swiper(".raiders .swiper-container", {
-                        pagination: ".swiper-pagination",
-                        slidesPerView: 3,
-                        paginationClickable: true,
-                        spaceBetween: 0,
-                        initialSlide: 0
+            //初始化tab标签
+            $(function() {
+                //tab的click事件触发选择的初始化内容
+                let num = -1;
+                if(localStorage.HOTELID==7){//广州物业
+                    num = 22;
+                    _this.isShow=false;
+                    $("#divkfwp").css({"border-bottom": "1px solid #DCDCDC"});
+                    $("#divkfwp font").attr("color","black");
+                }else if(localStorage.HOTELID==21){//深圳物业
+                    _this.nums = 0;
+                    num = 14;
+                    if(localStorage.NEWTYPE==1){
+                        num = 35;
+                        $("#divkfwp").css({"border-bottom": "1px solid #DCDCDC"});
+                        $("#divkfwp font").attr("color","black");
+                        $("#divjnp").css({"border-bottom": "0px"});
+                        $("#divjnp font").attr("color","#afafaf");
+                    }
+                    $("#menuTab div").click(function(){
+                        num = 14;
+                        if($(this).get(0).id=="divkfwp"){
+                            num = 35;
+                            $("#divkfwp").css({"border-bottom": "1px solid #DCDCDC"});
+                            $("#divkfwp font").attr("color","black");
+                            $("#divjnp").css({"border-bottom": "0px"});
+                            $("#divjnp font").attr("color","#afafaf");
+                        }else{
+                            $("#divjnp").css({"border-bottom": "1px solid #DCDCDC"});
+                            $("#divjnp font").attr("color","black");
+                            $("#divkfwp").css({"border-bottom": "0px"});
+                            $("#divkfwp font").attr("color","#afafaf");
+                        }
+                        _this.changeTab(num);
                     });
-                    //添加标签点击样式
-                    $(".ra").on("click", ".swiper-slide", function () {
-                        $(this)
-                            .addClass("active")
-                            .siblings()
-                            .removeClass("active");
-                    });
-                    //tab的click事件触发选择的初始化内容
-                    _this.changeTab(_this.tagList[0].id);
-                });
+                }
+                _this.changeTab(num);
             });
 
             //一级页面falg

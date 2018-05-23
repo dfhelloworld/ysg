@@ -11,6 +11,8 @@
                             <a><span>{{item.title}}</span></a>
                         </div>
                     </div>
+                    <div v-show="typeList.length>3" class="swiper-button-next"></div>
+                    <div v-show="typeList.length>3" class="swiper-button-prev"></div>
                 </div>
             </section>
             <section class="promotiom_list s-list2">
@@ -51,11 +53,56 @@
             </ul>
         </div>
 
+        <!--向下提示箭头-->
+        <div class="arrow-wrapper">
+            <a href="#" id="arrow-opener"></a>
+        </div>
+
     </div><!--main div end-->
 </template>
 <style>
     .location-icon{position: fixed;width: 1rem;height: 1rem;bottom: 2.5rem;right:0;background: url("../../assets/images/icon-location.png")center no-repeat;background-size: .9rem;}
     .judge{display: block;width: .5rem;height: .5rem;background: url("../../assets/images/icon_tips.png")center no-repeat;background-size: .5rem;}
+
+    #arrow-opener:hover {
+        -webkit-transition-delay: 0;
+        transition-delay: 0;
+        opacity: 1;
+    }
+    #arrow-opener {
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        border-bottom: 1px solid rgb(0, 92, 255);
+        border-right: 1px solid rgb(0, 92, 255);
+        position: absolute;
+        top: 87%;
+        left: 50%;
+        -webkit-animation: arrow-opener .5s ease-in-out alternate infinite;
+        animation: arrow-opener .5s ease-in-out alternate infinite;
+        cursor: pointer;
+        opacity: 0.5;
+        -webkit-transition: opacity .2s ease-in-out, transform .5s ease-in-out .2s;
+        transition: opacity .2s ease-in-out, transform .5s ease-in-out .2s;
+    }
+    @-webkit-keyframes arrow-opener {
+        100% {
+            top: 88%
+        }
+    }
+    @keyframes arrow-opener {
+        100% {
+            top: 88%
+        }
+    }
+    .arrow-wrapper {
+        font-size: 26px;
+        float: left;
+    }
+
 </style>
 
 <script>

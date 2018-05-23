@@ -10,8 +10,6 @@
                 </router-link>
                 <span class="close"  slot="left" v-else @click="goBack"></span>
             </yd-navbar>
-
-
             <section class="login_bottom">
                 <h2 class="login_title">{{language.login.sign}}</h2>
                 <div class="search_box login_select" @click="isPopShow = true">
@@ -25,6 +23,20 @@
                     </li>
                     <li>
                         <input type="text" :placeholder="language.login.name" v-model="fullName">
+                    </li>
+                </ul>
+                <ul class="login_style">
+                    <li style="border-bottom: 0px;color:white;opacity:0.5;" v-if="isZH">
+                        房间号：少于3位，请在前面加0。如0101, 2001
+                    </li>
+                    <li style="border-bottom: 0px;color:white;opacity:0.5;" v-if="isZH">
+                        姓：请输入英文名的姓氏
+                    </li>
+                    <li style="border-bottom: 0px;color:white;opacity:0.5;" v-if="!isZH">
+                        Room No: If the room number is less than 3 digits, please add 0 in front of it. </br>e.g. 0101, 2001
+                    </li>
+                    <li style="border-bottom: 0px;color:white;opacity:0.5;" v-if="!isZH">
+                        Last Name: Please input your last name
                     </li>
                 </ul>
                 <div class="login_in">
@@ -72,11 +84,16 @@
 				residence:'',
                 hotelId:'',
                 pageType:'',
+                isZH:true,
                 come_hotelid:''
 			};
 		},
 		created:function () {
-			this.come_hotelid = this.$route.query.hotelid
+            this.come_hotelid = this.$route.query.hotelid
+            //判断显示中/英文
+            if(localStorage.LANGUAGE!='zh'){
+                this.isZH = false;
+            }
 
 			//获取跳转的上一个页面标识
             this.pageType = this.$route.query.pageType

@@ -33,7 +33,8 @@
 						</li>
 					</ul>
 					<div class="smart_home">
-						<button type="button"  @click="goNext(shortcutList[0].key)" ><img style="width: .4rem;vertical-align: middle;display: inline-block;" src="../../assets/images/service-btn.png" alt=""> {{shortcutList[0].title}}</button>
+            <!--@click="goNext(shortcutList[0].key)" <img style="width: .4rem;vertical-align: middle;display: inline-block;" src="../../assets/images/service-btn.png" alt="">-->
+						<button type="button">{{servicesMsg}}</button>
 					</div>
 				</section>
 				<!--快捷功能-->
@@ -46,7 +47,7 @@
 							</div>
 						</div>
              <div v-show="shortcutList.length>4" class="swiper-button-next"></div>
-    <div v-show="shortcutList.length>4" class="swiper-button-prev"></div>
+            <div v-show="shortcutList.length>4" class="swiper-button-prev"></div>
 					</div>
 				</section>
 				<!--酒店详情-->
@@ -166,6 +167,7 @@
 		<v-foot></v-foot>
 		<v-menu v-show="menuFlag"></v-menu>
 		<v-guestCenter v-show="centerFlag"></v-guestCenter>
+
 	</div>
 </template>
 
@@ -204,7 +206,8 @@ export default {
       sHeightPx: "400px",
       weatherSrc: "",
       hotelid: "",
-      pageFlag: false
+      pageFlag: false,
+      servicesMsg:'快捷服务'
     };
   },
   created: function() {
@@ -314,6 +317,12 @@ export default {
         title: "",
         imgSrc: require("../../assets/images/Shopping@2x.png"),
         linkTo: ""
+      },
+      {
+        key: "breakfast",
+        title: "",
+        imgSrc: require("../../assets/images/breakfast.png"),
+        linkTo: "/breakfast"
       }
     ];
     this.myItems2 = [
@@ -715,6 +724,13 @@ export default {
         lang: localStorage.LANGUAGE
       };
       this.$store.dispatch("getHotelDetail", params2);
+
+      //跟新自主服务标识
+      if(key!='zh'){
+        this.servicesMsg = 'Services';
+      }else{
+        this.servicesMsg = '快捷服务';
+      }
     },
     //地图导航
     goLocation: function(val) {
@@ -732,7 +748,13 @@ export default {
         if(val===2){
             //判断是否登录
             if (localStorage.TOKEN) {
-                this.$router.push({ path: "/shopping", query: { info: "home" } });
+                let goPath = "/shopping";
+                //console.log("=======HotileId:"+localStorage.HOTELID);//21,7
+                if(localStorage.HOTELID==21||localStorage.HOTELID==7){
+                    localStorage.NEWTYPE=0;
+                    goPath = "/robotDelivery";
+                }
+                this.$router.push({ path: goPath, query: { info: "home" } });
             }else{
                 this.$router.replace("/loginforguest");
             }
@@ -803,6 +825,16 @@ export default {
             _this.$router.replace("/loginforguest");
           }
 
+          break;
+        case "breakfast":
+          if (localStorage.TOKEN) {
+            _this.$router.push({
+              path: "/breakfast",
+              query: { pageFlag: "s_home" }
+            });
+          } else {
+            _this.$router.replace("/loginforguest");
+          }
           break;
       }
     },
@@ -1252,4 +1284,5 @@ footer {
 .how .cell-icon {
   width: 0.6rem;
 }
+
 </style>

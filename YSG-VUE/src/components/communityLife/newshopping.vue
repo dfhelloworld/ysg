@@ -13,7 +13,7 @@
           <section class="promotiom_index raiders" style="width: 100%">
             <div class="swiper-container">
               <div class="swiper-wrapper ra">
-                <div class="swiper-slide" v-for="(item, index) in tagList" @click="changeTab(item.id)" :class="{active:(index == 0)}">
+                <div class="swiper-slide" v-for="(item, index) in tagList" @click="changeTab(item.id)" v-if="item.id < nums">
                   <a><span>{{item.title}}</span></a>
                 </div>
               </div>
@@ -127,7 +127,8 @@
                 pdfFlag: false,
                 videoFlag: false,
                 btnFlag: false,
-                content: ""
+                content: "",
+                nums:22
             }
         },
         created:function () {
@@ -189,11 +190,7 @@
 
             },
             goBack:function(){
-                if(this.preRoute){
-                    this.$router.push('/'+this.preRoute);
-                }else{
-                    this.$router.push('/home');
-                }
+                this.$router.push('/shoptype');
             },
             apply: function() {
                 let alobj = new alertLanguage();
@@ -284,24 +281,30 @@
                 lang: localStorage.LANGUAGE,
                 limit:0
             }
-            //console.log("=======HotileId:"+localStorage.HOTELID);//21,7
-            if(localStorage.HOTELID==21||localStorage.HOTELID==7){
-                _this.$router.push({
-                    path: "/shoptype",
-                    query: { pageFlag: "home" }
-                });
-            }
             this.$store.dispatch('getShoppingTagList', params).then(function (res) {
                 _this.tagList = res.data.data.list;
                 //初始化tab标签
                 $(function() {
+                    let arr=[];
+                    if(localStorage.HOTELID==7){//广州物业
+                        arr=[11,16,17,18,19,20,21];
+                    }else if(localStorage.HOTELID==21){//深圳物业
+                        arr=[14];
+                        _this.nums = 15;
+                    }
+                    let shotype = 0;
+                    for(let i =0;i<arr.length;i++){
+                        if(arr[i]===localStorage.NEWTYPE){
+                            shotype = i;
+                        }
+                    }
                     //初始化tab选择项
                     _this.mySwiper = new Swiper(".raiders .swiper-container", {
                         pagination: ".swiper-pagination",
                         slidesPerView: 3,
                         paginationClickable: true,
                         spaceBetween: 0,
-                        initialSlide: 0
+                        initialSlide: shotype
                     });
                     //添加标签点击样式
                     $(".ra").on("click", ".swiper-slide", function () {
@@ -310,8 +313,11 @@
                             .siblings()
                             .removeClass("active");
                     });
-                    //tab的click事件触发选择的初始化内容
-                    _this.changeTab(_this.tagList[0].id);
+                    $(".ra .swiper-slide:eq("+shotype+")")
+                            .addClass("active")
+                            .siblings()
+                            .removeClass("active");
+                    _this.changeTab(localStorage.NEWTYPE);
                 });
             });
 

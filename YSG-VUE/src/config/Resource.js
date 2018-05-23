@@ -126,7 +126,10 @@ const Community = {
 	Feedback:'/feedback/getFeedbackList',
 	//提交物业调查问卷
 	FeedbackResult:'/feedbackResult/addFeedbackResult',
-
+	//机器人洗衣服
+	RobotSend:'/service/robotSend',
+	//早餐机
+	GetBreakFast:'/user/gettoken',
 }
 //本地攻略
 const Raiders = {
@@ -227,7 +230,9 @@ export default {
     getLifeList:(query) => apiPost(Community.LifeList,query),
     getFeedbackList:(query) => apiPost(Community.FeedbackList,query),
     getFeedback:(query) => apiPost(Community.Feedback,query),
-    addFeedbackResult:(query) => apiPost(Community.FeedbackResult,query),
+	addFeedbackResult:(query) => apiPost(Community.FeedbackResult,query),
+	RobotSend:(query) => apiPost(Community.RobotSend,query),
+	GetBreakFast:(query) => apiPost(Community.GetBreakFast,query),
 	helloApi:(query) => apiPost(Hello.helloApi,query),
 	tabLanguage:(query) => apiPost(Home.tabLanguageUrl,query),
     help:(query) => apiPost(Home.helpUrl,query),

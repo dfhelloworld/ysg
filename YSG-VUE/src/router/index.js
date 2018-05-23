@@ -68,7 +68,11 @@ import propertyDetail from '../components/communityLife/propertyDetail.vue'
 import opinionSurvey from '../components/communityLife/opinionSurvey.vue'
 import opinionDetail from '../components/communityLife/opinionDetail.vue'
 import shopping from '../components/communityLife/shopping.vue'
+import shoptype from '../components/communityLife/shoptype.vue'
+import newshopping from '../components/communityLife/newshopping.vue'
 import shoppingDetail from '../components/communityLife/shoppingDetail.vue'
+import robotDelivery from '../components/communityLife/robotDelivery.vue'
+import breakfast from '../components/communityLife/breakfast.vue'
 import buy from '../components/communityLife/buy.vue'
 import ascottLife from '../components/communityLife/ascottLife.vue'
 import apply from '../components/communityLife/apply.vue'
@@ -215,7 +219,11 @@ export default new Router({
         {path: '/opinionSurvey',name: 'opinionSurvey',component: opinionSurvey},//物业通知
         {path: '/opinionDetail',name: 'opinionDetail',component: opinionDetail},//物业通知详情
         {path: '/shopping',name: 'shopping',component: shopping},//体验式购物
+        {path: '/shoptype',name: 'shoptype',component: shoptype},//新版体验式购物分类
+        {path: '/newshopping',name: 'newshopping',component: newshopping},//新版体验式购物
         {path: '/shopping/shoppingDetail',name: 'shoppingDetail',component: shoppingDetail},//购物详情
+        {path: '/robotDelivery',name: 'robotDelivery',component: robotDelivery},//机器人送物
+        {path: '/breakfast',name: 'breakfast',component: breakfast},//早餐机
         {path: '/buy',name: 'buy',component: buy},//购买
         {path: '/ascottLife',name: 'ascottLife',component: ascottLife},//雅诗阁生活
         {path: '/lifeDetail',name: 'lifeDetail',component: lifeDetail},//雅诗阁生活

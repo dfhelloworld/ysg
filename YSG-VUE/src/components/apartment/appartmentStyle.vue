@@ -18,6 +18,8 @@
                             <i class="tab_bottom_line"></i>
                         </div>
                     </div>
+                    <div class="swiper-button-prev" v-show="hotelDetail.roomTypeList.length>3" style="margin-left:-11px;margin-top:-16px;"></div>
+                    <div class="swiper-button-next" v-show="hotelDetail.roomTypeList.length>3" style="margin-right:-10px;margin-top:-16px;"></div>
                 </div>
             </section>
 
@@ -73,6 +75,11 @@
             </ul>
         </section>
 
+        <!--向下提示箭头-->
+        <div class="arrow-wrapper">
+            <a href="#" id="arrow-opener"></a>
+        </div>
+
     </div>
 </template>
 <style>
@@ -93,6 +100,45 @@
     .appartment_style_tab .swiper-slide{position: relative;}
     .appartment_style_tab .active{color: #f0c366;}
     .appartment_style_tab .active .tab_bottom_line{position: absolute;width: 80%;height: 2px;bottom:0px;left:50%;margin-left: -40%;background: #f0c366;}
+
+    #arrow-opener:hover {
+        -webkit-transition-delay: 0;
+        transition-delay: 0;
+        opacity: 1;
+    }
+    #arrow-opener {
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        border-bottom: 1px solid rgb(0, 92, 255);
+        border-right: 1px solid rgb(0, 92, 255);
+        position: absolute;
+        top: 90%;
+        left: 50%;
+        -webkit-animation: arrow-opener .5s ease-in-out alternate infinite;
+        animation: arrow-opener .5s ease-in-out alternate infinite;
+        cursor: pointer;
+        opacity: 0.5;
+        -webkit-transition: opacity .2s ease-in-out, transform .5s ease-in-out .2s;
+        transition: opacity .2s ease-in-out, transform .5s ease-in-out .2s;
+    }
+    @-webkit-keyframes arrow-opener {
+        100% {
+            top: 91%
+        }
+    }
+    @keyframes arrow-opener {
+        100% {
+            top: 91%
+        }
+    }
+    .arrow-wrapper {
+        font-size: 26px;
+        float: left;
+    }
 </style>
 
 <script>
