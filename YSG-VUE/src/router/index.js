@@ -218,8 +218,8 @@ export default new Router({
         {path: '/propertyActivity',name: 'propertyActivity',component: propertyActivity},//物业活动
         {path: '/opinionSurvey',name: 'opinionSurvey',component: opinionSurvey},//物业通知
         {path: '/opinionDetail',name: 'opinionDetail',component: opinionDetail},//物业通知详情
-        {path: '/shopping',name: 'shopping',component: shopping},//体验式购物
-        {path: '/shoptype',name: 'shoptype',component: shoptype},//新版体验式购物分类
+        //{path: '/shopping',name: 'shopping',component: shopping},//体验式购物
+        {path: '/shopping',name: 'shoptype',component: shoptype},//新版体验式购物分类shoptype
         {path: '/newshopping',name: 'newshopping',component: newshopping},//新版体验式购物
         {path: '/shopping/shoppingDetail',name: 'shoppingDetail',component: shoppingDetail},//购物详情
         {path: '/robotDelivery',name: 'robotDelivery',component: robotDelivery},//机器人送物

@@ -22,17 +22,20 @@
                 </tr>
                 <tr>
                     <td>
-                        <table id="menuTab">
+                        <table>
                             <tr>
-                                <td v-if="isShow">
-                                    <div id="divjnp" style="border-bottom:1px solid #DCDCDC;height:30px;width:48px;">
-                                        <a href="#"><span><font size="3">纪念品</font></span></a>
+                                <td v-for="(tags, index) in tagsData">
+                                    <div v-if="tags.id==tagIds[1]">
+                                        <div style="border-bottom:1px solid #DCDCDC;height:30px;float:left;" name="tagsDiv">
+                                            <a href="#" @click="changeTab(tags.id)"><span><font size="3">{{tags.title}}</font></span></a>
+                                        </div>
+                                        <div style="float:left;">&nbsp;&nbsp;&nbsp;</div>
                                     </div>
-                                </td>
-                                <td width="30px" v-if="isShow">&nbsp;</td>
-                                <td>
-                                    <div id="divkfwp" style="height:30px;width:64px;">
-                                        <a href="#"><span><font size="3" color="#afafaf">客房物品</font></span></a>
+                                    <div v-if="tags.id!=tagIds[1]">
+                                        <div style="color:#afafaf;height:30px;float:left;" name="tagsDiv">
+                                            <a href="#" @click="changeTab(tags.id)"><span><font size="3">{{tags.title}}</font></span></a>
+                                        </div>
+                                        <div style="float:left;">&nbsp;&nbsp;&nbsp;</div>
                                     </div>
                                 </td>
                             </tr>
@@ -82,7 +85,12 @@
         </div>
       </section>
     </div>
-
+    <!--购物车-->
+    <div class="side-bar"> 
+        <a href="#" class="icon-chat" @click="goShopCar()">
+            <img style="width:100%;height:100%;" src="../../assets/images/shopCard.png" alt="">
+        </a> 
+    </div>
   </div>
 </template>
 
@@ -124,6 +132,9 @@
   .m-spinner {
     margin-top: 0.2rem;
   }
+
+  .side-bar {width: 20%;position: fixed;bottom: 10%;right: 3%;font-size: 0;line-height: 0;z-index: 100;}
+  .side-bar a {width: 70%;height: 70%;display: inline-block;background-color: white;margin-bottom: 2px;}
 </style>
 <script>
     import { mapGetters } from 'vuex'
@@ -131,7 +142,6 @@
     export default {
         data() {
             return {
-                tagList:[],
                 dataList: [],
                 noData: false,
                 pageFlag:'',
@@ -150,7 +160,9 @@
                 content: "",
                 isZH:true,
                 nums:21,
-                isShow:true
+                isShow:true,
+                tagIds:[],
+                tagsData:[]
             }
         },
         created:function () {
@@ -159,8 +171,19 @@
             if(localStorage.LANGUAGE!='zh'){
                 this.isZH = false;
             }
+            //根据分类信息
+            this.tagIds = localStorage.NEWTYPE.split(',');
+            let _this = this;
             $(function(){
                 $(".navbar-center").css('marginLeft',0);
+                let params = {
+                    hotelid: localStorage.HOTELID,
+                    status: 0,
+                    parentid:_this.tagIds[0]
+                }
+                _this.$store.dispatch('getFirstTags', params).then(function (res) {
+                    _this.tagsData = res.data.data.list;
+                });
             });
         },
         methods: {
@@ -192,7 +215,6 @@
                     tagid:id,
                     status:1
                 }
-
                 this.$store.dispatch('getShoppingList', params).then(function (res) {
                     $(".g-scrollview").scrollTop(0);
                     _this.dataList=res.data.data.list;
@@ -216,11 +238,7 @@
 
             },
             goBack:function(){
-                if(this.preRoute){
-                    this.$router.push('/'+this.preRoute);
-                }else{
-                    this.$router.push('/home');
-                }
+                this.$router.push('/shopping');
             },
             apply: function() {
                 let alobj = new alertLanguage();
@@ -346,47 +364,23 @@
                             }
                         }
                  ]);
+            },
+            goShopCar: function() {
+                alert('shopping');
             }
         },
         mounted:function () {
             let _this = this
             //初始化tab标签
             $(function() {
-                //tab的click事件触发选择的初始化内容
-                let num = -1;
-                if(localStorage.HOTELID==7){//广州物业
-                    num = 22;
-                    _this.isShow=false;
-                    $("#divkfwp").css({"border-bottom": "1px solid #DCDCDC"});
-                    $("#divkfwp font").attr("color","black");
-                }else if(localStorage.HOTELID==21){//深圳物业
-                    _this.nums = 0;
-                    num = 14;
-                    if(localStorage.NEWTYPE==1){
-                        num = 35;
-                        $("#divkfwp").css({"border-bottom": "1px solid #DCDCDC"});
-                        $("#divkfwp font").attr("color","black");
-                        $("#divjnp").css({"border-bottom": "0px"});
-                        $("#divjnp font").attr("color","#afafaf");
-                    }
-                    $("#menuTab div").click(function(){
-                        num = 14;
-                        if($(this).get(0).id=="divkfwp"){
-                            num = 35;
-                            $("#divkfwp").css({"border-bottom": "1px solid #DCDCDC"});
-                            $("#divkfwp font").attr("color","black");
-                            $("#divjnp").css({"border-bottom": "0px"});
-                            $("#divjnp font").attr("color","#afafaf");
-                        }else{
-                            $("#divjnp").css({"border-bottom": "1px solid #DCDCDC"});
-                            $("#divjnp font").attr("color","black");
-                            $("#divkfwp").css({"border-bottom": "0px"});
-                            $("#divkfwp font").attr("color","#afafaf");
-                        }
-                        _this.changeTab(num);
+                _this.changeTab(_this.tagIds[1]);
+                //
+                setTimeout(function(){ 
+                    $("div[name='tagsDiv']").click(function(){
+                        $("div[name='tagsDiv']").css({"border-bottom": "0px","color":"#afafaf"});
+                        $(this).css({"border-bottom": "1px solid #DCDCDC","color":"black"});
                     });
-                }
-                _this.changeTab(num);
+                 }, 1000);
             });
 
             //一级页面falg

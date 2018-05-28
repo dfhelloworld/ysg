@@ -13,7 +13,7 @@
           <section class="promotiom_index raiders" style="width: 100%">
             <div class="swiper-container">
               <div class="swiper-wrapper ra">
-                <div class="swiper-slide" v-for="(item, index) in tagList" @click="changeTab(item.id)" v-if="item.id < nums">
+                <div class="swiper-slide" v-for="(item, index) in tagList" @click="changeTab(item.id)" :class="{active:(item.id==tagIds[1])}">
                   <a><span>{{item.title}}</span></a>
                 </div>
               </div>
@@ -62,7 +62,12 @@
         </div>
       </section>
     </div>
-
+    <!--购物车-->
+    <div class="side-bar"> 
+        <a href="#" class="icon-chat" @click="goShopCar()">
+            <img style="width:100%;height:100%;" src="../../assets/images/shopCard.png" alt="">
+        </a> 
+    </div>
   </div>
 </template>
 
@@ -104,6 +109,9 @@
   .m-spinner {
     margin-top: 0.2rem;
   }
+
+  .side-bar {width: 20%;position: fixed;bottom: 10%;right: 3%;font-size: 0;line-height: 0;z-index: 100;}
+  .side-bar a {width: 70%;height: 70%;display: inline-block;background-color: white;margin-bottom: 2px;}
 </style>
 <script>
     import { mapGetters } from 'vuex'
@@ -128,11 +136,14 @@
                 videoFlag: false,
                 btnFlag: false,
                 content: "",
-                nums:22
+                tagIds:[]
             }
         },
         created:function () {
             this.pageFlag = this.$route.query.pageFlag;
+            //根据分类信息
+            this.tagIds = localStorage.NEWTYPE.split(',');
+            let _this = this;
             $(function(){
                 $(".navbar-center").css('marginLeft',0);
             });
@@ -190,7 +201,11 @@
 
             },
             goBack:function(){
-                this.$router.push('/shoptype');
+                if(this.preRoute){
+                    this.$router.push('/'+this.preRoute);
+                }else{
+                    this.$router.push('/home');
+                }
             },
             apply: function() {
                 let alobj = new alertLanguage();
@@ -272,39 +287,29 @@
                 } else {
                     openVideo(this.detail.video);
                 }
+            },
+            goShopCar: function() {
+                alert('shopping');
             }
         },
         mounted:function () {
             let _this = this
             let params = {
                 hotelid: localStorage.HOTELID,
-                lang: localStorage.LANGUAGE,
-                limit:0
+                status: 0,
+                parentid:_this.tagIds[0]
             }
-            this.$store.dispatch('getShoppingTagList', params).then(function (res) {
+            this.$store.dispatch('getFirstTags', params).then(function (res) {
                 _this.tagList = res.data.data.list;
                 //初始化tab标签
                 $(function() {
-                    let arr=[];
-                    if(localStorage.HOTELID==7){//广州物业
-                        arr=[11,16,17,18,19,20,21];
-                    }else if(localStorage.HOTELID==21){//深圳物业
-                        arr=[14];
-                        _this.nums = 15;
-                    }
-                    let shotype = 0;
-                    for(let i =0;i<arr.length;i++){
-                        if(arr[i]===localStorage.NEWTYPE){
-                            shotype = i;
-                        }
-                    }
                     //初始化tab选择项
                     _this.mySwiper = new Swiper(".raiders .swiper-container", {
                         pagination: ".swiper-pagination",
                         slidesPerView: 3,
                         paginationClickable: true,
                         spaceBetween: 0,
-                        initialSlide: shotype
+                        initialSlide: 0
                     });
                     //添加标签点击样式
                     $(".ra").on("click", ".swiper-slide", function () {
@@ -313,14 +318,10 @@
                             .siblings()
                             .removeClass("active");
                     });
-                    $(".ra .swiper-slide:eq("+shotype+")")
-                            .addClass("active")
-                            .siblings()
-                            .removeClass("active");
-                    _this.changeTab(localStorage.NEWTYPE);
+                    //tab的click事件触发选择的初始化内容
+                    _this.changeTab(_this.tagIds[1]);
                 });
             });
-
             //一级页面falg
             isHomePage(0)
         },

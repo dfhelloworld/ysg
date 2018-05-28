@@ -142,6 +142,16 @@ const actions = {
             })
         })
     },
+    //二级分类
+    getFirstTags: function ({commit}, data) {
+        return new Promise((resolve, reject) => {
+            API.getFirstTags(data).then((data) => {
+                resolve(data)
+            }, (error) => {
+                reject(error)
+            })
+        })
+    },
 }
 const mutations = {
     // [types.TRANSLATELANGUAGELIST] (state,data) {

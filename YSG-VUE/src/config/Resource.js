@@ -130,6 +130,8 @@ const Community = {
 	RobotSend:'/service/robotSend',
 	//早餐机
 	GetBreakFast:'/user/gettoken',
+	//二级分类
+	FirstTags:'/shoppingtag/getShoppingTagList',
 }
 //本地攻略
 const Raiders = {
@@ -245,4 +247,6 @@ export default {
     appStart:(query) => apiPost(Home.appStartUrl,query),
 	getJudge:(query) => apiPost(query.url,query.data),
 	getHotelLis:(query) => apiPost(Home.getHotelListUrl,query),
+	//二级分类
+	getFirstTags:(query) => apiPost(Community.FirstTags,query),
 }
