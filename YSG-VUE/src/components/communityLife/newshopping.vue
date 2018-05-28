@@ -201,11 +201,7 @@
 
             },
             goBack:function(){
-                if(this.preRoute){
-                    this.$router.push('/'+this.preRoute);
-                }else{
-                    this.$router.push('/home');
-                }
+                this.$router.push('/shopping');
             },
             apply: function() {
                 let alobj = new alertLanguage();

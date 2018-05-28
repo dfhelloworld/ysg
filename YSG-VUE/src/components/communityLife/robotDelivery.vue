@@ -68,14 +68,11 @@
     <!--购物页面-->
     <div class="property" id="section2" style="display: none;">
       <div class="nav_mark"></div>
-      <yd-navbar :title="info.title" fixed>
+      <yd-navbar title="购物车" fixed>
         <span class="back" slot="left" @click="buyClose()"></span>
+        <span class="close" slot="right" @click="clearCar()"></span>
       </yd-navbar>
       <section class="resolve-box" v-html="content"></section>
-      <ul class="pdf-video" :class="{ 'one': isOne, 'two': isTwo}" v-show="btnFlag">
-        <li @click="toPDF" v-show="pdfFlag"></li>
-        <li @click="toVideo" v-show="videoFlag"></li>
-      </ul>
       <section class="buy_foot" style="margin-top: 1rem;">
         <div class="col-5">
           <div><yd-spinner max="75" unit="1" v-model="spinner1"></yd-spinner></div>
@@ -146,12 +143,8 @@
                 noData: false,
                 pageFlag:'',
                 preRoute:this.$route.query.info,
-                mySwiper:{},
                 info: {},
-                num: "",
                 spinner1: 0,
-                pdfShow: false,
-                videoShow: false,
                 isOne: false,
                 isTwo: false,
                 pdfFlag: false,
@@ -159,7 +152,6 @@
                 btnFlag: false,
                 content: "",
                 isZH:true,
-                nums:21,
                 isShow:true,
                 tagIds:[],
                 tagsData:[]
@@ -190,6 +182,7 @@
             buyClose:function(){
                 $("#section1").show();
                 $("#section2").hide();
+                $(".side-bar").show();
             },
             buyCreate: function() {
                 $("#section1").hide();
@@ -205,6 +198,7 @@
                 } else {
                     this.$store.dispatch("hideLoading");
                 }
+                $(".side-bar").hide();
             },
             changeTab:function (id) {
                 let _this = this
@@ -226,16 +220,7 @@
                 });
             },
             goDetail:function (id) {
-                let data = {};
-                for(var key in this.dataList){
-                    if (this.dataList[key].id == id){
-                        data = this.dataList[key];
-                        break;
-                    }
-                }
-                this.info = data;
-                this.buyCreate();
-
+                alert(id);
             },
             goBack:function(){
                 this.$router.push('/shopping');
@@ -307,20 +292,6 @@
 
                 });
             },
-            toPDF: function() {
-                if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-                    openFile(this.detail.pdf);
-                } else {
-                    openPdf(this.detail.pdf);
-                }
-            },
-            toVideo: function() {
-                if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-                    openFile(this.detail.video);
-                } else {
-                    openVideo(this.detail.video);
-                }
-            },
             robotWash: function() {
                  let dialog = window.YDUI.dialog;
                  let alobj = new alertLanguage();
@@ -366,7 +337,10 @@
                  ]);
             },
             goShopCar: function() {
-                alert('shopping');
+                this.buyCreate();
+            },
+            clearCar: function() {
+                alert('clearCar');
             }
         },
         mounted:function () {
