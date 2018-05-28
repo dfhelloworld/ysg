@@ -70,7 +70,9 @@
       <div class="nav_mark"></div>
       <yd-navbar title="购物车" fixed>
         <span class="back" slot="left" @click="buyClose()"></span>
-        <span class="close" slot="right" @click="clearCar()"></span>
+        <span style="display:block;width:50%;height:60%;margin-top:10%" slot="right" @click="clearCar()">
+           <div style="color:#afafaf;">清空</div>
+        </span>
       </yd-navbar>
       <section class="resolve-box" v-html="content"></section>
       <section class="buy_foot" style="margin-top: 1rem;">
