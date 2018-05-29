@@ -123,10 +123,12 @@
                             localStorage.oa_id = res.data.staffid;
                             localStorage.oaServiceUrl = res.data.serviceUrl;
                             localStorage.spage=0;
-                            localStorage.searchFlag = 'home'
-                            localStorage.userId = res.data.id
-                            localStorage.id = res.data.id
-                            localStorage.ip = res.data.lastloginip
+                            localStorage.searchFlag = 'home';
+                            localStorage.userId = res.data.id;
+                            localStorage.id = res.data.id;
+                            localStorage.ip = res.data.lastloginip;
+                            //初始化购物车
+                            global.shopCar = new Map();
                             //跳转home页面
                             this.$router.replace({path:'/home',query:{type:1}});
                             localStorage.idType = 2;

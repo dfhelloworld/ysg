@@ -47,12 +47,13 @@
         <div style="border-bottom:1px solid #ddd;">&nbsp;</div>
         <section class="g-scrollview">
             <ul class="type-buy" style="padding-top: 0.5rem">
-              <li v-for="data in dataList" @click="goDetail(data.id)">
+              <li v-for="data in dataList" @click="goDetail(data)">
                 <div class="col-4">
                   <img  :src="data.pic" alt="">
                 </div>
                 <div class="col-6">
-                  <h4>{{data.title}}</h4>
+                  <h4 v-if="isZH">{{data.title_lang1}}</h4>
+                  <h4 v-if="!isZH">{{data.title_lang2}}</h4>
                   <p>{{data.introduct}}</p>
                   <ul class="s-price">
                     <li class="col-5" style="border:0px">RMB {{data.price}}</li>
@@ -221,8 +222,27 @@
                     }
                 });
             },
-            goDetail:function (id) {
-                alert(id);
+            goDetail:function (childObj) {
+                $(".side-bar").animate({opacity: 0.2},300,function(){
+                    $(".side-bar").css({opacity: 1});
+                });
+                if(global.shopCar.has('p'+global.firstTag.id)){
+                    let shopCar = global.shopCar.get('p'+global.firstTag.id);
+                    if(shopCar.c.has('c'+childObj.id)){
+                        shopCar.c.get('c'+childObj.id).num = shopCar.c.get('c'+childObj.id).num + 1;
+                    }else{
+                        let cobjs = new Map();
+                        let c={c:childObj,num:1};
+                        shopCar.c.set('c'+childObj.id,c);
+                    }
+                }else{
+                    let cobjs = new Map();
+                    let c={c:childObj,num:1};
+                    cobjs.set('c'+childObj.id,c);
+                    let obj = {p:global.firstTag,c:cobjs};
+                    global.shopCar.set('p'+global.firstTag.id, obj);
+                }
+                console.log(global.shopCar.get('p'+global.firstTag.id).c);
             },
             goBack:function(){
                 this.$router.push('/shopping');
@@ -342,7 +362,26 @@
                 this.buyCreate();
             },
             clearCar: function() {
-                alert('clearCar');
+                global.shopCar.clear();
+                let dialog = window.YDUI.dialog;
+                let alobj = new alertLanguage();
+                let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
+                let title = obj.title;
+                let sureBnt = obj.sureBnt;
+                let msg = '购物车已清空';
+                if(localStorage.LANGUAGE!='zh'){
+                    msg = 'Shopping cart is empty';
+                }
+                let _this = this;
+                dialog.confirm(title,msg, [
+                    {
+                        txt: sureBnt,
+                        color: false,
+                        callback: function () {
+
+                        }
+                    }
+                ]);
             }
         },
         mounted:function () {

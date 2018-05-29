@@ -149,12 +149,13 @@
                             localStorage.ROOM_INFO = this.roomNo;
                             localStorage.serviceUrl = res.data.serviceUrl;
                             localStorage.spage = 0;
-                            localStorage.searchFlag = 'home'
-                            localStorage.oid = res.data.oid
-                            localStorage.id = res.data.id
-                            localStorage.ip = res.data.lastloginip
+                            localStorage.searchFlag = 'home';
+                            localStorage.oid = res.data.oid;
+                            localStorage.id = res.data.id;
+                            localStorage.ip = res.data.lastloginip;
+                            //初始化购物车
+                            global.shopCar = new Map();
                             //跳转首页
-
                             this.$router.replace({path: '/home', query: {type: 1}});
                             localStorage.idType = 1;
 

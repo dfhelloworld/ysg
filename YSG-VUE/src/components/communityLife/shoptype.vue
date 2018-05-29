@@ -51,7 +51,7 @@
                                     <ul class="displayShop-ul">
                                             <li>
                                                 <div class="img" v-if="firstTag.is_robot == 0">
-                                                    <img :src="secondTag.pic" alt=" " @click="robotService(firstTag.id,secondTag.id)">
+                                                    <img :src="secondTag.pic" alt=" " @click="robotService(firstTag,secondTag.id)">
                                                 </div>
                                                 <div class="img" v-if="firstTag.is_robot != 0">
                                                     <img :src="secondTag.pic" alt=" " @click="goDetail(firstTag.id,secondTag.id)">
@@ -190,8 +190,10 @@
                     query: { pageFlag: "home" }
                 });
             },
-            robotService: function(fId,sId) {
+            robotService: function(firstTag,sId) {
+                let fId = firstTag.id;
                 localStorage.NEWTYPE=fId+','+sId;
+                global.firstTag=firstTag;
                 this.$router.push({
                     path: "/robotDelivery",
                     query: { pageFlag: "robotDelivery" }
