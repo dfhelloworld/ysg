@@ -248,13 +248,9 @@
                 pageFlag:'',
                 preRoute:this.$route.query.info,
                 mySwiper:{},
-                info: {},
-                content: "",
                 tagIds:[],
                 isZH:true,
-                isShow:true,
                 tagIds:[],
-                tagsData:[],
                 carList:[],
                 ftotal:0
             }
@@ -281,17 +277,6 @@
             buyCreate: function() {
                 $("#section1").hide();
                 $("#section2").show();
-                this.$store.dispatch("showLoading");
-                var ssrBase = "";
-                let _this = this;
-                if (this.info.detail) {
-                    $.get(ssrBase + this.info.detail, function(res) {
-                        _this.content = res;
-                        _this.$store.dispatch("hideLoading");
-                    });
-                } else {
-                    this.$store.dispatch("hideLoading");
-                }
                 $(".side-bar").hide();
             },
             changeTab:function (id) {
