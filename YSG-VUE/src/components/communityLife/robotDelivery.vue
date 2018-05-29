@@ -365,6 +365,10 @@
                 $(".side-bar").animate({opacity: 0.2},300,function(){
                     $(".side-bar").css({opacity: 1});
                 });
+                if(global.shopCar===undefined){
+                    //初始化购物车
+                    global.shopCar = new Map();
+                }
                 if(global.shopCar.has('p'+global.firstTag.id)){
                     let shopCar = global.shopCar.get('p'+global.firstTag.id);
                     if(shopCar.c.has('c'+childObj.id)){
@@ -386,8 +390,30 @@
                 this.$router.push('/shopping');
             },
             apply: function() {
-                $("#section3").show();
-                $("#section2").hide();
+                let dialog = window.YDUI.dialog;
+                let alobj = new alertLanguage();
+                let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
+                let title = obj.title;
+                let sureBnt = obj.sureBnt;
+                let msg = '请选择商品';
+                if(localStorage.LANGUAGE!='zh'){
+                    msg = 'Please select product';
+                }
+                let _this = this;
+                if(global.shopCar.size==0){
+                    dialog.confirm(title,msg, [
+                        {
+                            txt: sureBnt,
+                            color: false,
+                            callback: function () {
+                                _this.caculate();
+                            }
+                        }
+                    ]);
+                }else{
+                    $("#section3").show();
+                    $("#section2").hide();
+                }
             },
             orderApply: function() {
                 let alobj = new alertLanguage();
