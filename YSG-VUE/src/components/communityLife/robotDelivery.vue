@@ -71,13 +71,13 @@
       <div class="nav_mark"></div>
       <yd-navbar title="购物车" fixed>
         <span class="back" slot="left" @click="buyClose()"></span>
-        <span style="display:block;width:50%;height:60%;margin-top:10%;margin-right:22%;" slot="right" @click="clearCar()">
+        <span style="display:block;width:50%;height:60%;margin-top:10%;margin-right:16%;" slot="right" @click="clearCar()">
            <div style="color:#afafaf;">清空</div>
         </span>
       </yd-navbar>
-      <section class="g-scrollview">
-        <ul class="type-buy" style="padding-top: 0.5rem">
-            <li style="margin-top:40px;">
+      <section class="g-scrollview"></br></br></br></br>
+        <ul class="type-buy" style="margin-top:-20px;">
+            <li>
                 <div class="col-10">
                     机器人服务>
                 </div>
