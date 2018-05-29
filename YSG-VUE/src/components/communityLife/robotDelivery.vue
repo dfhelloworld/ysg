@@ -108,12 +108,9 @@
                 <div class="col-6">
                     <table width="100%">
                         <tr>
-                            <td align="center">
+                            <td align="left" colspan="2">
                                 <h4 v-if="isZH">{{p.title_lang1}}</h4>
                                 <h4 v-if="!isZH">{{p.title_lang2}}</h4>
-                            </td>
-                            <td>
-                                <h4>&nbsp;</h4>
                             </td>
                             <td align="center">
                                 <img style="width:35%;height:20%;" src="../../assets/images/itemDelete.png" alt="">
@@ -123,7 +120,7 @@
                             <td colspan="3" style="height: 0.8rem;">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td width="20%" align="center">
+                            <td width="20%" align="left">
                                 <h4>X{{p.num}}</h4>
                             </td>
                             <td align="right" width="50%">
@@ -231,7 +228,7 @@
                 tagIds:[],
                 tagsData:[],
                 carList:[],
-                ftotal:'0.0'
+                ftotal:0
             }
         },
         created:function () {
@@ -316,7 +313,6 @@
                     let obj = {p:global.firstTag,c:cobjs};
                     global.shopCar.set('p'+global.firstTag.id, obj);
                 }
-                console.log(global.shopCar);
             },
             goBack:function(){
                 this.$router.push('/shopping');
@@ -434,10 +430,22 @@
             },
             goShopCar: function() {
                 this.buyCreate();
-                this.carList=[{p:{title_lang1:'机器人服务',title_lang2:'Robot',
-                c:[{id:1,title_lang1:'毛巾',title_lang2:'Towels',img:'https://storage.easyiservice.com/iservicev2/img/201709/2a1da27c6dfb1b32c76aaca227ca4de1.jpg!width_750',num:1,price:2.5}]}}];
-                this.ftotal = '2.5';
-                console.log(this.carList);
+                this.caculate();
+            },
+            caculate: function() {
+                let total = 0;
+                let arr = [];
+                global.shopCar.forEach(function(value, key, map){
+                    let pobj = {p:{title_lang1:value.p.title_lang1,title_lang2:value.p.title_lang2,c:[]}};
+                    value.c.forEach(function(v2, k2, m2){
+                        let cobj = {id:v2.c.id,title_lang1:v2.c.title_lang1,title_lang2:v2.c.title_lang2,img:v2.c.pic,num:v2.num,price:v2.c.price};
+                        pobj.p.c.push(cobj);
+                        total = total + cobj.num * cobj.price;
+                    });
+                    arr.push(pobj);
+                });
+                this.carList = arr;
+                this.ftotal = total;
             },
             clearCar: function() {
                 global.shopCar.clear();
