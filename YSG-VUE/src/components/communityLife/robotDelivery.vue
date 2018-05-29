@@ -27,13 +27,23 @@
                                 <td v-for="(tags, index) in tagsData">
                                     <div v-if="tags.id==tagIds[1]">
                                         <div style="border-bottom:1px solid #DCDCDC;height:30px;float:left;" name="tagsDiv">
-                                            <a href="#" @click="changeTab(tags.id)"><span><font size="3">{{tags.title}}</font></span></a>
+                                            <a href="#" @click="changeTab(tags.id)">
+                                                <span>
+                                                    <font size="3" v-if="isZH">{{tags.title_lang1}}</font>
+                                                    <font size="3" v-if="!isZH">{{tags.title_lang2}}</font>
+                                                </span>
+                                            </a>
                                         </div>
                                         <div style="float:left;">&nbsp;&nbsp;&nbsp;</div>
                                     </div>
                                     <div v-if="tags.id!=tagIds[1]">
                                         <div style="color:#afafaf;height:30px;float:left;" name="tagsDiv">
-                                            <a href="#" @click="changeTab(tags.id)"><span><font size="3">{{tags.title}}</font></span></a>
+                                            <a href="#" @click="changeTab(tags.id)">
+                                                <span>
+                                                    <font size="3" v-if="isZH">{{tags.title_lang1}}</font>
+                                                    <font size="3" v-if="!isZH">{{tags.title_lang2}}</font>
+                                                </span>
+                                            </a>
                                         </div>
                                         <div style="float:left;">&nbsp;&nbsp;&nbsp;</div>
                                     </div>
@@ -82,21 +92,25 @@
         </span>
       </yd-navbar>
       <section class="g-scrollview"></br></br></br></br>
-        <ul class="type-buy" style="margin-top:-20px;">
+        <ul class="type-buy" style="margin-top:-20px;" v-for="data in carList">
             <li>
-                <div class="col-10">
-                    机器人服务>
+                <div class="col-10" v-if="isZH">
+                    {{data.p.title_lang1}}>
+                </div>
+                <div class="col-10" v-if="!isZH">
+                    {{data.p.title_lang2}}>
                 </div>
             </li>
-            <li>
+            <li v-for="p in data.p.c">
                 <div class="col-4">
-                    <img src="https://storage.easyiservice.com/iservicev2/img/201709/2a1da27c6dfb1b32c76aaca227ca4de1.jpg!width_750" alt="">
+                    <img :src="p.img" alt="">
                 </div>
                 <div class="col-6">
                     <table width="100%">
                         <tr>
                             <td align="center">
-                                <h4>毛巾</h4>
+                                <h4 v-if="isZH">{{p.title_lang1}}</h4>
+                                <h4 v-if="!isZH">{{p.title_lang2}}</h4>
                             </td>
                             <td>
                                 <h4>&nbsp;</h4>
@@ -110,7 +124,7 @@
                         </tr>
                         <tr>
                             <td width="20%" align="center">
-                                <h4>X1</h4>
+                                <h4>X{{p.num}}</h4>
                             </td>
                             <td align="right" width="50%">
                                 <div>
@@ -121,7 +135,8 @@
                                 </div>
                             </td>
                             <td align="center" width="30%">
-                                <h4 style="color:red">￥ 2.5</h4>
+                                <h4 style="color:red" v-if="isZH">￥ {{p.num*p.price}}</h4>
+                                <h4 style="color:red" v-if="!isZH">$ {{p.num*p.price}}</h4>
                             </td>
                         </tr>
                     </table>
@@ -131,10 +146,10 @@
     </section>
       <section class="buy_foot" style="margin-top: 1rem;">
         <div class="col-5" v-if="isZH">
-          合计 <font color="red">￥ 2.5</font>
+          合计 <font color="red">￥ </font><font color="red" id="ftotal">{{ftotal}}</font>
         </div>
         <div class="col-5" v-if="!isZH">
-          Total <font color="red">$ 2.5</font>
+          Total <font color="red">$ </font><font color="red" id="ftotal">{{ftotal}}</font>
         </div>
         <div class="col-5">
           <button type="button" @click="apply" v-if="isZH">提交</button>
@@ -214,7 +229,9 @@
                 isZH:true,
                 isShow:true,
                 tagIds:[],
-                tagsData:[]
+                tagsData:[],
+                carList:[],
+                ftotal:'0.0'
             }
         },
         created:function () {
@@ -417,6 +434,10 @@
             },
             goShopCar: function() {
                 this.buyCreate();
+                this.carList=[{p:{title_lang1:'机器人服务',title_lang2:'Robot',
+                c:[{id:1,title_lang1:'毛巾',title_lang2:'Towels',img:'https://storage.easyiservice.com/iservicev2/img/201709/2a1da27c6dfb1b32c76aaca227ca4de1.jpg!width_750',num:1,price:2.5}]}}];
+                this.ftotal = '2.5';
+                console.log(this.carList);
             },
             clearCar: function() {
                 global.shopCar.clear();
