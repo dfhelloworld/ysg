@@ -75,13 +75,60 @@
            <div style="color:#afafaf;">清空</div>
         </span>
       </yd-navbar>
-      <section class="resolve-box" v-html="content"></section>
+      <section class="g-scrollview">
+        <ul class="type-buy" style="padding-top: 0.5rem">
+            <li style="margin-top:40px;">
+                <div class="col-10">
+                    机器人服务>
+                </div>
+            </li>
+            <li>
+                <div class="col-4">
+                    <img src="https://storage.easyiservice.com/iservicev2/img/201709/2a1da27c6dfb1b32c76aaca227ca4de1.jpg!width_750" alt="">
+                </div>
+                <div class="col-6">
+                    <table width="100%">
+                        <tr>
+                            <td align="center">
+                                <h4>毛巾</h4>
+                            </td>
+                            <td>
+                                <h4>&nbsp;</h4>
+                            </td>
+                            <td align="center">
+                                <img style="width:35%;height:20%;" src="../../assets/images/itemDelete.png" alt="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="height: 0.8rem;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td width="20%" align="center">
+                                <h4>X1</h4>
+                            </td>
+                            <td align="right" width="50%">
+                                <div>
+                                    <span class="m-spinner">
+                                        <a href="javascript:alert(1);"></a>
+                                        <a href="javascript:alert(2);"></a>
+                                    </span>
+                                </div>
+                            </td>
+                            <td align="center" width="30%">
+                                <h4 style="color:red">￥ 2.5</h4>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </li>
+        </ul>
+    </section>
       <section class="buy_foot" style="margin-top: 1rem;">
         <div class="col-5">
-          <div><yd-spinner max="75" unit="1" v-model="spinner1"></yd-spinner></div>
+          合计 <font color="red">￥ 2.5</font>
         </div>
         <div class="col-5">
-          <button type="button" @click="apply">{{language.community.buy}}</button>
+          <button type="button" @click="apply">提交</button>
         </div>
       </section>
     </div>
@@ -242,7 +289,7 @@
                     let obj = {p:global.firstTag,c:cobjs};
                     global.shopCar.set('p'+global.firstTag.id, obj);
                 }
-                console.log(global.shopCar.get('p'+global.firstTag.id).c);
+                console.log(global.shopCar);
             },
             goBack:function(){
                 this.$router.push('/shopping');
