@@ -69,10 +69,16 @@
     <!--购物页面-->
     <div class="property" id="section2" style="display: none;">
       <div class="nav_mark"></div>
-      <yd-navbar title="购物车" fixed>
+      <yd-navbar title="购物车" fixed v-if="isZH">
         <span class="back" slot="left" @click="buyClose()"></span>
         <span style="display:block;width:50%;height:60%;margin-top:10%;margin-right:16%;" slot="right" @click="clearCar()">
            <div style="color:#afafaf;">清空</div>
+        </span>
+      </yd-navbar>
+      <yd-navbar title="Shopping Cart" fixed v-if="!isZH">
+        <span class="back" slot="left" @click="buyClose()"></span>
+        <span style="display:block;width:50%;height:60%;margin-top:10%;margin-right:16%;" slot="right" @click="clearCar()">
+           <div style="color:#afafaf;">Clear</div>
         </span>
       </yd-navbar>
       <section class="g-scrollview"></br></br></br></br>
@@ -124,11 +130,15 @@
         </ul>
     </section>
       <section class="buy_foot" style="margin-top: 1rem;">
-        <div class="col-5">
+        <div class="col-5" v-if="isZH">
           合计 <font color="red">￥ 2.5</font>
         </div>
+        <div class="col-5" v-if="!isZH">
+          Total <font color="red">$ 2.5</font>
+        </div>
         <div class="col-5">
-          <button type="button" @click="apply">提交</button>
+          <button type="button" @click="apply" v-if="isZH">提交</button>
+          <button type="button" @click="apply" v-if="!isZH">Submit</button>
         </div>
       </section>
     </div>
