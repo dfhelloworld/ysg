@@ -94,10 +94,10 @@
       <section class="g-scrollview"></br></br></br></br>
         <ul class="type-buy" style="margin-top:-20px;" v-for="data in carList">
             <li>
-                <div class="col-10" v-if="isZH">
+                <div class="col-10" v-if="isZH" style="font-size:16px;">
                     {{data.p.title_lang1}}>
                 </div>
-                <div class="col-10" v-if="!isZH">
+                <div class="col-10" v-if="!isZH" style="font-size:16px;">
                     {{data.p.title_lang2}}>
                 </div>
             </li>
@@ -126,8 +126,8 @@
                             <td align="right" width="50%">
                                 <div>
                                     <span class="m-spinner">
-                                        <a href="javascript:alert(1);"></a>
-                                        <a href="javascript:alert(2);"></a>
+                                        <a href="#" @click="delProduct(data.p.id,p.id)"></a>
+                                        <a href="#" @click="addProduct(data.p.id,p.id)"></a>
                                     </span>
                                 </div>
                             </td>
@@ -436,7 +436,7 @@
                 let total = 0;
                 let arr = [];
                 global.shopCar.forEach(function(value, key, map){
-                    let pobj = {p:{title_lang1:value.p.title_lang1,title_lang2:value.p.title_lang2,c:[]}};
+                    let pobj = {p:{id:value.p.id,title_lang1:value.p.title_lang1,title_lang2:value.p.title_lang2,c:[]}};
                     value.c.forEach(function(v2, k2, m2){
                         let cobj = {id:v2.c.id,title_lang1:v2.c.title_lang1,title_lang2:v2.c.title_lang2,img:v2.c.pic,num:v2.num,price:v2.c.price};
                         pobj.p.c.push(cobj);
@@ -464,10 +464,29 @@
                         txt: sureBnt,
                         color: false,
                         callback: function () {
-
+                            _this.caculate();
                         }
                     }
                 ]);
+            },
+            addProduct: function(pid,cid) {
+                let pshopCar = global.shopCar.get('p'+pid);
+                let cshopCar = pshopCar.c.get('c'+cid);
+                cshopCar.num = cshopCar.num + 1;
+                this.caculate();
+            },
+            delProduct: function(pid,cid) {
+                let pshopCar = global.shopCar.get('p'+pid);
+                let cshopCar = pshopCar.c.get('c'+cid);
+                if(cshopCar.num==1){
+                    pshopCar.c.delete('c'+cid);
+                }else{
+                    cshopCar.num = cshopCar.num - 1;
+                }
+                if(pshopCar.c.size==0){
+                    global.shopCar.delete('p'+pid);
+                }
+                this.caculate();
             }
         },
         mounted:function () {
