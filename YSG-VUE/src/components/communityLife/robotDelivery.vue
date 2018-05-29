@@ -71,7 +71,7 @@
       <div class="nav_mark"></div>
       <yd-navbar title="购物车" fixed>
         <span class="back" slot="left" @click="buyClose()"></span>
-        <span style="display:block;width:50%;height:60%;margin-top:10%" slot="right" @click="clearCar()">
+        <span style="display:block;width:50%;height:60%;margin-top:10%;margin-right:22%;" slot="right" @click="clearCar()">
            <div style="color:#afafaf;">清空</div>
         </span>
       </yd-navbar>
