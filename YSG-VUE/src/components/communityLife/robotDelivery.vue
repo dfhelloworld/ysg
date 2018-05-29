@@ -142,10 +142,10 @@
         </ul>
     </section>
       <section class="buy_foot" style="margin-top: 1rem;">
-        <div class="col-5" v-if="isZH">
+        <div class="col-5" v-if="isZH" style="font-size:16px;">
           合计 <font color="red">￥ </font><font color="red" id="ftotal">{{ftotal}}</font>
         </div>
-        <div class="col-5" v-if="!isZH">
+        <div class="col-5" v-if="!isZH" style="font-size:16px;">
           Total <font color="red">$ </font><font color="red" id="ftotal">{{ftotal}}</font>
         </div>
         <div class="col-5">
