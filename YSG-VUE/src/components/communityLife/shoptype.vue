@@ -211,9 +211,7 @@
     </div>
     <!--购物车-->
     <div class="side-bar"> 
-        <a href="#" class="icon-chat" @click="goShopCar()">
-            <img style="width:100%;height:100%;" src="../../assets/images/shopCard.png" alt="">
-        </a> 
+        <img style="width:60%;height:60%;" src="../../assets/images/shopCard.png" alt="" @click="goShopCar()">
     </div>
   </div>
 </template>
@@ -281,7 +279,6 @@
   }
 
   .side-bar {width: 20%;position: fixed;bottom: 10%;right: 3%;font-size: 0;line-height: 0;z-index: 100;}
-  .side-bar a {width: 70%;height: 70%;display: inline-block;background-color: white;margin-bottom: 2px;}
 
 </style>
 <script>
@@ -312,7 +309,6 @@
                     withchild:1
                 }
                 _this.$store.dispatch('getFirstTags', params).then(function (res) {
-                   
                     _this.dataList = res.data.list;
                 });
             });
