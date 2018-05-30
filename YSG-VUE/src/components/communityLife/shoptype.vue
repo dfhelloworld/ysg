@@ -54,7 +54,7 @@
                                                     <img :src="secondTag.pic" alt=" " @click="robotService(firstTag,secondTag.id)">
                                                 </div>
                                                 <div class="img" v-if="firstTag.is_robot != 0">
-                                                    <img :src="secondTag.pic" alt=" " @click="goDetail(firstTag.id,secondTag.id)">
+                                                    <img :src="secondTag.pic" alt=" " @click="goDetail(firstTag,secondTag.id)">
                                                 </div>
                                                 <div v-if="isZH">{{secondTag.title_lang1}}</div> 
                                                 <div v-if="!isZH">{{secondTag.title_lang2}}</div> 
@@ -441,8 +441,10 @@
                 $("#section3").show();
                 $("#section2").hide();
             },
-            goDetail: function(fId,sId) {
+            goDetail: function(firstTag,sId) {
+                let fId = firstTag.id;
                 localStorage.NEWTYPE=fId+','+sId;
+                global.firstTag=firstTag;
                 this.$router.push({
                     path: "/newshopping",
                     query: { pageFlag: "home" }
@@ -454,7 +456,7 @@
                 global.firstTag=firstTag;
                 this.$router.push({
                     path: "/robotDelivery",
-                    query: { pageFlag: "robotDelivery" }
+                    query: { pageFlag: "home" }
                 });
             },
             robotWash: function() {
