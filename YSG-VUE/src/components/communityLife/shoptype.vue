@@ -50,11 +50,8 @@
                                 <td colspan="3">
                                     <ul class="displayShop-ul">
                                             <li>
-                                                <div class="img" v-if="firstTag.is_robot == 0">
-                                                    <img :src="secondTag.pic" alt=" " @click="robotService(firstTag,secondTag.id)">
-                                                </div>
-                                                <div class="img" v-if="firstTag.is_robot != 0">
-                                                    <img :src="secondTag.pic" alt=" " @click="goDetail(firstTag,secondTag.id)">
+                                                <div class="img">
+                                                    <img :src="secondTag.pic" alt=" " @click="goDetail(firstTag,secondTag.id,firstTag.is_robot)">
                                                 </div>
                                                 <div v-if="isZH">{{secondTag.title_lang1}}</div> 
                                                 <div v-if="!isZH">{{secondTag.title_lang2}}</div> 
@@ -441,22 +438,17 @@
                 $("#section3").show();
                 $("#section2").hide();
             },
-            goDetail: function(firstTag,sId) {
+            goDetail: function(firstTag,sId,isRobot) {
                 let fId = firstTag.id;
                 localStorage.NEWTYPE=fId+','+sId;
                 global.firstTag=firstTag;
+                let p = "/newshopping";
+                if(isRobot==0){
+                    p = "/robotDelivery";
+                }
                 this.$router.push({
-                    path: "/newshopping",
-                    query: { pageFlag: "home" }
-                });
-            },
-            robotService: function(firstTag,sId) {
-                let fId = firstTag.id;
-                localStorage.NEWTYPE=fId+','+sId;
-                global.firstTag=firstTag;
-                this.$router.push({
-                    path: "/robotDelivery",
-                    query: { pageFlag: "home" }
+                    path: p,
+                    query: {pageFlag:"home"}
                 });
             },
             robotWash: function() {
