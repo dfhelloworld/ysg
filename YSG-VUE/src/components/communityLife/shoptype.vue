@@ -46,16 +46,16 @@
                                     <div v-if="!isZH"><b>{{firstTag.title_lang2}}</b></div>
                                 </td>
                             </tr>
-                            <tr v-for="(secondTag, index2) in firstTag.children">
+                            <tr>
                                 <td colspan="3">
                                     <ul class="displayShop-ul">
-                                            <li>
+                                            <li v-for="(secondTag, index2) in firstTag.children">
                                                 <div class="img">
-                                                    <img :src="secondTag.pic" alt=" " @click="goDetail(firstTag,secondTag.id,firstTag.is_robot)">
+                                                    <img :src="secondTag.pic" alt=" " @click="goDetail(firstTag,secondTag.id,firstTag.is_robot)" width="100%" height="100%"/>
                                                 </div>
                                                 <div v-if="isZH">{{secondTag.title_lang1}}</div> 
                                                 <div v-if="!isZH">{{secondTag.title_lang2}}</div> 
-                                                <div class="divlines"></div>
+                                                <div class="divlines" v-if="index2%2==0"></div>
                                             </li>
                                     </ul>
                                 </td>
@@ -312,6 +312,7 @@
                     withchild:1
                 }
                 _this.$store.dispatch('getFirstTags', params).then(function (res) {
+                   
                     _this.dataList = res.data.list;
                 });
             });
