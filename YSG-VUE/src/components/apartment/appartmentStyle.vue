@@ -76,8 +76,8 @@
         </section>
 
         <!--向下提示箭头-->
-        <div class="arrow-wrapper">
-            <a href="#" id="arrow-opener"></a>
+        <div class="arrow-wrapper1">
+            <a href="#" id="arrow-opener1"></a>
         </div>
 
     </div>
@@ -101,12 +101,12 @@
     .appartment_style_tab .active{color: #f0c366;}
     .appartment_style_tab .active .tab_bottom_line{position: absolute;width: 80%;height: 2px;bottom:0px;left:50%;margin-left: -40%;background: #f0c366;}
 
-    #arrow-opener:hover {
+    #arrow-opener1:hover {
         -webkit-transition-delay: 0;
         transition-delay: 0;
         opacity: 1;
     }
-    #arrow-opener {
+    #arrow-opener1 {
         cursor: pointer;
         width: 20px;
         height: 20px;
@@ -116,26 +116,28 @@
         border-bottom: 1px solid rgb(0, 92, 255);
         border-right: 1px solid rgb(0, 92, 255);
         position: absolute;
-        top: 90%;
+        bottom: 7%;
         left: 50%;
-        -webkit-animation: arrow-opener .5s ease-in-out alternate infinite;
-        animation: arrow-opener .5s ease-in-out alternate infinite;
+        -webkit-animation: arrow-opener1 .5s ease-in-out alternate infinite;
+        animation: arrow-opener1 .5s ease-in-out alternate infinite;
         cursor: pointer;
         opacity: 0.5;
         -webkit-transition: opacity .2s ease-in-out, transform .5s ease-in-out .2s;
         transition: opacity .2s ease-in-out, transform .5s ease-in-out .2s;
     }
-    @-webkit-keyframes arrow-opener {
+
+     @-webkit-keyframes arrow-opener1 {
         100% {
-            top: 91%
+            bottom: 8%;
         }
     }
-    @keyframes arrow-opener {
+    @keyframes arrow-opener1 {
         100% {
-            top: 91%
+            bottom: 8%;
         }
     }
-    .arrow-wrapper {
+
+    .arrow-wrapper1 {
         font-size: 26px;
         float: left;
     }

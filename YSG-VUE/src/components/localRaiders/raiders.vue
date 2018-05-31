@@ -79,7 +79,7 @@
         border-bottom: 1px solid rgb(0, 92, 255);
         border-right: 1px solid rgb(0, 92, 255);
         position: absolute;
-        top: 87%;
+        bottom: 10%;
         left: 50%;
         -webkit-animation: arrow-opener .5s ease-in-out alternate infinite;
         animation: arrow-opener .5s ease-in-out alternate infinite;
@@ -88,16 +88,18 @@
         -webkit-transition: opacity .2s ease-in-out, transform .5s ease-in-out .2s;
         transition: opacity .2s ease-in-out, transform .5s ease-in-out .2s;
     }
-    @-webkit-keyframes arrow-opener {
+
+     @-webkit-keyframes arrow-opener {
         100% {
-            top: 88%
+            bottom: 11%;
         }
     }
     @keyframes arrow-opener {
         100% {
-            top: 88%
+            bottom: 11%;
         }
     }
+
     .arrow-wrapper {
         font-size: 26px;
         float: left;
