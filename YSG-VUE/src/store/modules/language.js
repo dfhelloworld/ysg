@@ -72,7 +72,8 @@ const state = {
 			invoices:'Invoices',
 			invoices_header:'Issue Invoice',
 			invoices_manage:'Manage Invoice',
-            order:'Order'
+			order:'Order',
+			viewOrder:'Check Order'
 		},
 		common:{
             screen:'Screen',
@@ -380,7 +381,8 @@ const state = {
 			invoices:'发票',
 			invoices_header:'开具发票',
 			invoices_manage:'票据管理',
-			order:'订单'
+			order:'订单',
+			viewOrder:'查看订单'
 		},
         common:{
             screen:'筛选',

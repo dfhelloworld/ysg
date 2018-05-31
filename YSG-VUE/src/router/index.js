@@ -38,6 +38,7 @@ import invoicesHeader from '../components/mycenter/invoicesHeader.vue'
 import invoicesManage from '../components/mycenter/invoicesManage.vue'
 import helpDetail from '../components/common/menu/helpDetail.vue'
 import order from '../components/mycenter/order.vue'
+import viewOrder from '../components/mycenter/viewOrder.vue'
 
 /**
  * 搜索
@@ -241,6 +242,7 @@ export default new Router({
         {path: '/ssr/ssrDetail',name: 'ssrDetail',component: ssrDetail},//订阅详情
         {path: '/helpDetail',name: 'helpDetail',component: helpDetail},//帮助详情
         {path: '/order',name: 'order',component: order},//订单详情
+        {path: '/viewOrder',name: 'viewOrder',component: viewOrder},//查看订单
         {path: '/judge',name: 'judge',component: judge},//评论列表
         {path: '/judgeInput',name: 'judgeInput',component: judgeInput},//评论
         {path: '/map',name: 'map',component: map},//评论

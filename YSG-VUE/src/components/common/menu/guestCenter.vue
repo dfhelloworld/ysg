@@ -23,6 +23,12 @@
                     <div class="right"><i class="notice"></i></div>
                 </li>
             </router-link> -->
+            <router-link to="/viewOrder">
+                <li>
+                    <div class="left">{{language.myCenter.viewOrder}}</div>
+                    <div class="right"><i class="notice"></i></div>
+                </li>
+            </router-link>
             <li v-show="idType == 2" @click="goGsm">
                 <div class="left">{{language.myCenter.gsm}}</div>
                 <div class="right"><i class="message"></i></div>
