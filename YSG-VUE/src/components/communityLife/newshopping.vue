@@ -17,6 +17,8 @@
                   <a><span>{{item.title}}</span></a>
                 </div>
               </div>
+              <div class="swiper-button-prev" v-show="tagList.length>3" style="top:39%"></div>
+              <div class="swiper-button-next" v-show="tagList.length>3" style="top:39%"></div>
             </div>
           </section>
         </header>
