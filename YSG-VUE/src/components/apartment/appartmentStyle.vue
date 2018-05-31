@@ -18,8 +18,8 @@
                             <i class="tab_bottom_line"></i>
                         </div>
                     </div>
-                    <div class="swiper-button-prev" v-show="hotelDetail.roomTypeList.length>3" style="margin-left:-11px;margin-top:-16px;"></div>
-                    <div class="swiper-button-next" v-show="hotelDetail.roomTypeList.length>3" style="margin-right:-10px;margin-top:-16px;"></div>
+                    <div class="swiper-button-prev" v-show="hotelDetail.roomTypeList.length>3" style="margin-left:-11px;top:49%;"></div>
+                    <div class="swiper-button-next" v-show="hotelDetail.roomTypeList.length>3" style="margin-right:-10px;top:49%;"></div>
                 </div>
             </section>
 
