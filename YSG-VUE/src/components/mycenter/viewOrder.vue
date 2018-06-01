@@ -8,7 +8,7 @@
       <section class="g-flexview">
         <section class="g-scrollview">
           <div id="J_ListContent" class="m-list list-theme4"><br/><br/>
-            <ul class="type-buy" style="padding-top: 0.5rem">
+            <ul class="type-buy" style="padding-top: 0.5rem" @click="detail()">
               <li>
                 <table border="0" width="100%">
                     <tr>
@@ -67,6 +67,9 @@
         methods: {
             goBack:function(){
                 this.$router.push('/home');
+            },
+            detail:function(){
+                alert(111);
             }
         },
         mounted:function () {

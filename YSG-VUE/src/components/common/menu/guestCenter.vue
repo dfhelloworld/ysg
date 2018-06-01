@@ -26,7 +26,7 @@
             <router-link to="/viewOrder">
                 <li>
                     <div class="left">{{language.myCenter.viewOrder}}</div>
-                    <div class="right"><i class="notice"></i></div>
+                    <div class="right"><i class="viewOrder"></i></div>
                 </li>
             </router-link>
             <li v-show="idType == 2" @click="goGsm">
@@ -61,6 +61,7 @@
     .user_center .message{background: url("../../../assets/images/icon_message.png")center no-repeat;background-size: .3rem;}
     .user_center .notice{background: url("../../../assets/images/icon_notice.png")center no-repeat;background-size: .3rem;}
     .user_center .loginout{background: url("../../../assets/images/icon_loginout.png")center no-repeat;background-size: .3rem;}
+    .user_center .viewOrder{background: url("../../../assets/images/viewOrder.png")center no-repeat;background-size: .3rem;}
 </style>
 
 <script>
