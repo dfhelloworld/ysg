@@ -152,6 +152,16 @@ const actions = {
             })
         })
     },
+    //添加订单
+    addShoppingCart: function ({commit}, data) {
+        return new Promise((resolve, reject) => {
+            API.addShoppingCart(data).then((data) => {
+                resolve(data)
+            }, (error) => {
+                reject(error)
+            })
+        })
+    },
 }
 const mutations = {
     // [types.TRANSLATELANGUAGELIST] (state,data) {

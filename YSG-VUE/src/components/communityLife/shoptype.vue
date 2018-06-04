@@ -391,45 +391,55 @@
             doOrder: function(){
                 $(".buy_foot button").attr("disabled",true);
                 $(".buy_foot button").css({background: "grey"});
-                
+                //提交订单
+                let arr = [];
+                for(let i = 0;i < this.this.carList.length;i++){
+                    for(let j = 0;i < this.this.carList[i].p.c;j++){
+                        let obj = {"id":0,"num":0};
+                        obj.id = this.this.carList[i].p.c[j].id;
+                        obj.num = this.this.carList[i].p.c[j].num;
+                        arr.push(pobj);
+                    }
+                }
                 let _this = this;
-                // let params = {
-                //     hotelid: localStorage.HOTELID,
-                //     shoppingid: this.info.id,
-                //     token: localStorage.TOKEN,
-                //     count: this.spinner1
-                // };
-                //this.$store.dispatch("getShoppingOrder", params).then(res => {
-                    setTimeout(function(){ 
-                        let mymsg = "成功";
-                        // if (res.data.code == 0) {
-                        //     mymsg = this.language.msg.buy_info;
-                        // } else {
-                        //     mymsg = res.data.msg;
-                        // }
-                        $(".buy_foot button").attr("disabled",false);
-                        $(".buy_foot button").css({background: "#f0c366"});
-                        //弹出购物提示信息
-                        let alobj = new alertLanguage();
-                        let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
-                        let title = obj.title;
-                        let msg = obj.shopping.msg;
-                        let sureBnt = obj.sureBnt;
-                        let dialog = window.YDUI.dialog;
-                        dialog.confirm(title,mymsg, [
-                            {
-                                txt: sureBnt,
-                                color: false,
-                                callback: function () {
-                                    global.shopCar.clear();
-                                    $("#section1").show();
-                                    $("#section3").hide();
-                                    $(".side-bar").show();
-                                }
+                let params = {
+                    hotelid: localStorage.HOTELID,
+                    userid: localStorage.userId,
+                    products: arr
+                };
+                this.$store.dispatch("addShoppingCart", params).then(res => {
+                    let mymsg = "成功";
+                    //判断显示中/英文
+                    if(localStorage.LANGUAGE!='zh'){
+                        mymsg = "success";
+                    }
+                    if (res.data.code == 0) {
+                        mymsg = this.language.msg.buy_info;
+                    } else {
+                        mymsg = res.data.msg;
+                    }
+                    $(".buy_foot button").attr("disabled",false);
+                    $(".buy_foot button").css({background: "#f0c366"});
+                    //弹出购物提示信息
+                    let alobj = new alertLanguage();
+                    let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
+                    let title = obj.title;
+                    let msg = obj.shopping.msg;
+                    let sureBnt = obj.sureBnt;
+                    let dialog = window.YDUI.dialog;
+                    dialog.confirm(title,mymsg, [
+                        {
+                            txt: sureBnt,
+                            color: false,
+                            callback: function () {
+                                global.shopCar.clear();
+                                $("#section1").show();
+                                $("#section3").hide();
+                                $(".side-bar").show();
                             }
-                        ]);
-                    }, 3000);
-                //});
+                        }
+                    ]);
+                });
             },
             toBuy: function(){
                 $("#section3").show();
@@ -514,7 +524,6 @@
                 });
                 this.carList = arr;
                 this.ftotal = total;
-                
             },
             clearCar: function() {
                 global.shopCar.clear();
