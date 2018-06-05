@@ -24,13 +24,13 @@
                     </tr>
                     <tr>
                         <td  width="20%">
-                            数量:{{order.num}}
+                            {{numStr}}:{{order.num}}
                         </td>
                         <td align="center" width="60%">
                             {{order.created_at}}
                         </td>
                         <td valign="right" style="text-align: right;"  width="20%">
-                            ${{order.price}}
+                            ￥{{order.price}}
                         </td>
                     </tr>
                 </table>
@@ -72,10 +72,10 @@
                            {{obj.title}}
                         </td>
                         <td width="40%" align="center">
-                            数量:{{obj.num}}
+                            {{numStr}}:{{obj.num}}
                         </td>
                         <td width="30%">
-                            ${{obj.price}}
+                            ￥{{obj.price}}
                         </td>
                     </tr>
                     <tr>
@@ -111,13 +111,15 @@
                 isZH:true,
                 title:'订单',
                 orderNo:'',
-                orderDate:''
+                orderDate:'',
+                numStr:'数量'
             }
         },
         created:function () {
             //判断显示中/英文
             if(localStorage.LANGUAGE!='zh'){
                 this.title = "Orders";
+                this.numStr = "Quantity";
             }
             let _this = this
             $(function(){
