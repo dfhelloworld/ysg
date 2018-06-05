@@ -55,6 +55,8 @@ const Home = {
 	appUpdateUrl:'/AppVersion/getLatestAppVersionByPlatform',
 	appStartUrl:'/appStartmsg/getEffectiveAppStartmsg',
 	getHotelListUrl:'/hotellist/getHotelListList',
+	//查看订单
+	viewOrder:'/shoppingorder/getUserOrderList',
 }
 
 //登录接口
@@ -253,4 +255,6 @@ export default {
 	getFirstTags:(query) => apiPost(Community.FirstTags,query),
 	//添加订单
 	addShoppingCart:(query) => apiPost(Community.addShoppingCart,query),
+	//查看订单
+	viewOrder:(query) => apiPost(Home.viewOrder,query),
 }

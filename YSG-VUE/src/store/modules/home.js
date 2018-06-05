@@ -268,6 +268,19 @@ const actions = {
         }
       );
     });
+  },
+  viewOrder: function({ commit }, url, data) {
+    return new Promise((resolve, reject) => {
+      API.viewOrder(url, data).then(
+        res => {
+          commit(types.APPSTART, res.data);
+          resolve(res.data);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
   }
 };
 
