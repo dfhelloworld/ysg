@@ -160,7 +160,6 @@
             detail:function(order){
                 $("#section1").hide();
                 $("#section2").show();
-                //console.log(order);
                 this.orderNo = order.id;
                 this.orderDate = order.created_at;
                 this.details = order.products;
