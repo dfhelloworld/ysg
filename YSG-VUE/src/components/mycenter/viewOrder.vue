@@ -130,7 +130,7 @@
                     lang:localStorage.LANGUAGE,
                     hotelid:localStorage.HOTELID
                 }
-                this.$store.dispatch('viewOrder', params).then(function (res) {
+                _this.$store.dispatch('viewOrder', params).then(function (res) {
                     if(res.code == 0){
                         _this.dataList = res.data;
                         for(let i=0;i<_this.dataList.length;i++){
@@ -146,7 +146,7 @@
                             _this.dataList[i].created_at = dateStr;
                         }
                     } else {
-                        _this.$dialog.toast({mes: res.msg, timeout: 1000});
+                        _this.$dialog.toast({mes: res.msg, timeout: 3000});
                     }
                 });
             });

@@ -404,10 +404,8 @@
                     if(localStorage.LANGUAGE!='zh'){
                         mymsg = "success";
                     }
-                    if (res.data.code == 0) {
-                        mymsg = this.language.msg.buy_info;
-                    } else {
-                        mymsg = res.data.msg;
+                    if (res.code != 0) {
+                        mymsg = res.msg;
                     }
                     $(".buy_foot button").attr("disabled",false);
                     $(".buy_foot button").css({background: "#f0c366"});
@@ -415,7 +413,6 @@
                     let alobj = new alertLanguage();
                     let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
                     let title = obj.title;
-                    let msg = obj.shopping.msg;
                     let sureBnt = obj.sureBnt;
                     let dialog = window.YDUI.dialog;
                     dialog.confirm(title,mymsg, [
@@ -423,10 +420,12 @@
                             txt: sureBnt,
                             color: false,
                             callback: function () {
-                                global.shopCar.clear();
-                                $("#section1").show();
-                                $("#section3").hide();
-                                $(".side-bar").show();
+                                if (res.data.code == 0) {
+                                    global.shopCar.clear();
+                                    $("#section1").show();
+                                    $("#section3").hide();
+                                    $(".side-bar").show();
+                                }
                             }
                         }
                     ]);
