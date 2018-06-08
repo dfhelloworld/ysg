@@ -134,14 +134,14 @@
                     if(res.code == 0){
                         _this.dataList = res.data;
                         for(let i=0;i<_this.dataList.length;i++){
-                             // 时间格式转换
-                            let date = new Date(Number(_this.dataList[i].created_at));
+                            // 时间格式转换
+                            let date = new Date(Number(_this.dataList[i].created_at) * 1000);
                             let Y = date.getFullYear() + '-';
                             let M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-                            let D = date.getDate() + ' ';
-                            let h = date.getHours() + ':';
-                            let m = date.getMinutes() + ':';
-                            let s = date.getSeconds();
+                            let D = (date.getDate() < 10 ? '0'+(date.getDate()) : date.getDate()) + ' ';
+                            let h = (date.getHours() < 10 ? '0'+(date.getHours()) : date.getHours()) + ':';
+                            let m = (date.getMinutes() < 10 ? '0'+(date.getMinutes()) : date.getMinutes()) + ':';
+                            let s = (date.getSeconds() < 10 ? '0'+(date.getSeconds()) : date.getSeconds());
                             let dateStr = Y+M+D+h+m+s;
                             _this.dataList[i].created_at = dateStr;
                         }
