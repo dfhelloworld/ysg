@@ -383,19 +383,18 @@
                 $(".buy_foot button").attr("disabled",true);
                 $(".buy_foot button").css({background: "grey"});
                 //提交订单
-                let arr = [];
-                for(let i = 0;i < this.this.carList.length;i++){
-                    for(let j = 0;i < this.this.carList[i].p.c;j++){
-                        let obj = {"id":0,"num":0};
-                        obj.id = this.this.carList[i].p.c[j].id;
-                        obj.num = this.this.carList[i].p.c[j].num;
-                        arr.push(pobj);
+                let arr = "[";
+                for(let i = 0;i < this.carList.length;i++){
+                    for(let j = 0;j < this.carList[i].p.c.length;j++){
+                        arr = arr + '{"id":' +this.carList[i].p.c[j].id +',"num":'+this.carList[i].p.c[j].num +'},';
                     }
                 }
+                arr = arr.substring(0,arr.length-1) +"]";
                 let _this = this;
                 let params = {
                     hotelid: localStorage.HOTELID,
                     userid: localStorage.userId,
+                    token: localStorage.TOKEN,
                     products: arr
                 };
                 this.$store.dispatch("addShoppingCart", params).then(res => {
@@ -404,8 +403,8 @@
                     if(localStorage.LANGUAGE!='zh'){
                         mymsg = "success";
                     }
-                    if (res.code != 0) {
-                        mymsg = res.msg;
+                    if (res.data.code != 0) {
+                        mymsg = res.data.msg;
                     }
                     $(".buy_foot button").attr("disabled",false);
                     $(".buy_foot button").css({background: "#f0c366"});
