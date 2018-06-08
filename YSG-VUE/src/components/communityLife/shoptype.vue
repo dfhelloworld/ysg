@@ -309,7 +309,7 @@
                     withchild:1
                 }
                 _this.$store.dispatch('getFirstTags', params).then(function (res) {
-                    _this.dataList = res.data.list;
+                    _this.dataList = res.data.data.list;
                 });
             });
         },
