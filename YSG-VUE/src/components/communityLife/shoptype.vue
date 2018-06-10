@@ -67,7 +67,7 @@
         </section>
       </section>
     </div>
-    <!--购物页面-->
+    <!--购物车页面-->
     <div class="property" id="section2" style="display: none;">
       <div class="nav_mark"></div>
       <yd-navbar title="购物车" fixed v-if="isZH">

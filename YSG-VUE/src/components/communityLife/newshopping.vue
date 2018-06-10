@@ -25,9 +25,9 @@
         <section class="g-scrollview">
           <div id="J_ListContent" class="m-list list-theme4">
             <ul class="type-buy" style="padding-top: 0.5rem">
-              <li v-for="data in dataList" @click="goDetail(data)">
+              <li v-for="data in dataList">
                 <div class="col-4">
-                  <img  :src="data.pic" alt="">
+                  <img  :src="data.pic" alt="" @click="showProduct(data)">
                 </div>
                 <div class="col-6">
                   <h4 v-if="isZH">{{data.title_lang1}}</h4>
@@ -35,7 +35,7 @@
                   <p>{{data.introduct}}</p>
                   <ul class="s-price">
                     <li class="col-5" style="border:0px">RMB {{data.price}}</li>
-                    <li class="col-5" style="border:0px"><button type="button">{{language.community.buy}}</button></li>
+                    <li class="col-5" style="border:0px"><button type="button"  @click="goDetail(data)">{{language.community.buy}}</button></li>
                   </ul>
                 </div>
               </li>
@@ -45,7 +45,7 @@
         </section>
       </section>
     </div>
-    <!--购物页面-->
+    <!--购物车页面-->
     <div class="property" id="section2" style="display: none;">
       <div class="nav_mark"></div>
       <yd-navbar title="购物车" fixed v-if="isZH">
@@ -191,6 +191,16 @@
     <div class="side-bar"> 
         <img style="width:60%;height:60%;" src="../../assets/images/shopCard.png" alt="" @click="goShopCar()">
     </div>
+    <!--产品详情页面-->
+    <!--产品详情页面-->
+    <div class="property" id="section4" style="display: none;">
+        <div class="nav_mark"></div>
+        <yd-navbar :title="language.community.shopping" fixed>
+            <span class="back" slot="left" @click="productClose()"></span>
+        </yd-navbar>
+        <section class="resolve-box" v-html="content"></section>
+        </div>
+    </div>
   </div>
 </template>
 
@@ -251,7 +261,8 @@
                 isZH:true,
                 tagIds:[],
                 carList:[],
-                ftotal:0
+                ftotal:0,
+                content:''
             }
         },
         created:function () {
@@ -277,6 +288,11 @@
                 $("#section1").hide();
                 $("#section2").show();
                 $(".side-bar").hide();
+            },
+            productClose: function() {
+                $("#section4").hide();
+                $("#section1").show();
+                $(".side-bar").show();
             },
             changeTab:function (id) {
                 let _this = this
@@ -322,6 +338,16 @@
                     let obj = {p:global.firstTag,c:cobjs};
                     global.shopCar.set('p'+global.firstTag.id, obj);
                 }
+                let msg = '加入购物车成功';
+                if(localStorage.LANGUAGE!='zh'){
+                    msg = 'Add to cart successful';
+                }
+                this.$dialog.toast({mes: msg, timeout: 1000});
+            },
+            showProduct:function(){
+                $("#section4").show();
+                $("#section1").hide();
+                $(".side-bar").hide();
             },
             goBack:function(){
                 this.$router.push('/shopping');
