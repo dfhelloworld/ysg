@@ -393,8 +393,8 @@
                     }
                 }
                 let _this = this;
-                if (this.info.detail) {
-                    $.get(this.info.detail, function(res) {
+                if (data.detail) {
+                    $.get(data.detail, function(res) {
                         _this.content = res;
                         _this.$store.dispatch("hideLoading");
                     });
