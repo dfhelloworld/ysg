@@ -344,7 +344,23 @@
                 }
                 this.$dialog.toast({mes: msg, timeout: 1000});
             },
-            showProduct:function(){
+            showProduct:function(obj){
+                let data = {};
+                for(var key in this.dataList){
+                    if (this.dataList[key].id == obj.id){
+                        data = this.dataList[key];
+                        break;
+                    }
+                }
+                let _this = this;
+                if (this.info.detail) {
+                    $.get(this.info.detail, function(res) {
+                        _this.content = res;
+                        _this.$store.dispatch("hideLoading");
+                    });
+                } else {
+                    this.$store.dispatch("hideLoading");
+                }
                 $("#section4").show();
                 $("#section1").hide();
                 $(".side-bar").hide();
