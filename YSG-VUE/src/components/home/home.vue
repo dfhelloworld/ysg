@@ -468,6 +468,8 @@ export default {
         } else {
           localStorage.INVOICEID = "";
         }
+        //是否显示机器人洗衣功能
+        localStorage.WASHING_MACHINE = data.washing_machine;
       }
     });
     this.$store.dispatch("getHome", params).then(res => {

@@ -8,14 +8,14 @@
       <section class="g-flexview">
         <section class="promotiom-box">
           <h1>{{language.raiders.title}}</h1>
-           <table>
-                <tr>
+           <table id="dataTable">
+                <tr name="wash">
                     <td height="20px">
                         <div v-if="isZH"><font size="3">洗衣服务</font></div>
                         <div v-if="!isZH"><font size="3">Layndry Service</font></div>
                     </td>
                 </tr>
-                <tr>
+                <tr name="wash">
                     <td>
                         <img src="https://storage.easyiservice.com/iservicev2/img/201805/a160af1eb0b8a46348e194ad7ebc3000.jpeg!width_750" width="100%" height="45%" @click="robotWash()">
                     </td>
@@ -291,7 +291,8 @@
                 tagsData:[],
                 carList:[],
                 ftotal:0,
-                content:''
+                content:'',
+                isLoad:false
             }
         },
         created:function () {
@@ -313,6 +314,10 @@
                 _this.$store.dispatch('getFirstTags', params).then(function (res) {
                     _this.tagsData = res.data.data.list;
                 });
+                //是否显示机器人洗衣服务
+                if(localStorage.WASHING_MACHINE != 1){
+                    $("#dataTable tr[name='wash']").hide();
+                }
             });
         },
         methods: {
@@ -352,6 +357,7 @@
                     }else{
                         _this.noData = false;
                     }
+                    _this.isLoad = true;
                 });
             },
             goDetail:function (childObj) {
@@ -635,13 +641,16 @@
             //初始化tab标签
             $(function() {
                 _this.changeTab(_this.tagIds[1]);
-                //
-                setTimeout(function(){ 
-                    $("div[name='tagsDiv']").click(function(){
-                        $("div[name='tagsDiv']").css({"border-bottom": "0px","color":"#afafaf"});
-                        $(this).css({"border-bottom": "1px solid #DCDCDC","color":"black"});
-                    });
-                 }, 1000);
+                //添加标签点击事件样式修改
+                let fader = setInterval(function() {
+                    if (_this.isLoad) {
+                        $("div[name='tagsDiv']").click(function(){
+                            $("div[name='tagsDiv']").css({"border-bottom": "0px","color":"#afafaf"});
+                            $(this).css({"border-bottom": "1px solid #DCDCDC","color":"black"});
+                        });
+                        clearInterval(fader);
+                    }
+                }, 1000);
             });
 
             //一级页面falg

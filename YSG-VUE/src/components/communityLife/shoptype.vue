@@ -11,32 +11,32 @@
         </section>
         <section class="g-scrollview">
           <table id="dataTable">
-              <tr>
+              <tr name="wash">
                 <td width="5%" rowspan="2">&nbsp;</td>
                 <td colspan="2" height="20px">
                     <div v-if="isZH"><b>洗衣服务</b></div>
                     <div v-if="!isZH"><b>Layndry Service</b></div>
                 </td>
               </tr>
-              <tr>
+              <tr name="wash">
                 <td colspan="2" height="30px">
                     <div  v-if="isZH"><font color="grey">机器人将到您的房间收取洗衣</font></div>
                     <div  v-if="!isZH"><font color="grey">Robot will come to your room to pick up the laundry</font></div>
                 </td>
               </tr>
-              <tr>
+              <tr name="wash">
                 <td width="5%">&nbsp;</td>
                 <td>
                     <img src="https://storage.easyiservice.com/iservicev2/img/201805/a160af1eb0b8a46348e194ad7ebc3000.jpeg!width_750" width="100%" height="45%" @click="robotWash()">
                 </td>
                 <td width="5%">&nbsp;</td>
               </tr>
-              <tr>
+              <tr name="wash">
                 <td width="5%">&nbsp;</td>
                 <td style="border-bottom:1px solid #C0C0C0;">&nbsp;</td>
                 <td width="5%" style="border-bottom:1px solid white;">&nbsp;</td>
               </tr>
-              <tr>
+              <tr id="nowash">
                   <td colspan="3">
                       <table width="100%" v-for="(firstTag, index) in dataList">
                             <tr>
@@ -311,6 +311,18 @@
                 _this.$store.dispatch('getFirstTags', params).then(function (res) {
                     _this.dataList = res.data.data.list;
                 });
+                //是否显示机器人洗衣服务
+                if(localStorage.WASHING_MACHINE != 1){
+                    $("#dataTable tr[name='wash']").hide();
+                    let html = `
+                    <tr>
+                        <td width="5%">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td width="5%">&nbsp;</td>
+                    </tr>
+                    `;
+                    $("#dataTable").prepend(html);
+                }
             });
         },
         methods: {
