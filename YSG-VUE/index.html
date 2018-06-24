@@ -59,41 +59,41 @@
                             color: false,
                             stay: true, //是否保留提示框
                             callback: function () {
-                            let pwd = $("#pwdNum").val();
-                            if(!/^[0-9]{6}$/.test(pwd)){
-                                alert(msg1);
-                                $("#pwdNum").val("");
-                                $("#pwdNum").focus();
-                            }else{
-                                if(firstPwd == ""){
-                                    firstPwd = pwd;
-                                    $(".confirm-title").html(title1);
+                                let pwd = $("#pwdNum").val();
+                                if(!/^[0-9]{6}$/.test(pwd)){
+                                    alert(msg1);
                                     $("#pwdNum").val("");
                                     $("#pwdNum").focus();
                                 }else{
-                                    if(pwd!=firstPwd){
-                                        alert(msg2);
+                                    if(firstPwd == ""){
+                                        firstPwd = pwd;
+                                        $(".confirm-title").html(title1);
                                         $("#pwdNum").val("");
                                         $("#pwdNum").focus();
                                     }else{
-                                        //设置密码
-                                        let setParams = {
-                                            token: localStorage.TOKEN,
-                                            pin: firstPwd
-                                        };
-                                        _this.$store.dispatch('setPin', setParams).then(function (res) {
-                                            if(res.code == 0){
-                                                alert("设置成功!");
-                                            }else if(res.code == 1){
-                                                alert("token过期，请重新登录!");
-                                            }else{
-                                                alert(res.msg);
-                                            }
-                                            $("#YDUI_CONFRIM").hide();
-                                        });
+                                        if(pwd!=firstPwd){
+                                            alert(msg2);
+                                            $("#pwdNum").val("");
+                                            $("#pwdNum").focus();
+                                        }else{
+                                            //设置密码
+                                            let setParams = {
+                                                token: localStorage.TOKEN,
+                                                pin: firstPwd
+                                            };
+                                            _this.$store.dispatch('setPin', setParams).then(function (res) {
+                                                if(res.code == 0){
+                                                    alert("设置成功!");
+                                                }else if(res.code == 1){
+                                                    alert("token过期，请重新登录!");
+                                                }else{
+                                                    alert(res.msg);
+                                                }
+                                                $("#YDUI_CONFRIM").hide();
+                                            });
+                                        }
                                     }
                                 }
-                            }
                             }
                         },
                         {
@@ -101,10 +101,10 @@
                             color: false,
                             stay: true,
                             callback: function () {
-                            firstPwd = "";
-                            $("#pwdNum").val("");
-                            $("#pwdNum").focus();
-                            $(".confirm-title").html(title);
+                                firstPwd = "";
+                                $("#pwdNum").val("");
+                                $("#pwdNum").focus();
+                                $(".confirm-title").html(title);
                             }
                         }
                     ]);
