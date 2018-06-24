@@ -579,6 +579,8 @@ export default {
 
     $(function(){
         $(".navbar-center").css('marginLeft',0);
+        //判断是否设置pin码
+        setPin(_this);
     });
   },
   mounted: function() {

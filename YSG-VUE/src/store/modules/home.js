@@ -281,6 +281,32 @@ const actions = {
         }
       );
     });
+  },
+  isSetPin: function({ commit }, url, data) {
+    return new Promise((resolve, reject) => {
+      API.isSetPin(url, data).then(
+        res => {
+          commit(types.APPSTART, res.data);
+          resolve(res.data);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
+  },
+  setPin: function({ commit }, url, data) {
+    return new Promise((resolve, reject) => {
+      API.setPin(url, data).then(
+        res => {
+          commit(types.APPSTART, res.data);
+          resolve(res.data);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
   }
 };
 

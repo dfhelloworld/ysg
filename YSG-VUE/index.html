@@ -31,6 +31,91 @@
       <script src="static/language.js"></script>
       <script src="static/ydui.js"></script>
       <script src="static/lib/jquery.qrcode.min.js"></script>
-
+      <script>
+        //设置pin码
+        function setPin(obj){
+            let _this = obj;
+            //判断是否设置交易密码
+            let pinParams = {
+                token: localStorage.TOKEN
+            };
+            _this.$store.dispatch('isSetPin', pinParams).then(function (res) {
+            //是否设置pin码
+            if(res.code == 0){
+                let alobj = new alertLanguage();
+                let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
+                let sureBnt = obj.sureBnt;
+                let dialog = window.YDUI.dialog;
+                let pwdHtml = `<input id="pwdNum" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:100%;">`;
+                let firstPwd = "";
+                let resetBnt = '重置';
+                let title = '请设置交易密码';
+                let title1 = "请再次输入交易密码";
+                let msg1 = "请输入6位数字!";
+                let msg2 = "第一次密码与第二次不一致!";
+                dialog.confirm(title,pwdHtml, [
+                    {
+                        txt: sureBnt,
+                        color: false,
+                        stay: true, //是否保留提示框
+                        callback: function () {
+                        let pwd = $("#pwdNum").val();
+                        if(!/^[0-9]{6}$/.test(pwd)){
+                            alert(msg1);
+                            $("#pwdNum").val("");
+                            $("#pwdNum").focus();
+                        }else{
+                            if(firstPwd == ""){
+                                firstPwd = pwd;
+                                $(".confirm-title").html(title1);
+                                $("#pwdNum").val("");
+                                $("#pwdNum").focus();
+                            }else{
+                                if(pwd!=firstPwd){
+                                    alert(msg2);
+                                    $("#pwdNum").val("");
+                                    $("#pwdNum").focus();
+                                }else{
+                                    //设置密码
+                                    let setParams = {
+                                        token: localStorage.TOKEN,
+                                        pin: firstPwd
+                                    };
+                                    _this.$store.dispatch('setPin', setParams).then(function (res) {
+                                        if(res.code == 0){
+                                            alert("设置成功!");
+                                        }if(res.code == 1){
+                                            alert("token过期，请重新登录!");
+                                        }else{
+                                            alert(res.msg);
+                                        }
+                                        $("#YDUI_CONFRIM").hide();
+                                    });
+                                }
+                            }
+                        }
+                        }
+                    },
+                    {
+                        txt: resetBnt,
+                        color: false,
+                        stay: true,
+                        callback: function () {
+                        firstPwd = "";
+                        $("#pwdNum").val("");
+                        $("#pwdNum").focus();
+                        $(".confirm-title").html(title);
+                        }
+                    }
+                ]);
+                $("#pwdNum").focus();
+            }else if(res.code == 1){
+                alert("token过期，请重新登录!");
+            }else{
+                alert(res.msg);
+            }
+            });
+        }
+      </script>
   </body>
 </html>
