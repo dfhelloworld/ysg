@@ -94,8 +94,13 @@
         },
         methods: {
             goShopping: function() {
+                let _this = this;
                 //验证pin码并跳转
-                checkPin(this,{path:'/shopping', query:{info:'communityLife'}});
+                if(localStorage.idType==1){
+                    checkPin(this,{path:'/shopping', query:{info:'communityLife'}});
+                }else{
+                    _this.$router.push({path:'/shopping', query:{info:'communityLife'}});
+                }
             }
         },
         components:{

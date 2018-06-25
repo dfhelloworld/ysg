@@ -580,7 +580,9 @@ export default {
     $(function(){
         $(".navbar-center").css('marginLeft',0);
         //判断是否设置pin码
-        setPin(_this);
+        if(localStorage.idType==1){
+          setPin(_this);
+        }
     });
   },
   mounted: function() {
@@ -759,8 +761,11 @@ export default {
                     goPath = "/robotDelivery";
                 }
                 //验证pin码并跳转
-                checkPin(this,{ path: goPath, query: { info: "home" } });
-                //this.$router.push({ path: goPath, query: { info: "home" } });
+                if(localStorage.idType==1){
+                  checkPin(this,{ path: goPath, query: { info: "home" } });
+                }else{
+                  this.$router.push({ path: goPath, query: { info: "home" } });
+                }
             }else{
                 this.$router.replace("/loginforguest");
             }
@@ -824,14 +829,17 @@ export default {
         case "shop":
           if (localStorage.TOKEN) {
             //验证pin码并跳转
-            checkPin(_this,{
-              path: "/shopping",
-              query: { pageFlag: "home" }
-            });
-            // _this.$router.push({
-            //   path: "/shopping",
-            //   query: { pageFlag: "home" }
-            // });
+            if(localStorage.idType==1){
+              checkPin(_this,{
+                path: "/shopping",
+                query: { pageFlag: "home" }
+              });
+            }else{
+              _this.$router.push({
+                path: "/shopping",
+                query: { pageFlag: "home" }
+              });
+            }
           } else {
             _this.$router.replace("/loginforguest");
           }

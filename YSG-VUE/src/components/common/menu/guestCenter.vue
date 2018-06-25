@@ -41,7 +41,7 @@
                 <!--<div class="left">{{language.myCenter.invoices}}</div>-->
                 <!--<div class="right"><i class="message"></i></div>-->
             <!--</li>-->
-            <li @click="changePwd">
+            <li v-show="idType == 1" @click="changePwd">
                 <div class="left">{{language.myCenter.changePwd}}</div>
                 <div class="right"><i class="loginout"></i></div>
             </li>
