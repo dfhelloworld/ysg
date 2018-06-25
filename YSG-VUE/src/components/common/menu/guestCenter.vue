@@ -41,6 +41,10 @@
                 <!--<div class="left">{{language.myCenter.invoices}}</div>-->
                 <!--<div class="right"><i class="message"></i></div>-->
             <!--</li>-->
+            <li @click="changePwd">
+                <div class="left">{{language.myCenter.changePwd}}</div>
+                <div class="right"><i class="loginout"></i></div>
+            </li>
             <li @click="logOut">
                 <div class="left">{{language.myCenter.log_out}}</div>
                 <div class="right"><i class="loginout"></i></div>
@@ -150,8 +154,91 @@
 			},
             goInvoices:function () {
                 this.$router.push({path:'/invoices'})
+            },
+            changePwd: function() {
+                let _this = this;
+                let alobj = new alertLanguage();
+                let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
+                let sureBnt = obj.sureBnt;
+                let cancelBnt = obj.cancelBnt;
+                let dialog = window.YDUI.dialog;
+                let pwdHtml = `
+                旧密码:<input id="pwdNum1" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:80%;">
+                新密码:<input id="pwdNum2" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:80%;">
+                `;
+                let title = '请输入密码';
+                let msg1 = "旧密码为6位数字!";
+                let msg2 = "新密码为6位数字!";
+                dialog.confirm(title,pwdHtml, [
+                    {
+                        txt: sureBnt,
+                        color: false,
+                        stay: true, //是否保留提示框
+                        callback: function () {
+                            let pwd1 = $("#pwdNum1").val();
+                            let pwd2 = $("#pwdNum2").val();
+                            if(!/^[0-9]{6}$/.test(pwd1)){
+                                alert(msg1);
+                                $("#pwdNum1").val("");
+                                $("#pwdNum1").focus();
+                                return;
+                            }
+                            if(!/^[0-9]{6}$/.test(pwd2)){
+                                alert(msg2);
+                                $("#pwdNum2").val("");
+                                $("#pwdNum2").focus();
+                                return;
+                            }
+                            //检查密码
+                            let pinParams = {
+                                token: localStorage.TOKEN,
+                                pin: pwd1
+                            };
+                            _this.$store.dispatch('checkPin', pinParams).then(function (res) {
+                                if(res.code == 0){
+                                    //设置密码
+                                    let setParams = {
+                                        token: localStorage.TOKEN,
+                                        pin: pwd2
+                                    };
+                                    _this.$store.dispatch('setPin', setParams).then(function (res) {
+                                        if(res.code == 0){
+                                            alert("设置成功!");
+                                        }else if(res.code == 1){
+                                            alert("token过期，请重新登录!");
+                                        }else{
+                                            alert(res.msg);
+                                        }
+                                        $("#pwdNum1").val("");
+                                        $("#pwdNum2").val("");
+                                        $("#YDUI_CONFRIM").hide();
+                                    });
+                                }else if(res.code == 1){
+                                    alert("token过期，请重新登录!");
+                                    $("#pwdNum1").val("");
+                                    $("#pwdNum2").val("");
+                                    $("#YDUI_CONFRIM").hide();
+                                }else if(res.code == 2){
+                                    alert("旧密码输入错误!");
+                                    $("#pwdNum1").focus();
+                                }else{
+                                    alert(res.msg);
+                                    $("#pwdNum1").focus();
+                                }
+                            });
+                        }
+                    },
+                    {
+                        txt: cancelBnt,
+                        color: false,
+                        callback: function () {
+                            $("#pwdNum1").val("");
+                            $("#pwdNum2").val("");
+                        }
+                    }
+                ]);
+                $("#pwdNum1").focus();
             }
-
 		},
 		computed: {
 			...mapState({
