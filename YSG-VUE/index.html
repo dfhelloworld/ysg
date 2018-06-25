@@ -89,6 +89,7 @@
                                                 }else{
                                                     alert(res.msg);
                                                 }
+                                                $("#pwdNum").val("");
                                                 $("#YDUI_CONFRIM").hide();
                                             });
                                         }
@@ -116,6 +117,59 @@
                 }
             });
         }
+
+        //验证pin码,并跳转页面
+        function checkPin(_this,objParams){
+            let alobj = new alertLanguage();
+            let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
+            let sureBnt = obj.sureBnt;
+            let cancelBnt = obj.cancelBnt;
+            let dialog = window.YDUI.dialog;
+            let pwdHtml = `<input id="pwdNum" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:100%;">`;
+            let firstPwd = "";
+            let title = '请输入交易密码';
+            dialog.confirm(title,pwdHtml, [
+                {
+                    txt: sureBnt,
+                    color: false,
+                    stay: true, //是否保留提示框
+                    callback: function () {
+                        let pwd = $("#pwdNum").val();
+                        //设置密码
+                        let pinParams = {
+                            token: localStorage.TOKEN,
+                            pin: pwd
+                        };
+                        _this.$store.dispatch('checkPin', pinParams).then(function (res) {
+                            $("#pwdNum").val("");
+                            if(res.code == 0){
+                                $("#YDUI_CONFRIM").hide();
+                                if(objParams != undefined){
+                                    _this.$router.push(objParams);
+                                }
+                            }else if(res.code == 1){
+                                alert("token过期，请重新登录!");
+                                $("#YDUI_CONFRIM").hide();
+                            }else if(res.code == 2){
+                                alert("密码错误!");
+                                $("#pwdNum").focus();
+                            }else{
+                                alert(res.msg);
+                                $("#pwdNum").focus();
+                            }
+                        });
+                    }
+                },
+                {
+                    txt: cancelBnt,
+                    color: false,
+                    callback: function () {
+                    }
+                }
+            ]);
+            $("#pwdNum").focus();
+        }
+
       </script>
   </body>
 </html>

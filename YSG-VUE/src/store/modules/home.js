@@ -307,6 +307,19 @@ const actions = {
         }
       );
     });
+  },
+  checkPin: function({ commit }, url, data) {
+    return new Promise((resolve, reject) => {
+      API.checkPin(url, data).then(
+        res => {
+          commit(types.APPSTART, res.data);
+          resolve(res.data);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
   }
 };
 

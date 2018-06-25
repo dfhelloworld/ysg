@@ -821,10 +821,15 @@ export default {
           break;
         case "shop":
           if (localStorage.TOKEN) {
-            _this.$router.push({
+            //验证pin码并跳转
+            checkPin(_this,{
               path: "/shopping",
               query: { pageFlag: "home" }
             });
+            // _this.$router.push({
+            //   path: "/shopping",
+            //   query: { pageFlag: "home" }
+            // });
           } else {
             _this.$router.replace("/loginforguest");
           }

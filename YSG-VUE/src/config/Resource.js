@@ -61,6 +61,8 @@ const Home = {
 	isSetPin:'/user/hasPin',
 	//设置pin码
 	setPin:'/user/setpin',
+	//验证pin
+	checkPin:'/user/checkPin',
 }
 
 //登录接口
@@ -265,4 +267,6 @@ export default {
 	isSetPin:(query) => apiPost(Home.isSetPin,query),
 	//设置pin码
 	setPin:(query) => apiPost(Home.setPin,query),
+	//验证pin
+	checkPin:(query) => apiPost(Home.checkPin,query),
 }
