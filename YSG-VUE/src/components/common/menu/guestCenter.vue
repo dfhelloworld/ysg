@@ -163,8 +163,12 @@
                 let cancelBnt = obj.cancelBnt;
                 let dialog = window.YDUI.dialog;
                 let pwdHtml = `
-                旧密码:<input id="pwdNum1" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:80%;">
-                新密码:<input id="pwdNum2" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:80%;">
+                <div>
+                    旧密码:<input id="pwdNum1" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:80%;">
+                </div>
+                <div>
+                    新密码:<input id="pwdNum2" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:80%;">
+                </div>
                 `;
                 let title = '请输入密码';
                 let msg1 = "旧密码为6位数字!";
@@ -175,8 +179,12 @@
                 //判断显示中/英文
                 if(localStorage.LANGUAGE!='zh'){
                     pwdHtml = `
-                    Old password:<input id="pwdNum1" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:80%;">
-                    New password:<input id="pwdNum2" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:80%;">
+                    <div>
+                        Old password:<input id="pwdNum1" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:80%;">
+                    </div>
+                    <div>
+                        New password:<input id="pwdNum2" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:80%;">
+                    </div>
                     `;
                     title = 'Please enter your password';
                     msg1 = "Old password is 6 digits!";
