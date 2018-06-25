@@ -758,7 +758,9 @@ export default {
                     localStorage.NEWTYPE=0;
                     goPath = "/robotDelivery";
                 }
-                this.$router.push({ path: goPath, query: { info: "home" } });
+                //验证pin码并跳转
+                checkPin(this,{ path: goPath, query: { info: "home" } });
+                //this.$router.push({ path: goPath, query: { info: "home" } });
             }else{
                 this.$router.replace("/loginforguest");
             }

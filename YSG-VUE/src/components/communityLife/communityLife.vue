@@ -20,31 +20,28 @@
                           </router-link>
                       </li>
                       <li>
-                          <!-- <router-link to="/shopping"> -->
-                           <router-link :to="{path:'/shopping', query:{info:'communityLife'}}">
-                              <img src="../../assets/images/shopping.png" alt="">
-                              <p>{{language.community.shopping}}</p>
-                          </router-link>
+                           <img src="../../assets/images/shopping.png" alt="" @click="goShopping">
+                           <p>{{language.community.shopping}}</p>
                       </li>
-                      <li style="border-bottom: none">
+                      <li>
                           <router-link to="/ascottLife">
                               <img src="../../assets/images/ascott-life.png" alt="">
                               <p>{{language.community.ascottLife}}</p>
                           </router-link>
                       </li>
-                      <li style="border-bottom: none">
+                      <li>
                           <router-link to="/feedback">
                               <img src="../../assets/images/icon-feedback.png" alt="">
                               <p>{{language.community.feedback}}</p>
                           </router-link>
                       </li>
-                      <!-- <li style="border-bottom: none">
+                      <!-- <li>
                           <router-link :to="{path:'/ssr', query:{ssrFlag:'commonunity'}}">
                               <img src="../../assets/images/icon-rss.png" alt="">
                               <p>{{language.community.ssr}}</p>
                           </router-link>
                       </li> -->
-                      <li style="border-bottom: none">
+                      <li>
                           <router-link to="/lifeStyle">
                               <img src="../../assets/images/lifestyle.png" alt="">
                               <p>{{language.community.life}}</p>
@@ -94,6 +91,12 @@
         mounted:function () {
             //一级页面falg
             isHomePage(1)
+        },
+        methods: {
+            goShopping: function() {
+                //验证pin码并跳转
+                checkPin(this,{path:'/shopping', query:{info:'communityLife'}});
+            }
         },
         components:{
 			'v-foot':foot,
