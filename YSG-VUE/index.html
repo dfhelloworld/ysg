@@ -76,6 +76,7 @@
                                             $("#pwdNum").val("");
                                             $("#pwdNum").focus();
                                         }else{
+                                            dialog.loading.open('Loading');
                                             //设置密码
                                             let setParams = {
                                                 token: localStorage.TOKEN,
@@ -89,6 +90,7 @@
                                                 }else{
                                                     alert(res.msg);
                                                 }
+                                                dialog.loading.close();
                                                 $("#pwdNum").val("");
                                                 $("#YDUI_CONFRIM").hide();
                                             });
@@ -135,12 +137,14 @@
                     stay: true, //是否保留提示框
                     callback: function () {
                         let pwd = $("#pwdNum").val();
+                        dialog.loading.open('Loading');
                         //设置密码
                         let pinParams = {
                             token: localStorage.TOKEN,
                             pin: pwd
                         };
                         _this.$store.dispatch('checkPin', pinParams).then(function (res) {
+                            dialog.loading.close();
                             $("#pwdNum").val("");
                             if(res.code == 0){
                                 $("#YDUI_CONFRIM").hide();

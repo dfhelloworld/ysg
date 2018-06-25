@@ -189,6 +189,7 @@
                                 $("#pwdNum2").focus();
                                 return;
                             }
+                            dialog.loading.open('Loading');
                             //检查密码
                             let pinParams = {
                                 token: localStorage.TOKEN,
@@ -209,20 +210,24 @@
                                         }else{
                                             alert(res.msg);
                                         }
+                                        dialog.loading.close();
                                         $("#pwdNum1").val("");
                                         $("#pwdNum2").val("");
                                         $("#YDUI_CONFRIM").hide();
                                     });
                                 }else if(res.code == 1){
                                     alert("token过期，请重新登录!");
+                                    dialog.loading.close();
                                     $("#pwdNum1").val("");
                                     $("#pwdNum2").val("");
                                     $("#YDUI_CONFRIM").hide();
                                 }else if(res.code == 2){
                                     alert("旧密码输入错误!");
+                                    dialog.loading.close();
                                     $("#pwdNum1").focus();
                                 }else{
                                     alert(res.msg);
+                                    dialog.loading.close();
                                     $("#pwdNum1").focus();
                                 }
                             });
