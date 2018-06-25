@@ -169,6 +169,22 @@
                 let title = '请输入密码';
                 let msg1 = "旧密码为6位数字!";
                 let msg2 = "新密码为6位数字!";
+                let msg3 = "token过期，请重新登录!";
+                let msg4 = "设置成功!";
+                let msg5 = "旧密码输入错误!";
+                //判断显示中/英文
+                if(localStorage.LANGUAGE!='zh'){
+                    pwdHtml = `
+                    Old password:<input id="pwdNum1" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:80%;">
+                    New password:<input id="pwdNum2" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:80%;">
+                    `;
+                    title = 'Please enter your password';
+                    msg1 = "Old password is 6 digits!";
+                    msg2 = "New password is 6 digits!";
+                    msg3 = "Token expired, please log in again!";
+                    msg4 = "Successfully set up!";
+                    msg5 = "Old password entered incorrectly!";
+                }
                 dialog.confirm(title,pwdHtml, [
                     {
                         txt: sureBnt,
@@ -204,9 +220,9 @@
                                     };
                                     _this.$store.dispatch('setPin', setParams).then(function (res) {
                                         if(res.code == 0){
-                                            alert("设置成功!");
+                                            alert(msg4);
                                         }else if(res.code == 1){
-                                            alert("token过期，请重新登录!");
+                                            alert(msg3);
                                         }else{
                                             alert(res.msg);
                                         }
@@ -216,13 +232,13 @@
                                         $("#YDUI_CONFRIM").hide();
                                     });
                                 }else if(res.code == 1){
-                                    alert("token过期，请重新登录!");
+                                    alert(msg3);
                                     dialog.loading.close();
                                     $("#pwdNum1").val("");
                                     $("#pwdNum2").val("");
                                     $("#YDUI_CONFRIM").hide();
                                 }else if(res.code == 2){
-                                    alert("旧密码输入错误!");
+                                    alert(msg5);
                                     dialog.loading.close();
                                     $("#pwdNum1").focus();
                                 }else{

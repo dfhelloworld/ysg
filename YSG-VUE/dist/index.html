@@ -1,1 +1,141 @@
-<!DOCTYPE html><html><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name=viewport><meta content=yes name=apple-mobile-web-app-capable><meta content=black name=apple-mobile-web-app-status-bar-style><meta content="telephone=no" name=format-detection><meta content="email=no" name=format-detection><meta http-equiv=Cache-Control content=no-cache><title>ASCOTT</title><link rel=stylesheet href=static/lib/swiper/swiper.min.css><link rel=stylesheet href=static/style.css><link rel=stylesheet href=static/ydui.css><script type=text/javascript>var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display:none' id='cnzz_stat_icon_1264443895'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1264443895' type='text/javascript'%3E%3C/script%3E"));</script><script></script><link href=./static/css/app.efa483da5b18fd37c4afea8c0e5b05b6.css rel=stylesheet></head><body><div id=app style="height: 100%"></div><div></div><script src=static/lib/ydui.flexible.js></script><script src=static/lib/jquery-3.1.1.min.js></script><script src=static/lib/swiper/swiper.min.js></script><script src=https://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js></script><script src=static/JSBridge.js></script><script src=static/language.js></script><script src=static/ydui.js></script><script src=static/lib/jquery.qrcode.min.js></script><script type=text/javascript src=./static/js/manifest.5f0c0627496e6a39de13.js></script><script type=text/javascript src=./static/js/vendor.072c6425e2f59bc872ae.js></script><script type=text/javascript src=./static/js/app.593f81022e25b52eb4d9.js></script></body></html>
+<!DOCTYPE html><html><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name=viewport><meta content=yes name=apple-mobile-web-app-capable><meta content=black name=apple-mobile-web-app-status-bar-style><meta content="telephone=no" name=format-detection><meta content="email=no" name=format-detection><meta http-equiv=Cache-Control content=no-cache><title>ASCOTT</title><link rel=stylesheet href=static/lib/swiper/swiper.min.css><link rel=stylesheet href=static/style.css><link rel=stylesheet href=static/ydui.css><script type=text/javascript>var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display:none' id='cnzz_stat_icon_1264443895'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1264443895' type='text/javascript'%3E%3C/script%3E"));</script><script></script><link href=./static/css/app.efa483da5b18fd37c4afea8c0e5b05b6.css rel=stylesheet></head><body><div id=app style="height: 100%"></div><div></div><script src=static/lib/ydui.flexible.js></script><script src=static/lib/jquery-3.1.1.min.js></script><script src=static/lib/swiper/swiper.min.js></script><script src=https://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js></script><script src=static/JSBridge.js></script><script src=static/language.js></script><script src=static/ydui.js></script><script src=static/lib/jquery.qrcode.min.js></script><script>//设置pin码
+        function setPin(obj){
+            let _this = obj;
+            //判断是否设置交易密码
+            let pinParams = {
+                token: localStorage.TOKEN
+            };
+            _this.$store.dispatch('isSetPin', pinParams).then(function (res) {
+                //是否设置pin码
+                if(res.code == 1){
+                    let alobj = new alertLanguage();
+                    let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
+                    let sureBnt = obj.sureBnt;
+                    let dialog = window.YDUI.dialog;
+                    let pwdHtml = `<input id="pwdNum" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:100%;">`;
+                    let firstPwd = "";
+                    let resetBnt = '重置';
+                    let title = '请设置交易密码';
+                    let title1 = "请再次输入交易密码";
+                    let msg1 = "请输入6位数字!";
+                    let msg2 = "第一次密码与第二次不一致!";
+                    dialog.confirm(title,pwdHtml, [
+                        {
+                            txt: sureBnt,
+                            color: false,
+                            stay: true, //是否保留提示框
+                            callback: function () {
+                                let pwd = $("#pwdNum").val();
+                                if(!/^[0-9]{6}$/.test(pwd)){
+                                    alert(msg1);
+                                    $("#pwdNum").val("");
+                                    $("#pwdNum").focus();
+                                }else{
+                                    if(firstPwd == ""){
+                                        firstPwd = pwd;
+                                        $(".confirm-title").html(title1);
+                                        $("#pwdNum").val("");
+                                        $("#pwdNum").focus();
+                                    }else{
+                                        if(pwd!=firstPwd){
+                                            alert(msg2);
+                                            $("#pwdNum").val("");
+                                            $("#pwdNum").focus();
+                                        }else{
+                                            dialog.loading.open('Loading');
+                                            //设置密码
+                                            let setParams = {
+                                                token: localStorage.TOKEN,
+                                                pin: firstPwd
+                                            };
+                                            _this.$store.dispatch('setPin', setParams).then(function (res) {
+                                                if(res.code == 0){
+                                                    alert("设置成功!");
+                                                }else if(res.code == 1){
+                                                    alert("token过期，请重新登录!");
+                                                }else{
+                                                    alert(res.msg);
+                                                }
+                                                dialog.loading.close();
+                                                $("#pwdNum").val("");
+                                                $("#YDUI_CONFRIM").hide();
+                                            });
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            txt: resetBnt,
+                            color: false,
+                            stay: true,
+                            callback: function () {
+                                firstPwd = "";
+                                $("#pwdNum").val("");
+                                $("#pwdNum").focus();
+                                $(".confirm-title").html(title);
+                            }
+                        }
+                    ]);
+                    $("#pwdNum").focus();
+                }else if(res.code == 2){
+                    alert("token过期，请重新登录!");
+                }else if(res.code != 0){
+                    alert(res.msg);
+                }
+            });
+        }
+
+        //验证pin码,并跳转页面
+        function checkPin(_this,objParams){
+            let alobj = new alertLanguage();
+            let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
+            let sureBnt = obj.sureBnt;
+            let cancelBnt = obj.cancelBnt;
+            let dialog = window.YDUI.dialog;
+            let pwdHtml = `<input id="pwdNum" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:100%;">`;
+            let firstPwd = "";
+            let title = '请输入交易密码';
+            dialog.confirm(title,pwdHtml, [
+                {
+                    txt: sureBnt,
+                    color: false,
+                    stay: true, //是否保留提示框
+                    callback: function () {
+                        let pwd = $("#pwdNum").val();
+                        dialog.loading.open('Loading');
+                        //设置密码
+                        let pinParams = {
+                            token: localStorage.TOKEN,
+                            pin: pwd
+                        };
+                        _this.$store.dispatch('checkPin', pinParams).then(function (res) {
+                            dialog.loading.close();
+                            $("#pwdNum").val("");
+                            if(res.code == 0){
+                                $("#YDUI_CONFRIM").hide();
+                                if(objParams != undefined){
+                                    _this.$router.push(objParams);
+                                }
+                            }else if(res.code == 1){
+                                alert("token过期，请重新登录!");
+                                $("#YDUI_CONFRIM").hide();
+                            }else if(res.code == 2){
+                                alert("密码错误!");
+                                $("#pwdNum").focus();
+                            }else{
+                                alert(res.msg);
+                                $("#pwdNum").focus();
+                            }
+                        });
+                    }
+                },
+                {
+                    txt: cancelBnt,
+                    color: false,
+                    callback: function () {
+                    }
+                }
+            ]);
+            $("#pwdNum").focus();
+        }</script><script type=text/javascript src=./static/js/manifest.cbeb33b6025b2226faad.js></script><script type=text/javascript src=./static/js/vendor.072c6425e2f59bc872ae.js></script><script type=text/javascript src=./static/js/app.cc4be0782863399cdc7f.js></script></body></html>

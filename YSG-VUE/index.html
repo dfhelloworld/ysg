@@ -39,6 +39,23 @@
             let pinParams = {
                 token: localStorage.TOKEN
             };
+            let resetBnt = '重置';
+            let title = '请设置交易密码';
+            let title1 = "请再次输入交易密码";
+            let msg1 = "请输入6位数字!";
+            let msg2 = "第一次密码与第二次不一致!";
+            let msg3 = "设置成功!";
+            let msg4 = "token过期，请重新登录!";
+            //判断显示中/英文
+            if(localStorage.LANGUAGE!='zh'){
+                resetBnt = 'Reset';
+                title = 'Please set transaction password';
+                title1 = "Please enter transaction password again";
+                msg1 = "Please enter 6 digits!";
+                msg2 = "The first password is inconsistent with the second!";
+                msg3 = "Successfully set up!";
+                msg4 = "Token expired, please log in again!";
+            }
             _this.$store.dispatch('isSetPin', pinParams).then(function (res) {
                 //是否设置pin码
                 if(res.code == 1){
@@ -48,11 +65,6 @@
                     let dialog = window.YDUI.dialog;
                     let pwdHtml = `<input id="pwdNum" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:100%;">`;
                     let firstPwd = "";
-                    let resetBnt = '重置';
-                    let title = '请设置交易密码';
-                    let title1 = "请再次输入交易密码";
-                    let msg1 = "请输入6位数字!";
-                    let msg2 = "第一次密码与第二次不一致!";
                     dialog.confirm(title,pwdHtml, [
                         {
                             txt: sureBnt,
@@ -84,9 +96,9 @@
                                             };
                                             _this.$store.dispatch('setPin', setParams).then(function (res) {
                                                 if(res.code == 0){
-                                                    alert("设置成功!");
+                                                    alert(msg3);
                                                 }else if(res.code == 1){
-                                                    alert("token过期，请重新登录!");
+                                                    alert(msg4);
                                                 }else{
                                                     alert(res.msg);
                                                 }
@@ -113,7 +125,7 @@
                     ]);
                     $("#pwdNum").focus();
                 }else if(res.code == 2){
-                    alert("token过期，请重新登录!");
+                    alert(msg4);
                 }else if(res.code != 0){
                     alert(res.msg);
                 }
@@ -130,6 +142,14 @@
             let pwdHtml = `<input id="pwdNum" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:100%;">`;
             let firstPwd = "";
             let title = '请输入交易密码';
+            let msg1 = "token过期，请重新登录!";
+            let msg2 = "密码错误!";
+            //判断显示中/英文
+            if(localStorage.LANGUAGE!='zh'){
+                title = 'Please enter the transaction password';
+                msg1 = "Token expired, please log in again!";
+                msg2 = "Wrong password!";
+            }
             dialog.confirm(title,pwdHtml, [
                 {
                     txt: sureBnt,
@@ -152,10 +172,10 @@
                                     _this.$router.push(objParams);
                                 }
                             }else if(res.code == 1){
-                                alert("token过期，请重新登录!");
+                                alert(msg1);
                                 $("#YDUI_CONFRIM").hide();
                             }else if(res.code == 2){
-                                alert("密码错误!");
+                                alert(msg2);
                                 $("#pwdNum").focus();
                             }else{
                                 alert(res.msg);
