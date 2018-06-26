@@ -43,7 +43,7 @@
             <!--</li>-->
             <li v-show="idType == 1" @click="changePwd">
                 <div class="left">{{language.myCenter.changePwd}}</div>
-                <div class="right"><i class="loginout"></i></div>
+                <div class="right"><i class="pwd"></i></div>
             </li>
             <li @click="logOut">
                 <div class="left">{{language.myCenter.log_out}}</div>
@@ -66,6 +66,7 @@
     .user_center .notice{background: url("../../../assets/images/icon_notice.png")center no-repeat;background-size: .3rem;}
     .user_center .loginout{background: url("../../../assets/images/icon_loginout.png")center no-repeat;background-size: .3rem;}
     .user_center .viewOrder{background: url("../../../assets/images/viewOrder.png")center no-repeat;background-size: .3rem;}
+    .user_center .pwd{background: url("../../../assets/images/pwd.png")center no-repeat;background-size: .3rem;}
 </style>
 
 <script>
