@@ -224,6 +224,7 @@
                                     //设置密码
                                     let setParams = {
                                         token: localStorage.TOKEN,
+                                        old_pin:pwd1,
                                         pin: pwd2
                                     };
                                     _this.$store.dispatch('setPin', setParams).then(function (res) {
