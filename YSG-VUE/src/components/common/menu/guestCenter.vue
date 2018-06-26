@@ -203,13 +203,13 @@
                             let pwd1 = $("#pwdNum1").val();
                             let pwd2 = $("#pwdNum2").val();
                             if(!/^[0-9]{6}$/.test(pwd1)){
-                                alert(msg1);
+                                dialog.alert(msg1);
                                 $("#pwdNum1").val("");
                                 $("#pwdNum1").focus();
                                 return;
                             }
                             if(!/^[0-9]{6}$/.test(pwd2)){
-                                alert(msg2);
+                                dialog.alert(msg2);
                                 $("#pwdNum2").val("");
                                 $("#pwdNum2").focus();
                                 return;
@@ -230,11 +230,11 @@
                                     };
                                     _this.$store.dispatch('setPin', setParams).then(function (res) {
                                         if(res.code == 0){
-                                            alert(msg4);
+                                            dialog.alert(msg4);
                                         }else if(res.code == 1){
-                                            alert(msg3);
+                                            dialog.alert(msg3);
                                         }else{
-                                            alert(res.msg);
+                                            dialog.alert(res.msg);
                                         }
                                         dialog.loading.close();
                                         $("#pwdNum1").val("");
@@ -242,17 +242,17 @@
                                         $("#YDUI_CONFRIM").hide();
                                     });
                                 }else if(res.code == 1){
-                                    alert(msg3);
+                                    dialog.alert(msg3);
                                     dialog.loading.close();
                                     $("#pwdNum1").val("");
                                     $("#pwdNum2").val("");
                                     $("#YDUI_CONFRIM").hide();
                                 }else if(res.code == 2){
-                                    alert(msg5);
+                                    dialog.alert(msg5);
                                     dialog.loading.close();
                                     $("#pwdNum1").focus();
                                 }else{
-                                    alert(res.msg);
+                                    dialog.alert(res.msg);
                                     dialog.loading.close();
                                     $("#pwdNum1").focus();
                                 }

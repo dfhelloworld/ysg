@@ -35,10 +35,12 @@
         //设置pin码
         function setPin(obj){
             let _this = obj;
-            //判断是否设置交易密码
-            let pinParams = {
-                token: localStorage.TOKEN
-            };
+            let dialog = window.YDUI.dialog;
+            let alobj = new alertLanguage();
+            let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
+            let sureBnt = obj.sureBnt;
+            let pwdHtml = `<input id="pwdNum" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:100%;">`;
+            let firstPwd = "";
             let resetBnt = '重置';
             let title = '请设置交易密码';
             let title1 = "请再次输入交易密码";
@@ -56,15 +58,13 @@
                 msg3 = "Successfully set up!";
                 msg4 = "Token expired, please log in again!";
             }
+            //判断是否设置交易密码
+            let pinParams = {
+                token: localStorage.TOKEN
+            };
             _this.$store.dispatch('isSetPin', pinParams).then(function (res) {
                 //是否设置pin码
                 if(res.code == 1){
-                    let alobj = new alertLanguage();
-                    let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
-                    let sureBnt = obj.sureBnt;
-                    let dialog = window.YDUI.dialog;
-                    let pwdHtml = `<input id="pwdNum" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:100%;">`;
-                    let firstPwd = "";
                     dialog.confirm(title,pwdHtml, [
                         {
                             txt: sureBnt,
@@ -73,7 +73,7 @@
                             callback: function () {
                                 let pwd = $("#pwdNum").val();
                                 if(!/^[0-9]{6}$/.test(pwd)){
-                                    alert(msg1);
+                                    dialog.alert(msg1);
                                     $("#pwdNum").val("");
                                     $("#pwdNum").focus();
                                 }else{
@@ -84,7 +84,7 @@
                                         $("#pwdNum").focus();
                                     }else{
                                         if(pwd!=firstPwd){
-                                            alert(msg2);
+                                            dialog.alert(msg2);
                                             $("#pwdNum").val("");
                                             $("#pwdNum").focus();
                                         }else{
@@ -96,11 +96,11 @@
                                             };
                                             _this.$store.dispatch('setPin', setParams).then(function (res) {
                                                 if(res.code == 0){
-                                                    alert(msg3);
+                                                    dialog.alert(msg3);
                                                 }else if(res.code == 1){
-                                                    alert(msg4);
+                                                    dialog.alert(msg4);
                                                 }else{
-                                                    alert(res.msg);
+                                                    dialog.alert(res.msg);
                                                 }
                                                 dialog.loading.close();
                                                 $("#pwdNum").val("");
@@ -125,9 +125,9 @@
                     ]);
                     $("#pwdNum").focus();
                 }else if(res.code == 2){
-                    alert(msg4);
+                    dialog.alert(msg4);
                 }else if(res.code != 0){
-                    alert(res.msg);
+                    dialog.alert(res.msg);
                 }
             });
         }
@@ -172,13 +172,13 @@
                                     _this.$router.push(objParams);
                                 }
                             }else if(res.code == 1){
-                                alert(msg1);
+                                dialog.alert(msg1);
                                 $("#YDUI_CONFRIM").hide();
                             }else if(res.code == 2){
-                                alert(msg2);
+                                dialog.alert(msg2);
                                 $("#pwdNum").focus();
                             }else{
-                                alert(res.msg);
+                                dialog.alert(res.msg);
                                 $("#pwdNum").focus();
                             }
                         });
