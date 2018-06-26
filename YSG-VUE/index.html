@@ -33,8 +33,8 @@
       <script src="static/lib/jquery.qrcode.min.js"></script>
       <script>
         //设置pin码
-        function setPin(obj){
-            let _this = obj;
+        function setPin(pdata){
+            let _this = pdata;
             let dialog = window.YDUI.dialog;
             let alobj = new alertLanguage();
             let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
