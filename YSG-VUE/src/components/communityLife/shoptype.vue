@@ -201,23 +201,23 @@
     </div>
     <!--Footer start-->
     <footer class="m-tabbar tabbbar-top-line-color tabbar-fixed" style="color: rgb(240, 195, 102); background-color: rgb(255, 255, 255); font-size: 0.24rem; left: 0px;">
-        <a href="#" class="tabbar-item tabbar-active">
+        <a href="#" class="tabbar-item" style="color:#f0c366;">
             <span class="tabbar-icon">
-                <img src="../../assets/images/shopCard.png" @click="goShopping()">
+                <img src="/static/images/shopping01.png" @click="goShopping()">
                 <span class="tabbar-badge"></span> 
             </span> 
             <span class="tabbar-txt">体验购物</span>
         </a>
         <a href="#" class="tabbar-item">
             <span class="tabbar-icon">
-                <img src="../../assets/images/icon_foot_4.png" @click="goShopCar()">
+                <img src="/static/images/shopping04.png" @click="goShopCar()">
                 <span class="tabbar-badge"></span> 
             </span> 
             <span class="tabbar-txt">购物车</span>
         </a>
         <a href="#" class="tabbar-item">
             <span class="tabbar-icon">
-                <img src="../../assets/images/icon_foot_4.png">
+                <img src="/static/images/shopping06.png"  @click="goOrder()">
                 <span class="tabbar-badge"></span> 
             </span> 
             <span class="tabbar-txt">查看订单</span>
@@ -337,7 +337,19 @@
             });
         },
         methods: {
+            goOrder:function(){
+                $("footer a").css("color", "#979797");
+                $("footer a:eq(2)").css("color", "#f0c366");
+                $("footer img:eq(0)").attr("src","/static/images/shopping02.png");
+                $("footer img:eq(1)").attr("src","/static/images/shopping04.png");
+                $("footer img:eq(2)").attr("src","/static/images/shopping05.png");
+            },
             goShopping:function(){
+                $("footer a").css("color", "#979797");
+                $("footer a:eq(0)").css("color", "#f0c366");
+                $("footer img:eq(0)").attr("src","/static/images/shopping01.png");
+                $("footer img:eq(1)").attr("src","/static/images/shopping04.png");
+                $("footer img:eq(2)").attr("src","/static/images/shopping06.png");
                 $("#section1").show();
                 $("#section2").hide();
                 $("#section3").hide();
@@ -526,6 +538,11 @@
                  ]);
             },
             goShopCar: function() {
+                $("footer a").css("color", "#979797");
+                $("footer a:eq(1)").css("color", "#f0c366");
+                $("footer img:eq(0)").attr("src","/static/images/shopping02.png");
+                $("footer img:eq(1)").attr("src","/static/images/shopping03.png");
+                $("footer img:eq(2)").attr("src","/static/images/shopping06.png");
                 this.buyCreate();
                 this.caculate();
             },
