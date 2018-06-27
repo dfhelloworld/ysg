@@ -12,53 +12,42 @@
         <section class="g-scrollview">
           <table id="dataTable">
               <tr name="wash">
-                <td width="5%" rowspan="2">&nbsp;</td>
-                <td colspan="2" height="20px">
-                    <div v-if="isZH"><b>洗衣服务</b></div>
-                    <div v-if="!isZH"><b>Layndry Service</b></div>
-                </td>
-              </tr>
-              <tr name="wash">
-                <td colspan="2" height="30px">
-                    <div  v-if="isZH"><font color="grey">机器人将到您的房间收取洗衣</font></div>
-                    <div  v-if="!isZH"><font color="grey">Robot will come to your room to pick up the laundry</font></div>
-                </td>
-              </tr>
-              <tr name="wash">
                 <td width="5%">&nbsp;</td>
                 <td>
-                    <img src="https://storage.easyiservice.com/iservicev2/img/201805/a160af1eb0b8a46348e194ad7ebc3000.jpeg!width_750" width="100%" height="45%" @click="robotWash()">
+                    <div>
+                        <div v-if="isZH" style="position:absolute;left:30px;top:44px;font-size:0.4rem;font-family:Avenir-Heavy;color:#c96e3c;">洗衣服务</div>
+                        <div v-if="!isZH" style="position:absolute;left:30px;top:44px;font-size:0.4rem;font-family:Avenir-Heavy;color:#c96e3c;">Laundry Service</div>
+                        <img src="../../assets/images/artboard.png" width="100%" height="45%" @click="robotWash()">
+                    </div>
                 </td>
                 <td width="5%">&nbsp;</td>
-              </tr>
-              <tr name="wash">
-                <td width="5%">&nbsp;</td>
-                <td style="border-bottom:1px solid #C0C0C0;">&nbsp;</td>
-                <td width="5%" style="border-bottom:1px solid white;">&nbsp;</td>
               </tr>
               <tr id="nowash">
                   <td colspan="3">
                       <table width="100%" v-for="(firstTag, index) in dataList">
                             <tr>
                                 <td width="5%">&nbsp;</td>
-                                <td colspan="2" height="30px">
-                                    <div v-if="isZH"><b>{{firstTag.title_lang1}}</b></div>
-                                    <div v-if="!isZH"><b>{{firstTag.title_lang2}}</b></div>
+                                <td colspan="2" valign="bottom" height="50px">
+                                    <div v-if="isZH" style="font-size:0.4rem;font-family:Avenir-Heavy;color:#4a4a4a;">{{firstTag.title_lang1}}</div>
+                                    <div v-if="!isZH" style="font-size:0.4rem;font-family:Avenir-Heavy;color:#4a4a4a;">{{firstTag.title_lang2}}</div>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="3">
+                                <td width="5%">&nbsp;</td>
+                                <td>
                                     <ul class="displayShop-ul">
-                                            <li v-for="(secondTag, index2) in firstTag.children">
+                                        <li v-for="(secondTag, index2) in firstTag.children">
+                                            <div style="border:1px solid #F0F0F0;width:152px;">
                                                 <div class="img">
                                                     <img :src="secondTag.pic" alt=" " @click="goDetail(firstTag,secondTag.id,firstTag.is_robot)" width="100%" height="100%"/>
                                                 </div>
-                                                <div v-if="isZH">{{secondTag.title_lang1}}</div> 
-                                                <div v-if="!isZH">{{secondTag.title_lang2}}</div> 
-                                                <div class="divlines" v-if="index2%2==0"></div>
-                                            </li>
+                                                <div v-if="isZH" style="font-size:0.28rem;font-family:PingFangSC-Regular;color:#4a4a4a;">{{secondTag.title_lang1}}</div> 
+                                                <div v-if="!isZH" style="font-size:0.28rem;font-family:PingFangSC-Regular;color:#4a4a4a;">{{secondTag.title_lang2}}</div> 
+                                            </div>
+                                        </li>
                                     </ul>
                                 </td>
+                                <td width="5%">&nbsp;</td>
                             </tr>
                       </table>
                   </td>
@@ -66,6 +55,7 @@
           </table>
         </section>
       </section>
+      </br></br>
     </div>
     <!--购物车页面-->
     <div class="property" id="section2" style="display: none;">
@@ -209,10 +199,31 @@
         </div>
       </section>
     </div>
-    <!--购物车-->
-    <div class="side-bar"> 
-        <img style="width:60%;height:60%;" src="../../assets/images/shopCard.png" alt="" @click="goShopCar()">
-    </div>
+    <!--Footer start-->
+    <footer class="m-tabbar tabbbar-top-line-color tabbar-fixed" style="color: rgb(240, 195, 102); background-color: rgb(255, 255, 255); font-size: 0.24rem; left: 0px;">
+        <a href="#" class="tabbar-item tabbar-active">
+            <span class="tabbar-icon">
+                <img src="../../assets/images/shopCard.png" @click="goShopping()">
+                <span class="tabbar-badge"></span> 
+            </span> 
+            <span class="tabbar-txt">体验购物</span>
+        </a>
+        <a href="#" class="tabbar-item">
+            <span class="tabbar-icon">
+                <img src="../../assets/images/icon_foot_4.png" @click="goShopCar()">
+                <span class="tabbar-badge"></span> 
+            </span> 
+            <span class="tabbar-txt">购物车</span>
+        </a>
+        <a href="#" class="tabbar-item">
+            <span class="tabbar-icon">
+                <img src="../../assets/images/icon_foot_4.png">
+                <span class="tabbar-badge"></span> 
+            </span> 
+            <span class="tabbar-txt">查看订单</span>
+        </a>
+    </footer>
+    <!--Footer end-->
   </div>
 </template>
 
@@ -326,6 +337,11 @@
             });
         },
         methods: {
+            goShopping:function(){
+                $("#section1").show();
+                $("#section2").hide();
+                $("#section3").hide();
+            },
             orderClose:function(){
                 $("#section2").show();
                 $("#section3").hide();
@@ -333,12 +349,10 @@
             buyClose:function(){
                 $("#section1").show();
                 $("#section2").hide();
-                $(".side-bar").show();
             },
             buyCreate: function() {
                 $("#section1").hide();
                 $("#section2").show();
-                $(".side-bar").hide();
             },
             goBack:function(){
                 if(this.preRoute){
@@ -444,7 +458,6 @@
                                     global.shopCar.clear();
                                     $("#section1").show();
                                     $("#section3").hide();
-                                    $(".side-bar").show();
                                 }
                             }
                         }

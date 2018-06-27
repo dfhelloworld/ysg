@@ -1,10 +1,12 @@
-<!DOCTYPE html><html><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name=viewport><meta content=yes name=apple-mobile-web-app-capable><meta content=black name=apple-mobile-web-app-status-bar-style><meta content="telephone=no" name=format-detection><meta content="email=no" name=format-detection><meta http-equiv=Cache-Control content=no-cache><title>ASCOTT</title><link rel=stylesheet href=static/lib/swiper/swiper.min.css><link rel=stylesheet href=static/style.css><link rel=stylesheet href=static/ydui.css><script type=text/javascript>var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display:none' id='cnzz_stat_icon_1264443895'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1264443895' type='text/javascript'%3E%3C/script%3E"));</script><script></script><link href=./static/css/app.efa483da5b18fd37c4afea8c0e5b05b6.css rel=stylesheet></head><body><div id=app style="height: 100%"></div><div></div><script src=static/lib/ydui.flexible.js></script><script src=static/lib/jquery-3.1.1.min.js></script><script src=static/lib/swiper/swiper.min.js></script><script src=https://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js></script><script src=static/JSBridge.js></script><script src=static/language.js></script><script src=static/ydui.js></script><script src=static/lib/jquery.qrcode.min.js></script><script>//设置pin码
-        function setPin(obj){
-            let _this = obj;
-            //判断是否设置交易密码
-            let pinParams = {
-                token: localStorage.TOKEN
-            };
+<!DOCTYPE html><html><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name=viewport><meta content=yes name=apple-mobile-web-app-capable><meta content=black name=apple-mobile-web-app-status-bar-style><meta content="telephone=no" name=format-detection><meta content="email=no" name=format-detection><meta http-equiv=Cache-Control content=no-cache><title>ASCOTT</title><link rel=stylesheet href=static/lib/swiper/swiper.min.css><link rel=stylesheet href=static/style.css><link rel=stylesheet href=static/ydui.css><script type=text/javascript>var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display:none' id='cnzz_stat_icon_1264443895'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1264443895' type='text/javascript'%3E%3C/script%3E"));</script><script></script><link href=./static/css/app.28708bb3f170dbdfd422bab9144dce9c.css rel=stylesheet></head><body><div id=app style="height: 100%"></div><div></div><script src=static/lib/ydui.flexible.js></script><script src=static/lib/jquery-3.1.1.min.js></script><script src=static/lib/swiper/swiper.min.js></script><script src=https://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js></script><script src=static/JSBridge.js></script><script src=static/language.js></script><script src=static/ydui.js></script><script src=static/lib/jquery.qrcode.min.js></script><script>//设置pin码
+        function setPin(pdata){
+            let _this = pdata;
+            let dialog = window.YDUI.dialog;
+            let alobj = new alertLanguage();
+            let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
+            let sureBnt = obj.sureBnt;
+            let pwdHtml = `<input id="pwdNum" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:100%;">`;
+            let firstPwd = "";
             let resetBnt = '重置';
             let title = '请设置交易密码';
             let title1 = "请再次输入交易密码";
@@ -22,15 +24,13 @@
                 msg3 = "Successfully set up!";
                 msg4 = "Token expired, please log in again!";
             }
+            //判断是否设置交易密码
+            let pinParams = {
+                token: localStorage.TOKEN
+            };
             _this.$store.dispatch('isSetPin', pinParams).then(function (res) {
                 //是否设置pin码
                 if(res.code == 1){
-                    let alobj = new alertLanguage();
-                    let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
-                    let sureBnt = obj.sureBnt;
-                    let dialog = window.YDUI.dialog;
-                    let pwdHtml = `<input id="pwdNum" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:100%;">`;
-                    let firstPwd = "";
                     dialog.confirm(title,pwdHtml, [
                         {
                             txt: sureBnt,
@@ -39,7 +39,7 @@
                             callback: function () {
                                 let pwd = $("#pwdNum").val();
                                 if(!/^[0-9]{6}$/.test(pwd)){
-                                    alert(msg1);
+                                    dialog.alert(msg1);
                                     $("#pwdNum").val("");
                                     $("#pwdNum").focus();
                                 }else{
@@ -50,7 +50,7 @@
                                         $("#pwdNum").focus();
                                     }else{
                                         if(pwd!=firstPwd){
-                                            alert(msg2);
+                                            dialog.alert(msg2);
                                             $("#pwdNum").val("");
                                             $("#pwdNum").focus();
                                         }else{
@@ -62,11 +62,11 @@
                                             };
                                             _this.$store.dispatch('setPin', setParams).then(function (res) {
                                                 if(res.code == 0){
-                                                    alert(msg3);
+                                                    dialog.alert(msg3);
                                                 }else if(res.code == 1){
-                                                    alert(msg4);
+                                                    dialog.alert(msg4);
                                                 }else{
-                                                    alert(res.msg);
+                                                    dialog.alert(res.msg);
                                                 }
                                                 dialog.loading.close();
                                                 $("#pwdNum").val("");
@@ -91,9 +91,9 @@
                     ]);
                     $("#pwdNum").focus();
                 }else if(res.code == 2){
-                    alert(msg4);
+                    dialog.alert(msg4);
                 }else if(res.code != 0){
-                    alert(res.msg);
+                    dialog.alert(res.msg);
                 }
             });
         }
@@ -138,13 +138,13 @@
                                     _this.$router.push(objParams);
                                 }
                             }else if(res.code == 1){
-                                alert(msg1);
+                                dialog.alert(msg1);
                                 $("#YDUI_CONFRIM").hide();
                             }else if(res.code == 2){
-                                alert(msg2);
+                                dialog.alert(msg2);
                                 $("#pwdNum").focus();
                             }else{
-                                alert(res.msg);
+                                dialog.alert(res.msg);
                                 $("#pwdNum").focus();
                             }
                         });
@@ -158,4 +158,4 @@
                 }
             ]);
             $("#pwdNum").focus();
-        }</script><script type=text/javascript src=./static/js/manifest.f7913c049704046b4f84.js></script><script type=text/javascript src=./static/js/vendor.072c6425e2f59bc872ae.js></script><script type=text/javascript src=./static/js/app.05e881c101a50944eb6c.js></script></body></html>
+        }</script><script type=text/javascript src=./static/js/manifest.95b19a996c901e39db9d.js></script><script type=text/javascript src=./static/js/vendor.072c6425e2f59bc872ae.js></script><script type=text/javascript src=./static/js/app.7b3e36292f00a0db51a4.js></script></body></html>
