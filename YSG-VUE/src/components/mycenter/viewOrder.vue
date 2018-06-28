@@ -13,7 +13,7 @@
         <section class="g-scrollview">
           <div id="orderDiv" class="m-list list-theme4">
             <ul class="type-buy">
-              <li v-for="(order, index) in dataList" style="border-bottom:0px;">
+              <li v-for="(order, index) in ordDataList" style="border-bottom:0px;">
                 <table border="0" width="100%">
                     <tr>
                         <td>
@@ -129,7 +129,7 @@
     export default {
         data() {
             return {
-                dataList: [],
+                ordDataList: [],
                 details: [],
                 isZH:true,
                 title:'订单',
@@ -156,10 +156,10 @@
                 }
                 _this.$store.dispatch('viewOrder', params).then(function (res) {
                     if(res.code == 0){
-                        _this.dataList = res.data;
-                        for(let i=0;i<_this.dataList.length;i++){
+                        _this.ordDataList = res.data;
+                        for(let i=0;i<_this.ordDataList.length;i++){
                             // 时间格式转换
-                            let date = new Date(Number(_this.dataList[i].created_at) * 1000);
+                            let date = new Date(Number(_this.ordDataList[i].created_at) * 1000);
                             let Y = date.getFullYear() + '-';
                             let M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
                             let D = (date.getDate() < 10 ? '0'+(date.getDate()) : date.getDate()) + ' ';
@@ -167,7 +167,7 @@
                             let m = (date.getMinutes() < 10 ? '0'+(date.getMinutes()) : date.getMinutes()) + ':';
                             let s = (date.getSeconds() < 10 ? '0'+(date.getSeconds()) : date.getSeconds());
                             let dateStr = Y+M+D+h+m+s;
-                            _this.dataList[i].created_at = dateStr;
+                            _this.ordDataList[i].created_at = dateStr;
                         }
                     } else {
                         _this.$dialog.toast({mes: res.msg, timeout: 3000});
