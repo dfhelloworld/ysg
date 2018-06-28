@@ -122,7 +122,7 @@
             </li>
         </ul>
     </section>
-      <section class="buy_foot" style="margin-top: 1rem;">
+      <section class="buy_foot" style="bottom:56px;">
         <div class="col-5" v-if="isZH"  style="font-size:16px;">
           合计 <font color="red">￥ </font><font color="red" id="ftotal">{{ftotal}}</font>
         </div>
@@ -188,7 +188,7 @@
             </li>
         </ul>
     </section>
-      <section class="buy_foot" style="margin-top: 1rem;">
+      <section class="buy_foot" style="bottom:56px;">
         <div class="col-5">
           <button type="button" @click="orderClose" v-if="isZH" style="border-right:1px solid white;">取消</button>
           <button type="button" @click="orderClose" v-if="!isZH" style="border-right:1px solid white;">Cancel</button>
@@ -343,6 +343,9 @@
                 $("footer img:eq(0)").attr("src","/static/images/shopping02.png");
                 $("footer img:eq(1)").attr("src","/static/images/shopping04.png");
                 $("footer img:eq(2)").attr("src","/static/images/shopping05.png");
+                $("#section1").hide();
+                $("#section2").hide();
+                $("#section3").hide();
             },
             goShopping:function(){
                 $("footer a").css("color", "#979797");
@@ -365,6 +368,7 @@
             buyCreate: function() {
                 $("#section1").hide();
                 $("#section2").show();
+                $("#section3").hide();
             },
             goBack:function(){
                 if(this.preRoute){

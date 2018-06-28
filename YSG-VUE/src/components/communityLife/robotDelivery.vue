@@ -79,6 +79,7 @@
               </li>
             </ul>
             <p class="no_data" v-show="noData">{{language.common.noMoreData}}</p>
+            </br></br>
         </section>
       </section>
     </div>
@@ -147,7 +148,7 @@
             </li>
         </ul>
     </section>
-      <section class="buy_foot" style="margin-top: 1rem;">
+      <section class="buy_foot" style="bottom:56px;">
         <div class="col-5" v-if="isZH" style="font-size:16px;">
           合计 <font color="red">￥ </font><font color="red" id="ftotal">{{ftotal}}</font>
         </div>
@@ -213,7 +214,7 @@
             </li>
         </ul>
     </section>
-      <section class="buy_foot" style="margin-top: 1rem;">
+      <section class="buy_foot" style="bottom:56px;">
         <div class="col-5">
           <button type="button" @click="orderClose" v-if="isZH" style="border-right:1px solid white;">取消</button>
           <button type="button" @click="orderClose" v-if="!isZH" style="border-right:1px solid white;">Cancel</button>
@@ -224,10 +225,6 @@
         </div>
       </section>
     </div>
-    <!--购物车-->
-    <div class="side-bar"> 
-        <img style="width:60%;height:60%;" src="../../assets/images/shopCard.png" alt="" @click="goShopCar()">
-    </div>
     <!--产品详情页面-->
     <div class="property" id="section4" style="display: none;">
         <div class="nav_mark"></div>
@@ -235,8 +232,32 @@
             <span class="back" slot="left" @click="productClose()"></span>
         </yd-navbar>
         <section class="resolve-box" v-html="content"></section>
-        </div>
     </div>
+    <!--Footer start-->
+    <footer class="m-tabbar tabbbar-top-line-color tabbar-fixed" style="color: rgb(240, 195, 102); background-color: rgb(255, 255, 255); font-size: 0.24rem; left: 0px;">
+        <a href="#" class="tabbar-item" style="color:#f0c366;">
+            <span class="tabbar-icon">
+                <img src="/static/images/shopping01.png" @click="goShopping()">
+                <span class="tabbar-badge"></span> 
+            </span> 
+            <span class="tabbar-txt">体验购物</span>
+        </a>
+        <a href="#" class="tabbar-item">
+            <span class="tabbar-icon">
+                <img src="/static/images/shopping04.png" @click="goShopCar()">
+                <span class="tabbar-badge"></span> 
+            </span> 
+            <span class="tabbar-txt">购物车</span>
+        </a>
+        <a href="#" class="tabbar-item">
+            <span class="tabbar-icon">
+                <img src="/static/images/shopping06.png"  @click="goOrder()">
+                <span class="tabbar-badge"></span> 
+            </span> 
+            <span class="tabbar-txt">查看订单</span>
+        </a>
+    </footer>
+    <!--Footer end-->
   </div>
 </template>
 
@@ -278,8 +299,6 @@
   .m-spinner {
     margin-top: 0.2rem;
   }
-
-  .side-bar {width: 20%;position: fixed;bottom: 10%;right: 3%;font-size: 0;line-height: 0;z-index: 100;}
 </style>
 <script>
     import { mapGetters } from 'vuex'
@@ -327,6 +346,28 @@
             });
         },
         methods: {
+            goOrder:function(){
+                $("footer a").css("color", "#979797");
+                $("footer a:eq(2)").css("color", "#f0c366");
+                $("footer img:eq(0)").attr("src","/static/images/shopping02.png");
+                $("footer img:eq(1)").attr("src","/static/images/shopping04.png");
+                $("footer img:eq(2)").attr("src","/static/images/shopping05.png");
+                $("#section1").hide();
+                $("#section2").hide();
+                $("#section3").hide();
+                $("#section4").hide();
+            },
+            goShopping:function(){
+                $("footer a").css("color", "#979797");
+                $("footer a:eq(0)").css("color", "#f0c366");
+                $("footer img:eq(0)").attr("src","/static/images/shopping01.png");
+                $("footer img:eq(1)").attr("src","/static/images/shopping04.png");
+                $("footer img:eq(2)").attr("src","/static/images/shopping06.png");
+                $("#section1").show();
+                $("#section2").hide();
+                $("#section3").hide();
+                $("#section4").hide();
+            },
             orderClose:function(){
                 $("#section2").show();
                 $("#section3").hide();
@@ -334,17 +375,16 @@
             buyClose:function(){
                 $("#section1").show();
                 $("#section2").hide();
-                $(".side-bar").show();
             },
             buyCreate: function() {
                 $("#section1").hide();
                 $("#section2").show();
-                $(".side-bar").hide();
+                $("#section3").hide();
+                $("#section4").hide();
             },
             productClose: function() {
                 $("#section4").hide();
                 $("#section1").show();
-                $(".side-bar").show();
             },
             changeTab:function (id) {
                 let _this = this
@@ -367,9 +407,6 @@
                 });
             },
             goDetail:function (childObj) {
-                $(".side-bar").animate({opacity: 0.2},300,function(){
-                    $(".side-bar").css({opacity: 1});
-                });
                 if(global.shopCar===undefined){
                     //初始化购物车
                     global.shopCar = new Map();
@@ -415,7 +452,6 @@
                 }
                 $("#section4").show();
                 $("#section1").hide();
-                $(".side-bar").hide();
             },
             goBack:function(){
                 this.$router.push('/shopping');
@@ -517,7 +553,6 @@
                                     global.shopCar.clear();
                                     $("#section1").show();
                                     $("#section3").hide();
-                                    $(".side-bar").show();
                                 }
                             }
                         }
@@ -573,6 +608,11 @@
                  ]);
             },
             goShopCar: function() {
+                $("footer a").css("color", "#979797");
+                $("footer a:eq(1)").css("color", "#f0c366");
+                $("footer img:eq(0)").attr("src","/static/images/shopping02.png");
+                $("footer img:eq(1)").attr("src","/static/images/shopping03.png");
+                $("footer img:eq(2)").attr("src","/static/images/shopping06.png");
                 this.buyCreate();
                 this.caculate();
             },
