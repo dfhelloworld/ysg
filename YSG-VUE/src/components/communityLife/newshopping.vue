@@ -14,7 +14,10 @@
             <div class="swiper-container">
               <div class="swiper-wrapper ra">
                 <div class="swiper-slide" v-for="(item, index) in tagList" @click="changeTab(item.id)" :class="{active:(item.id==tagIds[1])}">
-                  <a><span>{{item.title}}</span></a>
+                  <a>
+                      <span v-if="isZH">{{item.title_lang1}}</span>
+                      <span v-if="!isZH">{{item.title_lang2}}</span>
+                  </a>
                 </div>
               </div>
               <div class="swiper-button-prev" v-show="tagList.length>3" style="top:39%"></div>
@@ -207,21 +210,24 @@
                 <img src="/static/images/shopping01.png" @click="goShopping()">
                 <span class="tabbar-badge"></span> 
             </span> 
-            <span class="tabbar-txt">体验购物</span>
+            <span class="tabbar-txt" v-if="isZH">体验购物</span>
+            <span class="tabbar-txt" v-if="!isZH">Shopping</span>
         </a>
         <a href="#" class="tabbar-item">
             <span class="tabbar-icon">
                 <img src="/static/images/shopping04.png" @click="goShopCar()">
                 <span class="tabbar-badge"></span> 
             </span> 
-            <span class="tabbar-txt">购物车</span>
+            <span class="tabbar-txt" v-if="isZH">购物车</span>
+            <span class="tabbar-txt" v-if="!isZH">Shopping Cart</span>
         </a>
         <a href="#" class="tabbar-item">
             <span class="tabbar-icon">
                 <img src="/static/images/shopping06.png"  @click="goOrder()">
                 <span class="tabbar-badge"></span> 
             </span> 
-            <span class="tabbar-txt">查看订单</span>
+            <span class="tabbar-txt" v-if="isZH">查看订单</span>
+            <span class="tabbar-txt" v-if="!isZH">Check Order</span>
         </a>
     </footer>
     <!--Footer end-->
@@ -297,6 +303,10 @@
         },
         created:function () {
             this.pageFlag = this.$route.query.pageFlag;
+            //判断显示中/英文
+            if(localStorage.LANGUAGE!='zh'){
+                this.isZH = false;
+            }
             //根据分类信息
             this.tagIds = localStorage.NEWTYPE.split(',');
             let _this = this;
@@ -606,6 +616,7 @@
             }
             this.$store.dispatch('getFirstTags', params).then(function (res) {
                 _this.tagList = res.data.data.list;
+                console.log(_this.tagList);
                 //初始化tab标签
                 $(function() {
                     //初始化tab选择项

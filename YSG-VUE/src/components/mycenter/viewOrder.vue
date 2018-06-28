@@ -4,39 +4,64 @@
       <div class="nav_mark"></div>
       <yd-navbar :title="title" fixed>
         <span class="back" slot="left" @click="goBack()"></span>
-      </yd-navbar>
-      <section class="g-flexview">
+      </yd-navbar></br></br></br>
+      <div style="width:100%;height:120px;">
+            <div style="position:absolute;left:30px;top:104px;font-size:0.4rem;font-family:Avenir-Heavy;color:#ffffff;">ASCOTT HENG SHAN SHANGHAI</div>
+            <img src="../../assets/images/oerderBg.png" width="100%" height="100%">
+      </div>
+      <section class="g-flexview" style="background:white;">
         <section class="g-scrollview">
-          <div id="J_ListContent" class="m-list list-theme4"><br/><br/>
-            <ul class="type-buy" style="padding-top: 0.5rem">
-              <li @click="detail(order)" v-for="(order, index) in dataList">
+          <div id="orderDiv" class="m-list list-theme4">
+            <ul class="type-buy">
+              <li v-for="(order, index) in dataList" style="border-bottom:0px;">
                 <table border="0" width="100%">
                     <tr>
                         <td>
-                            {{order.id}}
+                            <div style="font-size:24px;font-family:PingFangSC-Semihold;color:#f0c366;">
+                                RMB {{order.price}}
+                            </div>
                         </td>
                         <td>
                             &nbsp;
                         </td>
                         <td style="text-align: right;">
-                            <font color="red">{{order.status}}</font>
+                            <div style="font-size:18px;color:#f0c366;">
+                                <a href="#" @click="delOrder(order.id,$event)">X</a>
+                            </div>
                         </td>
                     </tr>
                     <tr>
-                        <td  width="20%">
-                            {{numStr}}:{{order.num}}
+                        <td colspan="3">
+                            <div style="font-size:16px;font-family:PingFangSC-Light;color:#4a4a4a;">
+                                {{order.created_at}}
+                            </div>
                         </td>
-                        <td align="center" width="60%">
-                            {{order.created_at}}
+                    </tr>
+                    <tr style="border-bottom:1px solid #f0f0f0;">
+                        <td>
+                            <div style="font-size:16px;font-family:PingFangSC-Light;color:#4a4a4a;">
+                                NO. {{order.id_show}}
+                            </div>
                         </td>
-                        <td valign="right" style="text-align: right;"  width="20%">
-                            ￥{{order.price}}
+                        <td colspan="2" style="text-align: right;">
+                            <div style="font-size:16px;font-family:PingFangSC-Semihold;color:#4a4a4a;">
+                                {{numStr}}:{{order.num}} 
+                            </div>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td colspan="3" @click="detail(order)">
+                            <div style="font-size:16px;font-family:PingFangSC-Regular;color:#f0c366;text-align:center;" v-if="isZH">
+                                更多
+                            </div>
+                            <div style="font-size:16px;font-family:PingFangSC-Regular;color:#f0c366;text-align:center;" v-if="!isZH">
+                                MORE
+                            </div>
                         </td>
                     </tr>
                 </table>
               </li>
             </ul>
-            <p class="no_data" v-show="noData">{{language.common.noMoreData}}</p>
           </div>
         </section>
       </section>
@@ -48,7 +73,7 @@
       </yd-navbar>
       <section class="g-flexview">
         <section class="g-scrollview">
-          <div id="J_ListContent" class="m-list list-theme4"><br/><br/>
+          <div class="m-list list-theme4"><br/><br/>
             <ul class="type-buy" style="padding-top: 0.5rem">
               <li>
                 <table border="0" width="100%">
@@ -89,7 +114,6 @@
                 </table>
               </li>
             </ul>
-            <p class="no_data" v-show="noData">{{language.common.noMoreData}}</p>
           </div>
         </section>
       </section>
@@ -107,7 +131,6 @@
             return {
                 dataList: [],
                 details: [],
-                noData: false,
                 isZH:true,
                 title:'订单',
                 orderNo:'',
@@ -118,10 +141,11 @@
         created:function () {
             //判断显示中/英文
             if(localStorage.LANGUAGE!='zh'){
+                this.isZH = false;
                 this.title = "Orders";
                 this.numStr = "Quantity";
             }
-            let _this = this
+            let _this = this;
             $(function(){
                 $(".navbar-center").css('marginLeft',0);
                 //获取订单信息
@@ -165,6 +189,54 @@
                 this.orderNo = order.id;
                 this.orderDate = order.created_at;
                 this.details = order.products;
+            },
+            delOrder:function(id,event){
+                let target = event.target;
+                if(target==null){
+                    target = event.srcElement;
+                }
+                //$("#orderDiv li:eq("+index+")").remove();
+                let _this = this;
+                let alobj = new alertLanguage();
+                let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
+                let title = obj.title;
+                let msg1 = '是否删除?';
+                let msg2 = '删除成功!';
+                //判断显示中/英文
+                if(localStorage.LANGUAGE!='zh'){
+                    msg1 = 'Are you sure to delete the order?';
+                    msg2 = 'Successfully deleted!';
+                }
+                let sureBnt = obj.sureBnt;
+                let cancelBnt = obj.cancelBnt;
+                let dialog = window.YDUI.dialog;
+                dialog.confirm(title,msg1, [
+                    {
+                        txt: sureBnt,
+                        color: false,
+                        callback: function () {
+                            let params = {
+                                token: localStorage.TOKEN,
+                                orderid:id
+                            }
+                            _this.$store.dispatch('deleteOrder', params).then(function (res) {
+                                if(res.code==0){
+                                    _this.$dialog.toast({mes: msg2, timeout: 2000});
+                                    $(target).parent().parent().parent().parent().parent().remove();
+                                }else{
+                                    _this.$dialog.toast({mes: res.msg, timeout: 2000});
+                                }
+                            });
+                        }
+                    },
+                    {
+                        txt: cancelBnt,
+                        color: false,
+                        callback: function () {
+
+                        }
+                    }
+                ]);
             }
         },
         mounted:function () {

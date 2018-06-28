@@ -240,21 +240,24 @@
                 <img src="/static/images/shopping01.png" @click="goShopping()">
                 <span class="tabbar-badge"></span> 
             </span> 
-            <span class="tabbar-txt">体验购物</span>
+            <span class="tabbar-txt" v-if="isZH">体验购物</span>
+            <span class="tabbar-txt" v-if="!isZH">Shopping</span>
         </a>
         <a href="#" class="tabbar-item">
             <span class="tabbar-icon">
                 <img src="/static/images/shopping04.png" @click="goShopCar()">
                 <span class="tabbar-badge"></span> 
             </span> 
-            <span class="tabbar-txt">购物车</span>
+            <span class="tabbar-txt" v-if="isZH">购物车</span>
+            <span class="tabbar-txt" v-if="!isZH">Shopping Cart</span>
         </a>
         <a href="#" class="tabbar-item">
             <span class="tabbar-icon">
                 <img src="/static/images/shopping06.png"  @click="goOrder()">
                 <span class="tabbar-badge"></span> 
             </span> 
-            <span class="tabbar-txt">查看订单</span>
+            <span class="tabbar-txt" v-if="isZH">查看订单</span>
+            <span class="tabbar-txt" v-if="!isZH">Check Order</span>
         </a>
     </footer>
     <!--Footer end-->
