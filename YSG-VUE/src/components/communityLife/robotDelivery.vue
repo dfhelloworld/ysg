@@ -10,28 +10,28 @@
           <h1>{{language.raiders.title}}</h1>
            <table id="dataTable">
                 <tr name="wash">
-                    <td height="20px">
-                        <div v-if="isZH"><font size="3">洗衣服务</font></div>
-                        <div v-if="!isZH"><font size="3">Layndry Service</font></div>
-                    </td>
-                </tr>
-                <tr name="wash">
                     <td>
-                        <img src="https://storage.easyiservice.com/iservicev2/img/201805/a160af1eb0b8a46348e194ad7ebc3000.jpeg!width_750" width="100%" height="45%" @click="robotWash()">
+                        <div>
+                            <div v-if="isZH" style="position:absolute;left:30px;top:130px;font-size:0.4rem;font-family:Avenir-Heavy;color:#c96e3c;">洗衣服务</div>
+                            <div v-if="!isZH" style="position:absolute;left:30px;top:130px;font-size:0.4rem;font-family:Avenir-Heavy;color:#c96e3c;">Laundry Service</div>
+                            <img src="../../assets/images/artboard.png" width="100%" height="45%" @click="robotWash()">
+                        </div>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td style="border-bottom:1px solid #f0f0f0;">
                         <table>
                             <tr>
-                                <td v-for="(tags, index) in tagsData">
+                                <td v-for="(tags, index) in tagsData" height="40px" valign="bottom">
                                     <div v-if="tags.id==tagIds[1]">
-                                        <div style="border-bottom:1px solid #DCDCDC;height:30px;float:left;" name="tagsDiv">
+                                        <div style="border-bottom:2px solid #f0c366;height:30px;float:left;color:#4a4a4a" name="tagsDiv">
                                             <a href="#" @click="changeTab(tags.id)">
-                                                <span>
-                                                    <font size="3" v-if="isZH">{{tags.title_lang1}}</font>
-                                                    <font size="3" v-if="!isZH">{{tags.title_lang2}}</font>
-                                                </span>
+                                                <div v-if="isZH" style="font-family:Avenir-Heavy;font-size:16px;">
+                                                    {{tags.title_lang1}}
+                                                </div>
+                                                <div v-if="!isZH" style="font-family:Avenir-Heavy;font-size:16px;">
+                                                    {{tags.title_lang2}}
+                                                </div>
                                             </a>
                                         </div>
                                         <div style="float:left;">&nbsp;&nbsp;&nbsp;</div>
@@ -39,10 +39,13 @@
                                     <div v-if="tags.id!=tagIds[1]">
                                         <div style="color:#afafaf;height:30px;float:left;" name="tagsDiv">
                                             <a href="#" @click="changeTab(tags.id)">
-                                                <span>
-                                                    <font size="3" v-if="isZH">{{tags.title_lang1}}</font>
-                                                    <font size="3" v-if="!isZH">{{tags.title_lang2}}</font>
-                                                </span>
+                                                <div v-if="isZH" style="font-family:Avenir-Heavy;font-size:16px;">
+                                                    {{tags.title_lang1}}
+                                                    
+                                                </div>
+                                                <div v-if="!isZH" style="font-family:Avenir-Heavy;font-size:16px;">
+                                                    {{tags.title_lang2}}
+                                                </div>
                                             </a>
                                         </div>
                                         <div style="float:left;">&nbsp;&nbsp;&nbsp;</div>
@@ -54,20 +57,23 @@
                 </tr>
             </table>
         </section>
-        <div style="border-bottom:1px solid #ddd;">&nbsp;</div>
         <section class="g-scrollview">
             <ul class="type-buy" style="padding-top: 0.5rem">
-              <li v-for="data in dataList">
+              <li v-for="data in dataList" style="border-bottom:1px solid #f0f0f0;">
                 <div class="col-4">
-                  <img  :src="data.pic" alt=""  @click="showProduct(data)">
+                  <img  :src="data.pic" alt=""  @click="showProduct(data)" style="border:1px solid #f0f0f0;">
                 </div>
                 <div class="col-6">
-                  <h4 v-if="isZH">{{data.title_lang1}}</h4>
-                  <h4 v-if="!isZH">{{data.title_lang2}}</h4>
-                  <p>{{data.introduct}}</p>
+                  <div v-if="isZH" style="font-family:Avenir-Roman;font-size:20px;color:#4a4a4a;">{{data.title_lang1}}</div>
+                  <div v-if="!isZH" style="font-family:Avenir-Roman;font-size:20px;color:#4a4a4a;">{{data.title_lang2}}</div>
+                  <p  style="font-family:PingFangSC-Light;font-size:16px;color:#4a4a4a;">{{data.introduct}}</p>
                   <ul class="s-price">
-                    <li class="col-5" style="border:0px">RMB {{data.price}}</li>
-                    <li class="col-5" style="border:0px"><button type="button" @click="goDetail(data)">{{language.community.buy}}</button></li>
+                    <li class="col-6" style="border:0px">
+                        <div style="font-family:Avenir-Medium;font-size:20px;color:#f0c366;">RMB {{data.price}}</div>
+                    </li>
+                    <li class="col-4" style="border:0px">
+                        <button type="button" @click="goDetail(data)" style="border:1px solid #f0c366;width:78px;height:28px;font-size:16px;color:#f0c366;font-family:Helvetica;">{{language.community.buy}}</button>
+                    </li>
                   </ul>
                 </div>
               </li>
@@ -646,7 +652,7 @@
                     if (_this.isLoad) {
                         $("div[name='tagsDiv']").click(function(){
                             $("div[name='tagsDiv']").css({"border-bottom": "0px","color":"#afafaf"});
-                            $(this).css({"border-bottom": "1px solid #DCDCDC","color":"black"});
+                            $(this).css({"border-bottom": "2px solid #f0c366","color":"#4a4a4a"});
                         });
                         clearInterval(fader);
                     }

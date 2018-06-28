@@ -27,15 +27,19 @@
             <ul class="type-buy" style="padding-top: 0.5rem">
               <li v-for="data in dataList">
                 <div class="col-4">
-                  <img  :src="data.pic" alt="" @click="showProduct(data)">
+                  <img  :src="data.pic" alt="" @click="showProduct(data)" style="border:1px solid #f0f0f0;">
                 </div>
                 <div class="col-6">
-                  <h4 v-if="isZH">{{data.title_lang1}}</h4>
-                  <h4 v-if="!isZH">{{data.title_lang2}}</h4>
-                  <p>{{data.introduct}}</p>
+                  <div v-if="isZH" style="font-family:Avenir-Roman;font-size:20px;color:#4a4a4a;">{{data.title_lang1}}</div>
+                  <div v-if="!isZH" style="font-family:Avenir-Roman;font-size:20px;color:#4a4a4a;">{{data.title_lang2}}</div>
+                  <p style="font-family:PingFangSC-Light;font-size:16px;color:#4a4a4a;">{{data.introduct}}</p>
                   <ul class="s-price">
-                    <li class="col-5" style="border:0px">RMB {{data.price}}</li>
-                    <li class="col-5" style="border:0px"><button type="button"  @click="goDetail(data)">{{language.community.buy}}</button></li>
+                    <li class="col-6" style="border:0px">
+                        <div style="font-family:Avenir-Medium;font-size:20px;color:#f0c366;">RMB {{data.price}}</div>
+                    </li>
+                    <li class="col-4" style="border:0px">
+                        <button type="button"  @click="goDetail(data)" style="border:1px solid #f0c366;width:78px;height:28px;font-size:16px;color:#f0c366;font-family:Helvetica;">{{language.community.buy}}</button>
+                    </li>
                   </ul>
                 </div>
               </li>
@@ -241,6 +245,14 @@
   }
   .m-spinner {
     margin-top: 0.2rem;
+  }
+
+  .promotiom_index .swiper-slide.active span{
+      border-bottom: 2px solid #f0c366;
+  }
+
+  .swiper-wrapper {
+      border-bottom:1px solid #f0f0f0;
   }
 
   .side-bar {width: 20%;position: fixed;bottom: 10%;right: 3%;font-size: 0;line-height: 0;z-index: 100;}
