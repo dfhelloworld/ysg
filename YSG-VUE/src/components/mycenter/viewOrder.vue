@@ -133,7 +133,7 @@
                         </tr>
                     </table>
                 </li>
-            </ul>
+            </ul></br></br>
         </div>
         <div>
             <div style="text-align: center; font-size: 16px; font-family: PingFangSC-Regular; color: rgb(240, 195, 102); position: absolute; left: 7.5%; bottom: 5%; background: #fafafa; width: 85%; height: 30px;" @click="close()" v-if="isZH">
