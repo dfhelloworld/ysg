@@ -17,7 +17,7 @@
                 <table border="0" width="100%">
                     <tr>
                         <td>
-                            <div style="font-size:24px;font-family:PingFangSC-Semihold;color:#f0c366;">
+                            <div style="font-size:24px;font-family:PingFangSC-Semibold;color:#f0c366;">
                                 RMB {{order.price}}
                             </div>
                         </td>
@@ -44,7 +44,7 @@
                             </div>
                         </td>
                         <td colspan="2" style="text-align: right;">
-                            <div style="font-size:16px;font-family:PingFangSC-Semihold;color:#4a4a4a;">
+                            <div style="font-size:16px;font-family:PingFangSC-Semibold;color:#4a4a4a;">
                                 {{numStr}}:{{order.num}} 
                             </div>
                         </td>
@@ -66,57 +66,83 @@
         </section>
       </section>
     </div>
-    <div class="search" style="height: 100%;display:none;" id="section2">
-      <div class="nav_mark"></div>
-      <yd-navbar :title="title" fixed>
-        <span class="back" slot="left" @click="close()"></span>
-      </yd-navbar>
-      <section class="g-flexview">
-        <section class="g-scrollview">
-          <div class="m-list list-theme4"><br/><br/>
-            <ul class="type-buy" style="padding-top: 0.5rem">
-              <li>
-                <table border="0" width="100%">
-                    <tr>
-                        <td width="30%">
-                           {{orderNo}}
-                        </td>
-                        <td width="40%" align="center">
-                            {{orderDate}}
-                        </td>
-                        <td width="30%">
-                            &nbsp;
-                        </td>
-                    </tr>
-                </table>
-              </li>
-              <li v-for="(obj, index) in details">
-                <table border="0" width="100%">
-                    <tr>
-                        <td width="30%">
-                           {{obj.title}}
-                        </td>
-                        <td width="40%" align="center">
-                            {{numStr}}:{{obj.num}}
-                        </td>
-                        <td width="30%">
-                            ￥{{obj.price}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            &nbsp;
-                        </td>
-                        <td>
-                            <font color="red">{{obj.status}}</font>
-                        </td>
-                    </tr>
-                </table>
-              </li>
+    <div class="mask-black-dialog" id="section2" style="display:none;height:100%">   
+        <div class="m-confirm" style="height:90%;overflow-y: scroll;">
+            <ul class="type-buy" style="width:100%;padding:0px;">
+                <li>
+                    <table border="0" width="100%">
+                        <tr>
+                            <td rowspan="3" width="5%">
+                                &nbsp;
+                            </td>
+                            <td colspan="2">
+                                <div style="font-size:24px;font-family:PingFangSC-Semibold;color:#f0c366;">
+                                    RMB {{orderTotal}}
+                                </div>
+                            </td>
+                            <td rowspan="3" width="5%">
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div style="font-size:16px;font-family:PingFangSC-Light;color:#4a4a4a;">
+                                    {{orderDate}}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="font-size:16px;font-family:PingFangSC-Light;color:#4a4a4a;">
+                                    NO. {{orderNo}}
+                                </div>
+                            </td>
+                            <td style="text-align: right;">
+                                <div style="font-size:16px;font-family:PingFangSC-Semibold;color:#4a4a4a;">
+                                    {{numStr}}:{{orderNum}} 
+                                </div>
+                            </td>
+                        </tr>
+
+                    </table>
+                </li>
+                <li v-for="(obj, index) in details">
+                    <table border="0" width="100%">
+                        <tr>
+                            <td width="5%" rowspan="2">
+                                &nbsp;
+                            </td>
+                            <td rowspan="2">
+                                <img :src="obj.pic" height="79px" width="79px;"/>
+                            </td>
+                            <td>
+                               <div style="font-size:20px;font-family:Avenir-Roman;color:#4a4a4a;">
+                                   {{obj.title}}
+                               </div>
+                            </td>
+                            <td width="5%" rowspan="2">
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                             <td>
+                                 <div style="font-size:16px;font-family:PingFangSC-Light;color:#4a4a4a;">
+                                    {{numStr}}:{{obj.num}} RMB {{obj.price}} <font color="red">{{obj.status}}</font>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
             </ul>
-          </div>
-        </section>
-      </section>
+        </div>
+        <div>
+            <div style="text-align: center; font-size: 16px; font-family: PingFangSC-Regular; color: rgb(240, 195, 102); position: absolute; left: 7.5%; bottom: 5%; background: #fafafa; width: 85%; height: 30px;" @click="close()" v-if="isZH">
+                X 关闭
+            </div>
+            <div style="text-align: center; font-size: 16px; font-family: PingFangSC-Regular; color: rgb(240, 195, 102); position: absolute; left: 7.5%; bottom: 5%; background: #fafafa; width: 85%; height: 30px;" @click="close()" v-if="!isZH">
+                X 关闭
+            </div>
+        </div>
     </div>
   </div>
 </template>
@@ -135,6 +161,8 @@
                 title:'订单',
                 orderNo:'',
                 orderDate:'',
+                orderTotal:0.0,
+                orderNum:0,
                 numStr:'数量'
             }
         },
@@ -157,6 +185,7 @@
                 _this.$store.dispatch('viewOrder', params).then(function (res) {
                     if(res.code == 0){
                         _this.ordDataList = res.data;
+                        console.log(_this.ordDataList);
                         for(let i=0;i<_this.ordDataList.length;i++){
                             // 时间格式转换
                             let date = new Date(Number(_this.ordDataList[i].created_at) * 1000);
@@ -186,8 +215,10 @@
             detail:function(order){
                 $("#section1").hide();
                 $("#section2").show();
-                this.orderNo = order.id;
+                this.orderNo = order.id_show;
                 this.orderDate = order.created_at;
+                this.orderTotal = order.price;
+                this.orderNum = order.num;
                 this.details = order.products;
             },
             delOrder:function(id,event){
