@@ -451,7 +451,8 @@
                 orderDate:'',
                 orderTotal:0.0,
                 orderNum:0,
-                numStr:'数量'
+                numStr:'数量',
+                shopShow: false
             }
         },
         created:function () {
@@ -490,6 +491,8 @@
                         }
                     }
                 });
+                //判断购物车显示图片
+                _this.shopCarImg();
             });
         },
         methods: {
@@ -497,7 +500,9 @@
                 $("footer a").css("color", "#979797");
                 $("footer a:eq(2)").css("color", "#f0c366");
                 $("footer img:eq(0)").attr("src","/static/images/shopping02.png");
-                $("footer img:eq(1)").attr("src","/static/images/shopping04.png");
+                //判断购物车显示图片
+                this.shopShow = false;
+                this.shopCarImg();
                 $("footer img:eq(2)").attr("src","/static/images/shopping05.png");
                 $("#section1").hide();
                 $("#section2").hide();
@@ -510,7 +515,9 @@
                 $("footer a").css("color", "#979797");
                 $("footer a:eq(0)").css("color", "#f0c366");
                 $("footer img:eq(0)").attr("src","/static/images/shopping01.png");
-                $("footer img:eq(1)").attr("src","/static/images/shopping04.png");
+                //判断购物车显示图片
+                this.shopShow = false;
+                this.shopCarImg();
                 $("footer img:eq(2)").attr("src","/static/images/shopping06.png");
                 $("#section1").show();
                 $("#section2").hide();
@@ -577,6 +584,8 @@
                     msg = 'Add to cart successful';
                 }
                 this.$dialog.toast({mes: msg, timeout: 1000});
+                //判断购物车显示图片
+                this.shopCarImg();
             },
             showProduct:function(obj){
                 let data = {};
@@ -712,7 +721,8 @@
                 $("footer a").css("color", "#979797");
                 $("footer a:eq(1)").css("color", "#f0c366");
                 $("footer img:eq(0)").attr("src","/static/images/shopping02.png");
-                $("footer img:eq(1)").attr("src","/static/images/shopping03.png");
+                //判断购物车显示图片
+                this.shopShow = true;
                 $("footer img:eq(2)").attr("src","/static/images/shopping06.png");
                 $("#section1").hide();
                 $("#section2").show();
@@ -736,6 +746,8 @@
                 });
                 this.carList = arr;
                 this.ftotal = total;
+                //判断购物车显示图片
+                this.shopCarImg();
             },
             clearCar: function() {
                 global.shopCar.clear();
@@ -849,6 +861,21 @@
                         }
                     }
                 ]);
+            },
+            shopCarImg:function(){
+                if(this.shopShow){
+                    if((global.shopCar===undefined)||(global.shopCar.size==0)){
+                        $("footer img:eq(1)").attr("src","/static/images/shopping03.png");
+                    }else{
+                        $("footer img:eq(1)").attr("src","/static/images/shopping07.png");
+                    }
+                }else{
+                    if((global.shopCar===undefined)||(global.shopCar.size==0)){
+                        $("footer img:eq(1)").attr("src","/static/images/shopping04.png");
+                    }else{
+                        $("footer img:eq(1)").attr("src","/static/images/shopping08.png");
+                    }
+                }
             }
         },
         mounted:function () {
