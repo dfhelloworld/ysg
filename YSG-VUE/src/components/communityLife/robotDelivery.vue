@@ -233,6 +233,151 @@
         </yd-navbar>
         <section class="resolve-box" v-html="content"></section>
     </div>
+    <!--订单功能-->
+    <div class="search" style="height: 100%;display:none;" id="section5">
+      <div class="nav_mark"></div>
+      <yd-navbar :title="title" fixed>
+        <span class="back" slot="left" @click="ordGoBack()"></span>
+      </yd-navbar></br></br></br>
+      <div style="width:100%;height:120px;">
+            <div style="position:absolute;left:30px;top:104px;font-size:0.4rem;font-family:Avenir-Heavy;color:#ffffff;">ASCOTT HENG SHAN SHANGHAI</div>
+            <img src="../../assets/images/oerderBg.png" width="100%" height="100%">
+      </div>
+      <section class="g-flexview" style="background:white;">
+        <section class="g-scrollview">
+          <div id="orderDiv" class="m-list list-theme4">
+            <ul class="type-buy">
+              <li v-for="(order, index) in ordDataList" style="border-bottom:0px;">
+                <table border="0" width="100%">
+                    <tr>
+                        <td>
+                            <div style="font-size:24px;font-family:PingFangSC-Semibold;color:#f0c366;">
+                                RMB {{order.price}}
+                            </div>
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td style="text-align: right;">
+                            <div style="font-size:18px;color:#f0c366;">
+                                <a href="#" @click="delOrder(order.id,$event)">X</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <div style="font-size:16px;font-family:PingFangSC-Light;color:#4a4a4a;">
+                                {{order.created_at}}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #f0f0f0;">
+                        <td>
+                            <div style="font-size:16px;font-family:PingFangSC-Light;color:#4a4a4a;">
+                                NO. {{order.id_show}}
+                            </div>
+                        </td>
+                        <td colspan="2" style="text-align: right;">
+                            <div style="font-size:16px;font-family:PingFangSC-Semibold;color:#4a4a4a;">
+                                {{numStr}}:{{order.num}} 
+                            </div>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td colspan="3" @click="ordDetail(order)">
+                            <div style="font-size:16px;font-family:PingFangSC-Regular;color:#f0c366;text-align:center;" v-if="isZH">
+                                更多
+                            </div>
+                            <div style="font-size:16px;font-family:PingFangSC-Regular;color:#f0c366;text-align:center;" v-if="!isZH">
+                                MORE
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </section>
+    </div>
+    <div class="mask-black-dialog" id="section6" style="display:none;height:100%">   
+        <div class="m-confirm" style="height:90%;overflow-y: scroll;">
+            <ul class="type-buy" style="width:100%;padding:0px;">
+                <li>
+                    <table border="0" width="100%">
+                        <tr>
+                            <td rowspan="3" width="5%">
+                                &nbsp;
+                            </td>
+                            <td colspan="2">
+                                <div style="font-size:24px;font-family:PingFangSC-Semibold;color:#f0c366;">
+                                    RMB {{orderTotal}}
+                                </div>
+                            </td>
+                            <td rowspan="3" width="5%">
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div style="font-size:16px;font-family:PingFangSC-Light;color:#4a4a4a;">
+                                    {{orderDate}}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="font-size:16px;font-family:PingFangSC-Light;color:#4a4a4a;">
+                                    NO. {{orderNo}}
+                                </div>
+                            </td>
+                            <td style="text-align: right;">
+                                <div style="font-size:16px;font-family:PingFangSC-Semibold;color:#4a4a4a;">
+                                    {{numStr}}:{{orderNum}} 
+                                </div>
+                            </td>
+                        </tr>
+
+                    </table>
+                </li>
+                <li v-for="(obj, index) in details">
+                    <table border="0" width="100%">
+                        <tr>
+                            <td width="5%" rowspan="2">
+                                &nbsp;
+                            </td>
+                            <td rowspan="2">
+                                <img :src="obj.pic" height="79px" width="79px;"/>
+                            </td>
+                            <td>
+                               <div style="font-size:20px;font-family:Avenir-Roman;color:#4a4a4a;">
+                                   {{obj.title}}
+                               </div>
+                            </td>
+                            <td width="5%" rowspan="2">
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                             <td>
+                                 <div style="font-size:16px;font-family:PingFangSC-Light;color:#4a4a4a;">
+                                    {{numStr}}:{{obj.num}} RMB {{obj.price}} <font color="red">{{obj.status}}</font>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+            </ul></br></br>
+        </div>
+        <div>
+            <div style="text-align: center; font-size: 16px; font-family: PingFangSC-Regular; color: rgb(240, 195, 102); position: absolute; left: 7.5%; bottom: 5%; background: #fafafa; width: 85%; height: 30px;" @click="ordClose()" v-if="isZH">
+                X 关闭
+            </div>
+            <div style="text-align: center; font-size: 16px; font-family: PingFangSC-Regular; color: rgb(240, 195, 102); position: absolute; left: 7.5%; bottom: 5%; background: #fafafa; width: 85%; height: 30px;" @click="ordClose()" v-if="!isZH">
+                X CLOSE
+            </div>
+        </div>
+    </div>
     <!--Footer start-->
     <footer class="m-tabbar tabbbar-top-line-color tabbar-fixed" style="color: rgb(240, 195, 102); background-color: rgb(255, 255, 255); font-size: 0.24rem; left: 0px;">
         <a href="#" class="tabbar-item" style="color:#f0c366;">
@@ -320,7 +465,15 @@
                 carList:[],
                 ftotal:0,
                 content:'',
-                isLoad:false
+                isLoad:false,
+                ordDataList: [],
+                details: [],
+                title:'订单',
+                orderNo:'',
+                orderDate:'',
+                orderTotal:0.0,
+                orderNum:0,
+                numStr:'数量'
             }
         },
         created:function () {
@@ -328,6 +481,8 @@
             //判断显示中/英文
             if(localStorage.LANGUAGE!='zh'){
                 this.isZH = false;
+                this.title = "Orders";
+                this.numStr = "Quantity";
             }
             //根据分类信息
             this.tagIds = localStorage.NEWTYPE.split(',');
@@ -346,6 +501,29 @@
                 if(localStorage.WASHING_MACHINE != 1){
                     $("#dataTable tr[name='wash']").hide();
                 }
+                //获取订单信息
+                let ordParams = {
+                    token: localStorage.TOKEN,
+                    lang:localStorage.LANGUAGE,
+                    hotelid:localStorage.HOTELID
+                }
+                _this.$store.dispatch('viewOrder', ordParams).then(function (res) {
+                    if(res.code == 0){
+                        _this.ordDataList = res.data;
+                        for(let i=0;i<_this.ordDataList.length;i++){
+                            // 时间格式转换
+                            let date = new Date(Number(_this.ordDataList[i].created_at) * 1000);
+                            let Y = date.getFullYear() + '-';
+                            let M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                            let D = (date.getDate() < 10 ? '0'+(date.getDate()) : date.getDate()) + ' ';
+                            let h = (date.getHours() < 10 ? '0'+(date.getHours()) : date.getHours()) + ':';
+                            let m = (date.getMinutes() < 10 ? '0'+(date.getMinutes()) : date.getMinutes()) + ':';
+                            let s = (date.getSeconds() < 10 ? '0'+(date.getSeconds()) : date.getSeconds());
+                            let dateStr = Y+M+D+h+m+s;
+                            _this.ordDataList[i].created_at = dateStr;
+                        }
+                    }
+                });
             });
         },
         methods: {
@@ -359,6 +537,8 @@
                 $("#section2").hide();
                 $("#section3").hide();
                 $("#section4").hide();
+                $("#section5").show();
+                $("#section6").hide();
             },
             goShopping:function(){
                 $("footer a").css("color", "#979797");
@@ -370,6 +550,8 @@
                 $("#section2").hide();
                 $("#section3").hide();
                 $("#section4").hide();
+                $("#section5").hide();
+                $("#section6").hide();
             },
             orderClose:function(){
                 $("#section2").show();
@@ -378,12 +560,6 @@
             buyClose:function(){
                 $("#section1").show();
                 $("#section2").hide();
-            },
-            buyCreate: function() {
-                $("#section1").hide();
-                $("#section2").show();
-                $("#section3").hide();
-                $("#section4").hide();
             },
             productClose: function() {
                 $("#section4").hide();
@@ -616,7 +792,12 @@
                 $("footer img:eq(0)").attr("src","/static/images/shopping02.png");
                 $("footer img:eq(1)").attr("src","/static/images/shopping03.png");
                 $("footer img:eq(2)").attr("src","/static/images/shopping06.png");
-                this.buyCreate();
+                $("#section1").hide();
+                $("#section2").show();
+                $("#section3").hide();
+                $("#section4").hide();
+                $("#section5").hide();
+                $("#section6").hide();
                 this.caculate();
             },
             caculate: function() {
@@ -683,6 +864,69 @@
                     global.shopCar.delete('p'+pid);
                 }
                 this.caculate();
+            },
+            ordClose:function(){
+                $("#section6").hide();
+                $("#section5").show();
+            },
+            ordGoBack:function(){
+                this.$router.push('/home');
+            },
+            ordDetail:function(order){
+                $("#section5").hide();
+                $("#section6").show();
+                this.orderNo = order.id_show;
+                this.orderDate = order.created_at;
+                this.orderTotal = order.price;
+                this.orderNum = order.num;
+                this.details = order.products;
+            },
+            delOrder:function(id,event){
+                let target = event.target;
+                if(target==null){
+                    target = event.srcElement;
+                }
+                let _this = this;
+                let alobj = new alertLanguage();
+                let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
+                let title = obj.title;
+                let msg1 = '是否删除?';
+                let msg2 = '删除成功!';
+                //判断显示中/英文
+                if(localStorage.LANGUAGE!='zh'){
+                    msg1 = 'Are you sure to delete the order?';
+                    msg2 = 'Successfully deleted!';
+                }
+                let sureBnt = obj.sureBnt;
+                let cancelBnt = obj.cancelBnt;
+                let dialog = window.YDUI.dialog;
+                dialog.confirm(title,msg1, [
+                    {
+                        txt: sureBnt,
+                        color: false,
+                        callback: function () {
+                            let params = {
+                                token: localStorage.TOKEN,
+                                orderid:id
+                            }
+                            _this.$store.dispatch('deleteOrder', params).then(function (res) {
+                                if(res.code==0){
+                                    _this.$dialog.toast({mes: msg2, timeout: 2000});
+                                    $(target).parent().parent().parent().parent().parent().remove();
+                                }else{
+                                    _this.$dialog.toast({mes: res.msg, timeout: 2000});
+                                }
+                            });
+                        }
+                    },
+                    {
+                        txt: cancelBnt,
+                        color: false,
+                        callback: function () {
+
+                        }
+                    }
+                ]);
             }
         },
         mounted:function () {

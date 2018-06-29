@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="search" style="height: 100%" id="section1">
+    <div class="search" style="height: 100%" id="section5">
       <div class="nav_mark"></div>
       <yd-navbar :title="title" fixed>
-        <span class="back" slot="left" @click="goBack()"></span>
+        <span class="back" slot="left" @click="ordGoBack()"></span>
       </yd-navbar></br></br></br>
       <div style="width:100%;height:120px;">
             <div style="position:absolute;left:30px;top:104px;font-size:0.4rem;font-family:Avenir-Heavy;color:#ffffff;">ASCOTT HENG SHAN SHANGHAI</div>
@@ -50,7 +50,7 @@
                         </td>
                     </tr>
                      <tr>
-                        <td colspan="3" @click="detail(order)">
+                        <td colspan="3" @click="ordDetail(order)">
                             <div style="font-size:16px;font-family:PingFangSC-Regular;color:#f0c366;text-align:center;" v-if="isZH">
                                 更多
                             </div>
@@ -66,7 +66,7 @@
         </section>
       </section>
     </div>
-    <div class="mask-black-dialog" id="section2" style="display:none;height:100%">   
+    <div class="mask-black-dialog" id="section6" style="display:none;height:100%">   
         <div class="m-confirm" style="height:90%;overflow-y: scroll;">
             <ul class="type-buy" style="width:100%;padding:0px;">
                 <li>
@@ -136,10 +136,10 @@
             </ul></br></br>
         </div>
         <div>
-            <div style="text-align: center; font-size: 16px; font-family: PingFangSC-Regular; color: rgb(240, 195, 102); position: absolute; left: 7.5%; bottom: 5%; background: #fafafa; width: 85%; height: 30px;" @click="close()" v-if="isZH">
+            <div style="text-align: center; font-size: 16px; font-family: PingFangSC-Regular; color: rgb(240, 195, 102); position: absolute; left: 7.5%; bottom: 5%; background: #fafafa; width: 85%; height: 30px;" @click="ordClose()" v-if="isZH">
                 X 关闭
             </div>
-            <div style="text-align: center; font-size: 16px; font-family: PingFangSC-Regular; color: rgb(240, 195, 102); position: absolute; left: 7.5%; bottom: 5%; background: #fafafa; width: 85%; height: 30px;" @click="close()" v-if="!isZH">
+            <div style="text-align: center; font-size: 16px; font-family: PingFangSC-Regular; color: rgb(240, 195, 102); position: absolute; left: 7.5%; bottom: 5%; background: #fafafa; width: 85%; height: 30px;" @click="ordClose()" v-if="!isZH">
                 X CLOSE
             </div>
         </div>
@@ -177,15 +177,14 @@
             $(function(){
                 $(".navbar-center").css('marginLeft',0);
                 //获取订单信息
-                let params = {
+                let ordParams = {
                     token: localStorage.TOKEN,
                     lang:localStorage.LANGUAGE,
                     hotelid:localStorage.HOTELID
                 }
-                _this.$store.dispatch('viewOrder', params).then(function (res) {
+                _this.$store.dispatch('viewOrder', ordParams).then(function (res) {
                     if(res.code == 0){
                         _this.ordDataList = res.data;
-                        console.log(_this.ordDataList);
                         for(let i=0;i<_this.ordDataList.length;i++){
                             // 时间格式转换
                             let date = new Date(Number(_this.ordDataList[i].created_at) * 1000);
@@ -205,16 +204,16 @@
             });
         },
         methods: {
-            close:function(){
-                $("#section2").hide();
-                $("#section1").show();
+            ordClose:function(){
+                $("#section6").hide();
+                $("#section5").show();
             },
-            goBack:function(){
+            ordGoBack:function(){
                 this.$router.push('/home');
             },
-            detail:function(order){
-                $("#section1").hide();
-                $("#section2").show();
+            ordDetail:function(order){
+                $("#section5").hide();
+                $("#section6").show();
                 this.orderNo = order.id_show;
                 this.orderDate = order.created_at;
                 this.orderTotal = order.price;
@@ -226,7 +225,6 @@
                 if(target==null){
                     target = event.srcElement;
                 }
-                //$("#orderDiv li:eq("+index+")").remove();
                 let _this = this;
                 let alobj = new alertLanguage();
                 let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
