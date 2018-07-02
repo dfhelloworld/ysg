@@ -476,6 +476,7 @@ export default {
       if (res.code == 0) {
         //全部数据
         this.homeData = this.home.data;
+        localStorage.HomeInfo = this.homeData.indexBackground+';'+this.homeData.name;
         //天气数据
         this.weather = this.home.data.wetherInfo;
         if (true) {

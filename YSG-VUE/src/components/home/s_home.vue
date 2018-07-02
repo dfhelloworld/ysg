@@ -477,6 +477,7 @@ export default {
       if (res.code == 0) {
         //全部数据
         this.homeData = this.home.data;
+        localStorage.HomeInfo = this.homeData.indexBackground+';'+this.homeData.name;
         //天气数据  TODO 增加天气图标的判断--------------------未完成
         this.weather = this.home.data.wetherInfo;
         if (true) {

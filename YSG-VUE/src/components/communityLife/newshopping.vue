@@ -210,8 +210,8 @@
         <span class="back" slot="left" @click="ordGoBack()"></span>
       </yd-navbar></br></br></br>
       <div style="width:100%;height:120px;">
-            <div style="position:absolute;left:30px;top:104px;font-size:0.4rem;font-family:Avenir-Heavy;color:#ffffff;">ASCOTT HENG SHAN SHANGHAI</div>
-            <img src="../../assets/images/oerderBg.png" width="100%" height="100%">
+            <div style="position:absolute;left:30px;top:104px;font-size:0.4rem;font-family:Avenir-Heavy;color:#ffffff;">{{hName}}</div>
+            <img :src="hUrl" width="100%" height="100%">
       </div>
       <section class="g-flexview" style="background:white;">
         <section class="g-scrollview">
@@ -457,11 +457,16 @@
                 orderTotal:0.0,
                 orderNum:0,
                 numStr:'数量',
-                shopShow: false
+                shopShow: false,
+                hUrl:'',
+                hName:''
             }
         },
         created:function () {
             this.pageFlag = this.$route.query.pageFlag;
+            //初始化酒店图片和名称
+            this.hUrl = localStorage.HomeInfo.split(';')[0];
+            this.hName = localStorage.HomeInfo.split(';')[1];
             //判断显示中/英文
             if(localStorage.LANGUAGE!='zh'){
                 this.isZH = false;

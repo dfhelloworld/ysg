@@ -6,8 +6,8 @@
         <span class="back" slot="left" @click="ordGoBack()"></span>
       </yd-navbar></br></br></br>
       <div style="width:100%;height:120px;">
-            <div style="position:absolute;left:30px;top:104px;font-size:0.4rem;font-family:Avenir-Heavy;color:#ffffff;">ASCOTT HENG SHAN SHANGHAI</div>
-            <img src="../../assets/images/oerderBg.png" width="100%" height="100%">
+            <div style="position:absolute;left:30px;top:104px;font-size:0.4rem;font-family:Avenir-Heavy;color:#ffffff;">{{hName}}</div>
+            <img :src="hUrl" width="100%" height="100%">
       </div>
       <section class="g-flexview" style="background:white;">
         <section class="g-scrollview">
@@ -57,6 +57,11 @@
                             <div style="font-size:16px;font-family:PingFangSC-Regular;color:#f0c366;text-align:center;" v-if="!isZH">
                                 MORE
                             </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="background:#f8f8f8;height:20px;">
+                            &nbsp;
                         </td>
                     </tr>
                 </table>
@@ -112,8 +117,8 @@
                             <td width="5%" rowspan="2">
                                 &nbsp;
                             </td>
-                            <td rowspan="2">
-                                <img :src="obj.pic" height="79px" width="79px;"/>
+                            <td rowspan="2" width="90px;">
+                                <img :src="obj.pic" style="width:79px;height:79px;"/>
                             </td>
                             <td>
                                <div style="font-size:20px;font-family:Avenir-Roman;color:#4a4a4a;">
@@ -127,7 +132,7 @@
                         <tr>
                              <td>
                                  <div style="font-size:16px;font-family:PingFangSC-Light;color:#4a4a4a;">
-                                    {{numStr}}:{{obj.num}} RMB {{obj.price}} <font color="red">{{obj.status}}</font>
+                                    {{numStr}}:{{obj.num}} RMB {{obj.price}}</br><font color="red">{{obj.status}}</font>
                                 </div>
                             </td>
                         </tr>
@@ -163,10 +168,15 @@
                 orderDate:'',
                 orderTotal:0.0,
                 orderNum:0,
-                numStr:'数量'
+                numStr:'数量',
+                hUrl:'',
+                hName:''
             }
         },
         created:function () {
+            //初始化酒店图片和名称
+            this.hUrl = localStorage.HomeInfo.split(';')[0];
+            this.hName = localStorage.HomeInfo.split(';')[1];
             //判断显示中/英文
             if(localStorage.LANGUAGE!='zh'){
                 this.isZH = false;
