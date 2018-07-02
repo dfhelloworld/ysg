@@ -232,6 +232,15 @@
             <span class="back" slot="left" @click="productClose()"></span>
         </yd-navbar>
         <section class="resolve-box" v-html="content"></section>
+        <section class="buy_foot" style="bottom:56px;">
+            <div class="col-5">
+                &nbsp;
+            </div>
+            <div class="col-5">
+                <button type="button" @click="goDetail(productData)" v-if="isZH">加入购物车</button>
+                <button type="button" @click="goDetail(productData)" v-if="!isZH">Add to Shopping Cart</button>
+            </div>
+        </section>
     </div>
     <!--订单功能-->
     <div class="search" style="height: 100%;display:none;" id="section5">
@@ -481,7 +490,8 @@
                 numStr:'数量',
                 shopShow: false,
                 hUrl:'',
-                hName:''
+                hName:'',
+                productData:null
             }
         },
         created:function () {
@@ -639,6 +649,7 @@
                         break;
                     }
                 }
+                this.productData = data;
                 let _this = this;
                 if (data.detail) {
                     $.get(data.detail, function(res) {
