@@ -425,7 +425,7 @@
       border-bottom: 2px solid #f0c366;
   }
 
-  .swiper-wrapper {
+  .raiders {
       border-bottom:1px solid #f0f0f0;
   }
 </style>
