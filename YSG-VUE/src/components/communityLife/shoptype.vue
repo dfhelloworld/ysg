@@ -36,14 +36,21 @@
                                 <td width="5%">&nbsp;</td>
                                 <td>
                                     <ul class="displayShop-ul">
-                                        <li v-for="(secondTag, index2) in firstTag.children">
-                                            <div style="border:1px solid #F0F0F0;width:152px;">
-                                                <div class="img">
-                                                    <img :src="secondTag.pic" alt=" " @click="goDetail(firstTag,secondTag.id,firstTag.is_robot)" width="100%" height="100%"/>
-                                                </div>
-                                                <div v-if="isZH" style="font-size:0.28rem;font-family:PingFangSC-Regular;color:#4a4a4a;">{{secondTag.title_lang1}}</div> 
-                                                <div v-if="!isZH" style="font-size:0.28rem;font-family:PingFangSC-Regular;color:#4a4a4a;">{{secondTag.title_lang2}}</div> 
-                                            </div>
+                                        <li v-for="(secondTag, index2) in firstTag.children" style="width:148px;">
+                                            <table>
+                                                <tr>
+                                                    <td width="140px" height="97px" style="border:1px solid #F0F0F0;">
+                                                        <img :src="secondTag.pic" alt=" " @click="goDetail(firstTag,secondTag.id,firstTag.is_robot)" width="140px" height="97px"/>
+                                                    </td>
+                                                   
+                                                </tr>
+                                                <tr>
+                                                     <td width="140px" height="41px" style="border:1px solid #F0F0F0;border-top:0px;">
+                                                        <div v-if="isZH" style="font-size:0.28rem;font-family:PingFangSC-Regular;color:#4a4a4a;width:140px;">{{secondTag.title_lang1}}</div> 
+                                                        <div v-if="!isZH" style="font-size:0.28rem;font-family:PingFangSC-Regular;color:#4a4a4a;width:140px;">{{secondTag.title_lang2}}</div> 
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </li>
                                     </ul>
                                 </td>
