@@ -253,7 +253,7 @@
                             </div>
                         </td>
                     </tr>
-                     <tr>
+                    <tr>
                         <td colspan="3" @click="ordDetail(order)">
                             <div style="font-size:16px;font-family:PingFangSC-Regular;color:#f0c366;text-align:center;" v-if="isZH">
                                 更多
@@ -261,6 +261,11 @@
                             <div style="font-size:16px;font-family:PingFangSC-Regular;color:#f0c366;text-align:center;" v-if="!isZH">
                                 MORE
                             </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="background:#f8f8f8;height:20px;">
+                            &nbsp;
                         </td>
                     </tr>
                 </table>
@@ -316,8 +321,8 @@
                             <td width="5%" rowspan="2">
                                 &nbsp;
                             </td>
-                            <td rowspan="2">
-                                <img :src="obj.pic" height="79px" width="79px;"/>
+                            <td rowspan="2" width="90px;">
+                                <img :src="obj.pic" style="width:79px;height:79px;"/>
                             </td>
                             <td>
                                <div style="font-size:20px;font-family:Avenir-Roman;color:#4a4a4a;">
@@ -331,7 +336,7 @@
                         <tr>
                              <td>
                                  <div style="font-size:16px;font-family:PingFangSC-Light;color:#4a4a4a;">
-                                    {{numStr}}:{{obj.num}} RMB {{obj.price}} <font color="red">{{obj.status}}</font>
+                                    {{numStr}}:{{obj.num}} RMB {{obj.price}}</br><font color="red">{{obj.status}}</font>
                                 </div>
                             </td>
                         </tr>
