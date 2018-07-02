@@ -9,8 +9,7 @@
         <section class="promotiom-box">
           <h1>{{language.raiders.title}}</h1>
         </section>
-        <header class="m-navbar">
-          <section class="promotiom_index raiders" style="width: 100%">
+        <section class="promotiom_index raiders" style="width: 100%">
             <div class="swiper-container">
               <div class="swiper-wrapper ra">
                 <div class="swiper-slide" v-for="(item, index) in tagList" @click="changeTab(item.id)" :class="{active:(item.id==tagIds[1])}">
@@ -23,8 +22,7 @@
               <div class="swiper-button-prev" v-show="tagList.length>3" style="top:39%"></div>
               <div class="swiper-button-next" v-show="tagList.length>3" style="top:39%"></div>
             </div>
-          </section>
-        </header>
+        </section>
         <section class="g-scrollview">
           <div id="J_ListContent" class="m-list list-theme4">
             <ul class="type-buy" style="padding-top: 0.5rem">
@@ -894,7 +892,6 @@
             }
             this.$store.dispatch('getFirstTags', params).then(function (res) {
                 _this.tagList = res.data.data.list;
-                console.log(_this.tagList);
                 //初始化tab标签
                 $(function() {
                     //初始化tab选择项
