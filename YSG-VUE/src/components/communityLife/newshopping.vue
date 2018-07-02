@@ -781,12 +781,9 @@
                 let pshopCar = global.shopCar.get('p'+pid);
                 let cshopCar = pshopCar.c.get('c'+cid);
                 if(cshopCar.num==1){
-                    pshopCar.c.delete('c'+cid);
+                    return;
                 }else{
                     cshopCar.num = cshopCar.num - 1;
-                }
-                if(pshopCar.c.size==0){
-                    global.shopCar.delete('p'+pid);
                 }
                 this.caculate();
             },
