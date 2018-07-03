@@ -27,7 +27,7 @@
                       <table width="100%" v-for="(firstTag, index) in dataList">
                             <tr>
                                 <td width="5%">&nbsp;</td>
-                                <td colspan="2" valign="bottom" height="50px">
+                                <td colspan="2" valign="center" height="50px">
                                     <div v-if="isZH" style="font-size:0.4rem;font-family:Avenir-Heavy;color:#4a4a4a;">{{firstTag.title_lang1}}</div>
                                     <div v-if="!isZH" style="font-size:0.4rem;font-family:Avenir-Heavy;color:#4a4a4a;">{{firstTag.title_lang2}}</div>
                                 </td>
@@ -35,25 +35,27 @@
                             <tr>
                                 <td width="5%">&nbsp;</td>
                                 <td>
-                                    <div class="nav" name="nav" style="background:white;margin:0px;margin-top:5px;height:140px;">
-                                        <ul>
-                                            <li v-for="(secondTag, index2) in firstTag.children" style="width:148px;">
-                                                <table style="width:140px;">
-                                                    <tr>
-                                                        <td width="140px" height="97px" style="border:1px solid #F0F0F0;">
-                                                            <img :src="secondTag.pic" alt=" " @click="goDetail(firstTag,secondTag.id,firstTag.is_robot)" width="140px" height="97px"/>
-                                                        </td>
-                                                    
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="140px" height="41px" style="border:1px solid #F0F0F0;border-top:0px;">
-                                                            <div v-if="isZH" style="font-size:0.28rem;font-family:PingFangSC-Regular;color:#4a4a4a;width:140px;text-align:center;">{{secondTag.title_lang1}}</div> 
-                                                            <div v-if="!isZH" style="font-size:0.28rem;font-family:PingFangSC-Regular;color:#4a4a4a;width:140px;text-align:center;">{{secondTag.title_lang2}}</div> 
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </li>
-                                        </ul>
+                                    <div class="wrapper wrapper01"  :id="gernerateId(index)" style="height:148px;">
+                                        <div class="scroller">
+                                            <ul class="clearfix">
+                                                 <li v-for="(secondTag, index2) in firstTag.children" style="width:148px;">
+                                                    <table style="width:140px;">
+                                                        <tr>
+                                                            <td width="140px" height="97px" style="border:1px solid #F0F0F0;">
+                                                                <img :src="secondTag.pic" alt=" " @click="goDetail(firstTag,secondTag.id,firstTag.is_robot)" width="140px" height="97px"/>
+                                                            </td>
+                                                        
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="140px" height="48px" style="border:1px solid #F0F0F0;border-top:0px;">
+                                                                <div v-if="isZH" style="font-size:0.28rem;font-family:PingFangSC-Regular;color:#4a4a4a;width:140px;text-align:center;height:48px;">{{secondTag.title_lang1}}</div> 
+                                                                <div v-if="!isZH" style="font-size:0.28rem;font-family:PingFangSC-Regular;color:#4a4a4a;width:140px;text-align:center;height:48px;">{{secondTag.title_lang2}}</div> 
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </td>
                                 <td width="5%">&nbsp;</td>
@@ -452,148 +454,17 @@
   }
 
   .side-bar {width: 20%;position: fixed;bottom: 10%;right: 3%;font-size: 0;line-height: 0;z-index: 100;}
-  /*滚动样式*/
-  .nav{width:100%;overflow:hidden;margin:0 auto;height:35px;position:relative; line-height:35px;background-color:#000;}
-  .nav ul{position:absolute;left:0;top:0;width:640px;z-index:1;list-style:none;}
-  .nav ul li{width:80px; float:left; overflow:hidden;list-style:none;}
-  .nav a{color:#fff;width:100%; display:block; text-decoration:none; text-align:center;}
-</style>
-<script>
-window.Swipe = function(b, a) {
-            if (!b) {
-                return null;
-            }
-            this.options = a || {};
-            this.index = this.options.startSlide || 0;
-            this.speed = this.options.speed || 300;
-            this.lwidth = this.options.width || 80;
-            this.delay = this.options.auto || 0;
-            this.container = b;
-            this.element = this.container.children[0];
-            this.lmove = $(this.container.children[0]).find("li").length * this.lwidth - this.lwidth - this.lwidth;
-            
-            this.setup();
-        
-            if (this.delay != 0) {
-                this.begin();
-            }
-            if (this.element.addEventListener) {
-                this.element.addEventListener("touchstart", this, false);
-                this.element.addEventListener("touchmove", this, false);
-                this.element.addEventListener("touchend", this, false);
-                this.element.addEventListener("transitionend", this, false);
-            }
-        };
-        Swipe.prototype = {
-            setup: function() {
-                this.slides = this.element.children;
-                this.width = Math.ceil(("getBoundingClientRect" in this.container) ? this.container.getBoundingClientRect().width: this.container.offsetWidth);
-                if (!this.width||this.slides.length < 1) {
-                    return null
-                }
-                this.element.style.width = Math.ceil(this.slides.length * this.lwidth) + "px";
-                var a = this.slides.length;
-                while (a--) {
-                    var b = this.slides[a];
-                    b.style.width = this.lwidth + "px";
-                }
-                this.slide(this.index, 0);
-            },
-            slide: function(a, c) {
-                var b = this.element.style;
-                if (c == undefined) {
-                    c = this.speed
-                }
-                b.webkitTransitionDuration = b.MozTransitionDuration = b.msTransitionDuration = b.OTransitionDuration = b.transitionDuration = c + "ms";
-                this.index = a;
-            },
-            next: function(a) {
-                this.delay = a || 0;
-                clearTimeout(this.interval);
-                if (this.index < this.length - 1) {
-                    this.slide(this.index + 1, this.speed);
-                } else {
-                    this.slide(0, this.speed);
-                }
-            },
-            begin: function() {
-                var a = this;
-                this.interval = (this.delay) ? setTimeout(function() {
-                    a.next(a.delay)
-                },
-                this.delay) : 0
-            },
-            stop: function() {
-                this.delay = 0;
-                clearTimeout(this.interval)
-            },
-            handleEvent: function(a) {
-                switch (a.type) {
-                case "touchstart":
-                    this.onTouchStart(a);
-                    break;
-                case "touchmove":
-                    this.onTouchMove(a);
-                    break;
-                case "touchend":
-                    this.onTouchEnd(a);
-                    break;
-                case "transitionend":
-                    this.transitionEnd(a);
-                    break;
-                }
-            },
-            transitionEnd: function(a) {
-                if (this.delay) {
-                    this.begin()
-                }
-                
-            },
-            onTouchStart: function(a) {
-                this.start = {
-                    pageX: a.touches[0].pageX,
-                    pageY: a.touches[0].pageY,
-                    time: Number(new Date())
-                    
-                };
-                this.isScrolling = undefined;
-                this.deltaX = 0;
-                this.element.style.MozTransitionDuration = this.element.style.webkitTransitionDuration = 0;
-                a.stopPropagation()
-            },
-            onTouchMove: function(a) {
-                if (a.touches.length > 1 || a.scale && a.scale !== 1) {
-                    return
-                }
-                this.deltaX = a.touches[0].pageX - this.start.pageX;
-                if (typeof this.isScrolling == "undefined") {
-                    this.isScrolling = !!(this.isScrolling || Math.abs(this.deltaX) < Math.abs(a.touches[0].pageY - this.start.pageY))
-                }
-                if (!this.isScrolling) {
-                    a.preventDefault();
-                    clearTimeout(this.interval);
-                    this.deltaX = this.deltaX / ((!this.index && this.deltaX > 0 || this.index == this.length - 1 && this.deltaX < 0) ? (Math.abs(this.deltaX) / this.width + 1) : 1);
-                    let mvx =  (this.deltaX - this.index * this.width);
-                    if(((this.deltaX - this.index * this.width)+this.lmove)<this.lwidth){
-                        mvx = - this.lmove;
-                    }
-                    if(mvx >0 ){
-                        mvx = 0;
-                    }
-                    this.element.style.MozTransform = this.element.style.webkitTransform = "translate3d(" + mvx + "px,0,0)";
-                    a.stopPropagation();
-                }
-            },
-            onTouchEnd: function(c) {
-                var b = Number(new Date()) - this.start.time < 250 && Math.abs(this.deltaX) > 20 || Math.abs(this.deltaX) > this.width / 2,
-                a = !this.index && this.deltaX > 0 || this.index == this.length - 1 && this.deltaX < 0;
-                if (!this.isScrolling) {
-                    this.slide(this.index + (b && !a ? (this.deltaX < 0 ? 1: -1) : 0), this.speed)
-                }
-                c.stopPropagation()
-            }
-        };
 
+  
+.wrapper01 ol,.wrapper01 ul{list-style:none}
+.clearfix:after{content:".";display:block;height:0;clear: both;visibility:hidden;}
+.clearfix{*zoom:1;}
+.wrapper01 {position:relative;height: 1rem;width: 100%;overflow: hidden;margin:0 auto;}
+.wrapper01 .scroller {position:absolute}
+.wrapper01 .scroller li {height: 1rem;color:#333;float: left;line-height: 1rem;font-size: .4rem;text-align: center}
+</style>
+
+<script>
     import { mapGetters } from 'vuex'
     import { mapState } from 'vuex'
     export default {
@@ -640,13 +511,8 @@ window.Swipe = function(b, a) {
                 _this.$store.dispatch('getFirstTags', params).then(function (res) {
                     _this.dataList = res.data.data.list;
                     setTimeout(function(){
-                        let navs = document.getElementsByName('nav');
-                        for(let i = 0; i<navs.length; i++){
-                            if($(navs[i]).find("li").length>2){
-                                new Swipe(navs[i],{speed:500,auto:0,width:148,col:4,});
-                            }
-                        }
-                    },300);
+                        $('.wrapper').navbarscroll();
+                    },30);
                 });
                 //是否显示机器人洗衣服务
                 if(localStorage.WASHING_MACHINE != 1){
@@ -688,6 +554,9 @@ window.Swipe = function(b, a) {
             });
         },
         methods: {
+            gernerateId: function (index){
+                return "wrapper" +index;
+            },
             goOrder:function(){
                 $("footer a").css("color", "#979797");
                 $("footer a:eq(2)").css("color", "#f0c366");
