@@ -482,7 +482,6 @@ window.Swipe = function(b, a) {
                 this.element.addEventListener("touchmove", this, false);
                 this.element.addEventListener("touchend", this, false);
                 this.element.addEventListener("transitionend", this, false);
-                window.addEventListener("resize", this, false)
             }
         };
         Swipe.prototype = {
@@ -507,34 +506,14 @@ window.Swipe = function(b, a) {
                 }
                 b.webkitTransitionDuration = b.MozTransitionDuration = b.msTransitionDuration = b.OTransitionDuration = b.transitionDuration = c + "ms";
                 this.index = a;
-                if(a * this.width>(Math.ceil((this.slides.length*this.lwidth)/this.width)-1)*this.width){
-                    return false;
-                }
-                else{
-                    // b.MozTransform = b.webkitTransform = "translate3d(" + -(a * this.width) + "px,0,0)";
-                    // b.msTransform = b.OTransform = "translateX(" + -(a * this.width) + "px)";
-                }
-            
-            },
-            getPos: function() {
-                return this.index
-            },
-            prev: function(a) {
-                this.delay = a || 0;
-                clearTimeout(this.interval);
-                if (this.index) {
-                    this.slide(this.index - 1, this.speed)
-                } else {
-                    this.slide(this.length - 1, this.speed)
-                }
             },
             next: function(a) {
                 this.delay = a || 0;
                 clearTimeout(this.interval);
                 if (this.index < this.length - 1) {
-                    this.slide(this.index + 1, this.speed)
+                    this.slide(this.index + 1, this.speed);
                 } else {
-                    this.slide(0, this.speed)
+                    this.slide(0, this.speed);
                 }
             },
             begin: function() {
@@ -547,10 +526,6 @@ window.Swipe = function(b, a) {
             stop: function() {
                 this.delay = 0;
                 clearTimeout(this.interval)
-            },
-            resume: function() {
-                this.delay = this.options.auto || 0;
-                this.begin()
             },
             handleEvent: function(a) {
                 switch (a.type) {
@@ -566,9 +541,6 @@ window.Swipe = function(b, a) {
                 case "transitionend":
                     this.transitionEnd(a);
                     break;
-                case "resize":
-                    this.setup();
-                    break
                 }
             },
             transitionEnd: function(a) {
