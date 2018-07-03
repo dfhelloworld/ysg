@@ -470,7 +470,7 @@ window.Swipe = function(b, a) {
             this.delay = this.options.auto || 0;
             this.container = b;
             this.element = this.container.children[0];
-            this.lmove = $(this.container.children[0]).find("li").length * this.lwidth - this.lwidth;
+            this.lmove = $(this.container.children[0]).find("li").length * this.lwidth - this.lwidth - this.lwidth;
             
             this.setup();
         
@@ -481,10 +481,6 @@ window.Swipe = function(b, a) {
                 this.element.addEventListener("touchstart", this, false);
                 this.element.addEventListener("touchmove", this, false);
                 this.element.addEventListener("touchend", this, false);
-                this.element.addEventListener("touchcancel", this, false);
-                this.element.addEventListener("webkitTransitionEnd", this, false);
-                this.element.addEventListener("msTransitionEnd", this, false);
-                this.element.addEventListener("oTransitionEnd", this, false);
                 this.element.addEventListener("transitionend", this, false);
                 window.addEventListener("resize", this, false)
             }
@@ -564,13 +560,9 @@ window.Swipe = function(b, a) {
                 case "touchmove":
                     this.onTouchMove(a);
                     break;
-                case "touchcancel":
                 case "touchend":
                     this.onTouchEnd(a);
                     break;
-                case "webkitTransitionEnd":
-                case "msTransitionEnd":
-                case "oTransitionEnd":
                 case "transitionend":
                     this.transitionEnd(a);
                     break;
@@ -610,7 +602,7 @@ window.Swipe = function(b, a) {
                     clearTimeout(this.interval);
                     this.deltaX = this.deltaX / ((!this.index && this.deltaX > 0 || this.index == this.length - 1 && this.deltaX < 0) ? (Math.abs(this.deltaX) / this.width + 1) : 1);
                     let mvx =  (this.deltaX - this.index * this.width);
-                    if(((this.deltaX - this.index * this.width)+this.lmove)<this.width){
+                    if(((this.deltaX - this.index * this.width)+this.lmove)<this.lwidth){
                         mvx = - this.lmove;
                     }
                     if(mvx >0 ){
@@ -682,7 +674,7 @@ window.Swipe = function(b, a) {
                                 new Swipe(navs[i],{speed:500,auto:0,width:148,col:4,});
                             }
                         }
-                    },10);
+                    },300);
                 });
                 //是否显示机器人洗衣服务
                 if(localStorage.WASHING_MACHINE != 1){
