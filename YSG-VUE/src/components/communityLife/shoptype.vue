@@ -519,7 +519,13 @@
                 _this.$store.dispatch('getFirstTags', params).then(function (res) {
                     _this.dataList = res.data.data.list;
                     setTimeout(function(){
-                        $('.wrapper').navbarscroll();
+                        let wraps = $('.wrapper');
+                        for(let i = 0;i< wraps.length;i++){
+                            let lis = $(wraps[i]).find("li").length;
+                            if(lis>2){
+                                $(wraps[i]).navbarscroll();
+                            }
+                        }
                     },30);
                 });
                 //是否显示机器人洗衣服务
