@@ -196,7 +196,15 @@
             ]);
             $("#pwdNum").focus();
         }
-
+        //获取字体大小
+        $(function(){
+            let cssFontSize = $("html").css("font-size");
+            $(window).resize(function() {
+                setTimeout(function(){
+                    $("html").css("font-size",cssFontSize);
+                },300);
+            });
+        });
       </script>
   </body>
 </html>
