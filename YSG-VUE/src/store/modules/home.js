@@ -346,6 +346,19 @@ const actions = {
         }
       );
     });
+  },
+  getStaffOrderList: function({ commit }, url, data) {
+    return new Promise((resolve, reject) => {
+      API.getStaffOrderList(url, data).then(
+        res => {
+          commit(types.APPSTART, res.data);
+          resolve(res.data);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
   }
 };
 

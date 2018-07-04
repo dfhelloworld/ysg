@@ -65,6 +65,8 @@ const Home = {
 	checkPin:'/user/checkPin',
 	//查看订单物业
 	getShoppingHotelList:'/shoppingorder/getShoppingHotelList',
+	//员工获取订单信息
+	getStaffOrderList:'/shoppingOrder/getStaffOrderList',
 }
 
 //登录接口
@@ -273,4 +275,6 @@ export default {
 	checkPin:(query) => apiPost(Home.checkPin,query),
 	//查看订单物业
 	getShoppingHotelList:(query) => apiPost(Home.getShoppingHotelList,query),
+	//员工获取订单信息
+	getStaffOrderList:(query) => apiPost(Home.getStaffOrderList,query),
 }
