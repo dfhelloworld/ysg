@@ -38,18 +38,18 @@
                                     <div class="wrapper wrapper01"  :id="gernerateId(index)" style="height:188px;">
                                         <div class="scroller">
                                             <ul class="clearfix">
-                                                 <li v-for="(secondTag, index2) in firstTag.children" style="width:148px;">
-                                                    <table style="width:140px;">
+                                                 <li v-for="(secondTag, index2) in firstTag.children" style="width:118px;">
+                                                    <table style="width:110px;">
                                                         <tr>
-                                                            <td width="140px" height="140px" style="border:1px solid #F0F0F0;">
-                                                                <img :src="secondTag.pic" alt=" " @click="goDetail(firstTag,secondTag.id,firstTag.is_robot)" width="140px" height="140px"/>
+                                                            <td width="110px" height="110px" style="border:1px solid #F0F0F0;">
+                                                                <img :src="secondTag.pic" alt=" " @click="goDetail(firstTag,secondTag.id,firstTag.is_robot)" width="110px" height="110px"/>
                                                             </td>
                                                         
                                                         </tr>
                                                         <tr>
-                                                            <td width="140px" height="44px" style="border:1px solid #F0F0F0;border-top:0px;">
-                                                                <div v-if="isZH" style="font-size:0.28rem;font-family:PingFangSC-Regular;color:#4a4a4a;width:140px;text-align:center;height:44px;">{{secondTag.title_lang1}}</div> 
-                                                                <div v-if="!isZH" style="font-size:0.28rem;font-family:PingFangSC-Regular;color:#4a4a4a;width:140px;text-align:center;height:44px;">{{secondTag.title_lang2}}</div> 
+                                                            <td width="110px" height="34px" style="border:1px solid #F0F0F0;border-top:0px;">
+                                                                <div v-if="isZH" style="font-size:0.28rem;font-family:PingFangSC-Regular;color:#4a4a4a;width:110px;text-align:center;height:34px;line-height:34px;">{{secondTag.title_lang1}}</div> 
+                                                                <div v-if="!isZH" style="font-size:0.28rem;font-family:PingFangSC-Regular;color:#4a4a4a;width:110px;text-align:center;height:34px;line-height:34px;">{{secondTag.title_lang2}}</div> 
                                                             </td>
                                                         </tr>
                                                     </table>
