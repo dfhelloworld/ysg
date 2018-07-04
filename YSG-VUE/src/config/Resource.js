@@ -63,6 +63,8 @@ const Home = {
 	setPin:'/user/setpin',
 	//验证pin
 	checkPin:'/user/checkPin',
+	//查看订单物业
+	getShoppingHotelList:'/shoppingorder/getShoppingHotelList',
 }
 
 //登录接口
@@ -269,4 +271,6 @@ export default {
 	setPin:(query) => apiPost(Home.setPin,query),
 	//验证pin
 	checkPin:(query) => apiPost(Home.checkPin,query),
+	//查看订单物业
+	getShoppingHotelList:(query) => apiPost(Home.getShoppingHotelList,query),
 }

@@ -4,6 +4,11 @@
       <div class="nav_mark"></div>
       <yd-navbar :title="title" fixed>
         <span class="back" slot="left" @click="ordGoBack()"></span>
+        <span style="display:block;width:50%;height:60%;margin-top:10%;margin-right:40%;" slot="right" @click="isProperty = true">
+           <div style="color:#afafaf;" v-if="isZH">选择物业</div>
+           <div style="color:#afafaf;" v-if="!isZH">Property</div>
+           <popup-picker :data="properties" :show="isProperty" :columns="1" @on-hide="isProperty = false" @on-change="onPropertyChange"></popup-picker>
+        </span>
       </yd-navbar></br></br></br>
       <div style="width:100%;height:120px;">
             <div style="position:absolute;left:30px;top:104px;font-size:0.4rem;font-family:Avenir-Heavy;color:#ffffff;">{{hName}}</div>
@@ -155,6 +160,7 @@
 <style>
 </style>
 <script>
+    import { PopupPicker, XButton } from 'vux'
     import { mapGetters } from 'vuex'
     import { mapState } from 'vuex'
     export default {
@@ -170,7 +176,9 @@
                 orderNum:0,
                 numStr:'数量',
                 hUrl:'',
-                hName:''
+                hName:'',
+                isProperty:false,
+                properties:[]
             }
         },
         created:function () {
@@ -208,6 +216,24 @@
                             _this.ordDataList[i].created_at = dateStr;
                         }
                     } else {
+                        _this.$dialog.toast({mes: res.msg, timeout: 3000});
+                    }
+                });
+                //订单物业
+                let params = {
+                    token: localStorage.TOKEN
+                }
+                _this.$store.dispatch('getShoppingHotelList', params).then(function (res) {
+                    if(res.code == 0){
+                        for(let i=0;i<res.data.length;i++){
+                            let name = res.data[i].name_lang1;
+                            //判断显示中/英文
+                            if(localStorage.LANGUAGE!='zh'){
+                                name = res.data[i].name_lang2;
+                            }
+                            _this.properties.push({name:name, value:res.data[i].id});
+                        }
+                    }else{
                         _this.$dialog.toast({mes: res.msg, timeout: 3000});
                     }
                 });
@@ -276,6 +302,34 @@
                         }
                     }
                 ]);
+            },
+            onPropertyChange:function (changeKey) {
+                let _this = this;
+                //获取订单信息
+                let ordParams = {
+                    token: localStorage.TOKEN,
+                    lang:localStorage.LANGUAGE,
+                    hotelid:changeKey[0]
+                }
+                this.$store.dispatch('viewOrder', ordParams).then(function (res) {
+                    if(res.code == 0){
+                        _this.ordDataList = res.data;
+                        for(let i=0;i<_this.ordDataList.length;i++){
+                            // 时间格式转换
+                            let date = new Date(Number(_this.ordDataList[i].created_at) * 1000);
+                            let Y = date.getFullYear() + '-';
+                            let M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                            let D = (date.getDate() < 10 ? '0'+(date.getDate()) : date.getDate()) + ' ';
+                            let h = (date.getHours() < 10 ? '0'+(date.getHours()) : date.getHours()) + ':';
+                            let m = (date.getMinutes() < 10 ? '0'+(date.getMinutes()) : date.getMinutes()) + ':';
+                            let s = (date.getSeconds() < 10 ? '0'+(date.getSeconds()) : date.getSeconds());
+                            let dateStr = Y+M+D+h+m+s;
+                            _this.ordDataList[i].created_at = dateStr;
+                        }
+                    } else {
+                        _this.$dialog.toast({mes: res.msg, timeout: 3000});
+                    }
+                });
             }
         },
         mounted:function () {
@@ -283,6 +337,7 @@
             isHomePage(0)
         },
         components: {
+            PopupPicker
         },
         computed: {
             ...mapState({
