@@ -57,6 +57,8 @@ const Home = {
 	getHotelListUrl:'/hotellist/getHotelListList',
 	//查看订单
 	viewOrder:'/shoppingorder/getUserOrderList',
+	//删除订单
+	deleteOrder:'/shoppingorder/deleteorder',
 	//验证是否设置pin码
 	isSetPin:'/user/hasPin',
 	//设置pin码
@@ -267,6 +269,8 @@ export default {
 	addShoppingCart:(query) => apiPost(Community.addShoppingCart,query),
 	//查看订单
 	viewOrder:(query) => apiPost(Home.viewOrder,query),
+	//删除订单
+	deleteOrder:(query) => apiPost(Home.deleteOrder,query),
 	//验证是否设置pin码
 	isSetPin:(query) => apiPost(Home.isSetPin,query),
 	//设置pin码
