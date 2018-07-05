@@ -24,9 +24,15 @@
                 </li>
             </router-link> -->
             <router-link to="/viewOrder">
-                <li>
+                <li v-show="idType == 1">
                     <div class="left">{{language.myCenter.viewOrder}}</div>
                     <div class="right"><i class="viewOrder"></i></div>
+                </li>
+            </router-link>
+            <router-link to="/stauffOrder">
+                <li v-show="idType == 2">
+                    <div class="left">{{language.myCenter.order}}</div>
+                    <div class="right"><i class="notice"></i></div>
                 </li>
             </router-link>
             <li v-show="idType == 2" @click="goGsm">

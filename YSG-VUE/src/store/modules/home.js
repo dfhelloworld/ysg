@@ -359,6 +359,19 @@ const actions = {
         }
       );
     });
+  },
+  updateOrderProductById: function({ commit }, url, data) {
+    return new Promise((resolve, reject) => {
+      API.updateOrderProductById(url, data).then(
+        res => {
+          commit(types.APPSTART, res.data);
+          resolve(res.data);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
   }
 };
 

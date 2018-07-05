@@ -69,6 +69,8 @@ const Home = {
 	getShoppingHotelList:'/shoppingorder/getShoppingHotelList',
 	//员工获取订单信息
 	getStaffOrderList:'/shoppingOrder/getStaffOrderList',
+	//员工修改订单信息
+	updateOrderProductById:'/shoppingorder/updateOrderProductById',
 }
 
 //登录接口
@@ -281,4 +283,6 @@ export default {
 	getShoppingHotelList:(query) => apiPost(Home.getShoppingHotelList,query),
 	//员工获取订单信息
 	getStaffOrderList:(query) => apiPost(Home.getStaffOrderList,query),
+	//员工修改订单信息
+	updateOrderProductById:(query) => apiPost(Home.updateOrderProductById,query),
 }

@@ -22,7 +22,7 @@
                         </td>
                         <td style="text-align: right;">
                             <div style="font-size:18px;color:#f0c366;">
-                               {{order.room_no}}&nbsp;&nbsp;&nbsp;<a href="#" @click="delOrder(order.id,$event)">X</a>
+                               {{order.room_no}}
                             </div>
                         </td>
                     </tr>
@@ -129,12 +129,24 @@
                                    {{obj.title}}
                                </div>
                             </td>
+                            <td>
+                               <div class="dropdown">
+                                    <div class="dropdownDiv">
+                                        <button class="bnt1" @click="showMenu($event)">处理</button>
+                                    </div>
+                                    <div class="dropdown-content">
+                                        <button class="bnt2" @click="proOrder(obj.id,2)">处理中</button>
+                                        <button class="bnt2" @click="proOrder(obj.id,3)">已完成</button>
+                                        <button class="bnt2" @click="proOrder(obj.id,4)">已取消</button>
+                                    </div>
+                               </div>
+                            </td>
                             <td width="5%" rowspan="2">
                                 &nbsp;
                             </td>
                         </tr>
                         <tr>
-                             <td>
+                             <td colspan="2">
                                  <div style="font-size:16px;font-family:PingFangSC-Light;color:#4a4a4a;">
                                     {{numStr}}:{{obj.num}} RMB {{obj.price}}</br><font color="red">{{obj.status}}</font>
                                 </div>
@@ -157,6 +169,60 @@
 </template>
 
 <style>
+.bnt1 {
+    background-color: #f0c366;
+    border: none;
+    color: white;
+    padding: 5px 10px 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 52px;
+}
+
+.bnt2 {
+    background-color: white;
+    border: 1px solid #4a4a4a;
+    color: #4a4a4a;
+    padding: 5px 10px 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 70px;
+    height: 32px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 70px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-left: -70px;
+    margin-top: -28px;
+}
+
+.dropdownDiv {
+    position: absolute;
+    overflow: auto;
+    z-index: 1;
+    display:block;
+    margin-left: -50px;
+    margin-top: -20px;
+}
 </style>
 <script>
     import { PopupPicker, XButton } from 'vux'
@@ -219,6 +285,8 @@
         },
         methods: {
             ordClose:function(){
+                $(".dropdownDiv").show();
+                $(".dropdown-content").hide();
                 $("#section6").hide();
                 $("#section5").show();
             },
@@ -236,52 +304,32 @@
                 this.roomNo = order.room_no;
                 this.ordStatus = order.status;
             },
-            delOrder:function(id,event){
+            showMenu:function(event){
+                $(".dropdownDiv").show();
+                $(".dropdown-content").hide();
                 let target = event.target;
                 if(target==null){
                     target = event.srcElement;
                 }
+                $(target).parent().hide();
+                $(target).parent().parent().find(".dropdown-content").show();
+            },
+            proOrder:function(pid,proState){
+                $(".dropdownDiv").show();
+                $(".dropdown-content").hide();
                 let _this = this;
-                let alobj = new alertLanguage();
-                let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
-                let title = obj.title;
-                let msg1 = '是否删除?';
-                let msg2 = '删除成功!';
-                //判断显示中/英文
-                if(localStorage.LANGUAGE!='zh'){
-                    msg1 = 'Are you sure to delete the order?';
-                    msg2 = 'Successfully deleted!';
-                }
-                let sureBnt = obj.sureBnt;
-                let cancelBnt = obj.cancelBnt;
-                let dialog = window.YDUI.dialog;
-                dialog.confirm(title,msg1, [
-                    {
-                        txt: sureBnt,
-                        color: false,
-                        callback: function () {
-                            let params = {
-                                token: localStorage.TOKEN,
-                                orderid:id
-                            }
-                            _this.$store.dispatch('deleteOrder', params).then(function (res) {
-                                if(res.code==0){
-                                    _this.$dialog.toast({mes: msg2, timeout: 2000});
-                                    $(target).parent().parent().parent().parent().parent().remove();
-                                }else{
-                                    _this.$dialog.toast({mes: res.msg, timeout: 2000});
-                                }
-                            });
-                        }
-                    },
-                    {
-                        txt: cancelBnt,
-                        color: false,
-                        callback: function () {
-
-                        }
+                let params = {
+                    id: pid,
+                    token: localStorage.TOKEN,
+                    status: proState
+                };
+                this.$store.dispatch('updateOrderProductById', params).then(function (res) {
+                    if(res.code == 0){
+                        
+                    } else {
+                        _this.$dialog.toast({mes: res.msg, timeout: 3000});
                     }
-                ]);
+                });
             }
         },
         mounted:function () {
