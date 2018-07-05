@@ -50,7 +50,7 @@
                         </td>
                         <td colspan="2" style="text-align: right;">
                             <div style="font-size:16px;font-family:PingFangSC-Semibold;color:#4a4a4a;">
-                                {{numStr}}:{{order.num}} 
+                                {{order.status}} 
                             </div>
                         </td>
                     </tr>
@@ -109,7 +109,7 @@
                             </td>
                             <td style="text-align: right;">
                                 <div style="font-size:16px;font-family:PingFangSC-Semibold;color:#4a4a4a;">
-                                    {{numStr}}:{{orderNum}} 
+                                    {{orderStatus}} 
                                 </div>
                             </td>
                         </tr>
@@ -173,7 +173,7 @@
                 orderNo:'',
                 orderDate:'',
                 orderTotal:0.0,
-                orderNum:0,
+                orderStatus:'',
                 numStr:'数量',
                 hUrl:'',
                 hName:'',
@@ -253,7 +253,7 @@
                 this.orderNo = order.id_show;
                 this.orderDate = order.created_at;
                 this.orderTotal = order.price;
-                this.orderNum = order.num;
+                this.orderStatus = order.status;
                 this.details = order.products;
             },
             delOrder:function(id,event){
