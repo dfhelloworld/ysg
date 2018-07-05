@@ -66,6 +66,11 @@
           </div>
         </section>
       </section>
+      <!--Footer page-->
+      <footer class="m-tabbar tabbbar-top-line-color tabbar-fixed" style="color: rgb(240, 195, 102); background-color: rgb(255, 255, 255); font-size: 0.24rem; left: 0px;display:none;">
+            <div style="width:100%;text-align:center;" id="pageDiv"></div>
+      </footer>
+      <!--Footer page-->
     </div>
     <div class="mask-black-dialog" id="section6" style="display:none;height:100%">   
         <div class="m-confirm" style="height:90%;overflow-y: scroll;">
@@ -129,7 +134,7 @@
                                    {{obj.title}}
                                </div>
                             </td>
-                            <td>
+                            <td width="20%">
                                <div class="dropdown">
                                     <div class="dropdownDiv">
                                         <button class="bnt1" @click="showMenu($event)">处理</button>
@@ -211,7 +216,7 @@
     overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    margin-left: -70px;
+    margin-left: -10px;
     margin-top: -28px;
 }
 
@@ -220,7 +225,6 @@
     overflow: auto;
     z-index: 1;
     display:block;
-    margin-left: -50px;
     margin-top: -20px;
 }
 </style>
@@ -276,6 +280,39 @@
                             let s = (date.getSeconds() < 10 ? '0'+(date.getSeconds()) : date.getSeconds());
                             let dateStr = Y+M+D+h+m+s;
                             _this.ordDataList[i].created_at = dateStr;
+                        }
+                        //是否显示分页信息
+                        let pagination = new Pagination(document.getElementById('pageDiv'),{page:1,total:res.data.total,lang:localStorage.LANGUAGE,pageCallBack:function(page){
+                            //分页回调函数
+                            let pageParams = {
+                                hotelid: localStorage.HOTELID,
+                                lang: localStorage.LANGUAGE,
+                                page: page,
+                                limit: 10,
+                                token: localStorage.TOKEN
+                            }
+                            _this.$store.dispatch('getStaffOrderList', pageParams).then(function (res) {
+                                if(res.code == 0){
+                                    _this.ordDataList = res.data.list;
+                                    for(let i=0;i<_this.ordDataList.length;i++){
+                                        // 时间格式转换
+                                        let date = new Date(Number(_this.ordDataList[i].created_at) * 1000);
+                                        let Y = date.getFullYear() + '-';
+                                        let M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                                        let D = (date.getDate() < 10 ? '0'+(date.getDate()) : date.getDate()) + ' ';
+                                        let h = (date.getHours() < 10 ? '0'+(date.getHours()) : date.getHours()) + ':';
+                                        let m = (date.getMinutes() < 10 ? '0'+(date.getMinutes()) : date.getMinutes()) + ':';
+                                        let s = (date.getSeconds() < 10 ? '0'+(date.getSeconds()) : date.getSeconds());
+                                        let dateStr = Y+M+D+h+m+s;
+                                        _this.ordDataList[i].created_at = dateStr;
+                                    }
+                                } else {
+                                    _this.$dialog.toast({mes: res.msg, timeout: 3000});
+                                }
+                            });
+                        }});
+                        if(pagination.pages>1){
+                            $("footer").show();
                         }
                     } else {
                         _this.$dialog.toast({mes: res.msg, timeout: 3000});
