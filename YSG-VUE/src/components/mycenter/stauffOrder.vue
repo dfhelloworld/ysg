@@ -135,9 +135,9 @@
                                         <button class="bnt1" @click="showMenu($event)">处理</button>
                                     </div>
                                     <div class="dropdown-content">
-                                        <button class="bnt2" @click="proOrder(obj.id,2)">处理中</button>
-                                        <button class="bnt2" @click="proOrder(obj.id,3)">已完成</button>
-                                        <button class="bnt2" @click="proOrder(obj.id,4)">已取消</button>
+                                        <button class="bnt2" @click="proOrder(obj.orders_products_id,2)">处理中</button>
+                                        <button class="bnt2" @click="proOrder(obj.orders_products_id,3)">已完成</button>
+                                        <button class="bnt2" @click="proOrder(obj.orders_products_id,4)">已取消</button>
                                     </div>
                                </div>
                             </td>
@@ -323,11 +323,19 @@
                     token: localStorage.TOKEN,
                     status: proState
                 };
+                let dialog = window.YDUI.dialog;
+                dialog.loading.open('Loading');
                 this.$store.dispatch('updateOrderProductById', params).then(function (res) {
+                    dialog.loading.close();
                     if(res.code == 0){
-                        
+                        let rmsg = '处理成功';
+                        //判断显示中/英文
+                        if(localStorage.LANGUAGE!='zh'){
+                            rmsg = "Successful processing";
+                        }
+                        _this.$dialog.toast({mes: rmsg, timeout: 2000});
                     } else {
-                        _this.$dialog.toast({mes: res.msg, timeout: 3000});
+                        _this.$dialog.toast({mes: res.msg, timeout: 2000});
                     }
                 });
             }
