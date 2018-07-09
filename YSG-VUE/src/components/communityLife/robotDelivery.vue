@@ -399,25 +399,25 @@
     </div>
     <!--Footer start-->
     <footer class="m-tabbar tabbbar-top-line-color tabbar-fixed" style="color: rgb(240, 195, 102); background-color: rgb(255, 255, 255); font-size: 0.24rem; left: 0px;">
-        <a href="#" class="tabbar-item" style="color:#f0c366;">
+        <a href="#" class="tabbar-item" style="color:#f0c366;" @click="goShopping()">
             <span class="tabbar-icon">
-                <img src="/static/images/shopping01.png" @click="goShopping()">
+                <img src="/static/images/shopping01.png">
                 <span class="tabbar-badge"></span> 
             </span> 
             <span class="tabbar-txt" v-if="isZH">体验购物</span>
             <span class="tabbar-txt" v-if="!isZH">Shopping</span>
         </a>
-        <a href="#" class="tabbar-item">
+        <a href="#" class="tabbar-item" @click="goShopCar()">
             <span class="tabbar-icon">
-                <img src="/static/images/shopping04.png" @click="goShopCar()">
+                <img src="/static/images/shopping04.png">
                 <span class="tabbar-badge"></span> 
             </span> 
             <span class="tabbar-txt" v-if="isZH">购物车</span>
             <span class="tabbar-txt" v-if="!isZH">Shopping Cart</span>
         </a>
-        <a href="#" class="tabbar-item">
+        <a href="#" class="tabbar-item"  @click="goOrder()">
             <span class="tabbar-icon">
-                <img src="/static/images/shopping06.png"  @click="goOrder()">
+                <img src="/static/images/shopping06.png">
                 <span class="tabbar-badge"></span> 
             </span> 
             <span class="tabbar-txt" v-if="isZH">查看订单</span>
