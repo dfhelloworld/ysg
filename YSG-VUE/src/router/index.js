@@ -248,5 +248,10 @@ export default new Router({
         {path: '/judgeInput',name: 'judgeInput',component: judgeInput},//评论
         {path: '/map',name: 'map',component: map},//评论
         {path: '/stauffOrder',name: 'stauffOrder',component: stauffOrder},//员工查看订单
+        {path: '/showStauffOrder',//直接通过消息跳转到员工查看订单页面
+            redirect:to => {
+                return { path: '/stauffOrder'}
+            }
+        },
     ]
 })

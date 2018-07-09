@@ -84,11 +84,14 @@ export default {
         dataType: "jsonp",
         success: function(json) {
           console.log("data—>", json.token);
-          _this.tokenSrc =
-            "http://www.xfplink.cn/wx_invoiceTitle_confirm.html?u=" +
+          // _this.tokenSrc =
+          //   "http://www.xfplink.cn/wx_invoiceTitle_confirm.html?u=" +
+          //   json.token +
+          //   "&m=YSG&b=" +
+          //   localStorage.INVOICEID; 
+          _this.tokenSrc ="http://www.xfplink.cn/xforce/#/invoiceTitle/upload?ut=" +
             json.token +
-            "&m=YSG&b=" +
-            localStorage.INVOICEID; 
+            "&br=YSG&st="+localStorage.HOTELID,
           //获取发票抬头
            console.log(_this.tokenSrc);
           if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
