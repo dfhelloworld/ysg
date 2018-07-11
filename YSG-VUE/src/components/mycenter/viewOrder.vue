@@ -72,6 +72,12 @@
                 </table>
               </li>
             </ul>
+            <ul class="type-buy">
+              <li style="border-bottom:0px;">
+                  <div style="text-align:center;height:60px;display:none;" class="divData" v-if="isZH">没有更多数据</div>
+                  <div style="text-align:center;height:60px;display:none;" class="divData" v-if="!isZH">No more data</div>
+              </li>
+            </ul>
           </div>
         </section>
       </section>
@@ -215,6 +221,7 @@
                             let dateStr = Y+M+D+h+m+s;
                             _this.ordDataList[i].created_at = dateStr;
                         }
+                        $(".divData").show();
                     } else {
                         _this.$dialog.toast({mes: res.msg, timeout: 3000});
                     }
