@@ -124,8 +124,7 @@
                                 </div>
                             </td>
                             <td align="center" width="30%">
-                                <h4 style="color:red" v-if="isZH">￥ {{p.num*p.price}}</h4>
-                                <h4 style="color:red" v-if="!isZH">$ {{p.num*p.price}}</h4>
+                                <h4 style="color:red">￥ {{p.num*p.price}}</h4>
                             </td>
                         </tr>
                     </table>
@@ -138,7 +137,7 @@
           合计 <font color="red">￥ </font><font color="red" id="ftotal">{{ftotal}}</font>
         </div>
         <div class="col-5" v-if="!isZH"  style="font-size:16px;">
-          Total <font color="red">$ </font><font color="red" id="ftotal">{{ftotal}}</font>
+          Total <font color="red">￥ </font><font color="red" id="ftotal">{{ftotal}}</font>
         </div>
         <div class="col-5">
           <button type="button" @click="apply" v-if="isZH">提交</button>
@@ -180,8 +179,7 @@
                                 &nbsp;
                             </td>
                             <td align="center" width="30%" valign="bottom">
-                                <h4 style="color:red" v-if="isZH">￥ {{p.num*p.price}}</h4>
-                                <h4 style="color:red" v-if="!isZH">$ {{p.num*p.price}}</h4>
+                                <h4 style="color:red">￥ {{p.num*p.price}}</h4>
                             </td>
                         </tr>
                     </table>
@@ -194,7 +192,7 @@
                     合计 <font color="red">￥ </font><font color="red" id="ftotal">{{ftotal}}</font>
                 </div>
                 <div class="col-10" v-if="!isZH" style="font-size:16px;text-align:right;margin-right:7px;">
-                    Total <font color="red">$ </font><font color="red" id="ftotal">{{ftotal}}</font>
+                    Total <font color="red">￥ </font><font color="red" id="ftotal">{{ftotal}}</font>
                 </div>
             </li>
         </ul>
