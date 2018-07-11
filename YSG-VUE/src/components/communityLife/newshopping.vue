@@ -115,7 +115,7 @@
             </li>
         </ul>
     </section>
-      <section class="buy_foot" style="bottom:56px;">
+      <section class="buy_foot" style="bottom: 1.1rem;">
         <div class="col-5" v-if="isZH" style="font-size:16px;">
           合计 <font color="red">￥ </font><font color="red" id="ftotal">{{ftotal}}</font>
         </div>
@@ -182,7 +182,7 @@
         </ul>
         </br></br></br>
     </section>
-      <section class="buy_foot" style="bottom:56px;">
+      <section class="buy_foot" style="bottom: 1.1rem;">
         <div class="col-5">
           <button type="button" @click="orderClose" v-if="isZH" style="border-right:1px solid white;">取消</button>
           <button type="button" @click="orderClose" v-if="!isZH" style="border-right:1px solid white;">Cancel</button>
@@ -200,7 +200,7 @@
             <span class="back" slot="left" @click="productClose()"></span>
         </yd-navbar>
         <section class="resolve-box" v-html="content"></section>
-        <section class="buy_foot" style="bottom:56px;">
+        <section class="buy_foot" style="bottom: 1.1rem;">
             <div class="col-5">
                 &nbsp;
             </div>
