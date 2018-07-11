@@ -104,7 +104,7 @@
                                 <h4 v-if="isZH">{{p.title_lang1}}</h4>
                                 <h4 v-if="!isZH">{{p.title_lang2}}</h4>
                             </td>
-                            <td align="center">
+                            <td align="right">
                                 <img style="width:35%;height:20%;" src="../../assets/images/itemDelete.png" alt="" @click="delItem(data.p.id,p.id)">
                             </td>
                         </tr>
@@ -123,7 +123,7 @@
                                     </span>
                                 </div>
                             </td>
-                            <td align="center" width="30%">
+                            <td align="right" width="30%">
                                 <h4 style="color:red">￥ {{p.num*p.price}}</h4>
                             </td>
                         </tr>
@@ -179,7 +179,7 @@
                             <td align="right" width="50%" height="52px">
                                 &nbsp;
                             </td>
-                            <td align="center" width="30%" valign="bottom">
+                            <td align="right" width="30%" valign="bottom">
                                 <h4 style="color:red">￥ {{p.num*p.price}}</h4>
                             </td>
                         </tr>
