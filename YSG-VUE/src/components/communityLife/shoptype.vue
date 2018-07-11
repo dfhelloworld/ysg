@@ -155,6 +155,7 @@
         <span class="back" slot="left" @click="orderClose()"></span>
       </yd-navbar>
       <section class="g-scrollview"></br></br></br></br>
+        <div style="margin-top:-20px;text-align:center;font-size: 0.4rem;color: rgb(92, 92, 92);">{{orderTitle}}</div>
         <ul class="type-buy" style="margin-top:-20px;" v-for="data in carList">
             <li v-for="p in data.p.c">
                 <div class="col-4">
@@ -196,6 +197,7 @@
                 </div>
             </li>
         </ul>
+        </br></br></br>
     </section>
       <section class="buy_foot" style="bottom:56px;">
         <div class="col-5">
@@ -203,8 +205,8 @@
           <button type="button" @click="orderClose" v-if="!isZH" style="border-right:1px solid white;">Cancel</button>
         </div>
         <div class="col-5">
-          <button type="button" @click="orderApply" v-if="isZH">提交</button>
-          <button type="button" @click="orderApply" v-if="!isZH">Submit</button>
+          <button type="button" @click="doOrder" v-if="isZH">提交</button>
+          <button type="button" @click="doOrder" v-if="!isZH">Submit</button>
         </div>
       </section>
     </div>
@@ -491,7 +493,8 @@
                 hUrl:'',
                 hName:'',
                 isProperty:false,
-                properties:[]
+                properties:[],
+                orderTitle:''
             }
         },
         created:function () {
@@ -504,6 +507,9 @@
                 this.title = "Orders";
                 this.numStr = "Quantity";
             }
+            let alobj = new alertLanguage();
+            let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
+            this.orderTitle = obj.shopping.msg;
             let _this = this;
             $(function(){
                 $(".navbar-center").css('marginLeft',0);
@@ -656,33 +662,6 @@
                     $("#section2").hide();
                 }
             },
-            orderApply: function() {
-                let alobj = new alertLanguage();
-                let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
-                let title = obj.title;
-                let msg = obj.shopping.msg;
-                let sureBnt = obj.sureBnt;
-                let cancelBnt = obj.cancelBnt;
-
-                let _this = this;
-                let dialog = window.YDUI.dialog;
-                dialog.confirm(title,msg, [
-                    {
-                        txt: sureBnt,
-                        color: false,
-                        callback: function () {
-                            _this.doOrder();
-                        }
-                    },
-                    {
-                        txt: cancelBnt,
-                        color: false,
-                        callback: function () {
-
-                        }
-                    }
-                ]);
-            },
             doOrder: function(){
                 $(".buy_foot button").attr("disabled",true);
                 $(".buy_foot button").css({background: "grey"});
@@ -727,6 +706,7 @@
                                     global.shopCar.clear();
                                     $("#section1").show();
                                     $("#section3").hide();
+                                    $("footer img:eq(1)").attr("src","/static/images/shopping03.png");
                                 }
                             }
                         }
