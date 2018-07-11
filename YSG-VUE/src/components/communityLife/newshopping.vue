@@ -27,10 +27,10 @@
           <div id="J_ListContent" class="m-list list-theme4">
             <ul class="type-buy" style="padding-top: 0.5rem">
               <li v-for="data in dataList">
-                <div class="col-4">
-                  <img  :src="data.pic" alt="" @click="showProduct(data)" style="border:1px solid #f0f0f0;">
+                <div class="col-4" style="width:2.6rem;">
+                  <img  :src="data.pic" alt="" @click="showProduct(data)" style="border:1px solid #f0f0f0;width:2.6rem;height:2.6rem;">
                 </div>
-                <div class="col-6">
+                <div class="col-6" style="width:width:60%;">
                   <div v-if="isZH" style="font-family:Avenir-Roman;font-size:20px;color:#4a4a4a;">{{data.title_lang1}}</div>
                   <div v-if="!isZH" style="font-family:Avenir-Roman;font-size:20px;color:#4a4a4a;">{{data.title_lang2}}</div>
                   <p style="font-family:PingFangSC-Light;font-size:16px;color:#4a4a4a;">{{data.introduct}}</p>
@@ -39,7 +39,7 @@
                         <div style="font-family:Avenir-Medium;font-size:20px;color:#f0c366;">RMB {{data.price}}</div>
                     </li>
                     <li class="col-4" style="border:0px">
-                        <button type="button"  @click="goDetail(data)" style="border:1px solid #f0c366;width:78px;height:28px;font-size:16px;color:#f0c366;font-family:Helvetica;">{{language.community.buy}}</button>
+                        <button type="button"  @click="goDetail(data)" style="border:1px solid #f0c366;width: 1.5rem; height: 0.6rem;font-size:16px;color:#f0c366;font-family:Helvetica;">{{language.community.buy}}</button>
                     </li>
                   </ul>
                 </div>
@@ -77,10 +77,10 @@
                 </div>
             </li>
             <li v-for="p in data.p.c">
-                <div class="col-4">
-                    <img :src="p.img" alt="">
+                <div class="col-4" style="width:2.6rem;">
+                    <img :src="p.img" alt="" style="border:1px solid #f0f0f0;width:2.4rem;height:2.4rem;">
                 </div>
-                <div class="col-6">
+                <div class="col-6" style="width:60%;">
                     <table width="100%">
                         <tr>
                             <td align="left" colspan="2">
@@ -141,10 +141,10 @@
         <div style="margin-top:-20px;text-align:center;font-size: 0.4rem;color: rgb(92, 92, 92);">{{orderTitle}}</div>
         <ul class="type-buy" style="margin-top:-20px;" v-for="data in carList">
             <li v-for="p in data.p.c">
-                <div class="col-4">
-                    <img :src="p.img" alt="">
+                <div class="col-4" style="width:2.6rem;">
+                    <img :src="p.img" alt="" style="border:1px solid #f0f0f0;width:2.4rem;height:2.4rem;">
                 </div>
-                <div class="col-6">
+                <div class="col-6" style="width:60%;">
                     <table width="100%">
                         <tr>
                             <td align="left" colspan="3">

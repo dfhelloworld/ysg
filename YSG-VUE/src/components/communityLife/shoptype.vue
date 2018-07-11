@@ -94,10 +94,10 @@
                 </div>
             </li>
             <li v-for="p in data.p.c">
-                <div class="col-4">
-                    <img :src="p.img" alt="">
+                <div class="col-4" style="width:2.6rem;">
+                    <img :src="p.img" alt="" style="border:1px solid #f0f0f0;width:2.4rem;height:2.4rem;">
                 </div>
-                <div class="col-6">
+                <div class="col-6" style="width:60%;">
                     <table width="100%">
                         <tr>
                             <td align="left" colspan="2">
@@ -158,10 +158,10 @@
         <div style="margin-top:-20px;text-align:center;font-size: 0.4rem;color: rgb(92, 92, 92);">{{orderTitle}}</div>
         <ul class="type-buy" style="margin-top:-20px;" v-for="data in carList">
             <li v-for="p in data.p.c">
-                <div class="col-4">
-                    <img :src="p.img" alt="">
+                <div class="col-4" style="width:2.6rem;">
+                    <img :src="p.img" alt="" style="border:1px solid #f0f0f0;width:2.4rem;height:2.4rem;">
                 </div>
-                <div class="col-6">
+                <div class="col-6" style="width:60%;">
                     <table width="100%">
                         <tr>
                             <td align="left" colspan="3">
