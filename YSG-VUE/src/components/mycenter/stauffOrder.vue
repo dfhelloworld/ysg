@@ -135,16 +135,9 @@
                                </div>
                             </td>
                             <td width="20%">
-                               <div class="dropdown">
-                                    <div class="dropdownDiv">
-                                        <button class="bnt1" @click="showMenu($event)">处理</button>
-                                    </div>
-                                    <div class="dropdown-content">
-                                        <button class="bnt2" @click="proOrder(obj.orders_products_id,2)">处理中</button>
-                                        <button class="bnt2" @click="proOrder(obj.orders_products_id,3)">已完成</button>
-                                        <button class="bnt2" @click="proOrder(obj.orders_products_id,4)">已取消</button>
-                                    </div>
-                               </div>
+                                <div class="dropdownDiv">
+                                    <button class="bnt1" @click="showMenu(obj.orders_products_id)">处理</button>
+                                </div>
                             </td>
                             <td width="5%" rowspan="2">
                                 &nbsp;
@@ -162,10 +155,22 @@
             </ul></br></br>
         </div>
         <div>
-            <div style="text-align: center; font-size: 16px; font-family: PingFangSC-Regular; color: rgb(240, 195, 102); position: absolute; left: 7.5%; bottom: 5%; background: #fafafa; width: 85%; height: 30px;" @click="ordClose()" v-if="isZH">
+            <div class="dropdown-content">
+                <div class="bntOutDiv">
+                    <button class="bnt2" @click="proOrder(pid,2,'处理中')" v-if="isZH">处理中</button>
+                    <button class="bnt2" @click="proOrder(pid,3,'已完成')" v-if="isZH">已完成</button>
+                    <button class="bnt2" @click="proOrder(pid,4,'已取消')" v-if="isZH">已取消</button>
+                    <button class="bnt2" @click="proOrder(pid,2,'Processing')" v-if="!isZH">Processing</button>
+                    <button class="bnt2" @click="proOrder(pid,3,'Completed')" v-if="!isZH">Completed</button>
+                    <button class="bnt2" @click="proOrder(pid,4,'Cancelled')" v-if="!isZH">Cancelled</button>
+                    <button class="bnt2" @click="closePro()" v-if="isZH">关闭</button>
+                    <button class="bnt2" @click="closePro()" v-if="!isZH">CLOSE</button>
+                </div>
+            </div>
+            <div class="closeBnt" @click="ordClose()" v-if="isZH">
                 X 关闭
             </div>
-            <div style="text-align: center; font-size: 16px; font-family: PingFangSC-Regular; color: rgb(240, 195, 102); position: absolute; left: 7.5%; bottom: 5%; background: #fafafa; width: 85%; height: 30px;" @click="ordClose()" v-if="!isZH">
+            <div class="closeBnt" @click="ordClose()" v-if="!isZH">
                 X CLOSE
             </div>
         </div>
@@ -189,9 +194,9 @@
 }
 
 .bnt2 {
-    background-color: white;
-    border: 1px solid #4a4a4a;
-    color: #4a4a4a;
+    background-color: #f0c366;
+    border: 1px solid white;
+    color: white;
     padding: 5px 10px 5px 10px;
     text-align: center;
     text-decoration: none;
@@ -199,33 +204,49 @@
     font-size: 16px;
     cursor: pointer;
     border-radius: 4px;
-    width: 70px;
-    height: 32px;
+    width: 230px;
+    height: 40px;
+    margin-top: 0px;
 }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
+.bntOutDiv{
+    background:white;
+    display:block;
+    width:230px;
+    margin:auto;
+    margin-top: 60%;
+}
+
+.closeBnt{
+    text-align: center; 
+    font-size: 16px; 
+    font-family: PingFangSC-Regular; 
+    color: rgb(240, 195, 102); 
+    position: absolute; 
+    left: 7.5%; 
+    bottom: 5%; 
+    background: #fafafa; 
+    width: 85%; 
+    height: 30px;
 }
 
 .dropdown-content {
-    display: none;
     position: absolute;
-    background-color: #f9f9f9;
-    min-width: 70px;
-    overflow: auto;
+    display: none;
+    background-color: rgba(0,0,0,.4);
+    width: 85%;
+    height: 90%;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    margin-left: -10px;
-    margin-top: -28px;
+    z-index: 2;
+    bottom: 5%;
+    left: 7.5%; 
 }
 
 .dropdownDiv {
-    position: absolute;
     overflow: auto;
-    z-index: 1;
+    z-index: 2;
     display:block;
-    margin-top: -20px;
+    margin-top: 0px;
 }
 </style>
 <script>
@@ -245,7 +266,8 @@
                 orderNum:0,
                 numStr:'数量',
                 roomNo:'',
-                ordStatus:''
+                ordStatus:'',
+                pid:0
             }
         },
         created:function () {
@@ -321,8 +343,10 @@
             });
         },
         methods: {
+            closePro:function(){
+                $(".dropdown-content").hide();
+            },
             ordClose:function(){
-                $(".dropdownDiv").show();
                 $(".dropdown-content").hide();
                 $("#section6").hide();
                 $("#section5").show();
@@ -341,40 +365,57 @@
                 this.roomNo = order.room_no;
                 this.ordStatus = order.status;
             },
-            showMenu:function(event){
-                $(".dropdownDiv").show();
-                $(".dropdown-content").hide();
-                let target = event.target;
-                if(target==null){
-                    target = event.srcElement;
-                }
-                $(target).parent().hide();
-                $(target).parent().parent().find(".dropdown-content").show();
+            showMenu:function(pid){
+                this.pid = pid;
+                $(".dropdown-content").show();
             },
-            proOrder:function(pid,proState){
-                $(".dropdownDiv").show();
+            proOrder:function(pid,proState,textVal){
                 $(".dropdown-content").hide();
-                let _this = this;
-                let params = {
-                    id: pid,
-                    token: localStorage.TOKEN,
-                    status: proState
-                };
+                let alobj = new alertLanguage();
+                let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
+                let sureBnt = obj.sureBnt;
+                let cancelBnt = obj.cancelBnt;
                 let dialog = window.YDUI.dialog;
-                dialog.loading.open('Loading');
-                this.$store.dispatch('updateOrderProductById', params).then(function (res) {
-                    dialog.loading.close();
-                    if(res.code == 0){
-                        let rmsg = '处理成功';
-                        //判断显示中/英文
-                        if(localStorage.LANGUAGE!='zh'){
-                            rmsg = "Successful processing";
+                let pwdHtml = '将状态设置为';
+                if(localStorage.LANGUAGE!='zh'){
+                    pwdHtml = 'Set the status to';
+                }
+                pwdHtml = pwdHtml +textVal
+                let title = obj.title;
+                let _this = this;
+                dialog.confirm(title,pwdHtml, [
+                    {
+                        txt: sureBnt,
+                        color: false,
+                        callback: function () {
+                            let params = {
+                                id: pid,
+                                token: localStorage.TOKEN,
+                                status: proState
+                            };
+                            dialog.loading.open('Loading');
+                            _this.$store.dispatch('updateOrderProductById', params).then(function (res) {
+                                dialog.loading.close();
+                                if(res.code == 0){
+                                    let rmsg = '处理成功';
+                                    //判断显示中/英文
+                                    if(localStorage.LANGUAGE!='zh'){
+                                        rmsg = "Successful processing";
+                                    }
+                                    _this.$dialog.toast({mes: rmsg, timeout: 2000});
+                                } else {
+                                    _this.$dialog.toast({mes: res.msg, timeout: 2000});
+                                }
+                            });
                         }
-                        _this.$dialog.toast({mes: rmsg, timeout: 2000});
-                    } else {
-                        _this.$dialog.toast({mes: res.msg, timeout: 2000});
+                    },
+                    {
+                        txt: cancelBnt,
+                        color: false,
+                        callback: function () {
+                        }
                     }
-                });
+                ]);
             }
         },
         mounted:function () {
