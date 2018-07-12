@@ -135,8 +135,11 @@
                                </div>
                             </td>
                             <td width="20%">
-                                <div class="dropdownDiv">
-                                    <button class="bnt1" @click="showMenu(obj.orders_products_id)">处理</button>
+                                <div class="dropdownDiv" v-if="obj.productStatus < 3">
+                                    <button class="bnt1" @click="showMenu(obj)">处理</button>
+                                </div>
+                                <div class="dropdownDiv" v-if="obj.productStatus > 2">
+                                    <button class="bnt1" disabled style="background:rgb(216, 216, 216)">处理</button>
                                 </div>
                             </td>
                             <td width="5%" rowspan="2">
@@ -161,7 +164,7 @@
                     <button class="bnt2" @click="proOrder(pid,3,'已完成')" v-if="isZH">已完成</button>
                     <button class="bnt2" @click="proOrder(pid,4,'已取消')" v-if="isZH">已取消</button>
                     <button class="bnt2" @click="proOrder(pid,2,'Processing')" v-if="!isZH">Processing</button>
-                    <button class="bnt2" @click="proOrder(pid,3,'Completed')" v-if="!isZH">Completed</button>
+                    <button class="bnt2" @click="proOrder(pid,3,'Finished')" v-if="!isZH">Finished</button>
                     <button class="bnt2" @click="proOrder(pid,4,'Cancelled')" v-if="!isZH">Cancelled</button>
                     <button class="bnt2" @click="closePro()" v-if="isZH">关闭</button>
                     <button class="bnt2" @click="closePro()" v-if="!isZH">CLOSE</button>
@@ -369,7 +372,8 @@
                 this.pid = pid;
                 $(".dropdown-content").show();
             },
-            proOrder:function(pid,proState,textVal){
+            proOrder:function(proObj,proState,textVal){
+                let pid = proObj.orders_products_id;
                 $(".dropdown-content").hide();
                 let alobj = new alertLanguage();
                 let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
@@ -397,6 +401,7 @@
                             _this.$store.dispatch('updateOrderProductById', params).then(function (res) {
                                 dialog.loading.close();
                                 if(res.code == 0){
+                                    proObj.status = textVal;
                                     let rmsg = '处理成功';
                                     //判断显示中/英文
                                     if(localStorage.LANGUAGE!='zh'){
