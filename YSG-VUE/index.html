@@ -24,7 +24,45 @@
   <body>
       <div id="app" style="height: 100%;"></div>
       <div></div>
-
+    <div id="shoppingPwd" class="mask-black" style="display: none;">
+        <div class="m-keyboard keyboard-show">
+            <div class="keyboard-head">
+                <strong></strong>
+            </div>
+            <div class="keyboard-error"></div>
+            <ul class="keyboard-password J_FillPwdBox">
+                <li><i></i></li><li><i></i></li><li><i></i></li><li><i></i></li><li><i></i></li><li><i></i></li>
+            </ul>
+            <div style="text-align: right; padding: 0.15rem 0.8rem 0px;">
+                <a href="#" class="J_ShowPwd" style="color: rgb(102, 102, 102); font-size: 0.24rem;"></a>
+            </div>
+            <div class="keyboard-content">
+                <ul class="keyboard-numbers">
+                    <li>
+                        <a href="javascript:;" class="J_Nums">1</a>
+                        <a href="javascript:;" class="J_Nums">2</a>
+                        <a href="javascript:;" class="J_Nums">3</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="J_Nums">4</a>
+                        <a href="javascript:;" class="J_Nums">5</a>
+                        <a href="javascript:;" class="J_Nums">6</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="J_Nums">7</a>
+                        <a href="javascript:;" class="J_Nums">8</a>
+                        <a href="javascript:;" class="J_Nums">9</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="J_Cancel"></a>
+                        <a href="javascript:;" class="J_Nums">0</a>
+                        <a href="javascript:;" class="J_Backspace"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+          
       <script src="static/lib/ydui.flexible.js"></script>
       <script src="static/lib/jquery-3.1.1.min.js"></script>
       <script src="static/lib/swiper/swiper.min.js"></script>
@@ -142,64 +180,97 @@
 
         //验证pin码,并跳转页面
         function checkPin(_this,objParams){
-            let alobj = new alertLanguage();
-            let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
-            let sureBnt = obj.sureBnt;
-            let cancelBnt = obj.cancelBnt;
-            let dialog = window.YDUI.dialog;
-            let pwdHtml = `<input id="pwdNum" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:100%;">`;
-            let firstPwd = "";
-            let title = '请输入交易密码';
-            let msg1 = "token过期，请重新登录!";
-            let msg2 = "密码错误!";
+            let pwd = '';
+            let isShow = false;
+            let titleNode = "请输入购物密码";
+            let showPwdNode = "显示密码";
+            let hidePwdNode = "隐藏密码";
+            let cancelNode = "取消";
+            let msg1 = "token过期，请重新登录";
+            let msg2 = "密码错误";
             //判断显示中/英文
             if(localStorage.LANGUAGE!='zh'){
-                title = 'Please enter the transaction password';
-                msg1 = "Token expired, please log in again!";
-                msg2 = "Wrong password!";
+                titleNode = "Please enter the purchase password";
+                showPwdNode = "Show password";
+                hidePwdNode = "Hide password";
+                cancelNode = "Cancel";
+                msg1 = "Token expired, please log in again";
+                msg2 = "Wrong password";
             }
-            dialog.confirm(title,pwdHtml, [
-                {
-                    txt: sureBnt,
-                    color: false,
-                    stay: true, //是否保留提示框
-                    callback: function () {
-                        let pwd = $("#pwdNum").val();
-                        dialog.loading.open('Loading');
-                        //设置密码
-                        let pinParams = {
-                            token: localStorage.TOKEN,
-                            pin: pwd
-                        };
-                        _this.$store.dispatch('checkPin', pinParams).then(function (res) {
-                            dialog.loading.close();
-                            $("#pwdNum").val("");
-                            if(res.code == 0){
-                                $("#YDUI_CONFRIM").hide();
-                                if(objParams != undefined){
-                                    _this.$router.push(objParams);
-                                }
-                            }else if(res.code == 1){
-                                dialog.alert(msg1);
-                                $("#YDUI_CONFRIM").hide();
-                            }else if(res.code == 2){
-                                dialog.alert(msg2);
-                                $("#pwdNum").focus();
-                            }else{
-                                dialog.alert(res.msg);
-                                $("#pwdNum").focus();
-                            }
-                        });
-                    }
-                },
-                {
-                    txt: cancelBnt,
-                    color: false,
-                    callback: function () {
-                    }
+            $("#shoppingPwd").show();
+            $("#shoppingPwd .keyboard-head strong").html(titleNode);
+            $("#shoppingPwd .J_ShowPwd").html(showPwdNode);
+            $("#shoppingPwd .J_Cancel").html(cancelNode);
+            $("#shoppingPwd .J_FillPwdBox li").html("");
+            //点击密码数字
+            $("#shoppingPwd .J_Nums").click(function(){
+                if(pwd.length==6){
+                    return;
                 }
-            ]);
-            $("#pwdNum").focus();
+                let num = $(this).html();
+                pwd = pwd+num;
+                let numLength = pwd.length;
+                if(isShow){
+                    $("#shoppingPwd .J_FillPwdBox li:eq("+(numLength-1)+")").html(num);
+                }else{
+                    $("#shoppingPwd .J_FillPwdBox li:eq("+(numLength-1)+")").html("<i style='display:block;width:6px;height:6px;border-radius:50%;background-color:#000;'></i>");
+                }
+                if(numLength==6){
+                    let dialog = window.YDUI.dialog;
+                    //设置密码
+                    dialog.loading.open('Loading');
+                    let pinParams = {
+                        token: localStorage.TOKEN,
+                        pin: pwd
+                    };
+                    _this.$store.dispatch('checkPin', pinParams).then(function (res) {
+                        dialog.loading.close();
+                        pwd = '';
+                        $("#shoppingPwd .J_FillPwdBox li").html("");
+                        if(res.code == 0){
+                            $("#shoppingPwd").hide();
+                            if(objParams != undefined){
+                                _this.$router.push(objParams);
+                            }
+                        }else if(res.code == 1){
+                            $("#shoppingPwd .keyboard-error").html(msg1);
+                            $("#shoppingPwd").hide();
+                        }else if(res.code == 2){
+                            $("#shoppingPwd .keyboard-error").html(msg2);
+                        }else{
+                            $("#shoppingPwd .keyboard-error").html(res.msg);
+                            $("#shoppingPwd").hide();
+                        }
+                    });
+                }
+            });
+            //点击取消按钮
+            $("#shoppingPwd .J_Cancel").click(function(){
+                $("#shoppingPwd").hide();
+            });
+            //点击删除按钮
+            $("#shoppingPwd .J_Backspace").click(function(){
+                if(pwd.length==0){
+                    return;
+                }
+                pwd = pwd.substring(0,pwd.length-1);
+                $("#shoppingPwd .J_FillPwdBox li:eq("+pwd.length+")").html("");
+            });
+            //点击显示密码按钮
+            $("#shoppingPwd .J_ShowPwd").click(function(){
+                isShow = !isShow;
+                if(isShow){
+                    for(let i=0;i<pwd.length;i++){
+                        $("#shoppingPwd .J_FillPwdBox li:eq("+i+")").html(pwd[i]);
+                    }
+                    $(this).html(hidePwdNode);
+                }else{
+                    for(let i=0;i<pwd.length;i++){
+                        $("#shoppingPwd .J_FillPwdBox li:eq("+i+")").html("<i style='display:block;width:6px;height:6px;border-radius:50%;background-color:#000;'></i>");
+                    }
+                    $(this).html(showPwdNode);
+                }
+            });
         }
         //获取字体大小
         $(function(){
