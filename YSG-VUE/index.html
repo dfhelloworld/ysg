@@ -204,7 +204,7 @@
             $("#shoppingPwd .J_FillPwdBox li").html("");
             $("#shoppingPwd .keyboard-error").html("");
             //点击密码数字
-            $("#shoppingPwd .J_Nums").click(function(){
+            $("#shoppingPwd .J_Nums").unbind('click').click(function(){
                 if(pwd.length==6){
                     return;
                 }
@@ -244,11 +244,11 @@
                 }
             });
             //点击取消按钮
-            $("#shoppingPwd .J_Cancel").click(function(){
+            $("#shoppingPwd .J_Cancel").unbind('click').click(function(){
                 $("#shoppingPwd").hide();
             });
             //点击删除按钮
-            $("#shoppingPwd .J_Backspace").click(function(){
+            $("#shoppingPwd .J_Backspace").unbind('click').click(function(){
                 if(pwd.length==0){
                     return;
                 }
@@ -256,7 +256,7 @@
                 $("#shoppingPwd .J_FillPwdBox li:eq("+pwd.length+")").html("");
             });
             //点击显示密码按钮
-            $("#shoppingPwd .J_ShowPwd").click(function(){
+            $("#shoppingPwd .J_ShowPwd").unbind('click').click(function(){
                 isShow = !isShow;
                 if(isShow){
                     for(let i=0;i<pwd.length;i++){
