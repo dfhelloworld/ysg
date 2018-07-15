@@ -234,12 +234,10 @@
                             }
                         }else if(res.code == 1){
                             $("#shoppingPwd .keyboard-error").html(msg1);
-                            $("#shoppingPwd").hide();
                         }else if(res.code == 2){
                             $("#shoppingPwd .keyboard-error").html(msg2);
                         }else{
                             $("#shoppingPwd .keyboard-error").html(res.msg);
-                            $("#shoppingPwd").hide();
                         }
                     });
                 }
