@@ -30,16 +30,16 @@
                 <div class="col-4" style="width:2.6rem;">
                   <img  :src="data.pic" alt="" @click="showProduct(data)" style="border:1px solid #f0f0f0;width:2.6rem;height:2.6rem;">
                 </div>
-                <div class="col-6" style="width:width:60%;">
-                  <div v-if="isZH" style="font-family:Avenir-Roman;font-size:20px;color:#4a4a4a;">{{data.title_lang1}}</div>
-                  <div v-if="!isZH" style="font-family:Avenir-Roman;font-size:20px;color:#4a4a4a;">{{data.title_lang2}}</div>
-                  <p style="font-family:PingFangSC-Light;font-size:16px;color:#4a4a4a;">{{data.introduct}}</p>
+                <div class="col-6" style="width:60%;padding-left:10px;">
+                  <div v-if="isZH" style="font-family:Avenir-Roman;font-size:17px;color:#4a4a4a;">{{data.title_lang1}}</div>
+                  <div v-if="!isZH" style="font-family:Avenir-Roman;font-size:17px;color:#4a4a4a;">{{data.title_lang2}}</div>
+                  <p style="font-family:PingFangSC-Light;font-size:14px;color:#4a4a4a;">{{data.introduct}}</p>
                   <ul class="s-price">
                     <li class="col-6" style="border:0px">
-                        <div style="font-family:Avenir-Medium;font-size:20px;color:#f0c366;">RMB {{data.price}}</div>
+                        <div style="font-family:Avenir-Medium;font-size:17px;color:#f0c366;">RMB {{data.price}}</div>
                     </li>
                     <li class="col-4" style="border:0px">
-                        <button type="button"  @click="goDetail(data)" style="border:1px solid #f0c366;width: 1.5rem; height: 0.6rem;font-size:16px;color:#f0c366;font-family:Helvetica;">{{language.community.buy}}</button>
+                        <button type="button"  @click="goDetail(data)" style="border:1px solid #f0c366;width: 1.3rem; height: 0.55rem;font-size:14px;color:#f0c366;font-family:Helvetica;">{{language.community.buy}}</button>
                     </li>
                   </ul>
                 </div>

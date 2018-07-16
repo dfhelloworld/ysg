@@ -35,7 +35,7 @@
                             <tr>
                                 <td width="5%">&nbsp;</td>
                                 <td>
-                                    <div class="wrapper wrapper01"  :id="gernerateId(index)" style="height:188px;">
+                                    <div class="wrapper wrapper01"  :id="gernerateId(index)" style="height:170px;">
                                         <div class="scroller">
                                             <ul class="clearfix">
                                                  <li v-for="(secondTag, index2) in firstTag.children" style="width:118px;">
