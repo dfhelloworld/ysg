@@ -82,7 +82,7 @@
                                 &nbsp;
                             </td>
                             <td>
-                                <div style="font-size:24px;font-family:PingFangSC-Semibold;color:#f0c366;">
+                                <div style="font-size:20px;font-family:PingFangSC-Semibold;color:#f0c366;">
                                     RMB {{orderTotal}}
                                 </div>
                             </td>
@@ -90,7 +90,7 @@
                                 &nbsp;
                             </td>
                             <td style="text-align: right;">
-                                <div style="font-size:18px;color:#f0c366;">
+                                <div style="font-size:16px;color:#f0c366;">
                                     {{roomNo}}&nbsp;&nbsp;&nbsp;
                                 </div>
                             </td>
@@ -100,19 +100,19 @@
                         </tr>
                         <tr>
                             <td colspan="3">
-                                <div style="font-size:16px;font-family:PingFangSC-Light;color:#4a4a4a;">
+                                <div style="font-size:14px;font-family:PingFangSC-Light;color:#4a4a4a;">
                                     {{orderDate}}
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <div style="font-size:16px;font-family:PingFangSC-Light;color:#4a4a4a;">
+                                <div style="font-size:14px;font-family:PingFangSC-Light;color:#4a4a4a;">
                                     NO. {{orderNo}}
                                 </div>
                             </td>
                             <td style="text-align: right;">
-                                <div style="font-size:16px;font-family:PingFangSC-Semibold;color:#4a4a4a;">
+                                <div style="font-size:14px;font-family:PingFangSC-Semibold;color:#4a4a4a;">
                                     {{ordStatus}} 
                                 </div>
                             </td>
@@ -130,7 +130,7 @@
                                 <img :src="obj.pic" style="width:79px;height:79px;"/>
                             </td>
                             <td>
-                               <div style="font-size:20px;font-family:Avenir-Roman;color:#4a4a4a;">
+                               <div style="font-size:18px;font-family:Avenir-Roman;color:#4a4a4a;">
                                    {{obj.title}}
                                </div>
                             </td>
@@ -148,7 +148,7 @@
                         </tr>
                         <tr>
                              <td colspan="2">
-                                 <div style="font-size:16px;font-family:PingFangSC-Light;color:#4a4a4a;">
+                                 <div style="font-size:14px;font-family:PingFangSC-Light;color:#4a4a4a;">
                                     {{numStr}}:{{obj.num}} RMB {{obj.price}}</br><font color="red">{{obj.status}}</font>
                                 </div>
                             </td>
@@ -190,10 +190,10 @@
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     border-radius: 4px;
-    width: 52px;
+    width: 48px;
 }
 
 .bnt2 {
