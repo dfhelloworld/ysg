@@ -77,40 +77,42 @@
                 </div>
             </li>
             <li v-for="p in data.p.c">
-                <div class="col-4" style="width:2.6rem;">
-                    <img :src="p.img" alt="" style="border:1px solid #f0f0f0;width:2.4rem;height:2.4rem;">
-                </div>
-                <div class="col-6" style="width:60%;">
-                    <table width="100%">
-                        <tr>
-                            <td align="left" colspan="2">
-                                <h4 v-if="isZH">{{p.title_lang1}}</h4>
-                                <h4 v-if="!isZH">{{p.title_lang2}}</h4>
-                            </td>
-                            <td align="right">
-                                <img style="width:35%;height:20%;" src="../../assets/images/itemDelete.png" alt="" @click="delItem(data.p.id,p.id)">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" style="height: 0.8rem;">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td width="20%" align="left">
-                                <h4>X{{p.num}}</h4>
-                            </td>
-                            <td align="right" width="50%">
-                                <div>
-                                    <span class="m-spinner">
-                                        <a href="#" @click="delProduct(data.p.id,p.id)"></a>
-                                        <a href="#" @click="addProduct(data.p.id,p.id)"></a>
-                                    </span>
-                                </div>
-                            </td>
-                            <td align="right" width="30%">
-                                <h4 style="color:red">￥ {{p.num*p.price}}</h4>
-                            </td>
-                        </tr>
-                    </table>
+                <div style="display:flex;">
+                    <div class="col-4" style="width:2.6rem;">
+                        <img :src="p.img" alt="" style="border:1px solid #f0f0f0;width:2.4rem;height:2.4rem;">
+                    </div>
+                    <div class="col-6" style="width:0px;flex-grow:1;word-wrap:break-word;">
+                        <table width="100%">
+                            <tr>
+                                <td align="left" colspan="2">
+                                    <h4 v-if="isZH">{{p.title_lang1}}</h4>
+                                    <h4 v-if="!isZH">{{p.title_lang2}}</h4>
+                                </td>
+                                <td align="right">
+                                    <img style="width:35%;height:20%;" src="../../assets/images/itemDelete.png" alt="" @click="delItem(data.p.id,p.id)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="height: 0.8rem;">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td width="20%" align="left">
+                                    <h4>X{{p.num}}</h4>
+                                </td>
+                                <td align="right" width="50%">
+                                    <div>
+                                        <span class="m-spinner">
+                                            <a href="#" @click="delProduct(data.p.id,p.id)"></a>
+                                            <a href="#" @click="addProduct(data.p.id,p.id)"></a>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td align="right" width="30%">
+                                    <h4 style="color:red">￥ {{p.num*p.price}}</h4>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </li>
         </ul>
