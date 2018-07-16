@@ -25,7 +25,7 @@
       <div id="app" style="height: 100%;"></div>
       <div></div>
     <div id="shoppingPwd" class="mask-black" style="display: none;">
-        <div class="m-keyboard keyboard-show">
+        <div class="m-keyboard">
             <div class="keyboard-head">
                 <strong></strong>
             </div>
@@ -198,6 +198,15 @@
                 msg2 = "Wrong password";
             }
             $("#shoppingPwd").show();
+            $("#shoppingPwd .m-keyboard").animate({}, "slow", function(){
+                $(this).css({
+                    '-webkit-transform': 'translate(0,0)',
+                    '-moz-transform': 'translate(0,0)',
+                    '-ms-transform': 'translate(0,0)',
+                    '-o-transform':'translate(0,0)',
+                    'transform': 'translate(0,0)'
+                });
+            });
             $("#shoppingPwd .keyboard-head strong").html(titleNode);
             $("#shoppingPwd .J_ShowPwd").html(showPwdNode);
             $("#shoppingPwd .J_Cancel").html(cancelNode);
@@ -245,7 +254,18 @@
             });
             //点击取消按钮
             $("#shoppingPwd .J_Cancel").unbind('click').click(function(){
-                $("#shoppingPwd").hide();
+                $("#shoppingPwd .m-keyboard").animate({}, "slow", function(){
+                    $(this).css({
+                        '-webkit-transform': 'translateY(100%)',
+                        '-moz-transform': 'translateY(100%)',
+                        '-ms-transform': 'translateY(100%)',
+                        '-o-transform':'translateY(100%)',
+                        'transform': 'translateY(100%)'
+                    });
+                    setTimeout(() => {
+                        $("#shoppingPwd").hide();
+                    }, 300);
+                });
             });
             //点击删除按钮
             $("#shoppingPwd .J_Backspace").unbind('click').click(function(){
