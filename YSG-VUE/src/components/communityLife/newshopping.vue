@@ -233,7 +233,7 @@
                 <table border="0" width="100%">
                     <tr>
                         <td>
-                            <div style="font-size:24px;font-family:PingFangSC-Semibold;color:#f0c366;">
+                            <div style="font-size:20px;font-family:PingFangSC-Semibold;color:#f0c366;">
                                 RMB {{order.price}}
                             </div>
                         </td>
@@ -248,29 +248,29 @@
                     </tr>
                     <tr>
                         <td colspan="3">
-                            <div style="font-size:16px;font-family:PingFangSC-Light;color:#4a4a4a;">
+                            <div style="font-size:14px;font-family:PingFangSC-Light;color:#4a4a4a;">
                                 {{order.created_at}}
                             </div>
                         </td>
                     </tr>
                     <tr style="border-bottom:1px solid #f0f0f0;">
                         <td>
-                            <div style="font-size:16px;font-family:PingFangSC-Light;color:#4a4a4a;">
+                            <div style="font-size:14px;font-family:PingFangSC-Light;color:#4a4a4a;">
                                 NO. {{order.id_show}}
                             </div>
                         </td>
                         <td colspan="2" style="text-align: right;">
-                            <div style="font-size:16px;font-family:PingFangSC-Semibold;color:#4a4a4a;">
+                            <div style="font-size:14px;font-family:PingFangSC-Semibold;color:#4a4a4a;">
                                 {{numStr}}:{{order.num}} 
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="3" @click="ordDetail(order)">
-                            <div style="font-size:16px;font-family:PingFangSC-Regular;color:#f0c366;text-align:center;" v-if="isZH">
+                            <div style="font-size:14px;font-family:PingFangSC-Regular;color:#f0c366;text-align:center;" v-if="isZH">
                                 更多
                             </div>
-                            <div style="font-size:16px;font-family:PingFangSC-Regular;color:#f0c366;text-align:center;" v-if="!isZH">
+                            <div style="font-size:14px;font-family:PingFangSC-Regular;color:#f0c366;text-align:center;" v-if="!isZH">
                                 MORE
                             </div>
                         </td>
