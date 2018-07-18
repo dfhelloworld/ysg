@@ -55,9 +55,8 @@ export default {
     };
   },
   created: function() {
-
-    $(function(){
-        $(".navbar-center").css('marginLeft',0);
+    $(function() {
+      $(".navbar-center").css("marginLeft", 0);
     });
   },
   mounted: function() {
@@ -83,30 +82,38 @@ export default {
         data: dataStr,
         dataType: "jsonp",
         success: function(json) {
-          console.log("data—>", json.token);
-          // _this.tokenSrc =
-          //   "http://www.xfplink.cn/wx_invoiceTitle_confirm.html?u=" +
-          //   json.token +
-          //   "&m=YSG&b=" +
-          //   localStorage.INVOICEID; 
-          _this.tokenSrc ="http://www.xfplink.cn/xforce/#/invoiceTitle/upload?ut=" +
+          let stNum = "";
+          if (localStorage.HOTELID == 22) {
+            //成都
+            stNum = "ARCC";
+          } else if (localStorage.HOTELID == 21) {
+            //深圳
+            stNum = "ARCSZ";
+          } else if (localStorage.HOTELID == 7) {
+            //广州国金
+            stNum = "X80";
+          } else if (localStorage.HOTELID == 15) {
+            //合肥
+            stNum = "SSLH";
+          } else if (localStorage.HOTELID == 4) {
+            //北京雅诗阁服务公寓
+            stNum = "AB";
+          }
+          _this.tokenSrc =
+            "http://www.xfplink.cn/xforce/#/invoiceTitle/upload?ut=" +
             json.token +
-            "&br=YSG&st="+localStorage.HOTELID,
+            "&br=YSG&st=" +
+            stNum;
           //获取发票抬头
-           console.log(_this.tokenSrc);
           if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
             openFile(_this.tokenSrc);
           } else {
-            // alert("抱歉，安卓版本模块发票功能维护中。")
-            // openUrl(_this.tokenSrc, this.language.myCenter.invoices);
-           
-            openUrl(_this.tokenSrc,'Invoices');
+            openUrl(_this.tokenSrc, "Invoices");
           }
         },
         error: function() {}
       });
     },
-
     showManager() {
       let _this = this;
       // 获取token
@@ -120,7 +127,6 @@ export default {
         data: dataStr,
         dataType: "jsonp",
         success: function(json) {
-          console.log("data—>", json.token);
           _this.tokenSrc =
             "http://www.xfplink.cn/wx_invoiceCollector.html?u=" +
             json.token +
