@@ -1,21 +1,23 @@
 <template>
-    <div class="invoice">
-        <div class="nav_mark"></div> 
-         <yd-navbar :title="language.myCenter.invoices" fixed>
-           <span slot="left" class="back" @click="goBack"></span>
-        </yd-navbar> 
-     
-        <div class="invoice-content">
-                     <div class="invoice-bg"> 
-              </div>
-              <div class="memoContainer">
-            <p class="memo">{{language.msg.createInvoice}}</p>
-            <p class="memo">{{language.msg.manageInvoice}}</p>
-           </div>
-                      <div class="buttonInvoice"   ><button type="button" @click="showHeader">{{language.myCenter.invoices_header}}</button>
-    <button type="button" @click="showManager">{{language.myCenter.invoices_manage}}</button></div>
-        </div>
+  <div class="invoice">
+    <div class="nav_mark"></div>
+    <yd-navbar :title="language.myCenter.invoices" fixed>
+      <span slot="left" class="back" @click="goBack"></span>
+    </yd-navbar>
+
+    <div class="invoice-content">
+      <div class="invoice-bg">
+      </div>
+      <div class="memoContainer">
+        <p class="memo">{{language.msg.createInvoice}}</p>
+        <p class="memo">{{language.msg.manageInvoice}}</p>
+      </div>
+      <div class="buttonInvoice" style="display: flex;">
+        <button type="button" @click="showHeader" style="flex-grow: 1;border-right: 1px solid white;">{{language.myCenter.invoices_header}}</button>
+        <button type="button" @click="showManager" style="flex-grow: 1;border-left: 1px solid white;">{{language.myCenter.invoices_manage}}</button>
+      </div>
     </div>
+  </div>
 </template>
 <style>
 .invoice-bg {
