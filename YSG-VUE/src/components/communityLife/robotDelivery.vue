@@ -298,7 +298,7 @@
                         </td>
                         <td colspan="2" style="text-align: right;">
                             <div style="font-size:14px;font-family:PingFangSC-Semibold;color:#4a4a4a;">
-                                {{numStr}}:{{order.num}} 
+                                {{order.status}}
                             </div>
                         </td>
                     </tr>
@@ -358,7 +358,7 @@
                             </td>
                             <td style="text-align: right;">
                                 <div style="font-size:14px;font-family:PingFangSC-Semibold;color:#4a4a4a;">
-                                    {{numStr}}:{{orderNum}} 
+                                    {{orderNum}} 
                                 </div>
                             </td>
                         </tr>
@@ -918,7 +918,7 @@
                 this.orderNo = order.id_show;
                 this.orderDate = order.created_at;
                 this.orderTotal = order.price;
-                this.orderNum = order.num;
+                this.orderNum = order.status;
                 this.details = order.products;
             },
             delOrder:function(id,event){
