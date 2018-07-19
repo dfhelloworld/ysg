@@ -23,7 +23,7 @@
                     <tr>
                         <td>
                             <div style="font-size:20px;font-family:PingFangSC-Semibold;color:#f0c366;">
-                                RMB {{order.price}} <font style="color:red;font-size:14px;font-family: PingFangSC-Light;">{{order.products[0].title}}</font><font style="color:red;font-size:14px;font-family: PingFangSC-Light;" v-if="order.products.length>1">...</font>
+                                RMB {{order.price}} <font style="color:#4a4a4a;font-size:14px;font-family: PingFangSC-Light;">{{order.products[0].title}}</font><font style="color:#4a4a4a;font-size:14px;font-family: PingFangSC-Light;" v-if="order.products.length>1">...</font>
                             </div>
                         </td>
                         <td>

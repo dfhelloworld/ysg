@@ -236,7 +236,7 @@
                     <tr>
                         <td>
                             <div style="font-size:20px;font-family:PingFangSC-Semibold;color:#f0c366;">
-                                RMB {{order.price}}
+                                RMB {{order.price}} <font style="color:#4a4a4a;font-size:14px;font-family: PingFangSC-Light;">{{order.products[0].title}}</font><font style="color:#4a4a4a;font-size:14px;font-family: PingFangSC-Light;" v-if="order.products.length>1">...</font>
                             </div>
                         </td>
                         <td>
@@ -248,6 +248,8 @@
                             </div>
                         </td>
                     </tr>
+                </table>
+                <table border="0" width="100%">
                     <tr>
                         <td colspan="3">
                             <div style="font-size:14px;font-family:PingFangSC-Light;color:#4a4a4a;">
