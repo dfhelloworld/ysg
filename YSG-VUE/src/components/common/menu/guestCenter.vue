@@ -29,7 +29,7 @@
                     <div class="right"><i class="viewOrder"></i></div>
                 </li>
             </router-link>
-            <router-link to="/stauffOrder">
+            <router-link to="/staffOrder">
                 <li v-show="idType == 2">
                     <div class="left">{{language.myCenter.order}}</div>
                     <div class="right"><i class="notice"></i></div>

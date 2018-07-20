@@ -39,7 +39,7 @@ import invoicesManage from '../components/mycenter/invoicesManage.vue'
 import helpDetail from '../components/common/menu/helpDetail.vue'
 import order from '../components/mycenter/order.vue'
 import viewOrder from '../components/mycenter/viewOrder.vue'
-import stauffOrder from '../components/mycenter/stauffOrder.vue'
+import staffOrder from '../components/mycenter/staffOrder.vue'
 
 /**
  * 搜索
@@ -247,6 +247,6 @@ export default new Router({
         {path: '/judge',name: 'judge',component: judge},//评论列表
         {path: '/judgeInput',name: 'judgeInput',component: judgeInput},//评论
         {path: '/map',name: 'map',component: map},//评论
-        {path: '/stauffOrder',name: 'stauffOrder',component: stauffOrder},//员工查看订单
+        {path: '/staffOrder',name: 'staffOrder',component: staffOrder},//员工查看订单
     ]
 })
