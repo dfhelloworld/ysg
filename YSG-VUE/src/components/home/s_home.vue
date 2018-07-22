@@ -590,6 +590,12 @@ export default {
             paginationClickable: true,
             spaceBetween: 0
           });
+          //跳转到员工订单页面
+    let specialUrl = window.location.href.split('#');
+    if(specialUrl.length>1){
+      _this.$router.push(specialUrl[1]);
+      return;
+    }
         }, 300);
       });
     });
