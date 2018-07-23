@@ -372,6 +372,20 @@ const actions = {
         }
       );
     });
+  },
+  //获取员工消息信息
+  getStaffAppMsgList: function({ commit }, url, data) {
+    return new Promise((resolve, reject) => {
+      API.getStaffAppMsgList(url, data).then(
+        res => {
+          commit(types.APPSTART, res.data);
+          resolve(res.data);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
   }
 };
 

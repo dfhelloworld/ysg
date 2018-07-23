@@ -9,11 +9,17 @@
         <div class="news-list">
             <scroller >
                 <ul>
-                    <li v-for="item in newsList" @click="goDetail(item.url)">
+                    <li v-for="item in newsList" @click="goDetail(item.url)" v-if="idType==1">
                         <h4>{{item.title}}</h4>
-                        <span class="time-show">{{new Date(item.createtime*1000).getFullYear()+'-'+(new Date(item.createtime*1000).getMonth() + 1)+'-'+new Date(item.createtime*1000).getDate()}}</span>
-                        <!--<span class="time-show">{{item.createtime}}</span>-->
+                        <span class="time-show">{{item.createtime}}</span>
                         <p>{{item.value}}</p>
+                    </li>
+                    <li v-for="item in newsList" @click="goDetail(item.url)" v-if="idType==2">
+                        <h4 v-if="isZH">{{item.title_lang1}}</h4>
+                        <h4 v-if="!isZH">{{item.title_lang2}}</h4>
+                        <span class="time-show">{{item.createtime}}</span>
+                        <p v-if="isZH">{{item.value_lang1}}</p>
+                        <p v-if="!isZH">{{item.value_lang2}}</p>
                     </li>
                 </ul>
             </scroller>
@@ -34,10 +40,16 @@
 	export default {
 		data() {
 			return {
-				newsList:[]
+                newsList:[],
+                idType:0,
+                isZH:true
 			};
 		},
         created:function () {
+            //判断显示中/英文
+            if(localStorage.LANGUAGE!='zh'){
+                this.isZH = false;
+            }
             let _this = this
 	        let params = {
 	            hotelid: localStorage.HOTELID,
@@ -46,10 +58,17 @@
                 limit:5,
                 token:localStorage.TOKEN
             }
-	        this.$store.dispatch('getNews',params).then(function (res) {
-                console.log(_this.newsList)
-                _this.newsList = res.data.list
-            });
+            //员工消息
+            this.idType = localStorage.idType;
+            if(2==localStorage.idType){
+                _this.$store.dispatch('getStaffAppMsgList', params).then(function (res) {
+                    _this.newsList = res.data.list;
+                });
+            }else{//住户消息
+                _this.$store.dispatch('getNews',params).then(function (res) {
+                    _this.newsList = res.data.list;
+                });
+            }
 
             $(function(){
                 $(".navbar-center").css('marginLeft',0);
@@ -57,16 +76,16 @@
         },
 		methods: {
 			goDetail(url){
-                if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-                    openFile(url)
-                }else{
-                    if(url.indexOf('pdf')>0){
-                        openPdf(url)
+                // if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+                //     openFile(url)
+                // }else{
+                //     if(url.indexOf('pdf')>0){
+                //         openPdf(url)
 
-                    } else {
-                        openUrl(url,'')
-                    }
-                }
+                //     } else {
+                //         openUrl(url,'')
+                //     }
+                // }
             }
 		},
         mounted:function () {
