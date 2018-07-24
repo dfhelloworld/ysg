@@ -759,6 +759,14 @@ export default {
       // }
         //机器人购物
         if(val===2){
+            if(localStorage.propertyinterfId==12){
+              let msg = "机器人无法到达该地点";
+              if(localStorage.LANGUAGE!='zh'){
+                   msg = 'The robot could not reach the location';
+              }
+              this.$dialog.toast({mes: msg, timeout: 2000});
+              return;
+            }
             //判断是否登录
             if (localStorage.TOKEN) {
                 let goPath = "/shopping";

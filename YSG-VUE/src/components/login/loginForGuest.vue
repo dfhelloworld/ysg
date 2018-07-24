@@ -139,6 +139,8 @@
                     //如果用户输入信息不完整
                     this.$dialog.toast({mes: this.language.msg.empty_one, timeout: 1000});
                 } else {
+                    //设置propertyinterfId
+                    localStorage.propertyinterfId = this.propertyinterfId;
                     let params = {
                         fullname: this.fullName,
                         groupid: localStorage.groupid,

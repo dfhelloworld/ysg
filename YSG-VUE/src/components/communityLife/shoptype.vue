@@ -722,6 +722,14 @@
                 $("#section2").hide();
             },
             goDetail: function(firstTag,sId,isRobot) {
+                if(isRobot==0&&localStorage.propertyinterfId==12){
+                    let msg = "机器人无法到达该地点";
+                    if(localStorage.LANGUAGE!='zh'){
+                        msg = 'The robot could not reach the location';
+                    }
+                    this.$dialog.toast({mes: msg, timeout: 2000});
+                    return;
+                }
                 let fId = firstTag.id;
                 localStorage.NEWTYPE=fId+','+sId;
                 global.firstTag=firstTag;
