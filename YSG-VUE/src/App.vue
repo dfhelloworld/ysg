@@ -42,12 +42,16 @@
                     identity:localStorage.indentity
                 }
                 this.$store.dispatch('appStart', params).then(function (res) {
-                    _this.link = _this.appStart.data.list[0].pic
+                    _this.link = _this.appStart.data.list[0].pic;
+                     setTimeout(() => {
+                           this.updateApp();
+                     }, 5000);
                 })
+            }else{
+                setTimeout(() => {
+                    this.updateApp();
+                }, 5000);
             }
-
-            this.updateApp()
-
         },
         mounted:function () {
             //友盟统计
@@ -111,11 +115,7 @@
                             version:_this.versionData.version, //版本号
                             versionLocal:localStorage.version //本地版本号
                         }
-             
-                     setTimeout(() => {
-                           updataApp(params)
-                     }, 3000);
-                      
+                        updataApp(params);
                     } else {
                         let params = {
                             isMust:_this.versionData.forced, //是否强制更新
