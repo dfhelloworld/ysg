@@ -103,9 +103,9 @@ export default {
           }
           _this.tokenSrc =
             "http://www.xfplink.cn/xforce/#/invoiceTitle/upload?ut=" +
-            json.token +
-            "&br=YSG&st=" +
-            stNum;
+            json.token + "&br=YSG&st=" + stNum +
+            "&roomId="+encodeURIComponent(localStorage.ROOM_INFO)+
+            "&userName="+encodeURIComponent(localStorage.FULLNAME);
           //获取发票抬头
           if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
             openFile(_this.tokenSrc);
