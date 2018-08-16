@@ -175,60 +175,69 @@
                 let _this = this;
                 let alobj = new alertLanguage();
                 let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
-                let sureBnt = obj.sureBnt;
-                let cancelBnt = obj.cancelBnt;
                 let dialog = window.YDUI.dialog;
-                let pwdHtml = `
-                <div>
-                    旧密码:<input id="pwdNum1" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:80%;">
-                </div>
-                <div>
-                    新密码:<input id="pwdNum2" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:80%;">
-                </div>
-                `;
                 let title = '请输入密码';
-                let msg1 = "旧密码为6位数字!";
-                let msg2 = "新密码为6位数字!";
                 let msg3 = "token过期，请重新登录!";
                 let msg4 = "设置成功!";
                 let msg5 = "旧密码输入错误!";
+                let cancelNode = "取消";
                 //判断显示中/英文
                 if(localStorage.LANGUAGE!='zh'){
-                    pwdHtml = `
-                    <div>
-                        Old password:<input id="pwdNum1" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:80%;">
-                    </div>
-                    <div>
-                        New password:<input id="pwdNum2" type="number" oninput="if(value.length>6)value=value.slice(0,6)" style="width:80%;">
-                    </div>
-                    `;
                     title = 'Please enter your password';
-                    msg1 = "Old password is 6 digits!";
-                    msg2 = "New password is 6 digits!";
                     msg3 = "Token expired, please log in again!";
                     msg4 = "Successfully set up!";
                     msg5 = "Old password entered incorrectly!";
+                    cancelNode = "Cancel";
                 }
-                dialog.confirm(title,pwdHtml, [
-                    {
-                        txt: sureBnt,
-                        color: false,
-                        stay: true, //是否保留提示框
-                        callback: function () {
-                            let pwd1 = $("#pwdNum1").val();
-                            let pwd2 = $("#pwdNum2").val();
-                            if(!/^[0-9]{6}$/.test(pwd1)){
-                                dialog.alert(msg1);
-                                $("#pwdNum1").val("");
-                                $("#pwdNum1").focus();
-                                return;
-                            }
-                            if(!/^[0-9]{6}$/.test(pwd2)){
-                                dialog.alert(msg2);
-                                $("#pwdNum2").val("");
-                                $("#pwdNum2").focus();
-                                return;
-                            }
+
+                let pwd = '';
+                let pwd1 = '';
+                let isShow = false;
+                let titleNode = title;
+                let showPwdNode = "显示密码";
+                let hidePwdNode = "隐藏密码";
+                let title1 = "请输入新密码";
+                //判断显示中/英文
+                if(localStorage.LANGUAGE!='zh'){
+                    showPwdNode = "Show password";
+                    hidePwdNode = "Hide password";
+                    title1 = "Please enter a new password";
+                }
+                $("#shoppingPwd").show();
+                $("#shoppingPwd .m-keyboard").animate({}, "slow", function(){
+                    $(this).css({
+                        '-webkit-transform': 'translate(0,0)',
+                        '-moz-transform': 'translate(0,0)',
+                        '-ms-transform': 'translate(0,0)',
+                        '-o-transform':'translate(0,0)',
+                        'transform': 'translate(0,0)'
+                    });
+                });
+                $("#shoppingPwd .keyboard-head strong").html(titleNode);
+                $("#shoppingPwd .J_ShowPwd").html(showPwdNode);
+                $("#shoppingPwd .J_Cancel").html(cancelNode);
+                $("#shoppingPwd .J_FillPwdBox li").html("");
+                $("#shoppingPwd .keyboard-error").html("");
+                //点击密码数字
+                $("#shoppingPwd .J_Nums").unbind('click').click(function(){
+                    if(pwd.length==6){
+                        return;
+                    }
+                    let num = $(this).html();
+                    pwd = pwd+num;
+                    let numLength = pwd.length;
+                    if(isShow){
+                        $("#shoppingPwd .J_FillPwdBox li:eq("+(numLength-1)+")").html(num);
+                    }else{
+                        $("#shoppingPwd .J_FillPwdBox li:eq("+(numLength-1)+")").html("<i style='display:block;width:6px;height:6px;border-radius:50%;background-color:#000;'></i>");
+                    }
+                    if(numLength==6){
+                        if(pwd1==''){
+                            pwd1 = pwd;
+                            $("#shoppingPwd .keyboard-head strong").html(title1);
+                            pwd = '';
+                            $("#shoppingPwd .J_FillPwdBox li").html("");
+                        }else{
                             dialog.loading.open('Loading');
                             //检查密码
                             let pinParams = {
@@ -241,49 +250,103 @@
                                     let setParams = {
                                         token: localStorage.TOKEN,
                                         old_pin:pwd1,
-                                        pin: pwd2
+                                        pin: pwd
                                     };
                                     _this.$store.dispatch('setPin', setParams).then(function (res) {
                                         if(res.code == 0){
                                             dialog.alert(msg4);
+                                            $("#shoppingPwd .m-keyboard").animate({}, "slow", function(){
+                                                $(this).css({
+                                                    '-webkit-transform': 'translateY(100%)',
+                                                    '-moz-transform': 'translateY(100%)',
+                                                    '-ms-transform': 'translateY(100%)',
+                                                    '-o-transform':'translateY(100%)',
+                                                    'transform': 'translateY(100%)'
+                                                });
+                                                setTimeout(() => {
+                                                    $("#shoppingPwd").hide();
+                                                }, 300);
+                                            });
                                         }else if(res.code == 1){
                                             dialog.alert(msg3);
                                         }else{
                                             dialog.alert(res.msg);
                                         }
                                         dialog.loading.close();
-                                        $("#pwdNum1").val("");
-                                        $("#pwdNum2").val("");
-                                        $("#YDUI_CONFRIM").hide();
                                     });
                                 }else if(res.code == 1){
                                     dialog.alert(msg3);
                                     dialog.loading.close();
-                                    $("#pwdNum1").val("");
-                                    $("#pwdNum2").val("");
-                                    $("#YDUI_CONFRIM").hide();
+                                    pwd1 = '';
+                                    $("#shoppingPwd .keyboard-head strong").html(titleNode);
+                                    pwd = '';
+                                    $("#shoppingPwd .J_FillPwdBox li").html("");
+                                    $("#shoppingPwd .keyboard-error").html("");
                                 }else if(res.code == 2){
                                     dialog.alert(msg5);
                                     dialog.loading.close();
-                                    $("#pwdNum1").focus();
+                                    pwd1 = '';
+                                    $("#shoppingPwd .keyboard-head strong").html(titleNode);
+                                    pwd = '';
+                                    $("#shoppingPwd .J_FillPwdBox li").html("");
+                                    $("#shoppingPwd .keyboard-error").html("");
                                 }else{
                                     dialog.alert(res.msg);
                                     dialog.loading.close();
-                                    $("#pwdNum1").focus();
+                                    pwd1 = '';
+                                    $("#shoppingPwd .keyboard-head strong").html(titleNode);
+                                    pwd = '';
+                                    $("#shoppingPwd .J_FillPwdBox li").html("");
+                                    $("#shoppingPwd .keyboard-error").html("");
                                 }
                             });
-                        }
-                    },
-                    {
-                        txt: cancelBnt,
-                        color: false,
-                        callback: function () {
-                            $("#pwdNum1").val("");
-                            $("#pwdNum2").val("");
+
                         }
                     }
-                ]);
-                $("#pwdNum1").focus();
+                });
+                //点击重置按钮
+                $("#shoppingPwd .J_Cancel").unbind('click').click(function(){
+                    pwd1 = '';
+                    $("#shoppingPwd .keyboard-head strong").html(titleNode);
+                    pwd = '';
+                    $("#shoppingPwd .J_FillPwdBox li").html("");
+                    $("#shoppingPwd .keyboard-error").html("");
+                    $("#shoppingPwd .m-keyboard").animate({}, "slow", function(){
+                        $(this).css({
+                            '-webkit-transform': 'translateY(100%)',
+                            '-moz-transform': 'translateY(100%)',
+                            '-ms-transform': 'translateY(100%)',
+                            '-o-transform':'translateY(100%)',
+                            'transform': 'translateY(100%)'
+                        });
+                        setTimeout(() => {
+                            $("#shoppingPwd").hide();
+                        }, 300);
+                    });
+                });
+                //点击删除按钮
+                $("#shoppingPwd .J_Backspace").unbind('click').click(function(){
+                    if(pwd.length==0){
+                        return;
+                    }
+                    pwd = pwd.substring(0,pwd.length-1);
+                    $("#shoppingPwd .J_FillPwdBox li:eq("+pwd.length+")").html("");
+                });
+                //点击显示密码按钮
+                $("#shoppingPwd .J_ShowPwd").unbind('click').click(function(){
+                    isShow = !isShow;
+                    if(isShow){
+                        for(let i=0;i<pwd.length;i++){
+                            $("#shoppingPwd .J_FillPwdBox li:eq("+i+")").html(pwd[i]);
+                        }
+                        $(this).html(hidePwdNode);
+                    }else{
+                        for(let i=0;i<pwd.length;i++){
+                            $("#shoppingPwd .J_FillPwdBox li:eq("+i+")").html("<i style='display:block;width:6px;height:6px;border-radius:50%;background-color:#000;'></i>");
+                        }
+                        $(this).html(showPwdNode);
+                    }
+                });
             }
 		},
 		computed: {
