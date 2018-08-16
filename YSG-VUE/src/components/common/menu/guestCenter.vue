@@ -12,7 +12,7 @@
                 <!--<div class="right">No.{{oa_id}}</div>-->
             <!--</li>-->
             <router-link to="/home/news">
-                <li>
+                <li style="border-bottom: 1px solid #eee;">
                     <div class="left">{{language.myCenter.message}}</div>
                     <div class="right"><i class="message"></i></div>
                 </li>
