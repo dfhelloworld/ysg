@@ -136,10 +136,12 @@
                             </td>
                             <td width="20%">
                                 <div class="dropdownDiv" v-if="obj.productStatus < 3">
-                                    <button class="bnt1" @click="showMenu(obj)">处理</button>
+                                    <button class="bnt1" @click="showMenu(obj)" v-if="isZH">处理</button>
+                                    <button class="bnt1" @click="showMenu(obj)" v-if="!isZH" style="width:70px">Process</button>
                                 </div>
                                 <div class="dropdownDiv" v-if="obj.productStatus > 2">
-                                    <button class="bnt1" disabled style="background:rgb(216, 216, 216)">处理</button>
+                                    <button class="bnt1" disabled style="background:rgb(216, 216, 216)" v-if="isZH">处理</button>
+                                    <button class="bnt1" disabled style="background:rgb(216, 216, 216);width:70px" v-if="!isZH">Process</button>
                                 </div>
                             </td>
                             <td width="5%" rowspan="2">
