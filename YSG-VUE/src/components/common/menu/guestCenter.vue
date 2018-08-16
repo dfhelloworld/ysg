@@ -233,10 +233,27 @@
                     }
                     if(numLength==6){
                         if(pwd1==''){
-                            pwd1 = pwd;
-                            $("#shoppingPwd .keyboard-head strong").html(title1);
-                            pwd = '';
-                            $("#shoppingPwd .J_FillPwdBox li").html("");
+                            //检查密码
+                            dialog.loading.open('Loading');
+                            let pinParams = {
+                                token: localStorage.TOKEN,
+                                pin: pwd
+                            };
+                            _this.$store.dispatch('checkPin', pinParams).then(function (res) {
+                                dialog.loading.close();
+                                $("#shoppingPwd .J_FillPwdBox li").html("");
+                                if(res.code == 0){
+                                    $("#shoppingPwd .keyboard-head strong").html(title1);
+                                    pwd1 = pwd;
+                                }else if(res.code == 1){
+                                    dialog.alert(msg3);
+                                }else if(res.code == 2){
+                                    dialog.alert(msg5);
+                                }else{
+                                    dialog.alert(res.msg);
+                                }
+                                pwd = '';
+                            });
                         }else{
                             dialog.loading.open('Loading');
                             //检查密码
@@ -244,63 +261,34 @@
                                 token: localStorage.TOKEN,
                                 pin: pwd1
                             };
-                            _this.$store.dispatch('checkPin', pinParams).then(function (res) {
+                            //设置密码
+                            let setParams = {
+                                token: localStorage.TOKEN,
+                                old_pin:pwd1,
+                                pin: pwd
+                            };
+                            _this.$store.dispatch('setPin', setParams).then(function (res) {
                                 if(res.code == 0){
-                                    //设置密码
-                                    let setParams = {
-                                        token: localStorage.TOKEN,
-                                        old_pin:pwd1,
-                                        pin: pwd
-                                    };
-                                    _this.$store.dispatch('setPin', setParams).then(function (res) {
-                                        if(res.code == 0){
-                                            dialog.alert(msg4);
-                                            $("#shoppingPwd .m-keyboard").animate({}, "slow", function(){
-                                                $(this).css({
-                                                    '-webkit-transform': 'translateY(100%)',
-                                                    '-moz-transform': 'translateY(100%)',
-                                                    '-ms-transform': 'translateY(100%)',
-                                                    '-o-transform':'translateY(100%)',
-                                                    'transform': 'translateY(100%)'
-                                                });
-                                                setTimeout(() => {
-                                                    $("#shoppingPwd").hide();
-                                                }, 300);
-                                            });
-                                        }else if(res.code == 1){
-                                            dialog.alert(msg3);
-                                        }else{
-                                            dialog.alert(res.msg);
-                                        }
-                                        dialog.loading.close();
+                                    dialog.alert(msg4);
+                                    $("#shoppingPwd .m-keyboard").animate({}, "slow", function(){
+                                        $(this).css({
+                                            '-webkit-transform': 'translateY(100%)',
+                                            '-moz-transform': 'translateY(100%)',
+                                            '-ms-transform': 'translateY(100%)',
+                                            '-o-transform':'translateY(100%)',
+                                            'transform': 'translateY(100%)'
+                                        });
+                                        setTimeout(() => {
+                                            $("#shoppingPwd").hide();
+                                        }, 300);
                                     });
                                 }else if(res.code == 1){
                                     dialog.alert(msg3);
-                                    dialog.loading.close();
-                                    pwd1 = '';
-                                    $("#shoppingPwd .keyboard-head strong").html(titleNode);
-                                    pwd = '';
-                                    $("#shoppingPwd .J_FillPwdBox li").html("");
-                                    $("#shoppingPwd .keyboard-error").html("");
-                                }else if(res.code == 2){
-                                    dialog.alert(msg5);
-                                    dialog.loading.close();
-                                    pwd1 = '';
-                                    $("#shoppingPwd .keyboard-head strong").html(titleNode);
-                                    pwd = '';
-                                    $("#shoppingPwd .J_FillPwdBox li").html("");
-                                    $("#shoppingPwd .keyboard-error").html("");
                                 }else{
                                     dialog.alert(res.msg);
-                                    dialog.loading.close();
-                                    pwd1 = '';
-                                    $("#shoppingPwd .keyboard-head strong").html(titleNode);
-                                    pwd = '';
-                                    $("#shoppingPwd .J_FillPwdBox li").html("");
-                                    $("#shoppingPwd .keyboard-error").html("");
                                 }
+                                dialog.loading.close();
                             });
-
                         }
                     }
                 });
