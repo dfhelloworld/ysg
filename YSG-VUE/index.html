@@ -246,6 +246,12 @@
                 msg1 = "Token expired, please log in again";
                 msg2 = "Wrong password";
             }
+            //检查是否存入密码
+            if(localStorage.PWD!=undefined){
+                //如果已经登录一次直接查询密码是否正确
+                checkPwd(_this,objParams,msg1,msg2);
+                return;
+            }
             $("#shoppingPwd").show();
             $("#shoppingPwd .m-keyboard").animate({}, "slow", function(){
                 $(this).css({
@@ -276,7 +282,7 @@
                 }
                 if(numLength==6){
                     let dialog = window.YDUI.dialog;
-                    //设置密码
+                    //查询密码
                     dialog.loading.open('Loading');
                     let pinParams = {
                         token: localStorage.TOKEN,
@@ -284,12 +290,12 @@
                     };
                     _this.$store.dispatch('checkPin', pinParams).then(function (res) {
                         dialog.loading.close();
-                        pwd = '';
                         $("#shoppingPwd .J_FillPwdBox li").html("");
                         if(res.code == 0){
                             $("#shoppingPwd").hide();
                             if(objParams != undefined){
                                 _this.$router.push(objParams);
+                                localStorage.PWD = pwd;
                             }
                         }else if(res.code == 1){
                             $("#shoppingPwd .keyboard-error").html(msg1);
@@ -298,6 +304,7 @@
                         }else{
                             $("#shoppingPwd .keyboard-error").html(res.msg);
                         }
+                        pwd = '';
                     });
                 }
             });
@@ -340,6 +347,34 @@
                 }
             });
         }
+
+        //查询密码
+        function checkPwd(_this,objParams,msg1,msg2){
+            let dialog = window.YDUI.dialog;
+            //查询密码
+            dialog.loading.open('Loading');
+            let pinParams = {
+                token: localStorage.TOKEN,
+                pin: localStorage.PWD
+            };
+            _this.$store.dispatch('checkPin', pinParams).then(function (res) {
+                dialog.loading.close();
+                $("#shoppingPwd .J_FillPwdBox li").html("");
+                if(res.code == 0){
+                    $("#shoppingPwd").hide();
+                    if(objParams != undefined){
+                        _this.$router.push(objParams);
+                    }
+                }else if(res.code == 1){
+                    _this.$dialog.toast({mes: msg1, timeout: 1000});
+                }else if(res.code == 2){
+                    _this.$dialog.toast({mes: msg2, timeout: 1000});
+                }else{
+                    _this.$dialog.toast({mes: res.msg, timeout: 1000});
+                }
+            });
+        }
+        
         //获取字体大小
         $(function(){
             let cssFontSize = $("html").css("font-size");

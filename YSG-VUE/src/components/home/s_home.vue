@@ -845,7 +845,7 @@ export default {
           break;
         case "breakfast":
           if (localStorage.TOKEN) {
-            _this.$router.push({
+            checkPin(_this,{
               path: "/breakfast",
               query: { pageFlag: "s_home" }
             });
