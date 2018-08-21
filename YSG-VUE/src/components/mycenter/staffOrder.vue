@@ -33,7 +33,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr style="border-bottom:1px solid #f0f0f0;">
+                    <tr>
                         <td>
                             <div style="font-size:14px;font-family:PingFangSC-Light;color:#4a4a4a;">
                                 NO. {{order.id_show}}
@@ -45,7 +45,14 @@
                             </div>
                         </td>
                     </tr>
-                     <tr>
+                    <tr v-for="(obj, index) in order.products">
+                        <td colspan="3">
+                            <div style="font-size:14px;font-family:PingFangSC-Light;color:#4a4a4a;">
+                                {{obj.title}}
+                            </div>
+                        </td>
+                    </tr>
+                     <tr style="border-top:1px solid #f0f0f0;">
                         <td colspan="3">
                             <div style="font-size:14px;font-family:PingFangSC-Regular;color:#f0c366;text-align:center;" v-if="isZH">
                                 更多
