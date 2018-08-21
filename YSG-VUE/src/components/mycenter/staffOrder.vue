@@ -10,7 +10,7 @@
           <div id="orderDiv" class="m-list list-theme4">
             <ul class="type-buy">
               <li v-for="(order, index) in ordDataList" style="border-bottom:0px;">
-                <table border="0" width="100%">
+                <table border="0" width="100%" @click="ordDetail(order)">
                     <tr>
                         <td>
                             <div style="font-size:20px;font-family:PingFangSC-Semibold;color:#f0c366;">
@@ -46,7 +46,7 @@
                         </td>
                     </tr>
                      <tr>
-                        <td colspan="3" @click="ordDetail(order)">
+                        <td colspan="3">
                             <div style="font-size:14px;font-family:PingFangSC-Regular;color:#f0c366;text-align:center;" v-if="isZH">
                                 更多
                             </div>

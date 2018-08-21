@@ -36,7 +36,7 @@
                         </td>
                     </tr>
                 </table>
-                <table border="0" width="100%">
+                <table border="0" width="100%" @click="ordDetail(order)">
                     <tr>
                         <td colspan="3">
                             <div style="font-size:14px;font-family:PingFangSC-Light;color:#4a4a4a;">
@@ -57,7 +57,7 @@
                         </td>
                     </tr>
                      <tr>
-                        <td colspan="3" @click="ordDetail(order)">
+                        <td colspan="3">
                             <div style="font-size:14px;font-family:PingFangSC-Regular;color:#f0c366;text-align:center;" v-if="isZH">
                                 更多
                             </div>
