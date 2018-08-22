@@ -73,11 +73,9 @@
                     </tr>
                 </table>
               </li>
-            </ul>
-            <ul class="type-buy">
               <li style="border-bottom:0px;">
-                  <div style="text-align:center;height:60px;display:none;" class="divData" v-if="isZH">没有更多数据</div>
-                  <div style="text-align:center;height:60px;display:none;" class="divData" v-if="!isZH">No more data</div>
+                  <div style="text-align:center;height:136px;display:none;" class="divData" v-if="isZH">没有更多数据</div>
+                  <div style="text-align:center;height:136px;display:none;" class="divData" v-if="!isZH">No more data</div>
               </li>
             </ul>
           </div>
