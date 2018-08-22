@@ -67,8 +67,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3" style="background:#f8f8f8;height:20px;">
-                            &nbsp;
+                        <td colspan="3">
+                            <div style="display:block;background:#f8f8f8;height:5px;"></div>
                         </td>
                     </tr>
                 </table>
