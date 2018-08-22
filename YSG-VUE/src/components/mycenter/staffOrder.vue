@@ -4,6 +4,11 @@
       <div class="nav_mark"></div>
       <yd-navbar :title="title" fixed>
         <span class="back" slot="left" @click="ordGoBack()"></span>
+        <span style="display:block;width:50%;height:60%;margin-top:10%;margin-right:40%;" slot="right" @click="isProperty = true">
+           <div style="color:#afafaf;" v-if="isZH">选择物业</div>
+           <div style="color:#afafaf;" v-if="!isZH">Property</div>
+           <popup-picker :data="properties" :show="isProperty" :columns="1" @on-hide="isProperty = false" @on-change="onPropertyChange"></popup-picker>
+        </span>
       </yd-navbar></br></br></br>
       <section class="g-flexview" style="background:white;">
         <section class="g-scrollview">
@@ -74,7 +79,7 @@
         </section>
       </section>
       <!--Footer page-->
-      <footer class="m-tabbar tabbbar-top-line-color tabbar-fixed" style="color: rgb(240, 195, 102); background-color: rgb(255, 255, 255); font-size: 0.24rem; left: 0px;display:none;">
+      <footer class="m-tabbar tabbbar-top-line-color tabbar-fixed" style="color: rgb(240, 195, 102); background-color: rgb(255, 255, 255); font-size: 0.24rem; left: 0px;">
             <div style="width:100%;text-align:center;" id="pageDiv"></div>
       </footer>
       <!--Footer page-->
@@ -279,7 +284,9 @@
                 numStr:'数量',
                 roomNo:'',
                 ordStatus:'',
-                pid:0
+                pid:0,
+                isProperty:false,
+                properties:[]
             }
         },
         created:function () {
@@ -292,66 +299,20 @@
             let _this = this;
             $(function(){
                 $(".navbar-center").css('marginLeft',0);
-                //获取订单信息
-                let ordParams = {
-                    hotelid: localStorage.HOTELID,
-                    lang: localStorage.LANGUAGE,
-                    page: 1,
-                    limit: 10,
-                    token: localStorage.TOKEN
-                }
-                _this.$store.dispatch('getStaffOrderList', ordParams).then(function (res) {
-                    if(res.code == 0){
-                        _this.ordDataList = res.data.list;
-                        for(let i=0;i<_this.ordDataList.length;i++){
-                            // 时间格式转换
-                            let date = new Date(Number(_this.ordDataList[i].created_at) * 1000);
-                            let Y = date.getFullYear() + '-';
-                            let M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-                            let D = (date.getDate() < 10 ? '0'+(date.getDate()) : date.getDate()) + ' ';
-                            let h = (date.getHours() < 10 ? '0'+(date.getHours()) : date.getHours()) + ':';
-                            let m = (date.getMinutes() < 10 ? '0'+(date.getMinutes()) : date.getMinutes()) + ':';
-                            let s = (date.getSeconds() < 10 ? '0'+(date.getSeconds()) : date.getSeconds());
-                            let dateStr = Y+M+D+h+m+s;
-                            _this.ordDataList[i].created_at = dateStr;
-                        }
-                        //是否显示分页信息
-                        let pagination = new Pagination(document.getElementById('pageDiv'),{page:1,total:res.data.total,lang:localStorage.LANGUAGE,pageCallBack:function(page){
-                            //分页回调函数
-                            let pageParams = {
-                                hotelid: localStorage.HOTELID,
-                                lang: localStorage.LANGUAGE,
-                                page: page,
-                                limit: 10,
-                                token: localStorage.TOKEN
-                            }
-                            _this.$store.dispatch('getStaffOrderList', pageParams).then(function (res) {
-                                if(res.code == 0){
-                                    _this.ordDataList = res.data.list;
-                                    for(let i=0;i<_this.ordDataList.length;i++){
-                                        // 时间格式转换
-                                        let date = new Date(Number(_this.ordDataList[i].created_at) * 1000);
-                                        let Y = date.getFullYear() + '-';
-                                        let M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-                                        let D = (date.getDate() < 10 ? '0'+(date.getDate()) : date.getDate()) + ' ';
-                                        let h = (date.getHours() < 10 ? '0'+(date.getHours()) : date.getHours()) + ':';
-                                        let m = (date.getMinutes() < 10 ? '0'+(date.getMinutes()) : date.getMinutes()) + ':';
-                                        let s = (date.getSeconds() < 10 ? '0'+(date.getSeconds()) : date.getSeconds());
-                                        let dateStr = Y+M+D+h+m+s;
-                                        _this.ordDataList[i].created_at = dateStr;
-                                    }
-                                } else {
-                                    _this.$dialog.toast({mes: res.msg, timeout: 3000});
-                                }
-                            });
-                        }});
-                        if(pagination.pages>1){
-                            $("footer").show();
-                        }
-                    } else {
-                        _this.$dialog.toast({mes: res.msg, timeout: 3000});
+                //获取员工可选择物业信息
+                let staffHotels = JSON.parse(localStorage.staffHotels);
+                //订单物业
+                for(let i=0;i<staffHotels.length;i++){
+                    let name = staffHotels[i].name_lang1;
+                    //判断显示中/英文
+                    if(localStorage.LANGUAGE!='zh'){
+                        name = staffHotels[i].name_lang2;
                     }
-                });
+                    _this.properties.push({name:name, value:staffHotels[i].id});
+                }
+                //获取订单信息
+                let changeKey = [staffHotels[0].id];
+                _this.onPropertyChange(changeKey);
             });
         },
         methods: {
@@ -430,6 +391,75 @@
                         }
                     }
                 ]);
+            },
+            onPropertyChange:function (changeKey) {
+                let _this = this;
+                //获取订单信息
+                let ordParams = {
+                    hotelid: changeKey[0],
+                    lang: localStorage.LANGUAGE,
+                    page: 1,
+                    limit: 10,
+                    token: localStorage.TOKEN
+                }
+                _this.$store.dispatch('getStaffOrderList', ordParams).then(function (res) {
+                    if(res.code == 0){
+                        _this.ordDataList = res.data.list;
+                        for(let i=0;i<_this.ordDataList.length;i++){
+                            // 时间格式转换
+                            let date = new Date(Number(_this.ordDataList[i].created_at) * 1000);
+                            let Y = date.getFullYear() + '-';
+                            let M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                            let D = (date.getDate() < 10 ? '0'+(date.getDate()) : date.getDate()) + ' ';
+                            let h = (date.getHours() < 10 ? '0'+(date.getHours()) : date.getHours()) + ':';
+                            let m = (date.getMinutes() < 10 ? '0'+(date.getMinutes()) : date.getMinutes()) + ':';
+                            let s = (date.getSeconds() < 10 ? '0'+(date.getSeconds()) : date.getSeconds());
+                            let dateStr = Y+M+D+h+m+s;
+                            _this.ordDataList[i].created_at = dateStr;
+                        }
+                        if(res.data.total<2){
+                            let msg = "没有更多数据";
+                            //判断显示中/英文
+                            if(localStorage.LANGUAGE!='zh'){
+                                msg = "No more data";
+                            }
+                            let targetHtml=`<div style="width:100%;">
+                                                <center>
+                                                        `
+                                                        +msg+
+                                                        `
+                                                </center>
+                                            </div>`;
+                            $('#pageDiv').html(targetHtml);
+                        }
+                        //是否显示分页信息
+                        let pagination = new Pagination(document.getElementById('pageDiv'),{page:1,total:res.data.total,lang:localStorage.LANGUAGE,pageCallBack:function(page){
+                            //分页回调函数
+                            ordParams.page = page;
+                            _this.$store.dispatch('getStaffOrderList', ordParams).then(function (res) {
+                                if(res.code == 0){
+                                    _this.ordDataList = res.data.list;
+                                    for(let i=0;i<_this.ordDataList.length;i++){
+                                        // 时间格式转换
+                                        let date = new Date(Number(_this.ordDataList[i].created_at) * 1000);
+                                        let Y = date.getFullYear() + '-';
+                                        let M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                                        let D = (date.getDate() < 10 ? '0'+(date.getDate()) : date.getDate()) + ' ';
+                                        let h = (date.getHours() < 10 ? '0'+(date.getHours()) : date.getHours()) + ':';
+                                        let m = (date.getMinutes() < 10 ? '0'+(date.getMinutes()) : date.getMinutes()) + ':';
+                                        let s = (date.getSeconds() < 10 ? '0'+(date.getSeconds()) : date.getSeconds());
+                                        let dateStr = Y+M+D+h+m+s;
+                                        _this.ordDataList[i].created_at = dateStr;
+                                    }
+                                } else {
+                                    _this.$dialog.toast({mes: res.msg, timeout: 3000});
+                                }
+                            });
+                        }});
+                    } else {
+                        _this.$dialog.toast({mes: res.msg, timeout: 3000});
+                    }
+                });
             }
         },
         mounted:function () {

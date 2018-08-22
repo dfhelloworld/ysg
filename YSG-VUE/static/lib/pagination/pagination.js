@@ -16,7 +16,6 @@ window.Pagination = function(target, options) {
     this.pageCallBack = this.options.pageCallBack || function(){};//初始化回调函数
     //初始化分页内容
     if(this.pages>1){
-        let pageContent = '';
         let prevPageNode = '第';
         let nextPageNode = '页';
         if(this.lang!='zh'){

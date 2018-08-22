@@ -127,6 +127,8 @@
                             localStorage.userId = res.data.id;
                             localStorage.id = res.data.id;
                             localStorage.ip = res.data.lastloginip;
+                            //员工可选择物业信息
+                            localStorage.staffHotels = JSON.stringify(res.data.hotel_list_detail);
                             //初始化购物车
                             global.shopCar = new Map();
                             //跳转home页面
