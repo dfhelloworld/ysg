@@ -22,8 +22,11 @@
                         <p v-if="!isZH">{{item.value_lang2}}</p>
                     </li>
                     <li style="border:0px" v-show="isMore">
-                        <div style="width:100%;height:130px;text-align:center;">
+                        <div style="width:100%;height:130px;text-align:center;" v-if="isZH">
                             没有更多数据
+                        </div>
+                        <div style="width:100%;height:130px;text-align:center;" v-if="!isZH">
+                            No more data
                         </div>
                     </li>
                 </ul>
