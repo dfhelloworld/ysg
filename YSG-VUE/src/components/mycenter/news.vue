@@ -7,8 +7,8 @@
             </router-link>
         </yd-navbar>
         <div class="news-list">
-            <scroller >
-                <ul>
+            <div>
+                <ul style="background:white;">
                     <li v-for="item in newsList" @click="goDetail(item.url)" v-if="idType==1">
                         <h4>{{item.title}}</h4>
                         <span class="time-show">{{item.createtime}}</span>
@@ -21,8 +21,13 @@
                         <p v-if="isZH">{{item.value_lang1}}</p>
                         <p v-if="!isZH">{{item.value_lang2}}</p>
                     </li>
+                    <li style="border:0px" v-show="isMore">
+                        <div style="width:100%;height:130px;text-align:center;">
+                            没有更多数据
+                        </div>
+                    </li>
                 </ul>
-            </scroller>
+            </div>
         </div>
     </div>
 </template>
@@ -42,7 +47,10 @@
 			return {
                 newsList:[],
                 idType:0,
-                isZH:true
+                isZH:true,
+                total:0,
+                isMore:false,
+                page:1
 			};
 		},
         created:function () {
@@ -54,8 +62,7 @@
 	        let params = {
 	            hotelid: localStorage.HOTELID,
                 lang: localStorage.LANGUAGE,
-                page:1,
-                limit:5,
+                page:_this.page,
                 token:localStorage.TOKEN
             }
             //员工消息
@@ -63,15 +70,61 @@
             if(2==localStorage.idType){
                 _this.$store.dispatch('getStaffAppMsgList', params).then(function (res) {
                     _this.newsList = res.data.list;
+                    _this.total = res.data.total;
+                    if(_this.total<11){
+                        _this.isMore = true;
+                    }
                 });
             }else{//住户消息
                 _this.$store.dispatch('getNews',params).then(function (res) {
                     _this.newsList = res.data.list;
+                    _this.total = res.data.total;
+                    if(_this.total<11){
+                        _this.isMore = true;
+                    }
                 });
             }
-
             $(function(){
                 $(".navbar-center").css('marginLeft',0);
+                $("body").scrollTop(0);
+                $("body").scroll(function(){
+                    if((_this.page*10)<=_this.total){
+                        let bodyTop = $("body").scrollTop();
+                        let winH = $(window).height();
+                        let bodyH = $("body")[0].scrollHeight;
+                        let rollH = bodyTop + winH + 200;
+                        if((rollH>=bodyH)&&!_this.isMore){
+                            _this.page = _this.page+1;
+                            let params = {
+                                hotelid: localStorage.HOTELID,
+                                lang: localStorage.LANGUAGE,
+                                page:_this.page,
+                                token:localStorage.TOKEN
+                            }
+                            //员工消息
+                            this.idType = localStorage.idType;
+                            if(2==localStorage.idType){
+                                _this.$store.dispatch('getStaffAppMsgList', params).then(function (res) {
+                                    res.data.list.forEach(function(element) {
+                                        _this.newsList.push(element);
+                                    });
+                                    if((_this.page*10)>=_this.total){
+                                        _this.isMore = true;
+                                    }
+                                });
+                            }else{//住户消息
+                                _this.$store.dispatch('getNews',params).then(function (res) {
+                                    res.data.list.forEach(function(element) {
+                                        _this.newsList.push(element);
+                                    });
+                                    if((_this.page*10)>=_this.total){
+                                        _this.isMore = true;
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
             });
         },
 		methods: {
