@@ -173,7 +173,7 @@
         <span class="back" slot="left" @click="orderClose()"></span>
       </yd-navbar>
       <section class="g-scrollview"></br></br></br></br>
-        <div style="margin-top:-20px;text-align:center;font-size: 0.4rem;color: rgb(92, 92, 92);">{{orderTitle}}</div>
+        <div style="margin-top:-20px;text-align:center;font-size: 0.32rem;color: rgb(151, 151, 151);height:30px;">{{orderTitle}}</div>
         <ul class="type-buy" style="margin-top:-20px;" v-for="data in carList">
             <li v-for="p in data.p.c">
                 <div class="col-4" style="width:2.6rem;">
