@@ -164,6 +164,7 @@
                                     };
                                     _this.$store.dispatch('setPin', setParams).then(function (res) {
                                         if(res.code == 0){
+                                            localStorage.PWD = pwd1;
                                             dialog.alert(msg3);
                                         }else if(res.code == 1){
                                             dialog.alert(msg4);
