@@ -373,6 +373,11 @@
                 }else{
                     _this.$dialog.toast({mes: res.msg, timeout: 1000});
                 }
+                //密码输入错误
+                if(res.code != 0){
+                    localStorage.PWD='';
+                    checkPin(_this,objParams);
+                }
             });
         }
         
