@@ -84,6 +84,7 @@
                                     };
                                     _this.$store.dispatch('setPin', setParams).then(function (res) {
                                         if(res.code == 0){
+                                            localStorage.PWD = undefined;
                                             dialog.alert(msg3);
                                         }else if(res.code == 1){
                                             dialog.alert(msg4);
@@ -303,4 +304,4 @@
                     $("html").css("font-size",cssFontSize);
                 },300);
             });
-        });</script><script type=text/javascript src=./static/js/manifest.f3ad2f50ce98f1ac4d42.js></script><script type=text/javascript src=./static/js/vendor.9d46213dc237e837679b.js></script><script type=text/javascript src=./static/js/app.1300554d195b582c409e.js></script></body></html>
+        });</script><script type=text/javascript src=./static/js/manifest.11a02aa7f1bcbae2a791.js></script><script type=text/javascript src=./static/js/vendor.9d46213dc237e837679b.js></script><script type=text/javascript src=./static/js/app.ce744c54f169b9a0629d.js></script></body></html>
