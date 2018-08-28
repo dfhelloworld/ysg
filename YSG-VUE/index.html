@@ -164,7 +164,7 @@
                                     };
                                     _this.$store.dispatch('setPin', setParams).then(function (res) {
                                         if(res.code == 0){
-                                            localStorage.PWD = undefined;
+                                            localStorage.PWD = '';
                                             dialog.alert(msg3);
                                         }else if(res.code == 1){
                                             dialog.alert(msg4);
@@ -248,7 +248,7 @@
                 msg2 = "Wrong password";
             }
             //检查是否存入密码
-            if(localStorage.PWD!=undefined){
+            if(localStorage.PWD!=undefined&&localStorage.PWD!=''){
                 //如果已经登录一次直接查询密码是否正确
                 checkPwd(_this,objParams,msg1,msg2);
                 return;
