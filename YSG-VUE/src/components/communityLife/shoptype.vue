@@ -133,6 +133,7 @@
                 </div>
             </li>
         </ul>
+        <div style="height:88px;">&nbsp;</div>
       </section>
       <section class="buy_foot" style="bottom: 1.1rem;">
         <div class="col-5" v-if="isZH"  style="font-size:16px;">
@@ -157,9 +158,12 @@
         <span class="back" slot="left" @click="orderClose()"></span>
       </yd-navbar>
       <section class="g-scrollview"></br></br></br></br>
-        <div style="margin-top:-20px;text-align:center;font-size: 0.32rem;color: rgb(151, 151, 151);height:30px;">{{orderTitle}}</div>
-        <ul class="type-buy" style="margin-top:-20px;" v-for="data in carList">
-            <li v-for="p in data.p.c">
+        <div style="margin-top:-20px;text-align:center;padding: 0px .3rem 0px .3rem;background:rgb(250, 250, 250);">
+            <div style="font-size: 0.32rem;color: rgb(151, 151, 151);height:50px;background:white;line-height:50px">{{orderTitle}}</div>
+        </div>
+        <div class="divGap">&nbsp;</div>
+        <ul class="type-buy bgClo" style="margin-top:0px;" v-for="data in carList">
+            <li v-for="p in data.p.c" style="border-bottom: 12px solid rgb(250, 250, 250);">
                 <div class="col-4" style="width:2.6rem;">
                     <img :src="p.img" alt="" style="border:1px solid #f0f0f0;width:2.4rem;height:2.4rem;">
                 </div>
@@ -189,6 +193,7 @@
                 </div>
             </li>
         </ul>
+        <div class="divGap">&nbsp;</div>
         <ul class="type-buy" style="margin-top:-20px;">
             <li style="border-bottom:0px;">
                 <div class="col-10" v-if="isZH" style="font-size:16px;text-align:right;margin-right:7px;">
@@ -400,7 +405,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
   .buy_foot {
     position: fixed;
     left: 0;
@@ -471,6 +476,28 @@
 .wrapper01 {position:relative;height: 1rem;width: 100%;overflow: hidden;margin:0 auto;}
 .wrapper01 .scroller {position:absolute}
 .wrapper01 .scroller li {height: 1rem;color:#333;float: left;line-height: 1rem;font-size: .4rem;text-align: center}
+
+ul, ul li{
+    background: white;
+}
+
+.bgClo{
+    background: rgb(250, 250, 250);
+    padding: 0px .3rem 0px .3rem;
+}
+
+.bgClo li div{
+    background: white;
+}
+
+.bgClo li{
+    border: 0px;
+}
+
+.divGap{
+    background: rgb(250, 250, 250);
+    height: 12px;
+}
 </style>
 
 <script>
