@@ -256,11 +256,6 @@
                             });
                         }else{
                             dialog.loading.open('Loading');
-                            //检查密码
-                            let pinParams = {
-                                token: localStorage.TOKEN,
-                                pin: pwd1
-                            };
                             //设置密码
                             let setParams = {
                                 token: localStorage.TOKEN,
@@ -269,6 +264,7 @@
                             };
                             _this.$store.dispatch('setPin', setParams).then(function (res) {
                                 if(res.code == 0){
+                                    localStorage.PWD = pwd;
                                     dialog.alert(msg4);
                                     $("#shoppingPwd .m-keyboard").animate({}, "slow", function(){
                                         $(this).css({
