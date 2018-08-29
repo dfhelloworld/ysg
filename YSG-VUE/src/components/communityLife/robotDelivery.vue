@@ -174,12 +174,12 @@
         <span class="back" slot="left" @click="orderClose()"></span>
       </yd-navbar>
       <section class="g-scrollview"></br></br></br></br>
-            <div style="margin-top:-20px;text-align:center;padding: 0px .3rem 0px .3rem;background:rgb(250, 250, 250);">
+            <div style="margin-top:-20px;text-align:center;padding: 0px .3rem 0px .3rem;background:rgb(242, 242, 242);">
                 <div style="font-size: 0.32rem;color: rgb(151, 151, 151);height:50px;background:white;line-height:50px">{{orderTitle}}</div>
             </div>
             <div class="divGap">&nbsp;</div>
             <ul class="type-buy bgClo" style="margin-top:0px;" v-for="data in carList">
-                <li v-for="p in data.p.c" style="border-bottom: 12px solid rgb(250, 250, 250);">
+                <li v-for="p in data.p.c" style="border-bottom: 12px solid rgb(242, 242, 242);">
                 <div class="col-4" style="width:2.6rem;">
                     <img :src="p.img" alt="" style="border:1px solid #f0f0f0;width:2.4rem;height:2.4rem;">
                 </div>
@@ -483,7 +483,7 @@ ul, ul li{
 }
 
 .bgClo{
-    background: rgb(250, 250, 250);
+    background: rgb(242, 242, 242);
     padding: 0px .3rem 0px .3rem;
 }
 
@@ -496,7 +496,7 @@ ul, ul li{
 }
 
 .divGap{
-    background: rgb(250, 250, 250);
+    background: rgb(242, 242, 242);
     height: 12px;
 }
 </style>
