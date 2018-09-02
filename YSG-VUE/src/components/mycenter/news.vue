@@ -7,12 +7,21 @@
             </router-link>
         </yd-navbar>
         <div class="news-list">
-            <div>
+            <div id="myscroll">
                 <ul style="background:white;">
                     <li v-for="item in newsList" @click="goDetail(item.url)" v-if="idType==1">
-                        <h4>{{item.title}}</h4>
-                        <span class="time-show">{{item.createtime}}</span>
-                        <p>{{item.value}}</p>
+                        <table>
+                            <tr>
+                                <td style="width:70px;">
+                                    <img slot="icon" :src="item.icon" style="width:40px;height:40px;" />
+                                </td>
+                                <td>
+                                    <h4>{{item.title}}</h4>
+                                    <span class="time-show">{{item.createtime}}</span>
+                                    <p>{{item.value}}</p>
+                                </td>
+                            </tr>
+                        </table>
                     </li>
                     <li v-for="item in newsList" @click="goDetail(item.url)" v-if="idType==2">
                         <h4 v-if="isZH">{{item.title_lang1}}</h4>
@@ -34,7 +43,7 @@
         </div>
     </div>
 </template>
-<style>
+<style scoped>
 .common_nav_style .m-navbar{z-index: 200}
 .news-list ul{padding: .25rem;margin-top: 1.2rem;}
 .news-list li{padding: .15rem;border-bottom: 1px solid #ddd;}
@@ -85,16 +94,20 @@
                     if(_this.total<11){
                         _this.isMore = true;
                     }
+                    console.log(_this.newsList);
                 });
             }
             $(function(){
                 $(".navbar-center").css('marginLeft',0);
-                $("body").scrollTop(0);
-                $("body").scroll(function(){
+                //获取显示器屏幕高度
+                let h = window.screen.height +"px";
+                $("#myscroll").css({"overflow":"auto","height":h,"marginRight":"-20px","paddingRight":"20px"});
+                $("#myscroll").scrollTop(0);
+                $("#myscroll").scroll(function(){
                     if((_this.page*10)<=_this.total){
-                        let bodyTop = $("body").scrollTop();
+                        let bodyTop = $("#myscroll").scrollTop();
                         let winH = $(window).height();
-                        let bodyH = $("body")[0].scrollHeight;
+                        let bodyH = $("#myscroll")[0].scrollHeight;
                         let rollH = bodyTop + winH + 200;
                         if((rollH>=bodyH)&&!_this.isMore){
                             _this.page = _this.page+1;
