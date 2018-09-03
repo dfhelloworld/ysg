@@ -166,3 +166,67 @@ function openBooking(url) {
     JSInterface.getSystemBrowser(url);
   }
 }
+
+//住客验证登录信息,并重新获取token
+function startLogin() {
+  if(localStorage.idType == 1&&localStorage.TOKEN){
+    let baseUrl = "http://devservice.easyiservice.com";
+    let params = {
+        fullname: localStorage.FULLNAME,
+        groupid: localStorage.groupid,
+        hotelid: localStorage.HOTELID,
+        identity: localStorage.identity,
+        lang: 'zh',
+        platform: localStorage.platform,
+        room_no: localStorage.ROOM_INFO,
+        propertyinterfId: localStorage.propertyinterfId
+    };
+    let str = "";
+    let time = "";
+    $.ajax({
+        url: baseUrl+'/system/getTime',
+        type:'GET',
+        async:false,
+        timeout:5000,
+        dataType:'json',
+        success:function(data){ 
+            time = data.data.time;
+        }
+    });
+    params.time = time;
+    if(time!=""){
+      let p = Object.keys(params).sort();
+      for (let k in p){
+          str += (p[k]+params[p[k]]);
+      }
+      str += "CtUyV$8MGoK8u5L*P0Q50T/b8S9iclS*LQqo";
+      let sign = md5(str);
+      params.sign = sign;
+      $.ajax({
+          url: baseUrl+'/user/login',
+          type:'POST',
+          data:params,
+          timeout:5000,
+          dataType:'json',   
+          success:function(res){
+            if (res.code == 0) {
+              localStorage.TOKEN = res.data.token;
+            }else{
+              //验证失败退出友盟
+              let obj={
+                  userType:'staff',
+                  userId:localStorage.userId,
+                  hotelId: [
+                      'hotel_'+localStorage.HOTELID,
+                      'group_1',
+                      localStorage.LANGUAGE
+                  ]
+              }
+              removeAllTagAlias(obj.userType,obj.userId,obj.hotelId);
+              localStorage.TOKEN = null;
+            }
+          }
+      });
+    }
+  }
+}

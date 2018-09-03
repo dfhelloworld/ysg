@@ -56,7 +56,8 @@
                     hotelid: localStorage.HOTELID,
                     lang: localStorage.LANGUAGE,
                     limit:30,
-                    page:_this.nextPage
+                    page:_this.nextPage,
+                    status:1
                 }
                 this.$store.dispatch('getLifeList', params).then(function (res) { 
                     var arrList = res.data.data.list;

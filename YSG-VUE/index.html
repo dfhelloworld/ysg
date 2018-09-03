@@ -112,7 +112,6 @@
                     let titleNode = title;
                     let showPwdNode = "显示密码";
                     let hidePwdNode = "隐藏密码";
-                    let msg1 = msg4;
                     //判断显示中/英文
                     if(localStorage.LANGUAGE!='zh'){
                         showPwdNode = "Show password";
@@ -168,6 +167,7 @@
                                             dialog.alert(msg3);
                                         }else if(res.code == 1){
                                             dialog.alert(msg4);
+                                            _this.$router.replace("/loginforguest");
                                         }else{
                                             dialog.alert(res.msg);
                                         }
@@ -222,6 +222,7 @@
                     });
                 }else if(res.code == 2){
                     dialog.alert(msg4);
+                    _this.$router.replace("/loginforguest");
                 }else if(res.code != 0){
                     dialog.alert(res.msg);
                 }
@@ -300,6 +301,7 @@
                             }
                         }else if(res.code == 1){
                             $("#shoppingPwd .keyboard-error").html(msg1);
+                            _this.$router.replace("/loginforguest");
                         }else if(res.code == 2){
                             $("#shoppingPwd .keyboard-error").html(msg2);
                         }else{
@@ -368,6 +370,7 @@
                     }
                 }else if(res.code == 1){
                     _this.$dialog.toast({mes: msg1, timeout: 1000});
+                    _this.$router.replace("/loginforguest");
                 }else if(res.code == 2){
                     _this.$dialog.toast({mes: msg2, timeout: 1000});
                 }else{

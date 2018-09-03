@@ -94,7 +94,6 @@
                     if(_this.total<11){
                         _this.isMore = true;
                     }
-                    console.log(_this.newsList);
                 });
             }
             $(function(){

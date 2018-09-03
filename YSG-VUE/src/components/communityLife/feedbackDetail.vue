@@ -35,10 +35,16 @@
 
   </div>
 </template>
-<style>
+<style scoped>
     .quetion_list{padding: .15rem;font-size: .28rem;margin-top: 1.3rem;}
     .quetion_list label{font-size: .32rem;color: #333;}
     .quetion_list .list{font-size: .28rem;color: #666;}
+    .inputR {
+        -webkit-appearance : radio ;
+    }
+    .inputC {
+        -webkit-appearance : checkbox ;
+    }
 </style>
 
 <script>
@@ -66,6 +72,10 @@
             let params = {'hotelid':localStorage.HOTELID,'listid':this.listid};
             this.$store.dispatch('getFeedback', params).then((res) => {
                 this.dataList = res.data.data.list;
+                setTimeout(function(){
+                    $("input:radio").addClass("inputR");
+                    $("input:checkbox").addClass("inputC");
+                },200);
             }).catch((res) => {
             });
 

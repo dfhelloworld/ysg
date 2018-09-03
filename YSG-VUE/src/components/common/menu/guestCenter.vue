@@ -155,6 +155,7 @@
                             msg4 = "Token expired, please log in again!";
                         }
                         _this.$dialog.toast({mes: msg4, timeout: 3000});
+                        _this.$router.replace("/loginforguest");
                         return;
                     }
                     if(/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)){
@@ -247,6 +248,7 @@
                                     pwd1 = pwd;
                                 }else if(res.code == 1){
                                     dialog.alert(msg3);
+                                    _this.$router.replace("/loginforguest");
                                 }else if(res.code == 2){
                                     dialog.alert(msg5);
                                 }else{
@@ -280,6 +282,7 @@
                                     });
                                 }else if(res.code == 1){
                                     dialog.alert(msg3);
+                                    _this.$router.replace("/loginforguest");
                                 }else{
                                     dialog.alert(res.msg);
                                 }
