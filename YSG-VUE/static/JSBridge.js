@@ -170,7 +170,7 @@ function openBooking(url) {
 //住客验证登录信息,并重新获取token
 function startLogin() {
   if(localStorage.idType == 1&&localStorage.TOKEN){
-    let baseUrl = "http://devservice.easyiservice.com";
+    let baseUrl = "https://service.easyiservice.com";
     let params = {
         fullname: localStorage.FULLNAME,
         groupid: localStorage.groupid,
