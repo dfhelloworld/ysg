@@ -230,3 +230,18 @@ function startLogin() {
     }
   }
 }
+
+//调用微信小程序
+// @params
+// var obj = {
+//   username: 'gh_ed26ff61e540', //小程序username(原始ID)
+//   type: 0,  //0是正式版，1是开发版，2是体验版
+//   path:'pages/index/index?name=aaa&room=0702' //访问页面路径
+// };
+function launchMiniProgramme(params) {
+  if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+    window.webkit.messageHandlers.launchMiniProgramme(params);
+  } else {
+    JSInterface.launchMiniProgramme(params);
+  }
+}
