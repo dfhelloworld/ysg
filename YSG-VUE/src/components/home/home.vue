@@ -880,7 +880,16 @@ export default {
           break;
         case "Shoppingcabinets":
           //调用购物柜微信小程序
-          launchMiniProgramme(null);
+          let params = {
+              token: localStorage.TOKEN
+          };
+          _this.$store.dispatch("getShoppingBoxDetail", params).then(res => {
+            if (res.code == 0) {
+              launchMiniProgramme(res.data);
+            }else{
+              alert(res.msg);
+            }
+          });
           break;
       }
     },

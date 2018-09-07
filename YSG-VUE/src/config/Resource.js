@@ -71,6 +71,8 @@ const Home = {
 	getStaffOrderList:'/shoppingOrder/getStaffOrderList',
 	//员工修改订单信息
 	updateOrderProductById:'/shoppingorder/updateOrderProductById',
+	//获取购物柜参数信息
+	getShoppingBoxDetail:'/user/getShoppingBoxDetail',
 }
 
 //登录接口
@@ -285,4 +287,6 @@ export default {
 	getStaffOrderList:(query) => apiPost(Home.getStaffOrderList,query),
 	//员工修改订单信息
 	updateOrderProductById:(query) => apiPost(Home.updateOrderProductById,query),
+	//获取购物柜参数信息
+	getShoppingBoxDetail:(query) => apiPost(Home.getShoppingBoxDetail,query),
 }

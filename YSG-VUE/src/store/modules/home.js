@@ -386,6 +386,20 @@ const actions = {
         }
       );
     });
+  },
+  //获取购物柜参数信息
+	getShoppingBoxDetail: function({ commit }, url, data) {
+    return new Promise((resolve, reject) => {
+      API.getShoppingBoxDetail(url, data).then(
+        res => {
+          commit(types.APPSTART, res.data);
+          resolve(res.data);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
   }
 };
 
