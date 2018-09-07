@@ -324,6 +324,13 @@ export default {
         imgSrc: require("../../assets/images/breakfast.png"),
         linkTo: "/breakfast"
       }
+      ,
+      {
+        key: "Shoppingcabinets",
+        title: "",
+        imgSrc: require("../../assets/images/Shoppingcabinets.png"),
+        linkTo: ""
+      }
     ];
     this.myItems2 = [
       {
@@ -715,6 +722,7 @@ export default {
         lang: localStorage.LANGUAGE
       };
       this.$store.dispatch("getHome", params).then(function(res) {
+        console.log(res);
         _this.shortcutList = [];
         //整理按钮结果集
         for (var item in _this.home.data.shortcutList) {
@@ -869,6 +877,10 @@ export default {
           } else {
             _this.$router.replace("/loginforguest");
           }
+          break;
+        case "Shoppingcabinets":
+          //调用购物柜微信小程序
+          launchMiniProgramme(null);
           break;
       }
     },
