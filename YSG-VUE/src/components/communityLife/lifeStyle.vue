@@ -113,6 +113,7 @@
                                 }
                             }
                         });
+                        $(".confirm-bd").css('word-break',"keep-all");
                     }
                 } else {
                     var newLife = []
