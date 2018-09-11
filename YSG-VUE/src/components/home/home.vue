@@ -892,9 +892,6 @@ export default {
             };
             _this.$store.dispatch("getShoppingBoxDetail", params).then(res => {
               if (res.code == 0) {
-                if(localStorage.idType == 2){
-                  res.data.roomId = 'worker';
-                }
                 launchMiniProgramme(res.data);
               }else{
                 alert(res.msg);

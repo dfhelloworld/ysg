@@ -3,7 +3,7 @@
  */
 
 //初始化集团id
-localStorage.groupid = 1;
+localStorage.groupid = 3;
 
 //定义版本号，通过后台的版本管理可以进行强制更新提示
 localStorage.version = "1.0";
@@ -170,7 +170,7 @@ function openBooking(url) {
 //住客验证登录信息,并重新获取token
 function startLogin() {
   if(localStorage.idType == 1&&localStorage.TOKEN){
-    let baseUrl = "https://service.easyiservice.com";
+    let baseUrl = "http://devservice.easyiservice.com";
     let params = {
         fullname: localStorage.FULLNAME,
         groupid: localStorage.groupid,
