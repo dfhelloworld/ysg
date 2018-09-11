@@ -326,7 +326,7 @@ export default {
       }
       ,
       {
-        key: "Shoppingcabinets",
+        key: "supermarket",
         title: "",
         imgSrc: require("../../assets/images/Shoppingcabinets.png"),
         linkTo: ""
@@ -884,7 +884,7 @@ export default {
             _this.$router.replace("/loginforguest");
           }
           break;
-        case "Shoppingcabinets":
+        case "supermarket":
           //调用购物柜微信小程序
           let params = {
               token: localStorage.TOKEN
