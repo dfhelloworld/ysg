@@ -17,7 +17,7 @@
                     <div>
                         <div v-if="isZH" style="position:absolute;left:30px;top:44px;font-size:0.4rem;font-family:Avenir-Heavy;color:#c96e3c;">洗衣服务</div>
                         <div v-if="!isZH" style="position:absolute;left:30px;top:44px;font-size:0.4rem;font-family:Avenir-Heavy;color:#c96e3c;">Laundry Service</div>
-                        <img src="../../assets/images/artboard.png" width="100%" height="45%" @click="robotWash()">
+                        <img src="../../assets/images/artboard.png" width="100%" height="45%">
                     </div>
                 </td>
                 <td width="5%">&nbsp;</td>
@@ -768,50 +768,6 @@ ul, ul li{
                     path: p,
                     query: {pageFlag:"home"}
                 });
-            },
-            robotWash: function() {
-                 let dialog = window.YDUI.dialog;
-                 let alobj = new alertLanguage();
-                 let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
-                 let title = obj.title;
-                 let sureBnt = obj.sureBnt;
-                 let cancelBnt = obj.cancelBnt;
-                 let msg = obj.washMsg;
-                 let _this = this;
-                 dialog.confirm(title,msg, [
-                        {
-                            txt: sureBnt,
-                            color: false,
-                            callback: function () {
-                                let params = {
-                                    token: localStorage.TOKEN//to: 2206
-                                };
-                                //RobotSend
-                                _this.$store.dispatch('RobotSend', params).then(function (res) {
-                                    msg = obj.successMsg;
-                                    if(res.data.code!=0){
-                                        msg = obj.sytemBusy;
-                                    }
-                                    dialog.confirm(title,msg, [
-                                        {
-                                            txt: sureBnt,
-                                            color: false,
-                                            callback: function () {
-                                                
-                                            }
-                                        }
-                                    ]);
-                                });
-                            }
-                        },
-                        {
-                            txt: cancelBnt,
-                            color: false,
-                            callback: function () {
-
-                            }
-                        }
-                 ]);
             },
             goShopCar: function() {
                 $("footer a").css("color", "#979797");

@@ -330,6 +330,12 @@ export default {
         title: "",
         imgSrc: require("../../assets/images/Shoppingcabinets.png"),
         linkTo: ""
+      },
+      {
+        key: "laundry",
+        title: "",
+        imgSrc: require("../../assets/images/laundry.png"),
+        linkTo: "/laundry"
       }
     ];
     this.myItems2 = [
@@ -890,6 +896,12 @@ export default {
               alert(res.msg);
             }
           });
+          break;
+           case "laundry":
+             _this.$router.push({
+                path: "/laundry",
+                query: { pageFlag: "home" }
+              });
           break;
       }
     },

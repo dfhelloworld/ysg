@@ -60,6 +60,7 @@ import phone from '../components/function/phone.vue'
 import airport from '../components/function/airport.vue'
 import airportInfo from '../components/function/airportInfo.vue'
 import translate from '../components/function/translate.vue'
+import laundry from '../components/function/laundry.vue'
 /**
  *社区生活
  */
@@ -248,5 +249,6 @@ export default new Router({
         {path: '/judgeInput',name: 'judgeInput',component: judgeInput},//评论
         {path: '/map',name: 'map',component: map},//评论
         {path: '/staffOrder',name: 'staffOrder',component: staffOrder},//员工查看订单
+        {path: '/laundry',name: 'laundry',component: laundry},//洗衣服务
     ]
 })
