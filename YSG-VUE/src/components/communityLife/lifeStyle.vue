@@ -113,7 +113,12 @@
                                 }
                             }
                         });
-                        $(".confirm-bd").css('word-break',"keep-all");
+                        //判断文字显示方式
+                        if(localStorage.LANGUAGE!='zh'){
+                            $(".confirm-bd").css('word-break',"keep-all");
+                        }else{
+                            $(".confirm-bd").css('word-break',"break-all");
+                        }
                     }
                 } else {
                     var newLife = []

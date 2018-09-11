@@ -885,19 +885,26 @@ export default {
           }
           break;
         case "supermarket":
-          //调用购物柜微信小程序
-          let params = {
-              token: localStorage.TOKEN
-          };
-          _this.$store.dispatch("getShoppingBoxDetail", params).then(res => {
-            if (res.code == 0) {
-              launchMiniProgramme(res.data);
-            }else{
-              alert(res.msg);
-            }
-          });
+          if (localStorage.TOKEN) {
+            //调用购物柜微信小程序
+            let params = {
+                token: localStorage.TOKEN
+            };
+            _this.$store.dispatch("getShoppingBoxDetail", params).then(res => {
+              if (res.code == 0) {
+                if(localStorage.idType == 2){
+                  res.data.roomid = 'worker';
+                }
+                launchMiniProgramme(res.data);
+              }else{
+                alert(res.msg);
+              }
+            });
+          } else {
+            _this.$router.replace("/loginforguest");
+          }
           break;
-           case "laundry":
+        case "laundry":
              _this.$router.push({
                 path: "/laundry",
                 query: { pageFlag: "home" }
