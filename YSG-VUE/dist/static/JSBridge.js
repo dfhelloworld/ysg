@@ -40,7 +40,6 @@ if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
       alias: b,
       tag: c
     };
-    console.log("bm", obj);
     window.webkit.messageHandlers.addUMTagAlias.postMessage(obj);
   };
 } else if (/(Android)/i.test(navigator.userAgent)) {

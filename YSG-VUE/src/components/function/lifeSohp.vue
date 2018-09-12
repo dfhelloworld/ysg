@@ -27,10 +27,10 @@
                 <td width="5%">&nbsp;</td>
                 <td>
                     <div v-if="isZH">
-                       生活超市
+                       您即将跳转到微信页面并通过微信完成商品选购，支付后机器人会将物品送到您的房间。
                     </div>
                     <div v-if="!isZH">
-                       Super market
+                       You are going to jump to the WeChat page and complete the shopping through WeChat. After payment, the robot will send the items to your room.
                     </div>
                 </td>
                 <td width="5%">&nbsp;</td>
