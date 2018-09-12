@@ -53,7 +53,7 @@
 				<!--酒店详情-->
 				<section class="app_content" style="background: #fff;padding-bottom: 1rem;">
 					<h4>{{ hotelDetail.name }}</h4>
-          <div v-if="hotelDetail.robot_pic != ''" class="map_content" @click="goLocation(2)">
+          <div v-if="hotelDetail.robot_pic != ''" class="map_content">
 						<img :src="hotelDetail.robot_pic">
 					</div>
 					<div class="map_content">
@@ -261,7 +261,7 @@ export default {
       {
         key: "service",
         title: "",
-        imgSrc: require("../../assets/images/icon-service.png"),
+        imgSrc: require("../../assets/images/fastkey/service.png"),
         linkTo: "/home/service"
       },
       {
@@ -315,26 +315,26 @@ export default {
       {
         key: "shop",
         title: "",
-        imgSrc: require("../../assets/images/Shopping@2x.png"),
+        imgSrc: require("../../assets/images/fastkey/shopping.png"),
         linkTo: ""
       },
       {
         key: "breakfast",
         title: "",
-        imgSrc: require("../../assets/images/breakfast.png"),
+        imgSrc: require("../../assets/images/fastkey/dining.png"),
         linkTo: "/breakfast"
       }
       ,
       {
         key: "supermarket",
         title: "",
-        imgSrc: require("../../assets/images/Shoppingcabinets.png"),
+        imgSrc: require("../../assets/images/fastkey/group.png"),
         linkTo: ""
       },
       {
         key: "laundry",
         title: "",
-        imgSrc: require("../../assets/images/laundry.png"),
+        imgSrc: require("../../assets/images/fastkey/washer.png"),
         linkTo: "/laundry"
       }
     ];
@@ -772,35 +772,35 @@ export default {
       //   this.$router.push("/map");
       // }
         //机器人购物
-        if(val===2){
-            if(localStorage.propertyinterfId==12){
-              let msg = "机器人无法到达该地点";
-              if(localStorage.LANGUAGE!='zh'){
-                   msg = 'The robot could not reach the location';
-              }
-              this.$dialog.toast({mes: msg, timeout: 2000});
-              return;
-            }
-            //判断是否登录
-            if (localStorage.TOKEN) {
-                let goPath = "/shopping";
-                //console.log("=======HotileId:"+localStorage.HOTELID);//21,7
-                if(localStorage.HOTELID==21||localStorage.HOTELID==7){
-                    localStorage.NEWTYPE=0;
-                    goPath = "/robotDelivery";
-                }
-                //验证pin码并跳转
-                if(localStorage.idType==1){
-                  checkPin(this,{ path: goPath, query: { info: "home" } });
-                }else{
-                  this.$router.push({ path: goPath, query: { info: "home" } });
-                }
-            }else{
-                this.$router.replace("/loginforguest");
-            }
-        }else{
+        // if(val===2){
+        //     if(localStorage.propertyinterfId==12){
+        //       let msg = "机器人无法到达该地点";
+        //       if(localStorage.LANGUAGE!='zh'){
+        //            msg = 'The robot could not reach the location';
+        //       }
+        //       this.$dialog.toast({mes: msg, timeout: 2000});
+        //       return;
+        //     }
+        //     //判断是否登录
+        //     if (localStorage.TOKEN) {
+        //         let goPath = "/shopping";
+        //         //console.log("=======HotileId:"+localStorage.HOTELID);//21,7
+        //         if(localStorage.HOTELID==21||localStorage.HOTELID==7){
+        //             localStorage.NEWTYPE=0;
+        //             goPath = "/robotDelivery";
+        //         }
+        //         //验证pin码并跳转
+        //         if(localStorage.idType==1){
+        //           checkPin(this,{ path: goPath, query: { info: "home" } });
+        //         }else{
+        //           this.$router.push({ path: goPath, query: { info: "home" } });
+        //         }
+        //     }else{
+        //         this.$router.replace("/loginforguest");
+        //     }
+        // }else{
             this.$router.push("/map");
-        }
+        // }
     },
     goNext: function(key) {
       let _this = this;
@@ -886,17 +886,10 @@ export default {
           break;
         case "supermarket":
           if (localStorage.TOKEN) {
-            //调用购物柜微信小程序
-            let params = {
-                token: localStorage.TOKEN
-            };
-            _this.$store.dispatch("getShoppingBoxDetail", params).then(res => {
-              if (res.code == 0) {
-                launchMiniProgramme(res.data);
-              }else{
-                alert(res.msg);
-              }
-            });
+            _this.$router.push({
+                path: "/lifeSohp",
+                query: { pageFlag: "home" }
+              });
           } else {
             _this.$router.replace("/loginforguest");
           }

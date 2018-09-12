@@ -61,6 +61,8 @@ import airport from '../components/function/airport.vue'
 import airportInfo from '../components/function/airportInfo.vue'
 import translate from '../components/function/translate.vue'
 import laundry from '../components/function/laundry.vue'
+import lifeSohp from '../components/function/lifeSohp.vue'
+
 /**
  *社区生活
  */
@@ -250,5 +252,6 @@ export default new Router({
         {path: '/map',name: 'map',component: map},//评论
         {path: '/staffOrder',name: 'staffOrder',component: staffOrder},//员工查看订单
         {path: '/laundry',name: 'laundry',component: laundry},//洗衣服务
+        {path: '/lifeSohp',name: 'lifeSohp',component: lifeSohp},//生活超市
     ]
 })
