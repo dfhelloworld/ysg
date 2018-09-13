@@ -3,7 +3,7 @@
     <div class="search" style="height: 100%" id="section1">
       <div class="nav_mark"></div>
       <yd-navbar :title="language.community.shopping" fixed>
-        <span class="close" slot="left" @click="goBack()"></span>
+        <span class="close" slot="left" @click="goBack()" style="background-size:.45rem;width:.45rem;height:.45rem;"></span>
       </yd-navbar>
       <section class="g-flexview">
         <section class="promotiom-box">
