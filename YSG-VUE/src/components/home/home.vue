@@ -594,6 +594,8 @@ export default {
             return;
           }
         }, 300);
+        //修改快捷方式图标
+        $(".index_content img").attr("style","width:30px;height:30px;");
       });
     });
 

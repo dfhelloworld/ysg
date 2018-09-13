@@ -45,8 +45,8 @@
           <button type="button" @click="goBack" v-if="!isZH" style="border-right:1px solid white;">Cancel</button>
         </div>
         <div class="col-5">
-          <button type="button" @click="lifeShop" v-if="isZH">提交</button>
-          <button type="button" @click="lifeShop" v-if="!isZH">Submit</button>
+          <button type="button" @click="lifeShop" v-if="isZH">确定</button>
+          <button type="button" @click="lifeShop" v-if="!isZH">Sure</button>
         </div>
       </section>
   </div>
