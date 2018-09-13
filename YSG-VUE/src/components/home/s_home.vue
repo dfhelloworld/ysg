@@ -34,7 +34,8 @@
 					</ul>
 					<div class="smart_home">
             <!--@click="goNext(shortcutList[0].key)" <img style="width: .4rem;vertical-align: middle;display: inline-block;" src="../../assets/images/service-btn.png" alt="">-->
-						<button type="button">{{servicesMsg}}</button>
+						<button type="button" v-if="isZH">快捷服务</button>
+            <button type="button" v-if="!isZH">Services</button>
 					</div>
 				</section>
 				<!--快捷功能-->
@@ -210,10 +211,14 @@ export default {
       weatherSrc: "",
       hotelid: "",
       pageFlag: false,
-      servicesMsg:'快捷服务'
+      isZH:true
     };
   },
   created: function() {
+    //判断显示中/英文
+    if(localStorage.LANGUAGE!='zh'){
+        this.isZH = false;
+    }
     this.tabLanShow2 = this.tabLanShow;
     //设置当前状态
     localStorage.stateFlag = 2;
@@ -754,9 +759,9 @@ export default {
 
       //跟新自主服务标识
       if(key!='zh'){
-        this.servicesMsg = 'Services';
+        this.isZH = false;
       }else{
-        this.servicesMsg = '快捷服务';
+        this.isZH = true;
       }
     },
     cancel: function() {
