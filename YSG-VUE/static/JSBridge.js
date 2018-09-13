@@ -242,6 +242,6 @@ function launchMiniProgramme(params) {
   if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
     window.webkit.messageHandlers.launchMiniProgramme.postMessage(params);
   } else {
-    JSInterface.launchMiniProgramme(params);
+    JSInterface.launchMiniProgramme(JSON.stringify(params));
   }
 }
