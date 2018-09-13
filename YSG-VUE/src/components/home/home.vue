@@ -323,8 +323,7 @@ export default {
         title: "",
         imgSrc: require("../../assets/images/fastkey/dining.png"),
         linkTo: "/breakfast"
-      }
-      ,
+      },
       {
         key: "supermarket",
         title: "",
@@ -872,7 +871,6 @@ export default {
           } else {
             _this.$router.replace("/loginforguest");
           }
-
           break;
         case "breakfast":
           if (localStorage.TOKEN) {
@@ -895,10 +893,14 @@ export default {
           }
           break;
         case "laundry":
-             _this.$router.push({
-                path: "/laundry",
-                query: { pageFlag: "home" }
-              });
+            if (localStorage.TOKEN) {
+              _this.$router.push({
+                  path: "/laundry",
+                  query: { pageFlag: "home" }
+                });
+            } else {
+              _this.$router.replace("/loginforguest");
+            }
           break;
       }
     },

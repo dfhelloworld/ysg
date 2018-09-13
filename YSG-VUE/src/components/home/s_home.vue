@@ -42,7 +42,7 @@
 					<div class="swiper-container">
 						<div class="swiper-wrapper">
 							<div class="swiper-slide" v-for="(item,index) in shortcutList" @click="goNext(item.key)">
-								<img :src="item.imgSrc">
+								<img :src="item.imgSrc" style="width:30px;height:30px;">
 								<p>{{item.title}}</p>
 							</div>
 						</div>
@@ -54,7 +54,7 @@
 				<!--酒店详情-->
 				<section class="app_content" style="background: #fff;padding-bottom: 1rem;">
 					<h4>{{ hotelDetail.name }}</h4>
-          <div v-if="hotelDetail.robot_pic != ''" class="map_content" @click="goLocation(2)">
+          <div v-if="hotelDetail.robot_pic != ''" class="map_content">
 						<img :src="hotelDetail.robot_pic">
 					</div>
 					<div class="map_content" @click="goLocation(1)">
@@ -262,7 +262,7 @@ export default {
       {
         key: "service",
         title: "",
-        imgSrc: require("../../assets/images/icon-service.png"),
+        imgSrc: require("../../assets/images/fastkey/service.png"),
         linkTo: "/home/service"
       },
       {
@@ -316,14 +316,26 @@ export default {
       {
         key: "shop",
         title: "",
-        imgSrc: require("../../assets/images/Shopping@2x.png"),
+        imgSrc: require("../../assets/images/fastkey/shopping.png"),
         linkTo: ""
       },
       {
         key: "breakfast",
         title: "",
-        imgSrc: require("../../assets/images/breakfast.png"),
+        imgSrc: require("../../assets/images/fastkey/dining.png"),
         linkTo: "/breakfast"
+      },
+      {
+        key: "supermarket",
+        title: "",
+        imgSrc: require("../../assets/images/fastkey/group.png"),
+        linkTo: ""
+      },
+      {
+        key: "laundry",
+        title: "",
+        imgSrc: require("../../assets/images/fastkey/washer.png"),
+        linkTo: "/laundry"
       }
     ];
     this.myItems = [
@@ -765,22 +777,22 @@ export default {
       //   this.$router.push("/map");
       // }
         //机器人购物
-		if(val===2){
-			//判断是否登录
-			if (localStorage.TOKEN) {
-				let goPath = "/shopping";
-        //console.log("=======HotileId:"+localStorage.HOTELID);//21,7
-        if(localStorage.HOTELID==21||localStorage.HOTELID==7){
-            localStorage.NEWTYPE=0;
-            goPath = "/robotDelivery";
-        }
-        this.$router.push({ path: goPath, query: { info: "home" } });
-			}else{
-				this.$router.replace("/loginforguest");
-			}
-		}else{
+		// if(val===2){
+		// 	//判断是否登录
+		// 	if (localStorage.TOKEN) {
+		// 		let goPath = "/shopping";
+    //     //console.log("=======HotileId:"+localStorage.HOTELID);//21,7
+    //     if(localStorage.HOTELID==21||localStorage.HOTELID==7){
+    //         localStorage.NEWTYPE=0;
+    //         goPath = "/robotDelivery";
+    //     }
+    //     this.$router.push({ path: goPath, query: { info: "home" } });
+		// 	}else{
+		// 		this.$router.replace("/loginforguest");
+		// 	}
+		// }else{
 			this.$router.push("/map");
-		}
+		// }
     },
     goNext: function(key) {
       let _this = this;
@@ -852,6 +864,26 @@ export default {
           } else {
             _this.$router.replace("/loginforguest");
           }
+          break;
+        case "supermarket":
+          if (localStorage.TOKEN) {
+            _this.$router.push({
+                path: "/lifeSohp",
+                query: { pageFlag: "home" }
+              });
+          } else {
+            _this.$router.replace("/loginforguest");
+          }
+          break;
+        case "laundry":
+            if (localStorage.TOKEN) {
+              _this.$router.push({
+                  path: "/laundry",
+                  query: { pageFlag: "home" }
+                });
+            } else {
+              _this.$router.replace("/loginforguest");
+            }
           break;
       }
     },
