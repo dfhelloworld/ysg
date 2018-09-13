@@ -42,7 +42,7 @@
 					<div class="swiper-container">
 						<div class="swiper-wrapper">
 							<div class="swiper-slide" v-for="(item,index) in shortcutList" @click="goNext(item.key)">
-								<img :src="item.imgSrc">
+								<img :src="item.imgSrc" style="width:30px;height:30px;">
 								<p>{{item.title}}</p>
 							</div>
 						</div>
@@ -594,8 +594,6 @@ export default {
             return;
           }
         }, 300);
-        //修改快捷方式图标
-        $(".index_content img").attr("style","width:30px;height:30px;");
       });
     });
 
