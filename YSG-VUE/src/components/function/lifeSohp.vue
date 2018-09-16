@@ -63,14 +63,14 @@
         data() {
             return {
                 isZH:true,
-                title:'生活超市'
+                title:'雅诗阁货廊'
             }
         },
         created:function () {
              //判断显示中/英文
             if(localStorage.LANGUAGE!='zh'){
                 this.isZH = false;
-                this.title = 'Super market';
+                this.title = 'Mini-Mart';
             }
             $(function(){
                 $(".navbar-center").css('marginLeft',0);

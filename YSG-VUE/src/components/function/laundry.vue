@@ -2,7 +2,7 @@
   <div>
     <div class="search" style="height: 100%">
       <div class="nav_mark"></div>
-      <yd-navbar :title="language.community.shopping" fixed>
+      <yd-navbar :title="title" fixed>
         <span class="close" slot="left" @click="goBack()"></span>
       </yd-navbar>
       <section class="g-flexview">
@@ -64,13 +64,15 @@
     export default {
         data() {
             return {
-                isZH:true
+                isZH:true,
+                title:'洗衣服务'
             }
         },
         created:function () {
              //判断显示中/英文
             if(localStorage.LANGUAGE!='zh'){
                 this.isZH = false;
+                this.title = 'Laundry Service';
             }
             $(function(){
                 $(".navbar-center").css('marginLeft',0);
