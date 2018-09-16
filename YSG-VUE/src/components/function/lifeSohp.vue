@@ -26,14 +26,14 @@
               <tr>
                 <td width="5%">&nbsp;</td>
                 <td>
-                    <div v-if="isZH">
-                       此购物网站名称为“机器人服务生”，由北京云迹科技有限公司提供。
-                       此购物网站仅限微信支付，所有购买的物品，均会由机器人服务生送到您的房间，请注意接听房间电话。
+                    <div v-if="isZH" style="font-size:12px;">
+                       此购物网站名称为“机器人服务生”，由北京云迹科技有限公司提供。</br></br>
+                       此购物网站仅限微信支付，所有购买的物品，均会由机器人服务生送到您的房间，请注意接听房间电话。</br></br>
                        如有购物问题，请联系 15712856521
                     </div>
-                    <div v-if="!isZH">
-                       This shopping site is called "Robot Mall" and it is provided by Beijing Yunji Technolgy Co,.Ltd.
-                       This shopping website services  is for WeChat only. All items purchased will be sent to your room by a service  robot.  Please pay attention to answer the in-room phone.
+                    <div v-if="!isZH" style="font-size:12px;">
+                       This shopping site is called "Robot Mall" and it is provided by Beijing Yunji Technolgy Co,.Ltd.</br></br>
+                       This shopping website services  is for WeChat only. All items purchased will be sent to your room by a service  robot.  Please pay attention to answer the in-room phone.</br></br>
                        If there are shopping problems, please contact 15712856521
                     </div>
                 </td>
