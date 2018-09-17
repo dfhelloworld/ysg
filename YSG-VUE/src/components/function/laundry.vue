@@ -3,7 +3,7 @@
     <div class="search" style="height: 100%">
       <div class="nav_mark"></div>
       <yd-navbar :title="title" fixed>
-        <span class="close" slot="left" @click="goBack()"></span>
+        <span class="close" slot="left"></span>
       </yd-navbar>
       <section class="g-flexview">
         <section class="promotiom-box">
@@ -21,17 +21,19 @@
                 <td width="5%">&nbsp;</td>
               </tr>
               <tr>
-                <td colspan="3" style="height:30px;">&nbsp;</td>
+                <td colspan="3" style="height:30px;">
+                    <div style="display: block; background: rgb(248, 248, 248); height: 5px;"></div>
+                </td>
               </tr>
               <tr>
                 <td width="5%">&nbsp;</td>
                 <td>
-                    <div v-if="isZH">
-                       <div style="font-size:14px;font-weight:bold;">提示</br></br></div>
+                    <div v-if="isZH" style="font-size:14px;">
+                       <div style="font-size:16px;font-weight:bold;">提示</br></br></div>
                        机器人将到你的房间收取洗衣，请将要洗的衣物放入洗衣袋，并与洗衣单一起放入服务机器人。机器人将在3分钟内到您房间门口收取洗衣，请注意接听房间电话。
                     </div>
-                    <div v-if="!isZH">
-                       <div style="font-size:14px;font-weight:bold;">Reminder</br></br></div>
+                    <div v-if="!isZH" style="font-size:14px;">
+                       <div style="font-size:16px;font-weight:bold;">Reminder</br></br></div>
                        The  Robot “ Xiao Ya”  will come to your room to collect the laundry. Please put your laundry ,laundry list into the laundry bag  and put them into the service robot. The service Robot  will be at the door of your apartment within 3 minutes. Please pay attention to answer the in-room phone.
                     </div>
                 </td>
@@ -55,7 +57,9 @@
 </template>
 
 <style scoped>
-  
+.mycss:after {
+    border-bottom: 0px;
+}
 </style>
 
 <script>
@@ -74,10 +78,15 @@
                 this.isZH = false;
                 this.title = 'Laundry Service';
             }
+            let _this = this;
             $(function(){
                 $(".navbar-center").css('marginLeft',0);
                 //设置点击按钮大小
                 $(".close").attr("style","background-size:.45rem;width:.45rem;height:.45rem;");
+                $(".navbar-item").click(function(){
+                    _this.goBack();
+                });
+                $(".m-navbar").addClass("mycss");
             });
         },
         methods: {

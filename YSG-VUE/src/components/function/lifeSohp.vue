@@ -3,7 +3,7 @@
     <div class="search" style="height: 100%">
       <div class="nav_mark"></div>
       <yd-navbar :title="title" fixed>
-        <span class="close" slot="left" @click="goBack()"></span>
+        <span class="close" slot="left"></span>
       </yd-navbar>
       <section class="g-flexview">
         <section class="promotiom-box">
@@ -21,19 +21,21 @@
                 <td width="5%">&nbsp;</td>
               </tr>
               <tr>
-                <td colspan="3" style="height:30px;">&nbsp;</td>
+                <td colspan="3" style="height:30px;">
+                    <div style="display: block; background: rgb(248, 248, 248); height: 5px;"></div>
+                </td>
               </tr>
               <tr>
                 <td width="5%">&nbsp;</td>
                 <td>
-                    <div v-if="isZH" style="font-size:12px;">
-                       <div style="font-size:14px;font-weight:bold;">提示</br></br></div>
+                    <div v-if="isZH" style="font-size:14px;">
+                       <div style="font-size:16px;font-weight:bold;">提示</br></br></div>
                        此购物网站名称为“机器人服务生”，由北京云迹科技有限公司提供。</br></br>
                        此购物网站仅限微信支付，所有购买的物品，均会由机器人服务生送到您的房间，请注意接听房间电话。</br></br>
                        如有购物问题，请联系 15712856521
                     </div>
-                    <div v-if="!isZH" style="font-size:12px;">
-                       <div style="font-size:14px;font-weight:bold;">Reminder</br></br></div>
+                    <div v-if="!isZH" style="font-size:14px;">
+                       <div style="font-size:16px;font-weight:bold;">Reminder</br></br></div>
                        This shopping site is called "Robot Mall" and it is provided by Beijing Yunji Technolgy Co,.Ltd.</br></br>
                        This shopping website services  is for WeChat only. All items purchased will be sent to your room by a service  robot.  Please pay attention to answer the in-room phone.</br></br>
                        If there are shopping problems, please contact 15712856521
@@ -59,7 +61,9 @@
 </template>
 
 <style scoped>
-  
+  .mycss:after {
+     border-bottom: 0px;
+  }
 </style>
 
 <script>
@@ -78,10 +82,15 @@
                 this.isZH = false;
                 this.title = 'Mini-Mart';
             }
+            let _this = this;
             $(function(){
                 $(".navbar-center").css('marginLeft',0);
                 //设置点击按钮大小
                 $(".close").attr("style","background-size:.45rem;width:.45rem;height:.45rem;");
+                $(".navbar-item").click(function(){
+                    _this.goBack();
+                });
+                $(".m-navbar").addClass("mycss");
             });
         },
         methods: {
