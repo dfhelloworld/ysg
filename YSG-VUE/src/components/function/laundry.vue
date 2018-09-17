@@ -27,9 +27,11 @@
                 <td width="5%">&nbsp;</td>
                 <td>
                     <div v-if="isZH">
+                       <div style="font-size:14px;font-weight:bold;">提示</br></br></div>
                        机器人将到你的房间收取洗衣，请将要洗的衣物放入洗衣袋，并与洗衣单一起放入服务机器人。机器人将在3分钟内到您房间门口收取洗衣，请注意接听房间电话。
                     </div>
                     <div v-if="!isZH">
+                       <div style="font-size:14px;font-weight:bold;">Reminder</br></br></div>
                        The  Robot “ Xiao Ya”  will come to your room to collect the laundry. Please put your laundry ,laundry list into the laundry bag  and put them into the service robot. The service Robot  will be at the door of your apartment within 3 minutes. Please pay attention to answer the in-room phone.
                     </div>
                 </td>
