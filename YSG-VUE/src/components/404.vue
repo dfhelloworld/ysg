@@ -1,6 +1,7 @@
 <template>
   <div class="error">
       <p class="error-txt">网络不给力，请退出重试!</p>
+	  <button style="margin-left:43%;width:50px;height:30px;" @click="refPage">刷新</button>
   </div>
 </template>
 <style>
@@ -18,6 +19,9 @@
         created:function () {
         },
 		methods: {
+			refPage:function () {
+			    this.$router.replace('/');
+			}
 		},
 		mounted() {
 		},
