@@ -15,7 +15,7 @@
                 <td width="5%">&nbsp;</td>
                 <td>
                     <div>
-                        <img src="../../assets/images/robotServiceBG.png" width="100%" height="45%">
+                        <img src="../../assets/images/bgImg/MiniMart.jpg" width="100%" height="45%">
                     </div>
                 </td>
                 <td width="5%">&nbsp;</td>

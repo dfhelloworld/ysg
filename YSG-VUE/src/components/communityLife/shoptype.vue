@@ -15,9 +15,7 @@
                 <td width="5%">&nbsp;</td>
                 <td>
                     <div>
-                        <div v-if="isZH" style="position:absolute;left:30px;top:44px;font-size:0.4rem;font-family:Avenir-Heavy;color:#c96e3c;">洗衣服务</div>
-                        <div v-if="!isZH" style="position:absolute;left:30px;top:44px;font-size:0.4rem;font-family:Avenir-Heavy;color:#c96e3c;">Laundry Service</div>
-                        <img src="../../assets/images/artboard.png" width="100%" height="45%">
+                        <img src="../../assets/images/bgImg/Laundry.jpg" width="100%" height="45%">
                     </div>
                 </td>
                 <td width="5%">&nbsp;</td>
