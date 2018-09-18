@@ -56,7 +56,7 @@
 				<section class="app_content" style="background: #fff;padding-bottom: 1rem;">
 					<h4>{{ hotelDetail.name }}</h4>
           <div v-if="hotelDetail.robot_pic != ''" class="map_content">
-						<img :src="hotelDetail.robot_pic">
+						<img :src="hotelDetail.robot_pic" @click="goLocation(2)">
 					</div>
 					<div class="map_content" @click="goLocation(1)">
 						<img :src="hotelDetail.localpic">
@@ -771,33 +771,26 @@ export default {
     },
     //地图导航
     goLocation: function(val) {
-      // if (localStorage.HOTELID == 1 || localStorage.HOTELID == 7) {
-      //   if (localStorage.TOKEN) {
-      //     // this.$router.push("/shopping");
-      //     this.$router.push({ path: "/buy", query: { info: "home" } });
-      //   } else {
-      //     this.$router.replace("/loginforguest");
-      //   }
-      // } else {
-      //   this.$router.push("/map");
-      // }
         //机器人购物
-		// if(val===2){
-		// 	//判断是否登录
-		// 	if (localStorage.TOKEN) {
-		// 		let goPath = "/shopping";
-    //     //console.log("=======HotileId:"+localStorage.HOTELID);//21,7
-    //     if(localStorage.HOTELID==21||localStorage.HOTELID==7){
-    //         localStorage.NEWTYPE=0;
-    //         goPath = "/robotDelivery";
-    //     }
-    //     this.$router.push({ path: goPath, query: { info: "home" } });
-		// 	}else{
-		// 		this.$router.replace("/loginforguest");
-		// 	}
-		// }else{
-			this.$router.push("/map");
-		// }
+        if(val===2){
+          //北京雅诗阁来福士中心服务公寓 首页机器人服务关闭
+          if(localStorage.HOTELID==1){
+            return;
+          }
+          //判断是否登录
+          if (localStorage.TOKEN) {
+            let goPath = "/shopping";
+            if(localStorage.HOTELID==21||localStorage.HOTELID==7){
+                localStorage.NEWTYPE=0;
+                goPath = "/robotDelivery";
+            }
+            this.$router.push({ path: goPath, query: { info: "home" } });
+          }else{
+            this.$router.replace("/loginforguest");
+          }
+        }else{
+          this.$router.push("/map");
+        }
     },
     goNext: function(key) {
       let _this = this;

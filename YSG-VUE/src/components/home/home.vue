@@ -55,7 +55,7 @@
 				<section class="app_content" style="background: #fff;padding-bottom: 1rem;">
 					<h4>{{ hotelDetail.name }}</h4>
           <div v-if="hotelDetail.robot_pic != ''" class="map_content">
-						<img :src="hotelDetail.robot_pic">
+						<img :src="hotelDetail.robot_pic" @click="goLocation(2)">
 					</div>
 					<div class="map_content">
 						<img :src="hotelDetail.localpic" @click="goLocation(1)">
@@ -765,46 +765,39 @@ export default {
     },
     //地图导航
     goLocation: function(val) {
-      // if (localStorage.HOTELID == 1 || localStorage.HOTELID == 7) {
-      //   if (localStorage.TOKEN) {
-      //     // this.$router.push("/shopping");
-      //     this.$router.push({ path: "/shopping", query: { info: "home" } });
-      //   } else {
-      //     this.$router.replace("/loginforguest");
-      //   }
-      // } else {
-      //   this.$router.push("/map");
-      // }
         //机器人购物
-        // if(val===2){
-        //     if(localStorage.propertyinterfId==12){
-        //       let msg = "机器人无法到达该地点";
-        //       if(localStorage.LANGUAGE!='zh'){
-        //            msg = 'The robot could not reach the location';
-        //       }
-        //       this.$dialog.toast({mes: msg, timeout: 2000});
-        //       return;
-        //     }
-        //     //判断是否登录
-        //     if (localStorage.TOKEN) {
-        //         let goPath = "/shopping";
-        //         //console.log("=======HotileId:"+localStorage.HOTELID);//21,7
-        //         if(localStorage.HOTELID==21||localStorage.HOTELID==7){
-        //             localStorage.NEWTYPE=0;
-        //             goPath = "/robotDelivery";
-        //         }
-        //         //验证pin码并跳转
-        //         if(localStorage.idType==1){
-        //           checkPin(this,{ path: goPath, query: { info: "home" } });
-        //         }else{
-        //           this.$router.push({ path: goPath, query: { info: "home" } });
-        //         }
-        //     }else{
-        //         this.$router.replace("/loginforguest");
-        //     }
-        // }else{
+        if(val===2){
+            //北京雅诗阁来福士中心服务公寓 首页机器人服务关闭
+            if(localStorage.HOTELID==1){
+              return;
+            }
+            if(localStorage.propertyinterfId==12){
+              let msg = "机器人无法到达该地点";
+              if(localStorage.LANGUAGE!='zh'){
+                   msg = 'The robot could not reach the location';
+              }
+              this.$dialog.toast({mes: msg, timeout: 2000});
+              return;
+            }
+            //判断是否登录
+            if (localStorage.TOKEN) {
+                let goPath = "/shopping";
+                if(localStorage.HOTELID==21||localStorage.HOTELID==7){
+                    localStorage.NEWTYPE=0;
+                    goPath = "/robotDelivery";
+                }
+                //验证pin码并跳转
+                if(localStorage.idType==1){
+                  checkPin(this,{ path: goPath, query: { info: "home" } });
+                }else{
+                  this.$router.push({ path: goPath, query: { info: "home" } });
+                }
+            }else{
+                this.$router.replace("/loginforguest");
+            }
+        }else{
             this.$router.push("/map");
-        // }
+        }
     },
     goNext: function(key) {
       let _this = this;
