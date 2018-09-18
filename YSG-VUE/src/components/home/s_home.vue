@@ -255,13 +255,13 @@ export default {
       {
         key: "reservation",
         title: "",
-        imgSrc: require("../../assets/images/icon-book.png"),
+        imgSrc: require("../../assets/images/fastkey/book.png"),
         linkTo: "/home/homebooking"
       },
       {
         key: "tanslate",
         title: "",
-        imgSrc: require("../../assets/images/icon-translate.png"),
+        imgSrc: require("../../assets/images/fastkey/translate.png"),
         linkTo: "/translate"
       },
       {
@@ -273,49 +273,49 @@ export default {
       {
         key: "flight",
         title: "",
-        imgSrc: require("../../assets/images/icon-airport.png"),
+        imgSrc: require("../../assets/images/fastkey/airport.png"),
         linkTo: "#"
       },
       {
         key: "phone",
         title: "",
-        imgSrc: require("../../assets/images/icon-phone.png"),
+        imgSrc: require("../../assets/images/fastkey/phone.png"),
         linkTo: "/phone"
       },
       {
         key: "guestmail",
         title: "",
-        imgSrc: require("../../assets/images/icon-phone.png"),
+        imgSrc: require("../../assets/images/fastkey/phone.png"),
         linkTo: "#"
       },
       {
         key: "smarthome",
         title: "",
-        imgSrc: require("../../assets/images/icon-smart.png"),
+        imgSrc: require("../../assets/images/fastkey/smart.png"),
         linkTo: "#"
       },
       {
         key: "news",
         title: "",
-        imgSrc: require("../../assets/images/icon-news-add.png"),
+        imgSrc: require("../../assets/images/fastkey/news-add.png"),
         linkTo: "/ssr"
       },
       {
         key: "bills",
         title: "",
-        imgSrc: require("../../assets/images/icon-bill.png"),
+        imgSrc: require("../../assets/images/fastkey/bill.png"),
         linkTo: "/mybill"
       },
       {
         key: "invoice",
         title: "",
-        imgSrc: require("../../assets/images/icon-receipt.png"),
+        imgSrc: require("../../assets/images/fastkey/receipt.png"),
         linkTo: "/invoices"
       },
       {
         key: "lifeservice",
         title: "",
-        imgSrc: require("../../assets/images/icon-lifestyle.png"),
+        imgSrc: require("../../assets/images/fastkey/lifestyle.png"),
         linkTo: ""
       },
       {
