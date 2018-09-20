@@ -29,7 +29,11 @@
 		},
         created:function () {
 	        this.tabIndex = this.$route.query.index;
-	        this.panoramicSrc = 'http://'+this.$route.query.panoramic;
+            this.panoramicSrc = 'http://'+this.$route.query.panoramic;
+            
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
         mounted:function () {
             //一级页面falg

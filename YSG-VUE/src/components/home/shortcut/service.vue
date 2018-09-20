@@ -29,6 +29,10 @@
 		},
         created:function () {
             this.serviceUrl = localStorage.serviceUrl;
+            
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
 		methods: {
 			goHome:function () {

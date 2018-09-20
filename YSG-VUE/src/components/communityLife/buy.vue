@@ -88,7 +88,7 @@ export default {
   created: function() {
     this.info = this.$route.query.info;
     this.$store.dispatch("showLoading");
-    var ssrBase = "https://bird.ioliu.cn/v1/?url=";
+    var ssrBase = "";
     let _this = this;
     if (this.info.detail) {
       $.get(ssrBase + this.info.detail, function(res) {
@@ -98,10 +98,16 @@ export default {
     } else {
       this.$store.dispatch("hideLoading");
     }
+
+    $(function(){
+        $(".navbar-center").css('marginLeft',0);
+    });
   },
   activated: function() {},
   methods: {
     apply: function() {
+       $(".buy_foot button").attr("disabled",true);
+       $(".buy_foot button").css({background: "grey"});
       let _this = this;
       let params = {
         hotelid: localStorage.HOTELID,
@@ -115,6 +121,8 @@ export default {
         } else {
           this.$dialog.toast({ mes: res.data.msg, timeout: 1000 });
         }
+	$(".buy_foot button").attr("disabled",false);
+	$(".buy_foot button").css({background: "#f0c366"});
       });
     },
     toPDF: function() {

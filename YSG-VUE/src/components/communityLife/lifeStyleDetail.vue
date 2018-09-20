@@ -30,6 +30,10 @@
             isHomePage(0)
         },
 		created:function () {
+
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
 		}
 	};
 </script>

@@ -124,6 +124,44 @@ const actions = {
             })
         })
     },
+    RobotSend: function ({commit}, data) {
+        return new Promise((resolve, reject) => {
+            API.RobotSend(data).then((data) => {
+                resolve(data)
+            }, (error) => {
+                reject(error)
+            })
+        })
+    },
+    GetBreakFast: function ({commit}, data) {
+        return new Promise((resolve, reject) => {
+            API.GetBreakFast(data).then((data) => {
+                resolve(data)
+            }, (error) => {
+                reject(error)
+            })
+        })
+    },
+    //二级分类
+    getFirstTags: function ({commit}, data) {
+        return new Promise((resolve, reject) => {
+            API.getFirstTags(data).then((data) => {
+                resolve(data)
+            }, (error) => {
+                reject(error)
+            })
+        })
+    },
+    //添加订单
+    addShoppingCart: function ({commit}, data) {
+        return new Promise((resolve, reject) => {
+            API.addShoppingCart(data).then((data) => {
+                resolve(data)
+            }, (error) => {
+                reject(error)
+            })
+        })
+    },
 }
 const mutations = {
     // [types.TRANSLATELANGUAGELIST] (state,data) {

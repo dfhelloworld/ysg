@@ -72,6 +72,9 @@
 			};
 		},
 		created:function () {
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
 		},
         mounted:function () {
             //一级页面falg
@@ -110,6 +113,12 @@
                                 }
                             }
                         });
+                        //判断文字显示方式
+                        if(localStorage.LANGUAGE!='zh'){
+                            $(".confirm-bd").css('word-break',"keep-all");
+                        }else{
+                            $(".confirm-bd").css('word-break',"break-all");
+                        }
                     }
                 } else {
                     var newLife = []

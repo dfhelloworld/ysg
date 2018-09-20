@@ -43,7 +43,7 @@
         created:function () {
             this.info = this.$route.query.info;
             this.$store.dispatch('showLoading')
-            var ssrBase = 'https://bird.ioliu.cn/v1/?url='
+            var ssrBase = ''
             let _this = this;
             if (this.info.detail) {
                 $.get(ssrBase+this.info.detail,function (res) {
@@ -68,7 +68,11 @@
 		        this.btnFlag = true;
 		        this.videoFlag = true;
 		        this.isOne = true;
-	        }
+			}
+			
+			$(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
         methods: {
 	        toPDF:function () {

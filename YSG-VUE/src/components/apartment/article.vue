@@ -7,6 +7,10 @@
             </router-link>
         </yd-navbar>
         <section class="resolve-box" v-show="showContent" v-html="content"></section>
+        <ul class="pdf-video">
+            <li @click="toPDF" v-show="showPdf"></li>
+            <li @click="toVideo" v-show="showVideo"></li>
+        </ul>
     </div>
 </template>
 <style>
@@ -29,16 +33,20 @@
                 content:'',
                 showContent:false,
                 title:this.$route.query.title,
+                showPdf: false,
+                showVideo:false
 			};
 		},
-		created:function () { 
+		created:function () {
 	        this.tabIndex = this.$route.query.index;
 	        this.detail = this.$route.query.detail;
 	        this.pdf = this.$route.query.pdf;
-	        this.video = this.$route.query.video;
+            this.video = this.$route.query.video;
+            this.showPdf = this.pdf==''?false:true;
+            this.showVideo = this.video==''?false:true;
             this.$store.dispatch('showLoading')
 	        this.panoramicSrc = this.detail;
-            var ssrBase = 'https://bird.ioliu.cn/v1/?url='
+            var ssrBase = ''
             let _this = this;
             if(this.panoramicSrc){
                 $.get(ssrBase+this.panoramicSrc,function (res) {
@@ -49,7 +57,28 @@
             } else {
                 this.$store.dispatch('hideLoading')
             }
+
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
+        methods: {
+            toPDF:function () {
+                if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+                    openFile(this.pdf);
+                }else{
+                    openPdf(this.pdf);
+                }
+
+            },
+            toVideo: function () {
+                if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+                    openFile(this.video);
+                }else{
+                    openVideo(this.video);
+                }
+            }
+		},
         mounted:function () {
             //一级页面falg
             isHomePage(0)

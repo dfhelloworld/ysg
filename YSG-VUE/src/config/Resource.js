@@ -7,7 +7,7 @@ import store from '../store/index'
 import router from '../router'
 // 配置图片的基本路径
 localStorage.identity  = 'test'
-axios.defaults.baseURL = 'https://bird.ioliu.cn/v1/?url=https://service.easyiservice.com'
+axios.defaults.baseURL = 'https://service.easyiservice.com'
 // axios.defaults.headers.common['authToken'] = localStorage.TOKEN
 
 // 添加请求拦截器
@@ -55,6 +55,24 @@ const Home = {
 	appUpdateUrl:'/AppVersion/getLatestAppVersionByPlatform',
 	appStartUrl:'/appStartmsg/getEffectiveAppStartmsg',
 	getHotelListUrl:'/hotellist/getHotelListList',
+	//查看订单
+	viewOrder:'/shoppingorder/getUserOrderList',
+	//删除订单
+	deleteOrder:'/shoppingorder/deleteorder',
+	//验证是否设置pin码
+	isSetPin:'/user/hasPin',
+	//设置pin码
+	setPin:'/user/setpin',
+	//验证pin
+	checkPin:'/user/checkPin',
+	//查看订单物业
+	getShoppingHotelList:'/shoppingorder/getShoppingHotelList',
+	//员工获取订单信息
+	getStaffOrderList:'/shoppingOrder/getStaffOrderList',
+	//员工修改订单信息
+	updateOrderProductById:'/shoppingorder/updateOrderProductById',
+	//获取购物柜参数信息
+	getShoppingBoxDetail:'/user/getShoppingBoxDetail',
 }
 
 //登录接口
@@ -126,7 +144,14 @@ const Community = {
 	Feedback:'/feedback/getFeedbackList',
 	//提交物业调查问卷
 	FeedbackResult:'/feedbackResult/addFeedbackResult',
-
+	//机器人洗衣服
+	RobotSend:'/service/robotSend',
+	//早餐机
+	GetBreakFast:'/user/gettoken',
+	//二级分类
+	FirstTags:'/shoppingtag/getShoppingTagList',
+	//添加订单
+	addShoppingCart:'/shoppingorder/addshoppingcart',
 }
 //本地攻略
 const Raiders = {
@@ -160,7 +185,7 @@ var getObj = function(params){
     var time = "";
     $.ajax({
 		// url:'http://47.93.201.72:80/system/getTime',
-		url:'https://bird.ioliu.cn/v1/?url=https://service.easyiservice.com/system/getTime',
+		url:'https://service.easyiservice.com/system/getTime',
 		type:'GET', //GET
         async:false,    //或false,是否异步
         timeout:5000,    //超时时间
@@ -227,8 +252,9 @@ export default {
     getLifeList:(query) => apiPost(Community.LifeList,query),
     getFeedbackList:(query) => apiPost(Community.FeedbackList,query),
     getFeedback:(query) => apiPost(Community.Feedback,query),
-    addFeedbackResult:(query) => apiPost(Community.FeedbackResult,query),
-	getHotelDetail:(query) => apiPost(Home.hotelDetailUrl,query),
+	addFeedbackResult:(query) => apiPost(Community.FeedbackResult,query),
+	RobotSend:(query) => apiPost(Community.RobotSend,query),
+	GetBreakFast:(query) => apiPost(Community.GetBreakFast,query),
 	helloApi:(query) => apiPost(Hello.helloApi,query),
 	tabLanguage:(query) => apiPost(Home.tabLanguageUrl,query),
     help:(query) => apiPost(Home.helpUrl,query),
@@ -241,4 +267,26 @@ export default {
     appStart:(query) => apiPost(Home.appStartUrl,query),
 	getJudge:(query) => apiPost(query.url,query.data),
 	getHotelLis:(query) => apiPost(Home.getHotelListUrl,query),
+	//二级分类
+	getFirstTags:(query) => apiPost(Community.FirstTags,query),
+	//添加订单
+	addShoppingCart:(query) => apiPost(Community.addShoppingCart,query),
+	//查看订单
+	viewOrder:(query) => apiPost(Home.viewOrder,query),
+	//删除订单
+	deleteOrder:(query) => apiPost(Home.deleteOrder,query),
+	//验证是否设置pin码
+	isSetPin:(query) => apiPost(Home.isSetPin,query),
+	//设置pin码
+	setPin:(query) => apiPost(Home.setPin,query),
+	//验证pin
+	checkPin:(query) => apiPost(Home.checkPin,query),
+	//查看订单物业
+	getShoppingHotelList:(query) => apiPost(Home.getShoppingHotelList,query),
+	//员工获取订单信息
+	getStaffOrderList:(query) => apiPost(Home.getStaffOrderList,query),
+	//员工修改订单信息
+	updateOrderProductById:(query) => apiPost(Home.updateOrderProductById,query),
+	//获取购物柜参数信息
+	getShoppingBoxDetail:(query) => apiPost(Home.getShoppingBoxDetail,query),
 }

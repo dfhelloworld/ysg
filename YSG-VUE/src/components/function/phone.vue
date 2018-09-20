@@ -53,6 +53,10 @@
                 _this.telList = res.data.data.list;
             });
 
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
+
         },
 		methods: {
 		    call:function (phone) {

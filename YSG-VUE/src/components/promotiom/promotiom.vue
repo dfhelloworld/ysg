@@ -19,6 +19,8 @@
                       <a><span>{{language.promotion.grounpNews}}</span></a>
                   </div>
               </div>
+              <div class="swiper-button-prev" style="margin-left:-10px;"></div>
+              <div class="swiper-button-next" style="margin-right:-10px;"></div>
           </div>
       </section>
       <section class="promotiom_list s-list">
@@ -44,9 +46,11 @@
           </scroller>
       </section>
       <v-foot></v-foot>
+
   </div>
 </template>
 <style>
+
 </style>
 <script>
 	import { mapGetters } from 'vuex'

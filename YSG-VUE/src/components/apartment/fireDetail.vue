@@ -30,7 +30,7 @@
         created:function () {
 	        this.info = this.$route.query.info;
             this.stateFlag = localStorage.stateFlag
-            var ssrBase = 'https://bird.ioliu.cn/v1/?url='
+            var ssrBase = ''
             let _this = this;
             if(this.info.detail){
                 $.get(ssrBase+this.info.detail,function (res) {
@@ -40,7 +40,10 @@
             } else {
                 this.$store.dispatch('hideLoading')
             }
-
+            
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
 
         },
         mounted:function () {

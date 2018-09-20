@@ -70,7 +70,7 @@
         created:function () {
 			this.ssrFlag = this.$route.query.ssrFlag
 			let _this = this
-			var ssrBase = 'https://bird.ioliu.cn/v1/?url='
+			var ssrBase = ''
             this.ssrData = {
 				zh:{
 					'news':[
@@ -258,7 +258,11 @@
 	            $('.tab-change .swiper-slide').click(function () {
                     $(this).addClass('active').siblings().removeClass('active')
                 })
-            })
+			});
+			
+			$(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
 
 
         },

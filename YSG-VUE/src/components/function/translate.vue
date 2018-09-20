@@ -79,6 +79,10 @@
                 lang:'zh'
             };
             this.$store.dispatch('translateLanguageList', params);
+
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
 		methods: {
 		    //翻译点击事件

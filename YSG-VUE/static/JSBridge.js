@@ -153,6 +153,16 @@ function checkVersion(params) {
   JSInterface.checkVersion(params);
 }
 
+//清理缓存
+function h5Version(){
+  console.log('清除缓存:'+new Date());
+  if(/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)){
+
+  }else{
+    JSInterface.h5Version('1.0/20/09/2018',new Date());
+  }
+}
+
 /**
  * 初始化数据
  */
@@ -166,3 +176,83 @@ function openBooking(url) {
     JSInterface.getSystemBrowser(url);
   }
 }
+
+//住客验证登录信息,并重新获取token
+function startLogin() {
+  if(localStorage.idType == 1&&localStorage.TOKEN){
+    let baseUrl = "https://service.easyiservice.com";
+    let params = {
+        fullname: localStorage.FULLNAME,
+        groupid: localStorage.groupid,
+        hotelid: localStorage.HOTELID,
+        identity: localStorage.identity,
+        lang: 'zh',
+        platform: localStorage.platform,
+        room_no: localStorage.ROOM_INFO,
+        propertyinterfId: localStorage.propertyinterfId
+    };
+    let str = "";
+    let time = "";
+    $.ajax({
+        url: baseUrl+'/system/getTime',
+        type:'GET',
+        async:false,
+        timeout:5000,
+        dataType:'json',
+        success:function(data){ 
+            time = data.data.time;
+        }
+    });
+    params.time = time;
+    if(time!=""){
+      let p = Object.keys(params).sort();
+      for (let k in p){
+          str += (p[k]+params[p[k]]);
+      }
+      str += "CtUyV$8MGoK8u5L*P0Q50T/b8S9iclS*LQqo";
+      let sign = md5(str);
+      params.sign = sign;
+      $.ajax({
+          url: baseUrl+'/user/login',
+          type:'POST',
+          data:params,
+          timeout:5000,
+          dataType:'json',   
+          success:function(res){
+            if (res.code == 0) {
+              localStorage.TOKEN = res.data.token;
+            }else{
+              //验证失败退出友盟
+              let obj={
+                  userType:'staff',
+                  userId:localStorage.userId,
+                  hotelId: [
+                      'hotel_'+localStorage.HOTELID,
+                      'group_1',
+                      localStorage.LANGUAGE
+                  ]
+              }
+              removeAllTagAlias(obj.userType,obj.userId,obj.hotelId);
+              localStorage.TOKEN = null;
+            }
+          }
+      });
+    }
+  }
+}
+
+//调用微信小程序
+// @params
+// var obj = {
+//   username: 'gh_ed26ff61e540', //小程序username(原始ID)
+//   type: 0,  //0是正式版，1是开发版，2是体验版
+//   path:'pages/index/index?name=aaa&room=0702' //访问页面路径
+// };
+function launchMiniProgramme(params) {
+  if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+    window.webkit.messageHandlers.launchMiniProgramme.postMessage(params);
+  } else {
+    JSInterface.launchMiniProgramme(JSON.stringify(params));
+  }
+}
+

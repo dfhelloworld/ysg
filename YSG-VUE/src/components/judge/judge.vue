@@ -89,7 +89,11 @@
             }
             this.$store.dispatch('getJudge',params).then(function (res) {
                 _this.judgeList =  res.data.list
-            })
+            });
+
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
         methods: {
             goback:function () {

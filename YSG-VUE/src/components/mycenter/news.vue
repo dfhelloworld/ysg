@@ -7,20 +7,43 @@
             </router-link>
         </yd-navbar>
         <div class="news-list">
-            <scroller >
-                <ul>
-                    <li v-for="item in newsList" @click="goDetail(item.url)">
-                        <h4>{{item.title}}</h4>
-                        <span class="time-show">{{new Date(item.createtime*1000).getFullYear()+'-'+(new Date(item.createtime*1000).getMonth() + 1)+'-'+new Date(item.createtime*1000).getDate()}}</span>
-                        <!--<span class="time-show">{{item.createtime}}</span>-->
-                        <p>{{item.value}}</p>
+            <div id="myscroll">
+                <ul style="background:white;">
+                    <li v-for="item in newsList" @click="goDetail(item.url)" v-if="idType==1">
+                        <table>
+                            <tr>
+                                <td style="width:70px;">
+                                    <img slot="icon" :src="item.icon" style="width:40px;height:40px;" />
+                                </td>
+                                <td>
+                                    <h4>{{item.title}}</h4>
+                                    <span class="time-show">{{item.createtime}}</span>
+                                    <p>{{item.value}}</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </li>
+                    <li v-for="item in newsList" @click="goDetail(item.url)" v-if="idType==2">
+                        <h4 v-if="isZH">{{item.title_lang1}}</h4>
+                        <h4 v-if="!isZH">{{item.title_lang2}}</h4>
+                        <span class="time-show">{{item.createtime}}</span>
+                        <p v-if="isZH">{{item.value_lang1}}</p>
+                        <p v-if="!isZH">{{item.value_lang2}}</p>
+                    </li>
+                    <li style="border:0px" v-show="isMore">
+                        <div style="width:100%;height:130px;text-align:center;" v-if="isZH">
+                            没有更多数据
+                        </div>
+                        <div style="width:100%;height:130px;text-align:center;" v-if="!isZH">
+                            No more data
+                        </div>
                     </li>
                 </ul>
-            </scroller>
+            </div>
         </div>
     </div>
 </template>
-<style>
+<style scoped>
 .common_nav_style .m-navbar{z-index: 200}
 .news-list ul{padding: .25rem;margin-top: 1.2rem;}
 .news-list li{padding: .15rem;border-bottom: 1px solid #ddd;}
@@ -34,35 +57,103 @@
 	export default {
 		data() {
 			return {
-				newsList:[]
+                newsList:[],
+                idType:0,
+                isZH:true,
+                total:0,
+                isMore:false,
+                page:1
 			};
 		},
         created:function () {
+            //判断显示中/英文
+            if(localStorage.LANGUAGE!='zh'){
+                this.isZH = false;
+            }
             let _this = this
 	        let params = {
 	            hotelid: localStorage.HOTELID,
                 lang: localStorage.LANGUAGE,
-                page:1,
-                limit:5,
+                page:_this.page,
                 token:localStorage.TOKEN
             }
-	        this.$store.dispatch('getNews',params).then(function (res) {
-                console.log(_this.newsList)
-                _this.newsList = res.data.list
-            })
+            //员工消息
+            this.idType = localStorage.idType;
+            if(2==localStorage.idType){
+                _this.$store.dispatch('getStaffAppMsgList', params).then(function (res) {
+                    _this.newsList = res.data.list;
+                    _this.total = res.data.total;
+                    if(_this.total<11){
+                        _this.isMore = true;
+                    }
+                });
+            }else{//住户消息
+                _this.$store.dispatch('getNews',params).then(function (res) {
+                    _this.newsList = res.data.list;
+                    _this.total = res.data.total;
+                    if(_this.total<11){
+                        _this.isMore = true;
+                    }
+                });
+            }
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+                //获取显示器屏幕高度
+                let h = window.screen.height +"px";
+                $("#myscroll").css({"overflow":"auto","height":h,"marginRight":"-20px","paddingRight":"20px"});
+                $("#myscroll").scrollTop(0);
+                $("#myscroll").scroll(function(){
+                    if((_this.page*10)<=_this.total){
+                        let bodyTop = $("#myscroll").scrollTop();
+                        let winH = $(window).height();
+                        let bodyH = $("#myscroll")[0].scrollHeight;
+                        let rollH = bodyTop + winH + 200;
+                        if((rollH>=bodyH)&&!_this.isMore){
+                            _this.page = _this.page+1;
+                            let params = {
+                                hotelid: localStorage.HOTELID,
+                                lang: localStorage.LANGUAGE,
+                                page:_this.page,
+                                token:localStorage.TOKEN
+                            }
+                            //员工消息
+                            this.idType = localStorage.idType;
+                            if(2==localStorage.idType){
+                                _this.$store.dispatch('getStaffAppMsgList', params).then(function (res) {
+                                    res.data.list.forEach(function(element) {
+                                        _this.newsList.push(element);
+                                    });
+                                    if((_this.page*10)>=_this.total){
+                                        _this.isMore = true;
+                                    }
+                                });
+                            }else{//住户消息
+                                _this.$store.dispatch('getNews',params).then(function (res) {
+                                    res.data.list.forEach(function(element) {
+                                        _this.newsList.push(element);
+                                    });
+                                    if((_this.page*10)>=_this.total){
+                                        _this.isMore = true;
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
+            });
         },
 		methods: {
 			goDetail(url){
-                if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-                    openFile(url)
-                }else{
-                    if(url.indexOf('pdf')>0){
-                        openPdf(url)
+                // if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+                //     openFile(url)
+                // }else{
+                //     if(url.indexOf('pdf')>0){
+                //         openPdf(url)
 
-                    } else {
-                        openUrl(url,'')
-                    }
-                }
+                //     } else {
+                //         openUrl(url,'')
+                //     }
+                // }
             }
 		},
         mounted:function () {

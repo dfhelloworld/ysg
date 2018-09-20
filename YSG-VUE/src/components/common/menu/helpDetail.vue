@@ -28,13 +28,16 @@
 			this.info = this.$route.query.url
 			this.title = this.$route.query.title
 
-            var ssrBase = 'https://bird.ioliu.cn/v1/?url='
+            var ssrBase = ''
 			let _this = this;
             $.get(ssrBase+this.info,function (res) {
 				_this.content = res;
                 _this.$store.dispatch('hideLoading')
-            })
+            });
 
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
         methods: {
         },

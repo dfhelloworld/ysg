@@ -1,21 +1,23 @@
 <template>
-    <div class="invoice">
-        <div class="nav_mark"></div> 
-         <yd-navbar :title="language.myCenter.invoices" fixed>
-           <span slot="left" class="back" @click="goBack"></span>
-        </yd-navbar> 
-     
-        <div class="invoice-content">
-                     <div class="invoice-bg"> 
-              </div>
-              <div class="memoContainer">
-            <p class="memo">{{language.msg.createInvoice}}</p>
-            <p class="memo">{{language.msg.manageInvoice}}</p>
-           </div>
-                      <div class="buttonInvoice"   ><button type="button" @click="showHeader">{{language.myCenter.invoices_header}}</button>
-    <button type="button" @click="showManager">{{language.myCenter.invoices_manage}}</button></div>
-        </div>
+  <div class="invoice">
+    <div class="nav_mark"></div>
+    <yd-navbar :title="language.myCenter.invoices" fixed>
+      <span slot="left" class="back" @click="goBack"></span>
+    </yd-navbar>
+
+    <div class="invoice-content">
+      <div class="invoice-bg">
+      </div>
+      <div class="memoContainer">
+        <p class="memo">{{language.msg.createInvoice}}</p>
+        <p class="memo">{{language.msg.manageInvoice}}</p>
+      </div>
+      <div class="buttonInvoice" style="display: flex;">
+        <button type="button" @click="showHeader" style="flex-grow: 1;border-right: 1px solid white;">{{language.myCenter.invoices_header}}</button>
+        <button type="button" @click="showManager" style="flex-grow: 1;border-left: 1px solid white;">{{language.myCenter.invoices_manage}}</button>
+      </div>
     </div>
+  </div>
 </template>
 <style>
 .invoice-bg {
@@ -54,7 +56,11 @@ export default {
       oid: localStorage.oid
     };
   },
-  created: function() {},
+  created: function() {
+    $(function() {
+      $(".navbar-center").css("marginLeft", 0);
+    });
+  },
   mounted: function() {
     //一级页面falg
     isHomePage(0);
@@ -78,27 +84,38 @@ export default {
         data: dataStr,
         dataType: "jsonp",
         success: function(json) {
-          console.log("data—>", json.token);
+          let stNum = "";
+          if (localStorage.HOTELID == 22) {
+            //成都
+            stNum = "ARCC";
+          } else if (localStorage.HOTELID == 21) {
+            //深圳
+            stNum = "ARCSZ";
+          } else if (localStorage.HOTELID == 7) {
+            //广州国金
+            stNum = "X80";
+          } else if (localStorage.HOTELID == 15) {
+            //合肥
+            stNum = "SSLH";
+          } else if (localStorage.HOTELID == 4) {
+            //北京雅诗阁服务公寓
+            stNum = "AB";
+          }
           _this.tokenSrc =
-            "http://www.xfplink.cn/wx_invoiceTitle_confirm.html?u=" +
-            json.token +
-            "&m=YSG&b=" +
-            localStorage.INVOICEID; 
+            "http://www.xfplink.cn/xforce/#/invoiceTitle/upload?ut=" +
+            json.token + "&br=YSG&st=" + stNum +
+            "&roomId="+encodeURIComponent(localStorage.ROOM_INFO)+
+            "&userName="+encodeURIComponent(localStorage.FULLNAME);
           //获取发票抬头
-           console.log(_this.tokenSrc);
           if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
             openFile(_this.tokenSrc);
           } else {
-            // alert("抱歉，安卓版本模块发票功能维护中。")
-            // openUrl(_this.tokenSrc, this.language.myCenter.invoices);
-           
-            openUrl(_this.tokenSrc,'Invoices');
+            openUrl(_this.tokenSrc, "Invoices");
           }
         },
         error: function() {}
       });
     },
-
     showManager() {
       let _this = this;
       // 获取token
@@ -112,7 +129,6 @@ export default {
         data: dataStr,
         dataType: "jsonp",
         success: function(json) {
-          console.log("data—>", json.token);
           _this.tokenSrc =
             "http://www.xfplink.cn/wx_invoiceCollector.html?u=" +
             json.token +

@@ -57,7 +57,7 @@
 		        this.isOne = true
 	        }
 
-            var ssrBase = 'https://bird.ioliu.cn/v1/?url='
+            var ssrBase = ''
             let _this = this;
 	        if (this.data.detail) {
                 $.get(ssrBase+this.data.detail,function (res) {
@@ -66,7 +66,11 @@
                 })
 			} else {
                 this.$store.dispatch('hideLoading')
-			} 
+			}
+			
+			$(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
         methods: {
 	        toPDF:function () {

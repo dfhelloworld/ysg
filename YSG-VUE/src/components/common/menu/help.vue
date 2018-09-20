@@ -37,7 +37,11 @@
 			this.$store.dispatch('help',{groupid:localStorage.groupid}).then(function (res) {
 				_this.helpList = res.data
 				console.log(_this.helpList)
-            })
+			});
+			
+			$(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
 		},
 		methods: {
 			//判断用户是否登录

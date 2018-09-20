@@ -29,7 +29,7 @@
     </yd-tabbar>
 </template>
 <style>
-/*footer .tabbar-active .tabbar-txt{color: #f0c366;}*/
+footer .tabbar-active .tabbar-txt{color: #f0c366;}
 </style>
 <script type="text/babel">
 	import { mapState } from 'vuex'

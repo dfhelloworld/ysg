@@ -268,6 +268,138 @@ const actions = {
         }
       );
     });
+  },
+  viewOrder: function({ commit }, url, data) {
+    return new Promise((resolve, reject) => {
+      API.viewOrder(url, data).then(
+        res => {
+          commit(types.APPSTART, res.data);
+          resolve(res.data);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
+  },
+  deleteOrder: function({ commit }, url, data) {
+    return new Promise((resolve, reject) => {
+      API.deleteOrder(url, data).then(
+        res => {
+          commit(types.APPSTART, res.data);
+          resolve(res.data);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
+  },
+  isSetPin: function({ commit }, url, data) {
+    return new Promise((resolve, reject) => {
+      API.isSetPin(url, data).then(
+        res => {
+          commit(types.APPSTART, res.data);
+          resolve(res.data);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
+  },
+  setPin: function({ commit }, url, data) {
+    return new Promise((resolve, reject) => {
+      API.setPin(url, data).then(
+        res => {
+          commit(types.APPSTART, res.data);
+          resolve(res.data);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
+  },
+  checkPin: function({ commit }, url, data) {
+    return new Promise((resolve, reject) => {
+      API.checkPin(url, data).then(
+        res => {
+          commit(types.APPSTART, res.data);
+          resolve(res.data);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
+  },
+  getShoppingHotelList: function({ commit }, url, data) {
+    return new Promise((resolve, reject) => {
+      API.getShoppingHotelList(url, data).then(
+        res => {
+          commit(types.APPSTART, res.data);
+          resolve(res.data);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
+  },
+  getStaffOrderList: function({ commit }, url, data) {
+    return new Promise((resolve, reject) => {
+      API.getStaffOrderList(url, data).then(
+        res => {
+          commit(types.APPSTART, res.data);
+          resolve(res.data);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
+  },
+  updateOrderProductById: function({ commit }, url, data) {
+    return new Promise((resolve, reject) => {
+      API.updateOrderProductById(url, data).then(
+        res => {
+          commit(types.APPSTART, res.data);
+          resolve(res.data);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
+  },
+  //获取员工消息信息
+  getStaffAppMsgList: function({ commit }, url, data) {
+    return new Promise((resolve, reject) => {
+      API.getStaffAppMsgList(url, data).then(
+        res => {
+          commit(types.APPSTART, res.data);
+          resolve(res.data);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
+  },
+  //获取购物柜参数信息
+	getShoppingBoxDetail: function({ commit }, url, data) {
+    return new Promise((resolve, reject) => {
+      API.getShoppingBoxDetail(url, data).then(
+        res => {
+          commit(types.APPSTART, res.data);
+          resolve(res.data);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
   }
 };
 

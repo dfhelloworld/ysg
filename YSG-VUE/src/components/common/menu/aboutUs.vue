@@ -31,12 +31,16 @@
 			}
             this.$store.dispatch('groupDetail',params).then(function(res){
 
-                var ssrBase = 'https://bird.ioliu.cn/v1/?url='
+                var ssrBase = ''
                 $.get(ssrBase+res.data.about,function (res) {
                     _this.content = res;
                     _this.$store.dispatch('hideLoading')
                 })
-			})
+			});
+
+			$(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
         methods: {
         	//判断用户是否登录

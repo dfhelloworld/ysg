@@ -69,7 +69,11 @@
 		},
         created:function () {
 		    this.test()
-            this.stateFlag = localStorage.stateFlag
+            this.stateFlag = localStorage.stateFlag;
+
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         },
 		methods: {
 		    test:function () {

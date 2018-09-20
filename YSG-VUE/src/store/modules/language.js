@@ -66,13 +66,15 @@ const state = {
 			message:'Message',
 			notice:'Collection',
 			log_out:'Logout',
+			changePwd:'Change password',
 			oaId:'OA ID',
 			gsm:'Staff system',
 			bill:'Billing',
 			invoices:'Invoices',
 			invoices_header:'Issue Invoice',
 			invoices_manage:'Manage Invoice',
-            order:'Order'
+			order:'Order',
+			viewOrder:'Check Order'
 		},
 		common:{
             screen:'Screen',
@@ -374,13 +376,15 @@ const state = {
 			message:'消息',
 			notice:'收藏',
 			log_out:'退出',
+			changePwd:'修改密码',
 			oaId:'员工ID',
 			gsm:'员工系统',
 			bill:'账单',
 			invoices:'发票',
 			invoices_header:'开具发票',
 			invoices_manage:'票据管理',
-			order:'订单'
+			order:'订单',
+			viewOrder:'查看订单'
 		},
         common:{
             screen:'筛选',

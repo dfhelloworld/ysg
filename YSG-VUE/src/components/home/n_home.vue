@@ -264,6 +264,12 @@ export default {
       $(".m-actionsheet a").click(function() {
         _this.$store.dispatch("changeLanguage");
       });
+      //跳转到员工订单页面
+    let specialUrl = window.location.href.split('#');
+    if(specialUrl.length>1){
+      _this.$router.push(specialUrl[1]);
+      return;
+    }
     });
   },
   mounted: function() {},

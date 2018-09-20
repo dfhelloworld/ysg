@@ -38,6 +38,8 @@ import invoicesHeader from '../components/mycenter/invoicesHeader.vue'
 import invoicesManage from '../components/mycenter/invoicesManage.vue'
 import helpDetail from '../components/common/menu/helpDetail.vue'
 import order from '../components/mycenter/order.vue'
+import viewOrder from '../components/mycenter/viewOrder.vue'
+import staffOrder from '../components/mycenter/staffOrder.vue'
 
 /**
  * 搜索
@@ -58,6 +60,9 @@ import phone from '../components/function/phone.vue'
 import airport from '../components/function/airport.vue'
 import airportInfo from '../components/function/airportInfo.vue'
 import translate from '../components/function/translate.vue'
+import laundry from '../components/function/laundry.vue'
+import lifeSohp from '../components/function/lifeSohp.vue'
+
 /**
  *社区生活
  */
@@ -68,7 +73,11 @@ import propertyDetail from '../components/communityLife/propertyDetail.vue'
 import opinionSurvey from '../components/communityLife/opinionSurvey.vue'
 import opinionDetail from '../components/communityLife/opinionDetail.vue'
 import shopping from '../components/communityLife/shopping.vue'
+import shoptype from '../components/communityLife/shoptype.vue'
+import newshopping from '../components/communityLife/newshopping.vue'
 import shoppingDetail from '../components/communityLife/shoppingDetail.vue'
+import robotDelivery from '../components/communityLife/robotDelivery.vue'
+import breakfast from '../components/communityLife/breakfast.vue'
 import buy from '../components/communityLife/buy.vue'
 import ascottLife from '../components/communityLife/ascottLife.vue'
 import apply from '../components/communityLife/apply.vue'
@@ -214,8 +223,12 @@ export default new Router({
         {path: '/propertyActivity',name: 'propertyActivity',component: propertyActivity},//物业活动
         {path: '/opinionSurvey',name: 'opinionSurvey',component: opinionSurvey},//物业通知
         {path: '/opinionDetail',name: 'opinionDetail',component: opinionDetail},//物业通知详情
-        {path: '/shopping',name: 'shopping',component: shopping},//体验式购物
+        //{path: '/shopping',name: 'shopping',component: shopping},//体验式购物
+        {path: '/shopping',name: 'shoptype',component: shoptype},//新版体验式购物分类shoptype
+        {path: '/newshopping',name: 'newshopping',component: newshopping},//新版体验式购物
         {path: '/shopping/shoppingDetail',name: 'shoppingDetail',component: shoppingDetail},//购物详情
+        {path: '/robotDelivery',name: 'robotDelivery',component: robotDelivery},//机器人送物
+        {path: '/breakfast',name: 'breakfast',component: breakfast},//早餐机
         {path: '/buy',name: 'buy',component: buy},//购买
         {path: '/ascottLife',name: 'ascottLife',component: ascottLife},//雅诗阁生活
         {path: '/lifeDetail',name: 'lifeDetail',component: lifeDetail},//雅诗阁生活
@@ -233,8 +246,12 @@ export default new Router({
         {path: '/ssr/ssrDetail',name: 'ssrDetail',component: ssrDetail},//订阅详情
         {path: '/helpDetail',name: 'helpDetail',component: helpDetail},//帮助详情
         {path: '/order',name: 'order',component: order},//订单详情
+        {path: '/viewOrder',name: 'viewOrder',component: viewOrder},//查看订单
         {path: '/judge',name: 'judge',component: judge},//评论列表
         {path: '/judgeInput',name: 'judgeInput',component: judgeInput},//评论
         {path: '/map',name: 'map',component: map},//评论
+        {path: '/staffOrder',name: 'staffOrder',component: staffOrder},//员工查看订单
+        {path: '/laundry',name: 'laundry',component: laundry},//洗衣服务
+        {path: '/lifeSohp',name: 'lifeSohp',component: lifeSohp},//生活超市
     ]
 })

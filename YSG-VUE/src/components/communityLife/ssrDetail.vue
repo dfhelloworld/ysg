@@ -26,7 +26,11 @@
 			};
 		},
         created:function () {
-	        this.listData = this.$route.query.listData;
+            this.listData = this.$route.query.listData;
+            
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
         }
 	};
 </script>

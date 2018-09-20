@@ -10,8 +10,6 @@
                 </router-link>
                 <span class="close"  slot="left" v-else @click="goBack"></span>
             </yd-navbar>
-
-
             <section class="login_bottom">
                 <h2 class="login_title">{{language.login.sign}}</h2>
                 <div class="search_box login_select" @click="isPopShow = true">
@@ -25,6 +23,20 @@
                     </li>
                     <li>
                         <input type="text" :placeholder="language.login.name" v-model="fullName">
+                    </li>
+                </ul>
+                <ul class="login_style">
+                    <li style="border-bottom: 0px;color:white;opacity:0.5;" v-if="isZH">
+                        房间号：少于3位，请在前面加0。如0101, 2001
+                    </li>
+                    <li style="border-bottom: 0px;color:white;opacity:0.5;" v-if="isZH">
+                        姓：请输入英文名的姓氏
+                    </li>
+                    <li style="border-bottom: 0px;color:white;opacity:0.5;" v-if="!isZH">
+                        Room No: If the room number is less than 3 digits, please add 0 in front of it. </br>e.g. 0101, 2001
+                    </li>
+                    <li style="border-bottom: 0px;color:white;opacity:0.5;" v-if="!isZH">
+                        Last Name: Please input your last name
                     </li>
                 </ul>
                 <div class="login_in">
@@ -72,11 +84,18 @@
 				residence:'',
                 hotelId:'',
                 pageType:'',
-                come_hotelid:''
+                isZH:true,
+                come_hotelid:'',
+                propertyinterfId:0
 			};
 		},
 		created:function () {
-			this.come_hotelid = this.$route.query.hotelid
+            let _this = this;
+            this.come_hotelid = this.$route.query.hotelid
+            //判断显示中/英文
+            if(localStorage.LANGUAGE!='zh'){
+                this.isZH = false;
+            }
 
 			//获取跳转的上一个页面标识
             this.pageType = this.$route.query.pageType
@@ -84,20 +103,35 @@
             let params = {groupid: localStorage.groupid}
             this.$store.dispatch('getGroupListById', params).then((res) => {
                 //整理结果集
-                for(var i=0;i<this.groupListbyId.list.length;i++){
-                    var item = new Object();
+                for(let i=0;i<this.groupListbyId.list.length;i++){
+                    let item = new Object();
                     if(localStorage.LANGUAGE == 'en' || localStorage.LANGUAGE == null){
                         item.name = this.groupListbyId.list[i].nameEn;
                     } else {
                         item.name = this.groupListbyId.list[i].name;
                     }
-
-                item.value = this.groupListbyId.list[i].hotelId;
-                this.propertyList.push(item);
-            }
+                    item.value = this.groupListbyId.list[i].hotelId;
+                    this.propertyList.push(item);
+                    if(this.groupListbyId.list[i].hotelId==1){
+                        item = new Object();
+                        if(localStorage.LANGUAGE == 'en' || localStorage.LANGUAGE == null){
+                            item.name = 'Raffles City Residence Beijing';
+                        } else {
+                            item.name = '北京来福士阁服务公寓';
+                        }
+                        item.value = 'a1';
+                        this.propertyList.push(item);
+                    }
+                }
+                //设置初始化选择酒店
+                _this.onEndChange(localStorage.HOTELID);
             }).catch((res) => {
 
-            })
+            });
+
+            $(function(){
+                $(".navbar-center").css('marginLeft',0);
+            });
 
 		},
 		methods: {
@@ -115,11 +149,13 @@
                         identity: localStorage.identity,
                         lang: 'zh',
                         platform: localStorage.platform,
-                        room_no: this.roomNo
+                        room_no: this.roomNo,
+                        propertyinterfId: this.propertyinterfId
                     }
-
                     this.$store.dispatch('doLogin', params).then((res) => {
                         if (res.code == 0) {
+                            //设置propertyinterfId
+                            localStorage.propertyinterfId = this.propertyinterfId;
                             //存储用户token及物业id
                             localStorage.TOKEN = res.data.token;
                             localStorage.HOTELID = this.hotelId;
@@ -128,12 +164,13 @@
                             localStorage.ROOM_INFO = this.roomNo;
                             localStorage.serviceUrl = res.data.serviceUrl;
                             localStorage.spage = 0;
-                            localStorage.searchFlag = 'home'
-                            localStorage.oid = res.data.oid
-                            localStorage.id = res.data.id
-                            localStorage.ip = res.data.lastloginip
+                            localStorage.searchFlag = 'home';
+                            localStorage.oid = res.data.oid;
+                            localStorage.id = res.data.id;
+                            localStorage.ip = res.data.lastloginip;
+                            //初始化购物车
+                            global.shopCar = new Map();
                             //跳转首页
-
                             this.$router.replace({path: '/home', query: {type: 1}});
                             localStorage.idType = 1;
 
@@ -162,7 +199,13 @@
 						this.residence =  this.propertyList[index].name
 						break;
 					}
-				}
+                }
+                if(key==('a1')){
+                    key = ["1"];
+                    this.propertyinterfId = 12;
+                }else{
+                    this.propertyinterfId = 0;
+                }
 				this.hotelId = key;
 			},
 			goBack:function () {

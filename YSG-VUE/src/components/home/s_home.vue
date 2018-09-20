@@ -33,7 +33,9 @@
 						</li>
 					</ul>
 					<div class="smart_home">
-						<button type="button"  @click="goNext(shortcutList[0].key)" ><img style="width: .4rem;vertical-align: middle;display: inline-block;" src="../../assets/images/service-btn.png" alt=""> {{shortcutList[0].title}}</button>
+            <!--@click="goNext(shortcutList[0].key)" <img style="width: .4rem;vertical-align: middle;display: inline-block;" src="../../assets/images/service-btn.png" alt="">-->
+						<button type="button" v-if="isZH">快捷服务</button>
+            <button type="button" v-if="!isZH">Services</button>
 					</div>
 				</section>
 				<!--快捷功能-->
@@ -41,7 +43,7 @@
 					<div class="swiper-container">
 						<div class="swiper-wrapper">
 							<div class="swiper-slide" v-for="(item,index) in shortcutList" @click="goNext(item.key)">
-								<img :src="item.imgSrc">
+								<img :src="item.imgSrc" style="width:30px;height:30px;">
 								<p>{{item.title}}</p>
 							</div>
 						</div>
@@ -53,7 +55,10 @@
 				<!--酒店详情-->
 				<section class="app_content" style="background: #fff;padding-bottom: 1rem;">
 					<h4>{{ hotelDetail.name }}</h4>
-					<div class="map_content" @click="goLocation">
+          <div v-if="hotelDetail.robot_pic != ''" class="map_content">
+						<img :src="hotelDetail.robot_pic" @click="goLocation(2)">
+					</div>
+					<div class="map_content" @click="goLocation(1)">
 						<img :src="hotelDetail.localpic">
 					</div>
 					<ul class="add">
@@ -166,6 +171,7 @@
 		<v-foot></v-foot>
 		<v-menu v-show="menuFlag"></v-menu>
 		<v-guestCenter v-show="centerFlag"></v-guestCenter>
+
 	</div>
 </template>
 
@@ -204,10 +210,17 @@ export default {
       sHeightPx: "400px",
       weatherSrc: "",
       hotelid: "",
-      pageFlag: false
+      pageFlag: false,
+      isZH:true
     };
   },
   created: function() {
+    //加载页面判断是否需要清理缓存
+    h5Version();
+    //判断显示中/英文
+    if(localStorage.LANGUAGE!='zh'){
+        this.isZH = false;
+    }
     this.tabLanShow2 = this.tabLanShow;
     //设置当前状态
     localStorage.stateFlag = 2;
@@ -244,74 +257,92 @@ export default {
       {
         key: "reservation",
         title: "",
-        imgSrc: require("../../assets/images/icon-book.png"),
+        imgSrc: require("../../assets/images/fastkey/book.png"),
         linkTo: "/home/homebooking"
       },
       {
         key: "tanslate",
         title: "",
-        imgSrc: require("../../assets/images/icon-translate.png"),
+        imgSrc: require("../../assets/images/fastkey/translate.png"),
         linkTo: "/translate"
       },
       {
         key: "service",
         title: "",
-        imgSrc: require("../../assets/images/icon-service.png"),
+        imgSrc: require("../../assets/images/fastkey/service.png"),
         linkTo: "/home/service"
       },
       {
         key: "flight",
         title: "",
-        imgSrc: require("../../assets/images/icon-airport.png"),
+        imgSrc: require("../../assets/images/fastkey/airport.png"),
         linkTo: "#"
       },
       {
         key: "phone",
         title: "",
-        imgSrc: require("../../assets/images/icon-phone.png"),
+        imgSrc: require("../../assets/images/fastkey/phone.png"),
         linkTo: "/phone"
       },
       {
         key: "guestmail",
         title: "",
-        imgSrc: require("../../assets/images/icon-phone.png"),
+        imgSrc: require("../../assets/images/fastkey/phone.png"),
         linkTo: "#"
       },
       {
         key: "smarthome",
         title: "",
-        imgSrc: require("../../assets/images/icon-smart.png"),
+        imgSrc: require("../../assets/images/fastkey/smart.png"),
         linkTo: "#"
       },
       {
         key: "news",
         title: "",
-        imgSrc: require("../../assets/images/icon-news-add.png"),
+        imgSrc: require("../../assets/images/fastkey/news-add.png"),
         linkTo: "/ssr"
       },
       {
         key: "bills",
         title: "",
-        imgSrc: require("../../assets/images/icon-bill.png"),
+        imgSrc: require("../../assets/images/fastkey/bill.png"),
         linkTo: "/mybill"
       },
       {
         key: "invoice",
         title: "",
-        imgSrc: require("../../assets/images/icon-receipt.png"),
+        imgSrc: require("../../assets/images/fastkey/receipt.png"),
         linkTo: "/invoices"
       },
       {
         key: "lifeservice",
         title: "",
-        imgSrc: require("../../assets/images/icon-lifestyle.png"),
+        imgSrc: require("../../assets/images/fastkey/lifestyle.png"),
         linkTo: ""
       },
       {
         key: "shop",
         title: "",
-        imgSrc: require("../../assets/images/Shopping@2x.png"),
+        imgSrc: require("../../assets/images/fastkey/shopping.png"),
         linkTo: ""
+      },
+      {
+        key: "breakfast",
+        title: "",
+        imgSrc: require("../../assets/images/fastkey/dining.png"),
+        linkTo: "/breakfast"
+      },
+      {
+        key: "supermarket",
+        title: "",
+        imgSrc: require("../../assets/images/fastkey/group.png"),
+        linkTo: ""
+      },
+      {
+        key: "laundry",
+        title: "",
+        imgSrc: require("../../assets/images/fastkey/washer.png"),
+        linkTo: "/laundry"
       }
     ];
     this.myItems = [
@@ -457,12 +488,15 @@ export default {
         } else {
           localStorage.INVOICEID = "";
         }
+        //是否显示机器人洗衣功能
+        localStorage.WASHING_MACHINE = data.washing_machine;
       }
     });
     this.$store.dispatch("getHome", params).then(res => {
       if (res.code == 0) {
         //全部数据
         this.homeData = this.home.data;
+        localStorage.HomeInfo = this.homeData.indexBackground+';'+this.homeData.name;
         //天气数据  TODO 增加天气图标的判断--------------------未完成
         this.weather = this.home.data.wetherInfo;
         if (true) {
@@ -575,8 +609,18 @@ export default {
             paginationClickable: true,
             spaceBetween: 0
           });
+          //跳转到员工订单页面
+    let specialUrl = window.location.href.split('#');
+    if(specialUrl.length>1){
+      _this.$router.push(specialUrl[1]);
+      return;
+    }
         }, 300);
       });
+    });
+
+    $(function(){
+        $(".navbar-center").css('marginLeft',0);
     });
   },
   mounted: function() {
@@ -714,6 +758,13 @@ export default {
       if (this.tabLanShow2 == true) {
         this.$store.dispatch("changeLanguage2");
       }
+
+      //跟新自主服务标识
+      if(key!='zh'){
+        this.isZH = false;
+      }else{
+        this.isZH = true;
+      }
     },
     cancel: function() {
       if (this.tabLanShow2 == true) {
@@ -721,17 +772,27 @@ export default {
       }
     },
     //地图导航
-    goLocation: function() {
-      if (localStorage.HOTELID == 1 || localStorage.HOTELID == 7) {
-        if (localStorage.TOKEN) {
-          // this.$router.push("/shopping");
-          this.$router.push({ path: "/buy", query: { info: "home" } });
-        } else {
-          this.$router.replace("/loginforguest");
+    goLocation: function(val) {
+        //机器人购物
+        if(val===2){
+          //北京雅诗阁来福士中心服务公寓 首页机器人服务关闭
+          if(localStorage.HOTELID==1){
+            return;
+          }
+          //判断是否登录
+          if (localStorage.TOKEN) {
+            let goPath = "/shopping";
+            if(localStorage.HOTELID==21||localStorage.HOTELID==7){
+                localStorage.NEWTYPE=0;
+                goPath = "/robotDelivery";
+            }
+            this.$router.push({ path: goPath, query: { info: "home" } });
+          }else{
+            this.$router.replace("/loginforguest");
+          }
+        }else{
+          this.$router.push("/map");
         }
-      } else {
-        this.$router.push("/map");
-      }
     },
     goNext: function(key) {
       let _this = this;
@@ -793,6 +854,36 @@ export default {
           } else {
             _this.$router.replace("/loginforguest");
           }
+          break;
+        case "breakfast":
+          if (localStorage.TOKEN) {
+            checkPin(_this,{
+              path: "/breakfast",
+              query: { pageFlag: "s_home" }
+            });
+          } else {
+            _this.$router.replace("/loginforguest");
+          }
+          break;
+        case "supermarket":
+          if (localStorage.TOKEN) {
+            _this.$router.push({
+                path: "/lifeSohp",
+                query: { pageFlag: "home" }
+              });
+          } else {
+            _this.$router.replace("/loginforguest");
+          }
+          break;
+        case "laundry":
+            if (localStorage.TOKEN) {
+              _this.$router.push({
+                  path: "/laundry",
+                  query: { pageFlag: "home" }
+                });
+            } else {
+              _this.$router.replace("/loginforguest");
+            }
           break;
       }
     },
