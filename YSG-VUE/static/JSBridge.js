@@ -153,6 +153,12 @@ function checkVersion(params) {
   JSInterface.checkVersion(params);
 }
 
+//安卓清理缓存
+function h5Version(){
+  console.log('清除缓存:'+new Date());
+  JSInterface.h5Version('1.0/20/09/2018',new Date());
+}
+
 /**
  * 初始化数据
  */
@@ -245,3 +251,4 @@ function launchMiniProgramme(params) {
     JSInterface.launchMiniProgramme(JSON.stringify(params));
   }
 }
+
