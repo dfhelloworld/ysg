@@ -90,6 +90,7 @@
 			};
 		},
 		created:function () {
+            let _this = this;
             this.come_hotelid = this.$route.query.hotelid
             //判断显示中/英文
             if(localStorage.LANGUAGE!='zh'){
@@ -122,6 +123,8 @@
                         this.propertyList.push(item);
                     }
                 }
+                //设置初始化选择酒店
+                _this.onEndChange(localStorage.HOTELID);
             }).catch((res) => {
 
             });

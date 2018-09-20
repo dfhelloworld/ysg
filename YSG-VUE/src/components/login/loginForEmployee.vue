@@ -74,6 +74,7 @@
 			};
 		},
         created:function () {
+            let _this = this;
 			this.flag = localStorage.menuFlag
 	        //根据id获取集团物业列表
 	        let params = {groupid: localStorage.groupid}
@@ -84,7 +85,9 @@
 			        item.name = this.groupListbyId.list[i].name;
 			        item.value = this.groupListbyId.list[i].hotelId;
 			        this.propertyList.push(item);
-		        }
+                }
+                //设置初始化选择酒店
+                _this.onEndChange(localStorage.HOTELID);
             });
             
             $(function(){
