@@ -215,13 +215,8 @@ export default {
     };
   },
   created: function() {
-    //判断是否安卓手机
-    if(/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)){
-
-    }else{
-      //加载页面安卓判断是否需要清理缓存
-      h5Version();
-    }
+    //加载页面判断是否需要清理缓存
+    h5Version();
     //判断显示中/英文
     if(localStorage.LANGUAGE!='zh'){
         this.isZH = false;
